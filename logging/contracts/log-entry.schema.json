@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/logging/log-entry",
+  "title": "Structured Log Entry",
+  "description": "Standard log entry format for all platform services",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp"
+    },
+    "level": {
+      "type": "string",
+      "enum": ["DEBUG", "INFO", "WARN", "ERROR", "FATAL"]
+    },
+    "service": {
+      "type": "string",
+      "description": "Service name that generated the log"
+    },
+    "trace_id": {
+      "type": "string",
+      "description": "Distributed tracing correlation ID"
+    },
+    "span_id": {
+      "type": "string",
+      "description": "Span ID within the trace"
+    },
+    "message": {
+      "type": "string"
+    },
+    "context": {
+      "type": "object",
+      "description": "Additional structured context"
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "message": { "type": "string" },
+        "stack_trace": { "type": "string" }
+      }
+    }
+  },
+  "required": ["timestamp", "level", "service", "message"]
+}

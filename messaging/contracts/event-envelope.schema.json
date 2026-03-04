@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/messaging/event-envelope",
+  "title": "Event Envelope",
+  "description": "Standard envelope for all platform events and messages",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique event identifier"
+    },
+    "event_type": {
+      "type": "string",
+      "description": "Fully qualified event type (e.g., 'platform.auth.user_authenticated')"
+    },
+    "source": {
+      "type": "string",
+      "description": "Service that produced the event"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "string",
+      "description": "Event schema version"
+    },
+    "correlation_id": {
+      "type": "string",
+      "description": "Correlation ID for tracing"
+    },
+    "data": {
+      "type": "object",
+      "description": "Event payload"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata"
+    }
+  },
+  "required": ["event_id", "event_type", "source", "timestamp", "version", "data"]
+}
