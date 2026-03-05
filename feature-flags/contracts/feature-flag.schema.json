@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/feature-flags/feature-flag",
+  "title": "Feature Flag Contract",
+  "description": "Provider-agnostic feature flag evaluation interface",
+  "type": "object",
+  "properties": {
+    "key": { "type": "string", "pattern": "^[a-z]+\\.[a-z_]+\\.[a-z_]+$", "description": "Flag key in {domain}.{feature}.{variant} format" },
+    "type": { "type": "string", "enum": ["boolean", "string", "number", "json"], "description": "Flag value type" },
+    "default_value": { "description": "Default value when evaluation fails" },
+    "description": { "type": "string" },
+    "enabled": { "type": "boolean", "default": false },
+    "context": {
+      "type": "object",
+      "description": "Evaluation context for targeting",
+      "properties": {
+        "user_id": { "type": "string" },
+        "tenant_id": { "type": "string" },
+        "environment": { "type": "string", "enum": ["development", "staging", "production"] },
+        "attributes": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "value": {},
+          "weight": { "type": "number", "minimum": 0, "maximum": 100 }
+        },
+        "required": ["name", "value"]
+      }
+    }
+  },
+  "required": ["key", "type", "default_value"]
+}
