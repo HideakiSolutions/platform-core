@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/auth/auth-provider",
+  "title": "Authentication Provider Contract",
+  "description": "Defines the expected interface for authentication providers across any stack",
+  "type": "object",
+  "properties": {
+    "authenticate": {
+      "description": "Validates credentials and returns an authentication result",
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "grant_type": {
+              "type": "string",
+              "enum": ["password", "refresh_token", "client_credentials", "authorization_code"]
+            },
+            "credentials": {
+              "type": "object",
+              "description": "Grant-type-specific credentials"
+            }
+          },
+          "required": ["grant_type", "credentials"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "access_token": { "type": "string" },
+            "refresh_token": { "type": "string" },
+            "token_type": { "type": "string", "const": "Bearer" },
+            "expires_in": { "type": "integer" },
+            "scope": { "type": "string" }
+          },
+          "required": ["access_token", "token_type", "expires_in"]
+        }
+      }
+    },
+    "validate_token": {
+      "description": "Validates an access token and returns claims",
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "token": { "type": "string" }
+          },
+          "required": ["token"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "valid": { "type": "boolean" },
+            "claims": { "type": "object" },
+            "expires_at": { "type": "string", "format": "date-time" }
+          },
+          "required": ["valid"]
+        }
+      }
+    }
+  }
+}

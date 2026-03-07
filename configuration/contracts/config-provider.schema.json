@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/configuration/config-provider",
+  "title": "Configuration Provider Contract",
+  "description": "Standard configuration structure for platform services",
+  "type": "object",
+  "properties": {
+    "app": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "environment": { "type": "string", "enum": ["development", "staging", "production"] },
+        "port": { "type": "integer" },
+        "log_level": { "type": "string", "enum": ["DEBUG", "INFO", "WARN", "ERROR"] }
+      },
+      "required": ["name", "environment"]
+    },
+    "database": {
+      "type": "object",
+      "properties": {
+        "host": { "type": "string" },
+        "port": { "type": "integer" },
+        "name": { "type": "string" },
+        "pool_size": { "type": "integer" }
+      }
+    },
+    "cache": {
+      "type": "object",
+      "properties": {
+        "provider": { "type": "string" },
+        "ttl_seconds": { "type": "integer" }
+      }
+    },
+    "messaging": {
+      "type": "object",
+      "properties": {
+        "broker_url": { "type": "string" },
+        "provider": { "type": "string" }
+      }
+    }
+  },
+  "required": ["app"]
+}

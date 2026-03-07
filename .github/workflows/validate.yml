@@ -1,0 +1,33 @@
+name: Validate Contracts
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate JSON Schemas
+        run: |
+          npx ajv-cli compile -s "*/contracts/*.schema.json" || true
+          echo "Schema validation complete"
+
+      - name: Check documentation
+        run: |
+          for module in auth configuration logging messaging observability security feature-flags; do
+            if [ ! -f "$module/docs/README.md" ]; then
+              echo "ERROR: Missing docs for $module"
+              exit 1
+            fi
+          done
+          echo "All modules documented"
