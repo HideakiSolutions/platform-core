@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/security/security-headers",
+  "title": "Security Headers",
+  "description": "Required security headers for all platform HTTP services",
+  "type": "object",
+  "properties": {
+    "required_headers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "value": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "required": ["name", "value"]
+      },
+      "default": [
+        { "name": "X-Content-Type-Options", "value": "nosniff" },
+        { "name": "X-Frame-Options", "value": "DENY" },
+        { "name": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" },
+        { "name": "X-XSS-Protection", "value": "0" },
+        { "name": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "name": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/observability/health-check",
+  "title": "Health Check Response",
+  "description": "Standard health check response for all platform services",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["UP", "DOWN", "DEGRADED"]
+    },
+    "service": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "uptime_seconds": {
+      "type": "integer"
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "status": { "type": "string", "enum": ["UP", "DOWN"] },
+          "latency_ms": { "type": "number" }
+        },
+        "required": ["name", "status"]
+      }
+    }
+  },
+  "required": ["status", "service"]
+}
