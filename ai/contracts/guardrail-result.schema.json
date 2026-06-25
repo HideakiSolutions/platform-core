@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/ai/guardrail-result",
+  "title": "AI Guardrail Result",
+  "description": "Result of evaluating an input or output against an AI guardrail (prompt-injection, content, PII, ...). The shared shape lets services and dashboards reason about guardrail decisions uniformly.",
+  "type": "object",
+  "properties": {
+    "guardrail": { "type": "string", "description": "Guardrail name, e.g. 'prompt-injection', 'pii-redaction'" },
+    "stage": { "type": "string", "enum": ["input", "output"], "description": "Whether the guardrail evaluated a model input or output" },
+    "action": { "type": "string", "enum": ["allow", "block", "redact", "flag"] },
+    "reason": { "type": "string" },
+    "score": { "type": "number", "minimum": 0, "maximum": 1, "description": "Confidence/severity score" },
+    "categories": { "type": "array", "items": { "type": "string" } },
+    "correlation_id": { "type": "string" },
+    "metadata": { "type": "object" }
+  },
+  "required": ["guardrail", "action"]
+}

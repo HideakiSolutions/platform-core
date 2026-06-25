@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/data/data-contract",
+  "title": "Data Contract",
+  "description": "A data product contract: declares a dataset's owner, classification, schema, SLA and lineage so data is a governed, discoverable asset (the missing data-governance surface).",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "owner": { "type": "string", "description": "Owning team/person" },
+    "version": { "type": "string" },
+    "classification": { "type": "string", "enum": ["public", "internal", "confidential", "restricted"], "default": "internal" },
+    "description": { "type": "string" },
+    "schema_ref": { "type": "string", "description": "Reference to the dataset schema (URI/path)" },
+    "sla": {
+      "type": "object",
+      "properties": {
+        "freshness_seconds": { "type": "integer", "minimum": 0 },
+        "availability_pct": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "description": { "type": "string" },
+          "pii": { "type": "boolean", "default": false }
+        },
+        "required": ["name", "type"]
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "properties": {
+        "sources": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "required": ["name", "owner"]
+}

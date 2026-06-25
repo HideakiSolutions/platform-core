@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/multi-tenancy/tenant-context",
+  "title": "Tenant Context",
+  "description": "Ambient tenant identity carried through a request/operation, used to enforce tenant isolation (e.g. Postgres RLS via SET app.tenant_id). The canonical shape across stacks.",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string", "description": "The tenant the operation acts on behalf of" },
+    "workspace_id": { "type": "string", "description": "Optional sub-tenant workspace" },
+    "user_id": { "type": "string" },
+    "roles": { "type": "array", "items": { "type": "string" } },
+    "isolation": { "type": "string", "enum": ["shared", "dedicated"], "default": "shared" },
+    "attributes": { "type": "object", "description": "Additional targeting/ABAC attributes" }
+  },
+  "required": ["tenant_id"]
+}
