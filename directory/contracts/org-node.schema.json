@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/directory/org-node",
+  "title": "Organization Node",
+  "description": "A node in the organizational graph: a user, group, org-unit or service account, normalized across providers (Microsoft Graph, LDAP/AD, Cognito + HRIS). Carries the manager reference so the approval capability can resolve approval chains. Provider-neutral by design; the native id lives under source.external_id.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Stable principal id (immutable, provider-normalized)." },
+    "kind": { "type": "string", "enum": ["user", "group", "org_unit", "service_account"] },
+    "display_name": { "type": "string" },
+    "email": { "type": "string" },
+    "tenant_id": { "type": "string" },
+    "manager_id": {
+      "type": ["string", "null"],
+      "description": "ReBAC 'manager_of' edge source; null at the top of the chain."
+    },
+    "org_unit_id": { "type": ["string", "null"] },
+    "attributes": {
+      "type": "object",
+      "description": "Org attributes (department, title, location, cost_center, ...)."
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "provider": { "type": "string", "enum": ["entra-graph", "ldap", "cognito", "hris", "static"] },
+        "external_id": { "type": "string", "description": "Native id in the source system." }
+      },
+      "required": ["provider"]
+    },
+    "synced_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["id", "kind"]
+}

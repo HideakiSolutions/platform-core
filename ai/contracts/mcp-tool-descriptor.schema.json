@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/ai/mcp-tool-descriptor",
+  "title": "MCP Tool Descriptor",
+  "description": "Describes a platform capability exposed as an MCP tool through the shared MCP gateway. Binds the tool to its owning capability and declares the authorization and audit it inherits, so every agent-invocable surface is governed identically to the human/system surfaces. The gateway enforces authorization.required_action via the authorization capability and emits an audit-event when audited=true.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string", "description": "MCP tool name, e.g. 'approval_request_create'." },
+    "capability_id": {
+      "type": "string",
+      "description": "Owning capability id in the registry (e.g. 'approval', 'audit')."
+    },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "input_schema": {
+      "type": "object",
+      "description": "JSON Schema for the tool arguments (the capability's request contract)."
+    },
+    "output_schema": {
+      "type": "object",
+      "description": "JSON Schema for the tool result."
+    },
+    "authorization": {
+      "type": "object",
+      "description": "AuthZ the gateway enforces before invoking (delegates to the authorization capability).",
+      "properties": {
+        "required_action": {
+          "type": "string",
+          "description": "authorize() action checked for the calling principal."
+        },
+        "scopes": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["required_action"]
+    },
+    "audited": {
+      "type": "boolean",
+      "description": "If true, every invocation emits an audit-event (default true)."
+    },
+    "side_effecting": {
+      "type": "boolean",
+      "description": "True for tools that mutate state (gateway may require HITL/approval)."
+    },
+    "tenant_scoped": { "type": "boolean" }
+  },
+  "required": ["name", "capability_id", "input_schema", "authorization"]
+}

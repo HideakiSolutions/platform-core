@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/notifications/delivery-result",
+  "title": "Notification Delivery Result",
+  "description": "Per-channel delivery outcome for a notification intent, so the platform audits and observes multichannel fan-out uniformly. One intent fans out to N delivery results (one per channel attempted).",
+  "type": "object",
+  "properties": {
+    "intent_id": { "type": "string", "format": "uuid" },
+    "channel": {
+      "type": "string",
+      "enum": ["email", "slack", "teams", "discord", "whatsapp", "push", "sms", "webhook"]
+    },
+    "status": { "type": "string", "enum": ["sent", "delivered", "failed", "skipped", "throttled"] },
+    "provider": {
+      "type": "string",
+      "description": "Concrete provider/adapter (ses, graph-sendmail, slack-chat, fcm, apns, whatsapp-cloud, ...)."
+    },
+    "provider_message_id": { "type": "string" },
+    "error": { "type": "string" },
+    "attempted_at": { "type": "string", "format": "date-time" },
+    "correlation_id": { "type": "string" }
+  },
+  "required": ["intent_id", "channel", "status"]
+}

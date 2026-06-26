@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/directory/membership",
+  "title": "Org Membership Edge",
+  "description": "A membership/relationship edge in the org graph: principal to group/org-unit, or the manager chain. Supports direct and transitive resolution so consumers can answer 'is X a (transitive) member of G' and 'who is the Nth-level manager of X'. depth=0 means a direct edge.",
+  "type": "object",
+  "properties": {
+    "subject_id": { "type": "string" },
+    "target_id": {
+      "type": "string",
+      "description": "Group, org-unit, or (for manager/sponsor edges) the related principal."
+    },
+    "relation": {
+      "type": "string",
+      "enum": ["member_of", "manager_of", "owner_of", "sponsor_of", "delegate_of"]
+    },
+    "transitive": {
+      "type": "boolean",
+      "description": "True if the edge is derived through intermediate nodes (nested groups, manager chain)."
+    },
+    "depth": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Hops from subject to target (0 = direct)."
+    },
+    "tenant_id": { "type": "string" },
+    "synced_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["subject_id", "target_id", "relation"]
+}
