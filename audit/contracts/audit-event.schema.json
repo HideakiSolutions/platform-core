@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/audit/audit-event",
+  "title": "Audit Event",
+  "description": "Canonical, tamper-evident audit trail entry for all platform services. Append-only; never updated or deleted.",
+  "type": "object",
+  "properties": {
+    "audit_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique audit entry identifier"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the audited action occurred (ISO 8601)"
+    },
+    "actor": {
+      "type": "object",
+      "description": "Who performed the action",
+      "properties": {
+        "id": { "type": "string", "description": "Actor identifier (user id, service account, ...)" },
+        "type": { "type": "string", "enum": ["user", "service", "system"] },
+        "name": { "type": "string" },
+        "tenant_id": { "type": "string" }
+      },
+      "required": ["id", "type"]
+    },
+    "action": {
+      "type": "string",
+      "description": "Dot-notation action, e.g. 'billing.invoice.voided' or 'iam.user.role_granted'"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["success", "failure", "denied"],
+      "description": "Result of the audited action"
+    },
+    "source": {
+      "type": "string",
+      "description": "Service that recorded the event"
+    },
+    "resource": {
+      "type": "object",
+      "description": "What the action targeted",
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" },
+        "name": { "type": "string" }
+      },
+      "required": ["type", "id"]
+    },
+    "correlation_id": {
+      "type": "string",
+      "description": "Correlation id linking the entry to a request/trace"
+    },
+    "ip_address": { "type": "string" },
+    "user_agent": { "type": "string" },
+    "changes": {
+      "type": "array",
+      "description": "Field-level before/after for mutating actions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": { "type": "string" },
+          "old_value": { "type": ["string", "number", "boolean", "null"] },
+          "new_value": { "type": ["string", "number", "boolean", "null"] }
+        },
+        "required": ["field"]
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional structured context"
+    },
+    "prev_hash": {
+      "type": ["string", "null"],
+      "description": "Hash of the previous entry in the chain (tamper-evidence). Null for the first entry."
+    },
+    "hash": {
+      "type": "string",
+      "description": "SHA-256 over prev_hash + the canonical content of this entry"
+    }
+  },
+  "required": ["audit_id", "timestamp", "actor", "action", "outcome", "source"]
+}

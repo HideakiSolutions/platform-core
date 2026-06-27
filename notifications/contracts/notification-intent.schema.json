@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/notifications/notification-intent",
+  "title": "Notification Intent",
+  "description": "A channel-agnostic corporate notification intent (e.g. 'approval.requested', 'password.expiring', 'event.critical'). The notification hub routes one intent to one-or-more channel adapters (email, Slack, Teams, Discord, WhatsApp, push). Producers express WHAT to notify and to WHOM (by principal, resolved against directory.org-node); the hub resolves HOW. For WhatsApp outside the customer-service window a template is mandatory.",
+  "type": "object",
+  "properties": {
+    "intent_id": { "type": "string", "format": "uuid" },
+    "type": { "type": "string", "description": "Dot-notation intent type, e.g. 'approval.requested'." },
+    "priority": { "type": "string", "enum": ["low", "normal", "high", "critical"] },
+    "recipients": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "principal_id": {
+            "type": "string",
+            "description": "Resolved against directory.org-node; the hub looks up channel addresses."
+          },
+          "address": {
+            "type": "string",
+            "description": "Optional explicit address (email/phone/handle) overriding directory lookup."
+          }
+        }
+      }
+    },
+    "channels": {
+      "type": "array",
+      "description": "Requested channels; empty = hub decides by recipient preference and intent policy.",
+      "items": {
+        "type": "string",
+        "enum": ["email", "slack", "teams", "discord", "whatsapp", "push", "sms", "webhook"]
+      }
+    },
+    "template": {
+      "type": "string",
+      "description": "Template id; required for WhatsApp outside the service window."
+    },
+    "payload": { "type": "object", "description": "Template variables / structured content." },
+    "tenant_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["intent_id", "type", "recipients"]
+}
