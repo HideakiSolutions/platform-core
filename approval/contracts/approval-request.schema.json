@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/approval/approval-request",
+  "title": "Approval Request",
+  "description": "A governance approval workflow instance. Resolves its approver chain from the directory org-graph (manager chain, sponsors, group approvers), enforces separation-of-duties and N-eyes (dual) approval, supports temporary delegation, and communicates via the notifications hub. Decoupled from any single product's approval logic; every state transition is audit-eventable.",
+  "type": "object",
+  "properties": {
+    "request_id": { "type": "string", "format": "uuid" },
+    "subject_id": { "type": "string", "description": "Principal who requested the action." },
+    "action": {
+      "type": "string",
+      "description": "Dot-notation action under approval, e.g. 'access.role.grant'."
+    },
+    "resource": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" }
+      }
+    },
+    "risk": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"],
+      "description": "Drives required approval policy (e.g. dual approval above 'high')."
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "min_approvals": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "N-eyes: number of distinct approvals required."
+        },
+        "segregation_of_duties": {
+          "type": "boolean",
+          "description": "If true, the requester cannot be an approver."
+        },
+        "mode": { "type": "string", "enum": ["serial", "parallel"] }
+      },
+      "required": ["min_approvals"]
+    },
+    "steps": {
+      "type": "array",
+      "description": "Approver steps, typically resolved from the org-graph approval chain.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": { "type": "integer", "minimum": 1 },
+          "approver_id": {
+            "type": "string",
+            "description": "Resolved approver principal (e.g. manager_of subject)."
+          },
+          "delegated_from": {
+            "type": ["string", "null"],
+            "description": "Set when a temporary delegation reassigned the step."
+          },
+          "decision": { "type": "string", "enum": ["pending", "approved", "rejected", "skipped"] },
+          "decided_at": { "type": ["string", "null"], "format": "date-time" },
+          "comment": { "type": "string" }
+        },
+        "required": ["step", "approver_id", "decision"]
+      }
+    },
+    "state": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected", "expired", "cancelled"]
+    },
+    "tenant_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["request_id", "subject_id", "action", "policy", "state"]
+}
