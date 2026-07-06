@@ -8,7 +8,7 @@ on:
 
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    runs-on: hideaki-k3s
     steps:
       - uses: actions/checkout@v4
 
