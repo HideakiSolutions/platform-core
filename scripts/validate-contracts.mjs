@@ -17,7 +17,7 @@ function fail(message) {
 
 function walk(directory, files = []) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
-    if ([".git", "node_modules"].includes(entry.name)) continue;
+    if ([".git", ".worktrees", "node_modules"].includes(entry.name)) continue;
     const absolute = path.join(directory, entry.name);
     if (entry.isDirectory()) walk(absolute, files);
     else if (absolute.includes(contractSuffix) && absolute.endsWith(".schema.json")) files.push(absolute);
@@ -27,7 +27,7 @@ function walk(directory, files = []) {
 
 function walkExamples(directory, files = []) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
-    if ([".git", "node_modules"].includes(entry.name)) continue;
+    if ([".git", ".worktrees", "node_modules"].includes(entry.name)) continue;
     const absolute = path.join(directory, entry.name);
     if (entry.isDirectory()) walkExamples(absolute, files);
     else if (absolute.endsWith(".example.json")) files.push(absolute);
