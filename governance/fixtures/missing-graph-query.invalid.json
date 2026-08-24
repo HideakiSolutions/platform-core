@@ -1,0 +1,35 @@
+{
+  "$schema": "platform-core/governance/capability-intake/v2",
+  "schema_version": 2,
+  "request_id": "b6b2447c-c229-47be-a73d-175a75c596cc",
+  "submitted_at": "2026-08-24T00:00:00Z",
+  "source": {
+    "repository": "invalid-product",
+    "path": "src/shared",
+    "need": "Attempt implementation without exact graph evidence."
+  },
+  "classification": "shared",
+  "decision": "exception",
+  "evidence": {
+    "semantic_discovery": {
+      "status": "unavailable",
+      "query": "shared concern",
+      "reason": "index unavailable",
+      "candidates": []
+    },
+    "existing_implementations": [],
+    "candidate_consumers": [],
+    "compatibility_assessment": "Not assessed."
+  },
+  "hardening": {
+    "risk_domains": ["runtime"],
+    "failure_mode": "fail-closed",
+    "verification": ["negative fixture"],
+    "rollback": "Remove fixture."
+  },
+  "approval": {
+    "reference": "EXC-invalid",
+    "expires_at": "2026-09-01T00:00:00Z"
+  },
+  "rationale": "Must fail because graph_query is absent."
+}

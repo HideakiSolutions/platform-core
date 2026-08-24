@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Validate every contract fail-closed
-        run: npm run validate:contracts
+        run: npm run validate
 
       - name: Audit validator dependencies
         run: npm audit --audit-level=low

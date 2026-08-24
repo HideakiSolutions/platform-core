@@ -1,0 +1,48 @@
+{
+  "$schema": "platform-core/governance/capability-intake/v2",
+  "schema_version": 2,
+  "request_id": "516891c0-5641-4d33-9dd4-320245556513",
+  "submitted_at": "2026-08-24T00:00:00Z",
+  "source": {
+    "repository": "invalid-product",
+    "path": "src/shared",
+    "need": "Promote from an unproven semantic match."
+  },
+  "classification": "shared",
+  "decision": "promote",
+  "target": {
+    "capability_id": "invalid.semantic",
+    "owner": "platform-core",
+    "contract_id": "platform-core/invalid/semantic"
+  },
+  "evidence": {
+    "graph_query": {
+      "graph_id": "hideaki.enterprise-capabilities",
+      "schema_version": "1.0.0",
+      "queried_at": "2026-08-24T00:00:00Z",
+      "terms": ["semantic capability"],
+      "result": "none",
+      "matched_node_ids": []
+    },
+    "semantic_discovery": {
+      "status": "completed",
+      "query": "semantic capability",
+      "candidates": ["capability.adjacent"]
+    },
+    "existing_implementations": ["product-a", "product-b"],
+    "candidate_consumers": ["product-a", "product-b"],
+    "compatibility_assessment": "Not human-reviewed."
+  },
+  "graph_update": {
+    "owning_fragment": ".platform/capability-graph.fragment.json",
+    "proposed_node_ids": ["capability.invalid.semantic"],
+    "conformance_evidence": ["negative fixture"]
+  },
+  "hardening": {
+    "risk_domains": ["runtime"],
+    "failure_mode": "fail-closed",
+    "verification": ["negative fixture"],
+    "rollback": "Remove fixture."
+  },
+  "rationale": "Must fail because completed semantic discovery has no provenance."
+}
