@@ -128,13 +128,6 @@ function validate(fragment) {
       const owners = [...edges.values()].filter((edge) => edge.type === "OWNED_BY" && edge.from === node.id);
       if (owners.length !== 1) fail(`${node.id}: expected exactly one owner, found ${owners.length}`);
     }
-    if (node.type === "Capability" && node.lifecycle === "available") {
-      for (const type of ["DEFINED_BY", "IMPLEMENTED_BY", "VALIDATED_BY"]) {
-        if (![...edges.values()].some((edge) => edge.from === node.id && edge.type === type)) {
-          fail(`${node.id}: missing ${type}`);
-        }
-      }
-    }
   }
   if (hasDependencyCycle([...edges.values()])) fail("DEPENDS_ON cycle detected");
 

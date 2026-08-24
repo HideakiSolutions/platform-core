@@ -57,6 +57,27 @@
       "name": "Platform Capability Architecture Directive",
       "lifecycle": "available",
       "path": "ARCHITECTURE.md"
+    },
+    {
+      "id": "capability.messaging.event-envelope",
+      "type": "Capability",
+      "name": "Canonical Event Envelope",
+      "lifecycle": "available"
+    },
+    {
+      "id": "contract.messaging.event-envelope.v1",
+      "type": "Contract",
+      "name": "Platform Event Envelope v1",
+      "lifecycle": "available",
+      "version": "1",
+      "path": "messaging/contracts/event-envelope.schema.json"
+    },
+    {
+      "id": "evidence.messaging.event-envelope-contract",
+      "type": "Evidence",
+      "name": "Event Envelope Contract Documentation",
+      "lifecycle": "available",
+      "path": "messaging/docs/README.md"
     }
   ],
   "edges": [
@@ -133,6 +154,28 @@
       "to": "contract.capability-intake.v1",
       "repository": "repo.platform-core",
       "evidence": ["evidence.platform-capability-architecture"]
+    },
+    {
+      "id": "edge.capability.event-envelope.owned-by.platform-core-maintainers",
+      "type": "OWNED_BY",
+      "from": "capability.messaging.event-envelope",
+      "to": "owner.platform-core-maintainers",
+      "repository": "repo.platform-core"
+    },
+    {
+      "id": "edge.contract.event-envelope-v1.owned-by.platform-core-maintainers",
+      "type": "OWNED_BY",
+      "from": "contract.messaging.event-envelope.v1",
+      "to": "owner.platform-core-maintainers",
+      "repository": "repo.platform-core"
+    },
+    {
+      "id": "edge.capability.event-envelope.defined-by.v1",
+      "type": "DEFINED_BY",
+      "from": "capability.messaging.event-envelope",
+      "to": "contract.messaging.event-envelope.v1",
+      "repository": "repo.platform-core",
+      "evidence": ["evidence.messaging.event-envelope-contract"]
     }
   ],
   "findings": []

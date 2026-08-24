@@ -94,6 +94,16 @@ need:
 Contract readiness, package readiness, publication and product adoption are separate
 states. Passing core tests never implies that a product has adopted a capability.
 
+Local fragment validation proves identity, ownership, path and evidence integrity. It does
+not require global implementation or validation edges, because those relationships may be
+owned by stack and consumer repositories. The enterprise composition gate enforces the
+complete relationship set after all pinned fragments are loaded.
+
+External repositories validate intake records against the canonical v2 schema with
+`node scripts/validate-capability-intake.mjs --document <path>`. The command includes a
+negative guard proving that `consume` and `extend` cannot pass when exact graph lookup
+reports no existing node.
+
 ## ADR (Architecture Decision Records)
 
 All significant architectural decisions are documented in `docs/adr/` following the format:

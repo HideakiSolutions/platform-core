@@ -4,6 +4,7 @@
   "scripts": {
     "validate:contracts": "node scripts/validate-contracts.mjs",
     "validate:capability-graph": "node scripts/validate-platform-capability-graph.mjs --self-test",
+    "validate:capability-intake": "node scripts/validate-capability-intake.mjs",
     "validate": "npm run validate:contracts && npm run validate:capability-graph"
   },
   "devDependencies": {
