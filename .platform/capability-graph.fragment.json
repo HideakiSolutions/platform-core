@@ -4,7 +4,7 @@
   "repository": "repo.platform-core",
   "nodes": [
     {
-      "id": "owner.platform-architecture",
+      "id": "owner.platform-core-maintainers",
       "type": "Owner",
       "name": "Platform Architecture Owners",
       "lifecycle": "available"
@@ -61,45 +61,45 @@
   ],
   "edges": [
     {
-      "id": "edge.repo.platform-core.owned-by.platform-architecture",
+      "id": "edge.repo.platform-core.owned-by.platform-core-maintainers",
       "type": "OWNED_BY",
       "from": "repo.platform-core",
-      "to": "owner.platform-architecture",
+      "to": "owner.platform-core-maintainers",
       "repository": "repo.platform-core"
     },
     {
-      "id": "edge.capability.intake.owned-by.platform-architecture",
+      "id": "edge.capability.intake.owned-by.platform-core-maintainers",
       "type": "OWNED_BY",
       "from": "capability.governance.capability-intake",
-      "to": "owner.platform-architecture",
+      "to": "owner.platform-core-maintainers",
       "repository": "repo.platform-core"
     },
     {
-      "id": "edge.contract.intake-v1.owned-by.platform-architecture",
+      "id": "edge.contract.intake-v1.owned-by.platform-core-maintainers",
       "type": "OWNED_BY",
       "from": "contract.capability-intake.v1",
-      "to": "owner.platform-architecture",
+      "to": "owner.platform-core-maintainers",
       "repository": "repo.platform-core"
     },
     {
-      "id": "edge.contract.intake-v2.owned-by.platform-architecture",
+      "id": "edge.contract.intake-v2.owned-by.platform-core-maintainers",
       "type": "OWNED_BY",
       "from": "contract.capability-intake.v2",
-      "to": "owner.platform-architecture",
+      "to": "owner.platform-core-maintainers",
       "repository": "repo.platform-core"
     },
     {
-      "id": "edge.module.platform-validation.owned-by.platform-architecture",
+      "id": "edge.module.platform-validation.owned-by.platform-core-maintainers",
       "type": "OWNED_BY",
       "from": "module.platform-capability-validation",
-      "to": "owner.platform-architecture",
+      "to": "owner.platform-core-maintainers",
       "repository": "repo.platform-core"
     },
     {
-      "id": "edge.testsuite.platform-governance.owned-by.platform-architecture",
+      "id": "edge.testsuite.platform-governance.owned-by.platform-core-maintainers",
       "type": "OWNED_BY",
       "from": "testsuite.platform-capability-governance",
-      "to": "owner.platform-architecture",
+      "to": "owner.platform-core-maintainers",
       "repository": "repo.platform-core"
     },
     {
