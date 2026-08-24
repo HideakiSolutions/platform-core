@@ -80,13 +80,15 @@ Each module's `contracts/` folder contains the source of truth for that module's
 Products must follow the Platform-first intake before implementing a cross-cutting
 need:
 
-1. Query the platform capability registry and read the canonical contract.
+1. Query the versioned federated Platform Capability Graph by capability, contract,
+   package and owner; then run semantic discovery for adjacent or duplicate nodes.
 2. Consume the immutable, verified package for the product stack when available.
 3. Extend through documented ports or adapters while product and provider semantics
    remain local.
 4. If no projection exists, propose it in the owning core and prove conformance to
    the same contract. Do not create a parallel product-owned standard.
-5. Record the decision using `governance/capability-intake` and include compatibility,
+5. Record the decision using `platform-core/governance/capability-intake/v2` and include
+   exact graph evidence, semantic discovery, compatibility,
    deterministic verification, failure mode and rollback evidence.
 
 Contract readiness, package readiness, publication and product adoption are separate

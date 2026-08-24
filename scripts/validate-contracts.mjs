@@ -35,6 +35,16 @@ function walkExamples(directory, files = []) {
   return files;
 }
 
+function walkInvalidFixtures(directory, files = []) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if ([".git", ".worktrees", "node_modules"].includes(entry.name)) continue;
+    const absolute = path.join(directory, entry.name);
+    if (entry.isDirectory()) walkInvalidFixtures(absolute, files);
+    else if (absolute.endsWith(".invalid.json")) files.push(absolute);
+  }
+  return files;
+}
+
 const files = walk(root).sort();
 if (files.length === 0) fail("no contract schemas found");
 
@@ -124,5 +134,30 @@ for (const file of walkExamples(root).sort()) {
   exampleCount += 1;
 }
 
+let negativeFixtureCount = 0;
+for (const file of walkInvalidFixtures(root).sort()) {
+  const relative = path.relative(root, file);
+  let instance;
+  try {
+    instance = JSON.parse(readFileSync(file, "utf8"));
+  } catch (error) {
+    fail(`${relative}: invalid negative-fixture JSON: ${error.message}`);
+    continue;
+  }
+  const contractId = instance.$schema;
+  if (!knownIds.has(contractId)) {
+    fail(`${relative}: negative fixture $schema does not resolve: ${contractId ?? "(missing)"}`);
+    continue;
+  }
+  const validate = ajv.getSchema(`${validationBase}${contractId}`);
+  if (validate(instance)) {
+    fail(`${relative}: negative fixture was accepted by ${contractId}`);
+    continue;
+  }
+  negativeFixtureCount += 1;
+}
+
 if (process.exitCode) process.exit(process.exitCode);
-console.log(`[contracts] ${records.length} schemas and ${exampleCount} examples validated with strict JSON Schema 2020-12 rules`);
+console.log(
+  `[contracts] ${records.length} schemas, ${exampleCount} examples and ${negativeFixtureCount} negative fixtures validated with strict JSON Schema 2020-12 rules`
+);

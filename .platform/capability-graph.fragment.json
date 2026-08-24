@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "fragment_id": "fragment.platform-core",
+  "repository": "repo.platform-core",
+  "nodes": [
+    {
+      "id": "owner.platform-architecture",
+      "type": "Owner",
+      "name": "Platform Architecture Owners",
+      "lifecycle": "available"
+    },
+    {
+      "id": "repo.platform-core",
+      "type": "Repository",
+      "name": "platform-core",
+      "lifecycle": "available"
+    },
+    {
+      "id": "capability.governance.capability-intake",
+      "type": "Capability",
+      "name": "Platform Capability Intake",
+      "lifecycle": "available"
+    },
+    {
+      "id": "contract.capability-intake.v1",
+      "type": "Contract",
+      "name": "Platform Capability Intake v1",
+      "lifecycle": "deprecated",
+      "version": "1",
+      "path": "governance/contracts/capability-intake.schema.json"
+    },
+    {
+      "id": "contract.capability-intake.v2",
+      "type": "Contract",
+      "name": "Platform Capability Intake v2",
+      "lifecycle": "available",
+      "version": "2",
+      "path": "governance/contracts/capability-intake-v2.schema.json"
+    },
+    {
+      "id": "module.platform-capability-validation",
+      "type": "Module",
+      "name": "Platform Capability Contract and Graph Validation",
+      "lifecycle": "available",
+      "path": "scripts/validate-platform-capability-graph.mjs"
+    },
+    {
+      "id": "testsuite.platform-capability-governance",
+      "type": "TestSuite",
+      "name": "Platform Capability Governance Validation",
+      "lifecycle": "available",
+      "path": "scripts/validate-platform-capability-graph.mjs"
+    },
+    {
+      "id": "evidence.platform-capability-architecture",
+      "type": "Evidence",
+      "name": "Platform Capability Architecture Directive",
+      "lifecycle": "available",
+      "path": "ARCHITECTURE.md"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.repo.platform-core.owned-by.platform-architecture",
+      "type": "OWNED_BY",
+      "from": "repo.platform-core",
+      "to": "owner.platform-architecture",
+      "repository": "repo.platform-core"
+    },
+    {
+      "id": "edge.capability.intake.owned-by.platform-architecture",
+      "type": "OWNED_BY",
+      "from": "capability.governance.capability-intake",
+      "to": "owner.platform-architecture",
+      "repository": "repo.platform-core"
+    },
+    {
+      "id": "edge.contract.intake-v1.owned-by.platform-architecture",
+      "type": "OWNED_BY",
+      "from": "contract.capability-intake.v1",
+      "to": "owner.platform-architecture",
+      "repository": "repo.platform-core"
+    },
+    {
+      "id": "edge.contract.intake-v2.owned-by.platform-architecture",
+      "type": "OWNED_BY",
+      "from": "contract.capability-intake.v2",
+      "to": "owner.platform-architecture",
+      "repository": "repo.platform-core"
+    },
+    {
+      "id": "edge.module.platform-validation.owned-by.platform-architecture",
+      "type": "OWNED_BY",
+      "from": "module.platform-capability-validation",
+      "to": "owner.platform-architecture",
+      "repository": "repo.platform-core"
+    },
+    {
+      "id": "edge.testsuite.platform-governance.owned-by.platform-architecture",
+      "type": "OWNED_BY",
+      "from": "testsuite.platform-capability-governance",
+      "to": "owner.platform-architecture",
+      "repository": "repo.platform-core"
+    },
+    {
+      "id": "edge.capability.intake.defined-by.v2",
+      "type": "DEFINED_BY",
+      "from": "capability.governance.capability-intake",
+      "to": "contract.capability-intake.v2",
+      "repository": "repo.platform-core",
+      "evidence": ["evidence.platform-capability-architecture"]
+    },
+    {
+      "id": "edge.capability.intake.implemented-by.validator",
+      "type": "IMPLEMENTED_BY",
+      "from": "capability.governance.capability-intake",
+      "to": "module.platform-capability-validation",
+      "repository": "repo.platform-core",
+      "evidence": ["evidence.platform-capability-architecture"]
+    },
+    {
+      "id": "edge.capability.intake.validated-by.governance-tests",
+      "type": "VALIDATED_BY",
+      "from": "capability.governance.capability-intake",
+      "to": "testsuite.platform-capability-governance",
+      "repository": "repo.platform-core",
+      "evidence": ["evidence.platform-capability-architecture"]
+    },
+    {
+      "id": "edge.contract.intake-v2.supersedes.v1",
+      "type": "SUPERSEDES",
+      "from": "contract.capability-intake.v2",
+      "to": "contract.capability-intake.v1",
+      "repository": "repo.platform-core",
+      "evidence": ["evidence.platform-capability-architecture"]
+    }
+  ],
+  "findings": []
+}
