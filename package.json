@@ -1,0 +1,11 @@
+{
+  "name": "@hideakisolutions/platform-contract-validation",
+  "private": true,
+  "scripts": {
+    "validate:contracts": "node scripts/validate-contracts.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  }
+}
