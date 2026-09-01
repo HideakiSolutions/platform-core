@@ -27,7 +27,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: hideakisolutions/platform-core
-          ref: ${{ github.action_ref }}
+          # `github.action_ref` dentro de reusable workflow é clobberado pelo ref da última
+          # action composta (vira "v4" do actions/checkout) — runner deve vir de main.
+          ref: main
           path: .capability-drift-runner
       - uses: actions/setup-node@v4
         with:
