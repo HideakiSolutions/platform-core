@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/governance/capability-intake/v2",
+  "title": "Platform Capability Intake v2",
+  "description": "Fail-closed platform-first decision record with exact graph lookup, semantic discovery and governed consume, extend, promote, keep-local or exception outcome.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "platform-core/governance/capability-intake/v2"
+    },
+    "schema_version": { "type": "integer", "const": 2 },
+    "request_id": { "type": "string", "format": "uuid" },
+    "submitted_at": { "type": "string", "format": "date-time" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repository": { "type": "string", "minLength": 1 },
+        "path": { "type": "string", "minLength": 1 },
+        "need": { "type": "string", "minLength": 1 }
+      },
+      "required": ["repository", "path", "need"]
+    },
+    "classification": {
+      "type": "string",
+      "enum": ["platform", "partner", "shared", "product-local"]
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["consume", "extend", "promote", "keep-local", "exception"]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "capability_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$"
+        },
+        "owner": {
+          "type": "string",
+          "enum": [
+            "platform-core",
+            "backend-core",
+            "frontend-core",
+            "mobile-core",
+            "design-system-core",
+            "provider-protocol",
+            "partner-contracts"
+          ]
+        },
+        "contract_id": { "type": "string", "minLength": 1 },
+        "package": { "type": "string", "minLength": 1 }
+      },
+      "required": ["capability_id", "owner", "contract_id"]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "graph_query": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "graph_id": { "type": "string", "minLength": 1 },
+            "schema_version": { "type": "string", "const": "1.0.0" },
+            "queried_at": { "type": "string", "format": "date-time" },
+            "terms": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "result": {
+              "type": "string",
+              "enum": ["existing", "adjacent-only", "none"]
+            },
+            "matched_node_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          },
+          "required": [
+            "graph_id",
+            "schema_version",
+            "queried_at",
+            "terms",
+            "result",
+            "matched_node_ids"
+          ]
+        },
+        "semantic_discovery": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "status": { "type": "string", "enum": ["completed", "unavailable"] },
+            "query": { "type": "string", "minLength": 1 },
+            "provenance": { "type": "string", "minLength": 1 },
+            "reason": { "type": "string", "minLength": 1 },
+            "candidates": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          },
+          "required": ["status", "query", "candidates"],
+          "allOf": [
+            {
+              "if": {
+                "properties": { "status": { "const": "completed" } },
+                "required": ["status"]
+              },
+              "then": {
+                "properties": { "provenance": true },
+                "required": ["provenance"]
+              }
+            },
+            {
+              "if": {
+                "properties": { "status": { "const": "unavailable" } },
+                "required": ["status"]
+              },
+              "then": {
+                "properties": { "reason": true },
+                "required": ["reason"]
+              }
+            }
+          ]
+        },
+        "existing_implementations": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "candidate_consumers": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "strategic_adr": { "type": "string", "minLength": 1 },
+        "compatibility_assessment": { "type": "string", "minLength": 1 }
+      },
+      "required": [
+        "graph_query",
+        "semantic_discovery",
+        "existing_implementations",
+        "candidate_consumers",
+        "compatibility_assessment"
+      ]
+    },
+    "graph_update": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "owning_fragment": { "type": "string", "minLength": 1 },
+        "proposed_node_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "conformance_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "required": ["owning_fragment", "proposed_node_ids", "conformance_evidence"]
+    },
+    "hardening": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "risk_domains": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "public-contract",
+              "money",
+              "identity",
+              "authorization",
+              "tenancy",
+              "pii",
+              "secrets",
+              "provider",
+              "data",
+              "runtime"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "failure_mode": {
+          "type": "string",
+          "enum": ["fail-closed", "fail-open", "caller-owned"]
+        },
+        "verification": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "rollback": { "type": "string", "minLength": 1 }
+      },
+      "required": ["risk_domains", "failure_mode", "verification", "rollback"]
+    },
+    "rationale": { "type": "string", "minLength": 1 },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": { "type": "string", "minLength": 1 },
+        "expires_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reference", "expires_at"]
+    }
+  },
+  "required": [
+    "$schema",
+    "schema_version",
+    "request_id",
+    "submitted_at",
+    "source",
+    "classification",
+    "decision",
+    "evidence",
+    "hardening",
+    "rationale"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": { "enum": ["consume", "extend", "promote"] }
+        },
+        "required": ["decision"]
+      },
+      "then": {
+        "properties": { "target": true },
+        "required": ["target"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "decision": { "const": "promote" } },
+        "required": ["decision"]
+      },
+      "then": {
+        "properties": {
+          "graph_update": true,
+          "evidence": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "candidate_consumers": { "type": "array", "minItems": 2 }
+                }
+              },
+              {
+                "type": "object",
+                "properties": { "strategic_adr": true },
+                "required": ["strategic_adr"]
+              }
+            ]
+          }
+        },
+        "required": ["graph_update"]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": { "enum": ["keep-local", "exception"] }
+        },
+        "required": ["decision"]
+      },
+      "then": {
+        "properties": { "approval": true },
+        "required": ["approval"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "decision": { "const": "keep-local" } },
+        "required": ["decision"]
+      },
+      "then": {
+        "properties": { "classification": { "const": "product-local" } }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": { "enum": ["consume", "extend"] }
+        },
+        "required": ["decision"]
+      },
+      "then": {
+        "properties": {
+          "evidence": {
+            "type": "object",
+            "properties": {
+              "graph_query": {
+                "type": "object",
+                "properties": { "result": { "const": "existing" } }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

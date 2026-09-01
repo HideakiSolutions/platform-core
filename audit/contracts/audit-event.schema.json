@@ -62,8 +62,8 @@
         "type": "object",
         "properties": {
           "field": { "type": "string" },
-          "old_value": { "type": ["string", "number", "boolean", "null"] },
-          "new_value": { "type": ["string", "number", "boolean", "null"] }
+          "old_value": { "anyOf": [{ "type": "string" }, { "type": "number" }, { "type": "boolean" }, { "type": "null" }] },
+          "new_value": { "anyOf": [{ "type": "string" }, { "type": "number" }, { "type": "boolean" }, { "type": "null" }] }
         },
         "required": ["field"]
       }

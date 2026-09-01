@@ -1,0 +1,44 @@
+{
+  "$schema": "platform-core/governance/capability-intake/v2",
+  "schema_version": 2,
+  "request_id": "5dd884c7-2249-4319-8e61-50f236570214",
+  "submitted_at": "2026-08-24T00:00:00Z",
+  "source": {
+    "repository": "invalid-product",
+    "path": "src/shared",
+    "need": "Consume a capability absent from the exact graph."
+  },
+  "classification": "shared",
+  "decision": "consume",
+  "target": {
+    "capability_id": "missing.capability",
+    "owner": "platform-core",
+    "contract_id": "platform-core/missing"
+  },
+  "evidence": {
+    "graph_query": {
+      "graph_id": "hideaki.enterprise-capabilities",
+      "schema_version": "1.0.0",
+      "queried_at": "2026-08-24T00:00:00Z",
+      "terms": ["missing capability"],
+      "result": "none",
+      "matched_node_ids": []
+    },
+    "semantic_discovery": {
+      "status": "unavailable",
+      "query": "missing capability",
+      "reason": "index unavailable",
+      "candidates": []
+    },
+    "existing_implementations": [],
+    "candidate_consumers": ["invalid-product"],
+    "compatibility_assessment": "No existing node."
+  },
+  "hardening": {
+    "risk_domains": ["runtime"],
+    "failure_mode": "fail-closed",
+    "verification": ["negative fixture"],
+    "rollback": "Remove fixture."
+  },
+  "rationale": "Must fail because consume requires an existing exact graph result."
+}

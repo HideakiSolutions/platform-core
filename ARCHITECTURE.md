@@ -77,12 +77,22 @@ Each module's `contracts/` folder contains the source of truth for that module's
 
 ## How Products Consume platform-core
 
-Products should treat platform-core as a specification source:
+Products must follow the Platform-first intake before implementing a cross-cutting
+need:
 
-1. Read the contracts and specifications
-2. Implement adapters in their own stack
-3. Follow the guidelines documented in each module
-4. Validate compliance using provided schemas
+1. Query the versioned federated Platform Capability Graph by capability, contract,
+   package and owner; then run semantic discovery for adjacent or duplicate nodes.
+2. Consume the immutable, verified package for the product stack when available.
+3. Extend through documented ports or adapters while product and provider semantics
+   remain local.
+4. If no projection exists, propose it in the owning core and prove conformance to
+   the same contract. Do not create a parallel product-owned standard.
+5. Record the decision using `platform-core/governance/capability-intake/v2` and include
+   exact graph evidence, semantic discovery, compatibility,
+   deterministic verification, failure mode and rollback evidence.
+
+Contract readiness, package readiness, publication and product adoption are separate
+states. Passing core tests never implies that a product has adopted a capability.
 
 ## ADR (Architecture Decision Records)
 

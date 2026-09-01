@@ -1,0 +1,57 @@
+{
+  "$schema": "platform-core/governance/capability-intake/v2",
+  "schema_version": 2,
+  "request_id": "2c481e86-4db7-4c33-ad1a-0b63d94ccf4a",
+  "submitted_at": "2026-08-24T00:00:00Z",
+  "source": {
+    "repository": "example-product",
+    "path": "src/http/idempotency",
+    "need": "Share replay-safe HTTP idempotency across two products without changing their response envelopes."
+  },
+  "classification": "shared",
+  "decision": "promote",
+  "target": {
+    "capability_id": "http.idempotency",
+    "owner": "backend-core",
+    "contract_id": "backend-core/http/idempotency",
+    "package": "Hideakisolutions.Platform.Http.Idempotency"
+  },
+  "evidence": {
+    "graph_query": {
+      "graph_id": "hideaki.enterprise-capabilities",
+      "schema_version": "1.0.0",
+      "queried_at": "2026-08-24T00:00:00Z",
+      "terms": ["http idempotency", "request replay"],
+      "result": "adjacent-only",
+      "matched_node_ids": ["capability.messaging.outbox"]
+    },
+    "semantic_discovery": {
+      "status": "completed",
+      "query": "shared HTTP idempotency replay-safe request capability",
+      "provenance": "qdrant:platform-capabilities@2026-08-24",
+      "candidates": ["capability.messaging.outbox"]
+    },
+    "existing_implementations": ["product-a/src/idempotency", "product-b/src/idempotency"],
+    "candidate_consumers": ["product-a", "product-b"],
+    "compatibility_assessment": "Key layout, TTL and response envelopes remain product-owned adapter concerns."
+  },
+  "graph_update": {
+    "owning_fragment": ".platform/capability-graph.fragment.json",
+    "proposed_node_ids": [
+      "capability.http.idempotency",
+      "contract.http.idempotency.v1",
+      "package.hideakisolutions.platform.http.idempotency"
+    ],
+    "conformance_evidence": [
+      "positive contract fixture",
+      "negative duplicate-claim fixture"
+    ]
+  },
+  "hardening": {
+    "risk_domains": ["public-contract", "runtime"],
+    "failure_mode": "caller-owned",
+    "verification": ["contract conformance", "duplicate request replay", "non-success claim release"],
+    "rollback": "Remove the package reference and restore the product adapter composition."
+  },
+  "rationale": "Two independent consumers implement the same primitive and can share a narrow contract."
+}
