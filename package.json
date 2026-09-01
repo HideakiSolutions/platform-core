@@ -4,7 +4,8 @@
   "scripts": {
     "validate:contracts": "node scripts/validate-contracts.mjs",
     "validate:capability-graph": "node scripts/validate-platform-capability-graph.mjs --self-test",
-    "validate": "npm run validate:contracts && npm run validate:capability-graph"
+    "validate": "npm run validate:contracts && npm run validate:capability-graph",
+    "test:capability-drift": "node tools/capability-drift/test.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0",
