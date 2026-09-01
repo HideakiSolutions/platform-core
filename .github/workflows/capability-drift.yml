@@ -1,0 +1,47 @@
+name: Capability Drift
+
+on:
+  workflow_call:
+    inputs:
+      paths:
+        description: Comma-separated source paths to inspect.
+        required: false
+        default: .
+        type: string
+      baseline:
+        description: Repository-relative baseline path.
+        required: false
+        default: governance/capability-drift.baseline.json
+        type: string
+      stack:
+        description: Source stack.
+        required: true
+        type: string
+
+jobs:
+  capability-drift:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout capability-drift runner
+        uses: actions/checkout@v4
+        with:
+          repository: hideakisolutions/platform-core
+          ref: ${{ github.action_ref }}
+          path: .capability-drift-runner
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare capability-drift baseline
+        run: node .capability-drift-runner/tools/capability-drift/analyze.mjs --root "$GITHUB_WORKSPACE" --paths "${{ inputs.paths }}" --baseline "${{ inputs.baseline }}" --stack "${{ inputs.stack }}"
+      - name: Publish scorecard
+        uses: actions/upload-artifact@v4
+        with:
+          name: capability-drift
+          path: capability-drift.json
+          if-no-files-found: error
+      - name: Job summary
+        if: always()
+        run: |
+          echo '## Capability drift' >> "$GITHUB_STEP_SUMMARY"
+          test -f capability-drift.json && echo '```json' >> "$GITHUB_STEP_SUMMARY" && cat capability-drift.json >> "$GITHUB_STEP_SUMMARY" && echo '```' >> "$GITHUB_STEP_SUMMARY"
