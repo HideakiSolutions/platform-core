@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/auth/token-verifier",
+  "title": "Bearer Token Verifier Contract",
+  "description": "Canonical contract for verifying bearer tokens issued by an external OIDC provider (e.g. the platform's shared Keycloak) and normalizing them into a platform-neutral Principal. This is the contract every backend-core stack projection (Go golang/auth, Python hideakisolutions_platform.auth, Node/TS auth) already implements in practice. It was previously undocumented at the platform-core level — the pre-existing, still-valid middleware-config shape lives in backend-core/security/contracts/auth-middleware.schema.json (backend-core/security/auth-middleware); middleware_config below mirrors it field-for-field so platform-core/auth is a complete, self-contained source of truth without requiring a cross-repo $ref. See docs/intents/0001-auth-authorization-bridge.md for why this was added.",
+  "type": "object",
+  "properties": {
+    "middleware_config": {
+      "description": "Bearer verification middleware configuration. Field-for-field mirror of backend-core/security/auth-middleware#properties.authentication.",
+      "type": "object",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["bearer", "api_key", "basic", "oauth2"], "default": "bearer" },
+        "token_validation": {
+          "type": "object",
+          "properties": {
+            "issuer": { "type": "string" },
+            "audience": { "type": "string" },
+            "algorithms": { "type": "array", "items": { "type": "string" }, "default": ["RS256"] },
+            "jwks_uri": {
+              "type": "string",
+              "format": "uri",
+              "description": "Prefer an internal cluster JWKS URL over the public issuer for in-cluster token validation — decouples startup from external DNS/ingress reachability."
+            }
+          },
+          "required": ["issuer", "audience"]
+        },
+        "excluded_paths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["/health", "/health/ready", "/metrics"]
+        }
+      },
+      "required": ["strategy", "token_validation"]
+    },
+    "verify": {
+      "description": "The verify(token) operation every stack projection implements (e.g. Go Verifier.Verify, Python/Node equivalents).",
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "token": { "type": "string" }
+          },
+          "required": ["token"]
+        },
+        "output": {
+          "description": "The normalized Principal returned on successful verification. Field names match the existing Go/Python/Node projections verbatim — this documents them, it does not introduce new ones.",
+          "type": "object",
+          "properties": {
+            "subject": { "type": "string", "description": "OIDC `sub` claim." },
+            "tenant_id": { "type": "string", "description": "Normalized from the configured tenant claim (default `tenant_id`)." },
+            "roles": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Normalized from Keycloak realm_access.roles. RBAC input for platform-core/authorization/decision#properties.request.properties.subject.properties.roles."
+            },
+            "scopes": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Space-delimited OAuth `scope` claim, split into an array."
+            }
+          },
+          "required": ["subject"]
+        }
+      }
+    }
+  }
+}

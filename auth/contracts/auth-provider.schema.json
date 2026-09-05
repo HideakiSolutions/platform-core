@@ -19,6 +19,14 @@
             "credentials": {
               "type": "object",
               "description": "Grant-type-specific credentials"
+            },
+            "code_verifier": {
+              "type": "string",
+              "description": "PKCE code verifier (RFC 7636), required alongside grant_type=authorization_code for public clients (mobile, SPA). The matching code_challenge/code_challenge_method are sent at the authorization redirect, which is out of scope for this token-endpoint contract."
+            },
+            "acr_values": {
+              "type": "string",
+              "description": "Optional OIDC Authentication Context Class Reference request, used to force step-up authentication (e.g. re-prompt for MFA). Set this from the `detail` of a platform-core/authorization/decision#properties.result.properties.obligations entry with type=step_up_auth, then retry authenticate."
             }
           },
           "required": ["grant_type", "credentials"]
@@ -52,9 +60,41 @@
           "properties": {
             "valid": { "type": "boolean" },
             "claims": { "type": "object" },
-            "expires_at": { "type": "string", "format": "date-time" }
+            "expires_at": { "type": "string", "format": "date-time" },
+            "principal": {
+              "type": "object",
+              "description": "Normalized identity. Field-for-field mirror of auth/contracts/token-verifier.schema.json#properties.verify.properties.output — kept inline (not $ref'd) because this repo's validator only resolves whole-schema $ref, not JSON-pointer fragments. Additive: raw claims remains available above for callers that need it.",
+              "properties": {
+                "subject": { "type": "string" },
+                "tenant_id": { "type": "string" },
+                "roles": { "type": "array", "items": { "type": "string" } },
+                "scopes": { "type": "array", "items": { "type": "string" } }
+              },
+              "required": ["subject"]
+            }
           },
           "required": ["valid"]
+        }
+      }
+    },
+    "revoke": {
+      "description": "Revokes a token (RFC 7009), e.g. on explicit logout.",
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "token": { "type": "string" },
+            "token_type_hint": { "type": "string", "enum": ["access_token", "refresh_token"] }
+          },
+          "required": ["token"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "revoked": { "type": "boolean" }
+          },
+          "required": ["revoked"]
         }
       }
     }
