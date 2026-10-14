@@ -48,7 +48,8 @@
             "mobile-core",
             "design-system-core",
             "provider-protocol",
-            "partner-contracts"
+            "partner-contracts",
+            "aew"
           ]
         },
         "contract_id": { "type": "string", "minLength": 1 },

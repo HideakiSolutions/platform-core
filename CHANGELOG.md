@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- AEW organizational ownership in capability intake v2, with strategic-promotion and rejection fixtures validated by the existing contract gate.
 - Initial repository scaffold
 - Module structure: auth, configuration, logging, messaging, observability, security, feature-flags, utils
 - Architecture documentation
