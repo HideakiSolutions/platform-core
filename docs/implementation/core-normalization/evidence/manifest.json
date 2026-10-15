@@ -35,6 +35,47 @@
       "uncompressed_sha256": "572d9fde0ccc04cc4d2b22fdf9b418678c21578f57ba7cb6d9d1e77308b54161",
       "compressed_sha256": "4e29bccef4e141995d9c9e2c435b29055ae4d67851519c8cc99433ae80db55bf",
       "status": "read-only-observation-not-durable-acceptance"
+    },
+    {
+      "file": "ci-ds-38817029295-receipt.json.gz",
+      "uncompressed_sha256": "48cabdb80ac92df43337d71501a75b4056bcde9d50ceca9053330d6b6cd5c68f",
+      "compressed_sha256": "d96b7742049ff8ad95f2b1b8259c60bc743b9ddb4915860a6e6c60f0ce6cbbef",
+      "run": "https://github.com/HideakiSolutions/design-system-core/actions/runs/38817029295",
+      "status": "scoped-ci-evidence-not-program-acceptance"
+    },
+    {
+      "file": "ci-backend-dotnet-38818154517-receipt.json.gz",
+      "uncompressed_sha256": "96a9a49287e543ff57210d686b8c4277efb9fe9020a0127ec650769a08f47907",
+      "compressed_sha256": "f507b04163e16fa5cd2479c4d2b133f3ff496252350ab879c68c3e215199c638",
+      "run": "https://github.com/HideakiSolutions/backend-core/actions/runs/38818154517",
+      "status": "scoped-ci-evidence-not-program-acceptance"
+    },
+    {
+      "file": "ci-backend-node-38818154373-receipt.json.gz",
+      "uncompressed_sha256": "4192c1361cb15dc0858554fae548670a95efe0130570bd01f1bdc5e8c49188b2",
+      "compressed_sha256": "d0e61309a66871e10a92feae7eb3bfbc2b3fa66c8c1b9d0e534bfb5480205f95",
+      "run": "https://github.com/HideakiSolutions/backend-core/actions/runs/38818154373",
+      "status": "scoped-ci-evidence-not-program-acceptance"
+    },
+    {
+      "file": "ci-backend-go-38818154348-receipt.json.gz",
+      "uncompressed_sha256": "12108779da51c8a82adaf3adda233e55bdb954781f2b7fe92b024568697cbaca",
+      "compressed_sha256": "802580f4e1b10c15118cb5d3a4d11a86ac536002521a4db69460388074b0d357",
+      "run": "https://github.com/HideakiSolutions/backend-core/actions/runs/38818154348",
+      "status": "scoped-ci-evidence-not-program-acceptance"
+    },
+    {
+      "file": "ci-backend-python-38818154375-receipt.json.gz",
+      "uncompressed_sha256": "b41e5b2af3e0df3ccd16a9e884029cbe660cda2e5bca38c3e7479cf7274226c2",
+      "compressed_sha256": "3637f4ba5b1fbd5975f7889f28f35106275eaf0e0e9b7515994314cde0b655e3",
+      "run": "https://github.com/HideakiSolutions/backend-core/actions/runs/38818154375",
+      "status": "scoped-ci-evidence-not-program-acceptance"
+    },
+    {
+      "file": "installable-artifacts-wave2.json.gz",
+      "uncompressed_sha256": "a36c34ec78ff74eb490b93d47d183b92337d753b0993de47a65aced7e6c830b4",
+      "compressed_sha256": "55f349438c7665b8e9e10d465b0ebb1148db6cbc2042286dd617ff3f4ea2af8d",
+      "status": "267-local-artifact-observations-not-adoption-or-installation"
     }
   ]
 }

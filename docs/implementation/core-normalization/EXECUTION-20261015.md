@@ -4,11 +4,11 @@ Estado: **PARCIAL; não encerrado**. Nenhuma frente é aprovada por testes de um
 
 | Frente | Implementação e evidência atual | Aceite ainda pendente |
 |---|---|---|
-| 1. Conformidade | Resolvers existentes reconciliados; integridade e preflight de referências em quatro runtimes; intakes por conteúdo/versão no CI; testes negativos; instalação isolada .NET/Python/Go/Node | CI remoto e revisão integrada; fechamento integral de todas as projeções, inclusive Rust |
-| 2. Comportamento | Proposta audit-jcs-sha256/v1 e oráculos Node/Python: 33 vetores, 12 projeções estruturais, seis testes stdlib, incluindo negativos; histórico instalado revalidado | Auditoria legada Python/.NET mantém FAIL cruzado; implementação de produção/admissão do novo protocolo e demais contratos comportamentais entre stacks |
-| 3. Outbox/Inbox | Contrato neutro proposto, 18 casos/58 passos; Inbox .NET versionada preservando interfaces legadas; referência em memória explicitamente não durável | As dez células PostgreSQL × RabbitMQ/Kafka × cinco stacks permanecem BLOCKED; faltam adapters e provas de durabilidade |
+| 1. Conformidade | Resolvers existentes reconciliados; integridade e preflight de referências em quatro runtimes; intakes por conteúdo/versão no CI; testes negativos; instalação isolada .NET/Python/Go/Node | CI da onda final e revisão integrada; fechamento integral de todas as projeções, inclusive Rust |
+| 2. Comportamento | Proposta audit-jcs-sha256/v1, oráculos e operações explícitas Node/Python com33vetores; suites instaladas444/389; histórico instalado revalidado | Auditoria legada Python/.NET mantém FAIL cruzado; admissão do novo protocolo, projeções .NET/Go/Rust e demais contratos comportamentais entre stacks |
+| 3. Outbox/Inbox | Contrato neutro proposto, 18 casos/58 passos; Inbox .NET versionada e adapter PostgreSQL draft com10provas instaladas; referência em memória explicitamente não durável | As dez células PostgreSQL × RabbitMQ/Kafka × cinco stacks permanecem BLOCKED; faltam adapters e provas de durabilidade |
 | 4. Adoção | Seis pacotes Cambio Real reconciliados em revisão pinada; 42 referências verificadas; prova de seis tarballs registry em consumidor sintético; catálogo separa implementação/publicação/instalação/uso/extensão | Instalação no consumidor real não verificada; sete pacotes não admitidos no grafo canônico; proposta não altera automaticamente relações; completude BLOCKED |
-| 5. Mobile | Geração determinística a partir dos temas ativos pinados; APIs Hx históricas preservadas; instalação isolada; implementação Flutter experimental transferida a mobile e consumida por DS mediante snapshot íntegro | Equivalência visual e revisão de engenharia/design; CI remoto e revisão integrada; não há alegação de adoção registry para snapshots locais |
+| 5. Mobile | Geração determinística a partir dos temas ativos pinados; APIs Hx históricas preservadas; instalação isolada; implementação Flutter experimental transferida a mobile e consumida por DS mediante snapshot íntegro | Equivalência visual e revisão de engenharia/design; revisão integrada; não há alegação de adoção registry para snapshots locais |
 | 6. Consolidação | Inventário congelado por SHA/hash, candidatos de conformidade e leases selecionados por capacidade, cinco branches isoladas de integração | Baseline semântico parcial; destinos finais dos demais candidatos, PRs protegidos e provas da revisão efetivamente integrada |
 
 ## Evidências reproduzíveis
@@ -16,7 +16,7 @@ Estado: **PARCIAL; não encerrado**. Nenhuma frente é aprovada por testes de um
 - Inventário: [manifesto dos snapshots congelados](evidence/manifest.json), [baseline](BASELINE-20261015.md) e [revisão](REVIEW1-20261015.md). Dez testes do coletor passaram. Os 330 registros de setembro são insumo histórico, não certificação atual.
 - Contratos de mensageria: `messaging/conformance/delivery-v1/manifest.json` e `durable-matrix.json`. Corpus SHA-256 `b8cc52608d3c82a163da65b26866141316cdcd7993f37797654a7e7e48c83849`.
 - Auditoria proposta: `audit/conformance/jcs-v1/`; perfil numérico restritivo explícito e timestamps UTC sem perda de nanossegundos. ADR-013 é proposta, não alteração do leitor histórico. Oráculos internos não constituem novos SDKs públicos.
-- Backend: `docs/contracts/ISOLATED-INSTALLATION.md`, recibos versionados e ferramentas de reprodução. Alvo develop reconciliado: .NET 41 pacotes/42 projetos/923 testes na revisão e473d0d; Node 405, Python 353 e Go 315 na revisão 6ea3de0, complementados por cinco casos instalados por runtime em e473d0d. Zero skips obrigatórios. Recibos finais e scripts estão em docs/contracts/evidence/ no PR backend #34. Integrações reais de banco/broker não são selecionadas por essas suítes padrão.
+- Backend: `docs/contracts/WAVE2-20261015.md`, recibos versionados e ferramentas de reprodução. Os recibos anteriores continuam históricos. Alvo develop reconciliado: .NET 41 pacotes/42 projetos/923 testes na revisão e473d0d; Node 405, Python 353 e Go 315 na revisão 6ea3de0, complementados por cinco casos instalados por runtime em e473d0d. Zero skips obrigatórios. Recibos finais e scripts estão em docs/contracts/evidence/ no PR backend #34. Integrações reais de banco/broker não são selecionadas por essas suítes padrão.
 - Frontend: `docs/evidence/adoption/`, catálogo gerado e proposta separada de admissão. Instalar artefatos em fixture sintética não prova instalação no Cambio Real.
 - Mobile/DS: locks de fontes e snapshots, recibos de geração e instalação; nenhuma dependência de checkout irmão nas provas oficiais novas.
 
@@ -54,4 +54,45 @@ A [triagem de candidatos duráveis](DURABLE-CANDIDATES-20261015.md) consultou 38
 
 ## Estado observado de CI
 
-Platform #20 passou no run 38811985519 e mobile #13 passou no run 38811622716. No backend #34, a execução 38817030241 já aprovou build/test .NET e a execução 38817030190 aprovou Node; Go e instalação Python 3.12 ainda estavam pendentes na consulta de fechamento. DS #75 ainda executava validate no run 38817029295. Frontend conserva falha intencional do gate de adoção: os sete pacotes ausentes do grafo canônico não foram admitidos automaticamente; package-tests passou na execução anterior. Esses estados são observações datadas, não aprovação antecipada de novos commits ou da revisão integrada.
+Platform #20 passou no run38818158416 e mobile #13 no run38811622716. DS #75
+passou validate e Flutter/instalação no run38817029295. Backend #34 passou todos
+os jobs de validação, .NET, Node, Go e Python3.10/3.12 em13e3172. Seus recibos
+remotos estão congelados no manifesto: o checkout real é o merge sintético
+fc376aaa6c804c2cbb1d20648e6ea91d86702b27, pais develop5056242 e head13e3172;
+a árvore44e585fdf9d8ba516f9770313354020f6ff82fff é idêntica à de13e3172.
+Assim, a prova não é atribuída implicitamente a outra revisão.
+
+Frontend #101 mantém package-testsPASS e adoption/aggregateFAIL no run38815140495.
+Os sete pacotes ausentes do grafo canônico não foram admitidos automaticamente.
+Nenhum desses resultados certifica antecipadamente novos commits ou a revisão
+final integrada em develop/main.
+
+## Continuação implementada — onda 2
+
+Candidatos selecionados na branch de consolidação backend-wave2-integration e enviados ao PR #34 em46938f8:
+Python8164e6c, Node40c74e2, Inbox PostgreSQL3a2752c e helper613e0ec. Operações
+explicitamente versionadas audit-jcs-sha256/v1 preservam os leitores históricos.
+Node passou444 casos fonte/instalado e33vetores+8guardas; Python passou389 na
+fonte e instalado em Python3.12/jsonschema4.26 e Python3.10.19/jsonschema4.21.0.
+Os bytes esperados são os do corpus comum, sem geração pela própria implementação.
+
+Inbox PostgreSQL passou dez casos instalados com role restrita e schema exclusivo,
+incluindo disputa entre processos, kill de processo durante efeito, rollback,
+fencing e recuperação. Configuração ausente gera dez FAIL, nunca skips/pass.
+O schema retornou a zero objetos; nenhum banco/broker/serviço compartilhado foi
+interrompido. A verificação no commit se refere ao ponto de linearização do trigger
+deferred, sem promessa sobre o instante físico final de WAL.
+
+Revisão cética cega e de confronto não deixou achados funcionais abertos nesses
+escopos. Novo CI efêmero PostgreSQL e contagens444/389 foram enviados ao PR; a revisão
+corrigiu binding para loopback e porta dinâmica. Execução remota da onda2 em46938f8 ainda
+pendente. A composição local passou Node444, Python389, Go315 e .NET923/42, sem skips;
+oito intakes foram validados estruturalmente, incluindo duas propostas não admitidas. O dossiê backend docs/contracts/WAVE2-20261015.md mantém os receipts,
+logs, revisões, runtime, propostas/admissões e limites separados.
+
+As dez células PostgreSQL×RabbitMQ/Kafka continuam BLOCKED: a prova de Inbox não
+supre Outbox, confirmação de publicação ou ACK/offset após commit. JCS .NET/Go/Rust,
+os demais contratos comportamentais, admissão dos ADRs/grafo, equivalência visual,
+revisão de mantenedores e provas da revisão efetivamente integrada permanecem
+pendentes. O inventário local observado tem267 arquivos de artefato; presença e
+hash não comprovam instalação, publicação ou adoção.
