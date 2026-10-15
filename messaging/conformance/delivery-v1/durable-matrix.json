@@ -1,0 +1,196 @@
+{
+  "contract": "platform-core/messaging/delivery-lease/v1",
+  "version": "1.0.0",
+  "rows": [
+    {
+      "stack": "dotnet",
+      "database": "postgresql",
+      "transport": "rabbitmq",
+      "status": "BLOCKED",
+      "adapter": "not-verified",
+      "installation": "not-verified",
+      "evidence": [],
+      "required_scenarios": [
+        "rollback",
+        "multi-process-concurrency",
+        "restart",
+        "lease-loss",
+        "crash-after-confirmation",
+        "redelivery",
+        "recovery"
+      ],
+      "blocker": "Durable adapter and isolated integration evidence not delivered by reference protocol work."
+    },
+    {
+      "stack": "dotnet",
+      "database": "postgresql",
+      "transport": "kafka",
+      "status": "BLOCKED",
+      "adapter": "not-verified",
+      "installation": "not-verified",
+      "evidence": [],
+      "required_scenarios": [
+        "rollback",
+        "multi-process-concurrency",
+        "restart",
+        "lease-loss",
+        "crash-after-confirmation",
+        "redelivery",
+        "recovery"
+      ],
+      "blocker": "Durable adapter and isolated integration evidence not delivered by reference protocol work."
+    },
+    {
+      "stack": "node",
+      "database": "postgresql",
+      "transport": "rabbitmq",
+      "status": "BLOCKED",
+      "adapter": "not-verified",
+      "installation": "not-verified",
+      "evidence": [],
+      "required_scenarios": [
+        "rollback",
+        "multi-process-concurrency",
+        "restart",
+        "lease-loss",
+        "crash-after-confirmation",
+        "redelivery",
+        "recovery"
+      ],
+      "blocker": "Durable adapter and isolated integration evidence not delivered by reference protocol work."
+    },
+    {
+      "stack": "node",
+      "database": "postgresql",
+      "transport": "kafka",
+      "status": "BLOCKED",
+      "adapter": "not-verified",
+      "installation": "not-verified",
+      "evidence": [],
+      "required_scenarios": [
+        "rollback",
+        "multi-process-concurrency",
+        "restart",
+        "lease-loss",
+        "crash-after-confirmation",
+        "redelivery",
+        "recovery"
+      ],
+      "blocker": "Durable adapter and isolated integration evidence not delivered by reference protocol work."
+    },
+    {
+      "stack": "python",
+      "database": "postgresql",
+      "transport": "rabbitmq",
+      "status": "BLOCKED",
+      "adapter": "not-verified",
+      "installation": "not-verified",
+      "evidence": [],
+      "required_scenarios": [
+        "rollback",
+        "multi-process-concurrency",
+        "restart",
+        "lease-loss",
+        "crash-after-confirmation",
+        "redelivery",
+        "recovery"
+      ],
+      "blocker": "Durable adapter and isolated integration evidence not delivered by reference protocol work."
+    },
+    {
+      "stack": "python",
+      "database": "postgresql",
+      "transport": "kafka",
+      "status": "BLOCKED",
+      "adapter": "not-verified",
+      "installation": "not-verified",
+      "evidence": [],
+      "required_scenarios": [
+        "rollback",
+        "multi-process-concurrency",
+        "restart",
+        "lease-loss",
+        "crash-after-confirmation",
+        "redelivery",
+        "recovery"
+      ],
+      "blocker": "Durable adapter and isolated integration evidence not delivered by reference protocol work."
+    },
+    {
+      "stack": "go",
+      "database": "postgresql",
+      "transport": "rabbitmq",
+      "status": "BLOCKED",
+      "adapter": "not-verified",
+      "installation": "not-verified",
+      "evidence": [],
+      "required_scenarios": [
+        "rollback",
+        "multi-process-concurrency",
+        "restart",
+        "lease-loss",
+        "crash-after-confirmation",
+        "redelivery",
+        "recovery"
+      ],
+      "blocker": "Durable adapter and isolated integration evidence not delivered by reference protocol work."
+    },
+    {
+      "stack": "go",
+      "database": "postgresql",
+      "transport": "kafka",
+      "status": "BLOCKED",
+      "adapter": "not-verified",
+      "installation": "not-verified",
+      "evidence": [],
+      "required_scenarios": [
+        "rollback",
+        "multi-process-concurrency",
+        "restart",
+        "lease-loss",
+        "crash-after-confirmation",
+        "redelivery",
+        "recovery"
+      ],
+      "blocker": "Durable adapter and isolated integration evidence not delivered by reference protocol work."
+    },
+    {
+      "stack": "rust",
+      "database": "postgresql",
+      "transport": "rabbitmq",
+      "status": "BLOCKED",
+      "adapter": "not-verified",
+      "installation": "not-verified",
+      "evidence": [],
+      "required_scenarios": [
+        "rollback",
+        "multi-process-concurrency",
+        "restart",
+        "lease-loss",
+        "crash-after-confirmation",
+        "redelivery",
+        "recovery"
+      ],
+      "blocker": "Durable adapter and isolated integration evidence not delivered by reference protocol work."
+    },
+    {
+      "stack": "rust",
+      "database": "postgresql",
+      "transport": "kafka",
+      "status": "BLOCKED",
+      "adapter": "not-verified",
+      "installation": "not-verified",
+      "evidence": [],
+      "required_scenarios": [
+        "rollback",
+        "multi-process-concurrency",
+        "restart",
+        "lease-loss",
+        "crash-after-confirmation",
+        "redelivery",
+        "recovery"
+      ],
+      "blocker": "Durable adapter and isolated integration evidence not delivered by reference protocol work."
+    }
+  ]
+}

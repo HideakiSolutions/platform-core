@@ -46,3 +46,8 @@ only after the compatibility window defined by the ECP deprecation block, follow
 | .NET | MassTransit / NServiceBus |
 | Node.js | BullMQ / KafkaJS |
 | Go | Watermill / Sarama |
+
+## Proposed delivery coordination
+
+[Delivery leases v1](delivery-v1.md) adds a neutral behavioral proposal and corpus.
+It does not replace the ECP envelope or claim durable transport support.

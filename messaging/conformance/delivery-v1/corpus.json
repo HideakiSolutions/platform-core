@@ -1,0 +1,577 @@
+{
+  "contract_id": "platform-core/messaging/delivery-lease/v1",
+  "contract_version": "1.0.0",
+  "status": "proposed",
+  "message_id": "0b8f2a54-3c1d-4e0a-9d77-5a1c2f6e8b10",
+  "payloads": {
+    "original": "{\"event_id\":\"0b8f2a54-3c1d-4e0a-9d77-5a1c2f6e8b10\",\"event_type\":\"platform.auth.user_authenticated\",\"source\":\"auth-service\",\"timestamp\":\"2026-01-15T10:30:00Z\",\"version\":\"1.0\",\"data\":{\"user_id\":\"u-1\"}}",
+    "changed": "{\"event_id\":\"0b8f2a54-3c1d-4e0a-9d77-5a1c2f6e8b10\",\"event_type\":\"platform.auth.user_authenticated\",\"source\":\"auth-service\",\"timestamp\":\"2026-01-15T10:30:00Z\",\"version\":\"1.0\",\"data\":{\"user_id\":\"u-2\"}}"
+  },
+  "payload_sha256": {
+    "original": "6087f9071b076f05b6184c9c0f4c4c2d93fa9db73177ed9c33778eb8a43b0744",
+    "changed": "92aa75b8e55bc7ddd572194e3114ded2210ffccb9f12050ae2e28b642f006713"
+  },
+  "cases": [
+    {
+      "id": "complete-and-duplicate",
+      "kind": "positive",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "complete",
+          "now_ms": 1,
+          "lease": "a",
+          "expected": "accepted"
+        },
+        {
+          "operation": "claim",
+          "now_ms": 2,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "completed"
+        }
+      ]
+    },
+    {
+      "id": "tenant-consumer-isolation",
+      "kind": "positive",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "b",
+          "tenant": "tenant-b",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "c",
+          "tenant": "tenant-a",
+          "consumer": "payments",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "busy"
+        }
+      ]
+    },
+    {
+      "id": "expiry-and-recovery",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "renew",
+          "now_ms": 10,
+          "lease": "a",
+          "expected": "stale",
+          "lease_ms": 10
+        },
+        {
+          "operation": "complete",
+          "now_ms": 10,
+          "lease": "a",
+          "expected": "stale"
+        },
+        {
+          "operation": "fail",
+          "now_ms": 10,
+          "lease": "a",
+          "expected": "stale",
+          "terminal": false,
+          "retry_at_ms": 10
+        },
+        {
+          "operation": "claim",
+          "now_ms": 10,
+          "save_as": "b",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 2
+        },
+        {
+          "operation": "complete",
+          "now_ms": 11,
+          "lease": "a",
+          "expected": "stale"
+        },
+        {
+          "operation": "complete",
+          "now_ms": 11,
+          "lease": "b",
+          "expected": "accepted"
+        }
+      ]
+    },
+    {
+      "id": "renewal",
+      "kind": "positive",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "renew",
+          "now_ms": 5,
+          "lease": "a",
+          "expected": "accepted",
+          "lease_ms": 20,
+          "save_as": "renewed",
+          "expires_at_ms": 25
+        },
+        {
+          "operation": "claim",
+          "now_ms": 10,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "busy"
+        },
+        {
+          "operation": "claim",
+          "now_ms": 25,
+          "save_as": "b",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 2
+        },
+        {
+          "operation": "complete",
+          "now_ms": 26,
+          "lease": "renewed",
+          "expected": "stale"
+        }
+      ]
+    },
+    {
+      "id": "retry-deferred",
+      "kind": "positive",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "fail",
+          "now_ms": 1,
+          "lease": "a",
+          "expected": "accepted",
+          "terminal": false,
+          "retry_at_ms": 20
+        },
+        {
+          "operation": "claim",
+          "now_ms": 19,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "deferred"
+        },
+        {
+          "operation": "claim",
+          "now_ms": 20,
+          "save_as": "b",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "id": "terminal-failure",
+      "kind": "positive",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "fail",
+          "now_ms": 1,
+          "lease": "a",
+          "expected": "accepted",
+          "terminal": true
+        },
+        {
+          "operation": "claim",
+          "now_ms": 2,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "dead-lettered"
+        }
+      ]
+    },
+    {
+      "id": "payload-mismatch-busy",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "claim",
+          "now_ms": 1,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "changed",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "payload-mismatch"
+        }
+      ]
+    },
+    {
+      "id": "payload-mismatch-completed",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "complete",
+          "now_ms": 1,
+          "lease": "a",
+          "expected": "accepted"
+        },
+        {
+          "operation": "claim",
+          "now_ms": 2,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "changed",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "payload-mismatch"
+        }
+      ]
+    },
+    {
+      "id": "payload-mismatch-terminal",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "fail",
+          "now_ms": 1,
+          "lease": "a",
+          "expected": "accepted",
+          "terminal": true
+        },
+        {
+          "operation": "claim",
+          "now_ms": 2,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "changed",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "payload-mismatch"
+        }
+      ]
+    },
+    {
+      "id": "bounded-expiry",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 1,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "claim",
+          "now_ms": 10,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 1,
+          "expected": "dead-lettered"
+        },
+        {
+          "operation": "complete",
+          "now_ms": 11,
+          "lease": "a",
+          "expected": "stale"
+        }
+      ]
+    },
+    {
+      "id": "bounded-failure",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 1,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "fail",
+          "now_ms": 1,
+          "lease": "a",
+          "expected": "accepted",
+          "terminal": false
+        },
+        {
+          "operation": "claim",
+          "now_ms": 2,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 1,
+          "expected": "dead-lettered"
+        }
+      ]
+    },
+    {
+      "id": "reject-empty-tenant",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "invalid"
+        }
+      ]
+    },
+    {
+      "id": "reject-zero-lease",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 0,
+          "max_attempts": 3,
+          "expected": "invalid"
+        }
+      ]
+    },
+    {
+      "id": "reject-changed-retry-budget",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "claim",
+          "now_ms": 1,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 4,
+          "expected": "invalid"
+        }
+      ]
+    },
+    {
+      "id": "legacy-surface",
+      "kind": "compatibility",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1
+        },
+        {
+          "operation": "complete",
+          "now_ms": 1,
+          "lease": "a",
+          "expected": "accepted"
+        },
+        {
+          "operation": "claim",
+          "now_ms": 2,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "completed"
+        }
+      ]
+    }
+  ]
+}
