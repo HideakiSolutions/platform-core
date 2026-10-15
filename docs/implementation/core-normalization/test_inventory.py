@@ -75,6 +75,52 @@ class InventoryTests(unittest.TestCase):
         child.mkdir()
         self.assertEqual(module.inventory(child)['state'], 'blocked')
 
+    def test_cherry_pick_equivalence_and_dependency_signals(self):
+        self.commit()
+        self.run_git('checkout', '-b', 'delivered')
+        delivered = self.commit('two')
+        self.run_git('checkout', 'main')
+        (self.repo / 'unrelated').write_text('separate parent')
+        self.run_git('add', 'unrelated')
+        self.run_git('commit', '-m', 'test: unrelated')
+        self.run_git('cherry-pick', delivered)
+        self.official()
+        self.run_git('checkout', '-b', 'first')
+        self.commit('three')
+        self.run_git('checkout', '-b', 'second')
+        self.commit('four')
+        refs = {r['ref']: r for r in module.inventory(self.repo)['refs']}
+        duplicate = refs['refs/heads/delivered']
+        self.assertEqual(duplicate['classification'], 'duplicate')
+        self.assertTrue(duplicate['dependency_evidence']['patch_equivalence'][0]['patch_equivalent_in_official'])
+        self.assertIn('refs/heads/first', refs['refs/heads/second']['candidate_ancestor_refs'])
+        self.assertEqual(refs['refs/heads/second']['semantic_dependencies'], 'NOT_VERIFIED_requires_manual_review')
+        self.assertIn('file', refs['refs/heads/second']['dependency_evidence']['candidate_capability_path_scopes'])
+
+    def test_newline_worktree_collects_its_own_manifest_and_artifact(self):
+        self.commit()
+        destination = self.repo.parent / (self.repo.name + '-line\nbreak')
+        try:
+            self.run_git('worktree', 'add', '-b', 'other', str(destination))
+            (destination / 'package.json').write_text('{"version":"7.8.9"}')
+            (destination / 'fixture.tgz').write_bytes(b'artifact')
+            subprocess.run(['git', '-C', str(destination), 'add', 'package.json', 'fixture.tgz'], check=True, capture_output=True)
+            result = module.inventory(self.repo)
+            observed = next(w for w in result['worktrees'] if w['path'] == str(destination))
+            manifests = {r['path']: r for r in observed['manifests_and_artifacts']}
+            self.assertEqual(manifests['package.json']['declared_version'], '7.8.9')
+            self.assertEqual(manifests['fixture.tgz']['sha256'], module.sha(b'artifact'))
+            self.assertEqual(result['manifests_and_artifacts'], [])
+        finally:
+            self.run_git('worktree', 'remove', '--force', str(destination))
+
+    def test_cli_refuses_to_overwrite_existing_evidence(self):
+        output = self.repo / 'frozen.json'
+        output.write_text('frozen evidence')
+        result = subprocess.run(['python3', str(Path(module.__file__)), '--root', str(self.repo), '--output', str(output)], capture_output=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(output.read_text(), 'frozen evidence')
+
     def test_symlink_is_hashed_without_reading_external_target(self):
         (self.repo / 'link').symlink_to('/unreadable/external/target')
         record = module.file_record(self.repo, Path('link'))

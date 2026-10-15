@@ -14,9 +14,9 @@ python3 docs/implementation/core-normalization/inventory.py \
 python3 -m unittest discover -s docs/implementation/core-normalization -p 'test_*.py' -v
 ```
 
-O coletor não faz fetch, checkout, alteração de refs ou instalação. Cada nova execução observa o estado atual e recebe timestamp próprio; não substitua uma evidência congelada. A reprodução depende dos mesmos objetos Git, arquivos e worktrees. O JSON exporta caminhos, status e hashes; não exporta diffs, conteúdo de arquivos ou URLs dos remotos. Os registros de artefatos cobrem caminhos rastreados e não ignorados; saídas de build ignoradas não são inspecionadas.
+O coletor não faz fetch, checkout, alteração de refs ou instalação. Cada nova execução observa o estado atual e recebe timestamp próprio. A escrita usa modo exclusivo e rejeita qualquer destino existente, inclusive evidência congelada. A reprodução depende dos mesmos objetos Git, arquivos e worktrees. O JSON exporta caminhos, status e hashes; não exporta diffs, conteúdo de arquivos ou URLs dos remotos. Os registros de artefatos cobrem caminhos rastreados e não ignorados; saídas de build ignoradas não são inspecionadas.
 
-`integrated` significa somente ancestral da referência oficial observada. `candidate` significa commit fora dessa ancestralidade, exigindo revisão por capacidade. `blocked` significa referência oficial ou commit não verificável. Aliases de um SHA são registrados; não provam entregas duplicadas. Nenhum trabalho é automaticamente descartado ou classificado como superado. O destino de candidato/bloqueado é revisão por capacidade, sem autorização de merge implícita.
+`integrated` significa somente ancestral da referência oficial observada. `candidate` significa commit fora dessa ancestralidade, exigindo revisão por capacidade. `blocked` significa referência oficial ou commit não verificável. Aliases de um SHA são registrados; não provam entregas duplicadas. `duplicate` exige que todos os commits exclusivos sem merges sejam equivalentes por patch-id a patches da oficial (`git cherry`); a equivalência não comprova igualdade semântica nem autoriza descarte. Nenhum trabalho é automaticamente descartado ou classificado como superado. O destino de candidato/bloqueado é revisão por capacidade, sem autorização de merge implícita.
 
 ## Governança consultada
 
@@ -24,3 +24,7 @@ O coletor não faz fetch, checkout, alteração de refs ou instalação. Cada no
 - Produtor `2b4d6f37caf748947cca8195f16b8534b5c8ab9e`, sob `/workspace/local/tooling/hseos-releases/`: `.enterprise/policies/governance-discovery.md`, `.enterprise/.specs/core/_INDEX.md`, `.enterprise/.specs/constitution/Enterprise-Constitution.md`, `core/AGENT RULES STANDARD.md` e `core/Git Flow & Release Governance Standard.md`.
 
 Aplicação/enforcement e ativação AEW não foram verificados por este coletor. Não há criação de contrato compartilhado nem alteração do grafo de capacidades nesta entrega.
+
+## Revisão 1 — baseline parcial
+
+Leia [REVIEW1-20261015.md](REVIEW1-20261015.md). A onda 0 permanece **parcial**: capacidade semântica, ownership e dependências reais exigem análise manual. O coletor apresenta apenas escopos candidatos derivados de caminhos, merge-base e relações de ancestralidade entre refs. Nenhum sinal estático aprova entrega.
