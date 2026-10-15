@@ -24,5 +24,12 @@ jobs:
       - name: Validate every contract fail-closed
         run: npm run validate
 
+      - name: Verify proposed audit profile structural and behavioral evidence
+        run: |
+          python3 audit/conformance/jcs-v1/reference.py
+          node audit/conformance/jcs-v1/reference.mjs
+          node audit/conformance/jcs-v1/structural.mjs
+          python3 -m unittest discover -s audit/conformance/jcs-v1 -p 'test_*.py' -v
+
       - name: Audit validator dependencies
         run: npm audit --audit-level=low

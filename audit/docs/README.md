@@ -105,3 +105,9 @@ No legacy removal is proposed. If later removal is requested, ADR-007 and the
 global Deprecation & Sunset Policy require the recorded notices, at least two
 minor releases before the next-major removal and a migration guide. Existing
 source pins are preserved as provenance, never as an exception to DG-31–33.
+
+## Proposed versioned hashing profile
+
+[JCS profile v1](jcs-v1.md) and [ADR-013](../../docs/adr/ADR-013-audit-jcs-profile.md)
+provide a separately versioned proposal and executable corpus. They do not change
+existing hashing APIs, readers, retention decisions or production admission.
