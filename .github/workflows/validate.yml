@@ -9,6 +9,8 @@ on:
 jobs:
   validate:
     runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    env:
+      TMPDIR: ${{ runner.temp }}
     steps:
       - uses: actions/checkout@v4
 
