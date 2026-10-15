@@ -126,3 +126,31 @@ Jobs e Secret de bootstrap locais foram removidos após preservar logs. A role e
 o schema vazio reservados ao programa permanecem para continuidade com credencial
 em pass; há registro de limpeza até2026-10-23. Serviços compartilhados e alterações
 preexistentes dos sete checkouts inventariados foram preservados.
+
+## Fechamento da verificação desta continuação
+
+Todos os jobs exigidos do backend #34 passaram em70df700: validate,
+Node444, Python3.10/3.12 e wheel389, Go315, .NET923/42 projetos e Inbox PostgreSQL10.
+A publicação permaneceu desabilitada. Os cinco receipts instalados apontam ao
+mesmo merge sintético de70fe9a6dca51bec482416669ef06d7bf2d005b, cuja árvore é igual
+à do head. Os quatro receipts novos de stacks foram baixados e congelados no
+manifesto, com hashes e links dos runs.
+
+O feed padrão .NET contém42 arquivos nupkg e restaura41 IDs na suíte padrão.
+A prova separada PostgreSQL restaura Inbox e o adapter. Os ZIPs dos dois perfis
+têm hashes distintos; seus membros extraídos, incluindo DLLs, foram comparados
+e são idênticos. Os recibos preservam a identidade própria de cada arquivo,
+sem relabeling de artefatos. Esta distinção não é substituída pela contagem de IDs.
+
+A observação final registra272 arquivos de artefatos locais, separada das
+observações anteriores de267; não são272 pacotes adotados. Platform #20,
+mobile #13 e DS #75 possuem CI aprovado; frontend #101 permanece com
+package-testsPASS e adoção/completudeFAIL pelos sete pacotes não admitidos.
+As worktrees de PR estão limpas, sem merges oficiais, tags ou publicação.
+
+A continuação entrega candidatos concretos revisados e verificados; **o programa
+continua parcial**. Próximos gates: revisão de mantenedor em cada core,
+engenharia e design no DS, admissão de contratos/grafo, implementações e provas
+da matriz inteira de transportes, demais contratos comportamentais e equivalência
+visual. CONTRIBUTING exige essas revisões; resultados de revisão cética e CI não
+as substituem. O aceite final continua exigindo a revisão efetivamente integrada.

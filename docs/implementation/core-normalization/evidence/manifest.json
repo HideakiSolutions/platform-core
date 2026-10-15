@@ -100,6 +100,54 @@
       "uncompressed_sha256": "639db6375ead4728fd3254f7256e2b454ef852cb86ccc484d5843ee9c0ae7c88",
       "compressed_sha256": "5f5f837476c586e3c007f8ee063ec40da16c829178ef7c23d4b7ae49865a7995",
       "status": "read-only-revision-binding"
+    },
+    {
+      "file": "ci-backend-dotnet-38821774270-receipt.json.gz",
+      "uncompressed_sha256": "04c37a8cfd8707498fe75ec9eb01958b18ac98d2758086eebeae14cf56b7bcd4",
+      "compressed_sha256": "02eecbf0e8a5ef4875b20bb5c8c767e0bdad0c1293e4c3461ae2fe6e0823d876",
+      "run": "https://github.com/HideakiSolutions/backend-core/actions/runs/38821774270",
+      "source_revision": "de70fe9a6dca51bec482416669ef06d7bf2d005b",
+      "pr_head": "70df700",
+      "status": "PASS-scoped-installed-runtime-not-program-acceptance"
+    },
+    {
+      "file": "ci-backend-node-38821774295-receipt.json.gz",
+      "uncompressed_sha256": "dedd1e0736623af41b2af08e28335ffd8cbb3eb5e3b5a2a834c1e13926240ba7",
+      "compressed_sha256": "06d2ca4dedc7dc43c0a98a185908de90b11c36b3decef39c811678705b3e4a5c",
+      "run": "https://github.com/HideakiSolutions/backend-core/actions/runs/38821774295",
+      "source_revision": "de70fe9a6dca51bec482416669ef06d7bf2d005b",
+      "pr_head": "70df700",
+      "status": "PASS-scoped-installed-runtime-not-program-acceptance"
+    },
+    {
+      "file": "ci-backend-python-38821774301-receipt.json.gz",
+      "uncompressed_sha256": "5ff5e2fe29a8b2db43b7c493e08255fa8af7ceefc815a5541a95a1268664d68f",
+      "compressed_sha256": "948be88e4da55f945f86664c2249233120f3ccfa4932765b6c90b8548245c3c4",
+      "run": "https://github.com/HideakiSolutions/backend-core/actions/runs/38821774301",
+      "source_revision": "de70fe9a6dca51bec482416669ef06d7bf2d005b",
+      "pr_head": "70df700",
+      "status": "PASS-scoped-installed-runtime-not-program-acceptance"
+    },
+    {
+      "file": "ci-backend-go-38821774276-receipt.json.gz",
+      "uncompressed_sha256": "921e3864d65d16bbc4ae9c5426299f3e6732094f760e3997a67fd868a29281a3",
+      "compressed_sha256": "8ad4ae2e09090eea3ad8513cda6c1bf25264aaf561c3a4bcf0cc88dcdaa930ed",
+      "run": "https://github.com/HideakiSolutions/backend-core/actions/runs/38821774276",
+      "source_revision": "de70fe9a6dca51bec482416669ef06d7bf2d005b",
+      "pr_head": "70df700",
+      "status": "PASS-scoped-installed-runtime-not-program-acceptance"
+    },
+    {
+      "file": "ci-dotnet-profile-artifact-comparison.json.gz",
+      "uncompressed_sha256": "9fbf8ff3efe9d1717a6945de523ff511ba2927a714d4599beefd53a937773ceb",
+      "compressed_sha256": "a128cf3bf04ace59ccf1979d4d92e82439dbfb2b7788be2473266540541910cf",
+      "status": "distinct-archive-hashes-identical-extracted-payloads"
+    },
+    {
+      "file": "installable-artifacts-final-observation.json.gz",
+      "uncompressed_sha256": "c054e2a2c7c530d7cd3352703e193d0c8ed266a19723072a806e9314751b068c",
+      "compressed_sha256": "970e80c2c7736d3d85d4735e23a0d58e9e25467ce3dfc2bc40948332194f9569",
+      "status": "272-observed-archives-not-adoption-or-installation"
     }
   ]
 }
