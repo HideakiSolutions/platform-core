@@ -1,0 +1,21 @@
+{
+  "kind": "frozen-provenance-evidence",
+  "status": "observation-not-acceptance",
+  "records": [
+    {
+      "file": "baseline-20261015.json.gz",
+      "uncompressed_sha256": "f7063d52c829eec8c48200ec9bde6e8661f4aecaab0896b9f1bc9535f24a2645",
+      "compressed_sha256": "3d367ed8723e1f499e36124eb431f770628d03cb34a4f90bf7a3be36275d3afe"
+    },
+    {
+      "file": "baseline-versions-20261015.json.gz",
+      "uncompressed_sha256": "9557d6562e536b29604def60b73d398b67b7939533f7888c3e929c797162785a",
+      "compressed_sha256": "ff5d3c183cfa19b583c49b8b31700e02ad3a992cef3e9d743e06f2b0b7e9ac2b"
+    },
+    {
+      "file": "baseline-review1-20261015.json.gz",
+      "uncompressed_sha256": "e857564720482b02bb72d604e00f3d53f54f6142d1f537d1a892453f82f66035",
+      "compressed_sha256": "8445a3a8ae1d3d6587d21bdf0bab01b1723e6034753367c40c6e11424bbd38d4"
+    }
+  ]
+}

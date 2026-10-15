@@ -28,3 +28,10 @@ Aplicação/enforcement e ativação AEW não foram verificados por este coletor
 ## Revisão 1 — baseline parcial
 
 Leia [REVIEW1-20261015.md](REVIEW1-20261015.md). A onda 0 permanece **parcial**: capacidade semântica, ownership e dependências reais exigem análise manual. O coletor apresenta apenas escopos candidatos derivados de caminhos, merge-base e relações de ancestralidade entre refs. Nenhum sinal estático aprova entrega.
+
+## Evidência versionada
+
+Os três snapshots congelados também estão em [evidence/manifest.json](evidence/manifest.json),
+comprimidos de forma determinística. O manifesto registra SHA-256 dos bytes
+comprimidos e originais. Isso preserva a observação original em Git; uma execução
+nova do coletor continua sendo uma nova observação, nunca substituição do baseline.
