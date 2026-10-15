@@ -8,7 +8,7 @@ on:
 
 jobs:
   validate:
-    runs-on: hideaki-k3s
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: npm
+          cache: ${{ runner.environment == 'github-hosted' && 'npm' || '' }}
 
       - name: Install pinned contract validator
         run: npm ci
