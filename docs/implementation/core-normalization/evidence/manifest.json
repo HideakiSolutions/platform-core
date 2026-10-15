@@ -16,6 +16,25 @@
       "file": "baseline-review1-20261015.json.gz",
       "uncompressed_sha256": "e857564720482b02bb72d604e00f3d53f54f6142d1f537d1a892453f82f66035",
       "compressed_sha256": "8445a3a8ae1d3d6587d21bdf0bab01b1723e6034753367c40c6e11424bbd38d4"
+    },
+    {
+      "file": "ci-mobile-38811622716-receipt.json.gz",
+      "uncompressed_sha256": "236aa260bfd943343e93d2abae3f70395d44f5e4372c0bed10bb901efedee45a",
+      "compressed_sha256": "5ef31097f3d82651332739edd80b3bcd8d59fe87e2509d4dbf6cbbea83170f5a",
+      "source_revision": "2ed292dc54495751f5ee7837c2bce7d887747e0d",
+      "run": "https://github.com/HideakiSolutions/mobile-core/actions/runs/38811622716"
+    },
+    {
+      "file": "durable-candidate-reconciliation-20261015.json.gz",
+      "uncompressed_sha256": "cf7afa0a27fb836ac4d0258574e1da38169a54ccdbc69182a496d4b67027b26d",
+      "compressed_sha256": "3e5544e44d46329fc996c051c51d9d2abe1aecfe0fe3b52b2e67ca3cc8532833",
+      "status": "read-only-observation-not-durable-acceptance"
+    },
+    {
+      "file": "durable-candidate-scan-20261015.json.gz",
+      "uncompressed_sha256": "572d9fde0ccc04cc4d2b22fdf9b418678c21578f57ba7cb6d9d1e77308b54161",
+      "compressed_sha256": "4e29bccef4e141995d9c9e2c435b29055ae4d67851519c8cc99433ae80db55bf",
+      "status": "read-only-observation-not-durable-acceptance"
     }
   ]
 }
