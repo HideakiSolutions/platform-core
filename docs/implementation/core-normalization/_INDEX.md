@@ -35,3 +35,7 @@ Os três snapshots congelados também estão em [evidence/manifest.json](evidenc
 comprimidos de forma determinística. O manifesto registra SHA-256 dos bytes
 comprimidos e originais. Isso preserva a observação original em Git; uma execução
 nova do coletor continua sendo uma nova observação, nunca substituição do baseline.
+
+## Execução transversal
+
+Consulte [EXECUTION-20261015.md](EXECUTION-20261015.md) para entregas verificadas, dimensões bloqueadas e critérios ainda pendentes.
