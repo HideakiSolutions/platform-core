@@ -76,6 +76,30 @@
       "uncompressed_sha256": "a36c34ec78ff74eb490b93d47d183b92337d753b0993de47a65aced7e6c830b4",
       "compressed_sha256": "55f349438c7665b8e9e10d465b0ebb1148db6cbc2042286dd617ff3f4ea2af8d",
       "status": "267-local-artifact-observations-not-adoption-or-installation"
+    },
+    {
+      "file": "node-assets-92c8599-proof.tar.gz",
+      "uncompressed_sha256": "e8af1b6841f8471afc88c50f844c9b480991e09f6c2d4741890e9869604b477e",
+      "compressed_sha256": "8a7064c2d4ff8efa05dc6f719d2960019653c0e52b6570e4b5d1efda17eaa6e7",
+      "source_revision": "92c8599",
+      "equivalent_pr_head": "70df700",
+      "tree": "a0f440840428ccbeddd200ec231d779162dfd2da",
+      "status": "scoped-reviewed-proof-not-admission"
+    },
+    {
+      "file": "ci-postgresql-inbox-38821774279-receipt.json.gz",
+      "uncompressed_sha256": "94b365b0752ff7fb6bda6a6253ab48c4f8cd77cd8bd8c20f287b8ce5b0fa33ee",
+      "compressed_sha256": "506821fab9f999ed604b7c626cde681ee664f3940082e57bbfe501dd0ceab904",
+      "run": "https://github.com/HideakiSolutions/backend-core/actions/runs/38821774279",
+      "source_revision": "de70fe9a6dca51bec482416669ef06d7bf2d005b",
+      "pr_head": "70df700152c2bfa9054863d6a9f3a09b19bd93b1",
+      "status": "PASS-scoped-inbox-only-matrixBLOCKED"
+    },
+    {
+      "file": "ci-postgresql-inbox-38821774279-provenance.json.gz",
+      "uncompressed_sha256": "639db6375ead4728fd3254f7256e2b454ef852cb86ccc484d5843ee9c0ae7c88",
+      "compressed_sha256": "5f5f837476c586e3c007f8ee063ec40da16c829178ef7c23d4b7ae49865a7995",
+      "status": "read-only-revision-binding"
     }
   ]
 }

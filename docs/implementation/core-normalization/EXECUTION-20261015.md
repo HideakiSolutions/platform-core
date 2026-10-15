@@ -96,3 +96,33 @@ os demais contratos comportamentais, admissão dos ADRs/grafo, equivalência vis
 revisão de mantenedores e provas da revisão efetivamente integrada permanecem
 pendentes. O inventário local observado tem267 arquivos de artefato; presença e
 hash não comprovam instalação, publicação ou adoção.
+
+## Correção de ownership e prova PostgreSQL remota
+
+A execução inicial da onda2 em46938f8 reprovou corretamente no validate: os dois
+schemas canônicos empacotados Node estavam em pasta reservada a contratos locais.
+O candidato92c8599, publicado por cherry-pick como70df700, moveu somente esses
+assets para _jcs_contracts e remove o output gerado obsoleto antes de copiar.
+Schemas, hashes, namespace e validator permaneceram intactos. As duas revisões
+possuem a mesma árvore a0f440840428ccbeddd200ec231d779162dfd2da; não se relabelam
+execuções92 como70.
+
+Nova prova local:46testes de contratos, validação6schemas/1stub, typecheck,
+444fonte/444instalados e33vetores+8guardas passaram sem skips. O novo tar tem41
+arquivos, dois assets privados iguais ao vendor e nenhum diretório antigo.
+Revisão independente confirmou hashes/layout e um probe instalado. O pacote de
+provas está congelado no manifesto; o FAIL inicial permanece nos logs do programa.
+
+O CI de70df700 aprovou validate no run38821774287 e a instalação PostgreSQL no
+[run38821774279](https://github.com/HideakiSolutions/backend-core/actions/runs/38821774279).
+Foram dez PASS instalados e dez falhas esperadas sem configuração, zero skips;
+PostgreSQL16.14, role restrita, schema próprio e zero objetos antes/depois.
+Checkout real de70fe9a6dca51bec482416669ef06d7bf2d005b é o merge sintético do PR:
+pais e árvore foram conferidos com o head70df700 e estão no recibo de proveniência.
+Os demais jobs desse head ainda precisam concluir. Nenhum resultado supre a
+revisão oficial, admissão ou as dez células de transporte ainda BLOCKED.
+
+Jobs e Secret de bootstrap locais foram removidos após preservar logs. A role e
+o schema vazio reservados ao programa permanecem para continuidade com credencial
+em pass; há registro de limpeza até2026-10-23. Serviços compartilhados e alterações
+preexistentes dos sete checkouts inventariados foram preservados.
