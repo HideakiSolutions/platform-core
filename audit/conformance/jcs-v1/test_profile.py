@@ -71,6 +71,34 @@ class ProtocolTests(unittest.TestCase):
                     self.assertEqual(receipt['cases_executed'], 0)
                     self.assertIn('runtime', receipt)
 
+    def test_required_schema_pins_cannot_be_removed_or_replaced_by_unknown_identity(self):
+        for mutation in ('empty-map', 'missing-identity', 'invalid-revision', 'wrong-schema-identity'):
+            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory(prefix='audit-lock-', dir=os.environ.get('TMPDIR', '/build/tmp')) as scratch:
+                target = Path(scratch)
+                shutil.copytree(ROOT / 'audit', target / 'audit', ignore=shutil.ignore_patterns('__pycache__'))
+                directory = target / 'audit/conformance/jcs-v1'
+                lock_file = directory / 'corpus.lock.json'
+                lock = json.loads(lock_file.read_bytes())
+                schema_file = target / 'audit/contracts/audit-chain-jcs-v1.schema.json'
+                if mutation == 'empty-map':
+                    lock['schemas'] = {}
+                    schema_file.write_text('{}')
+                elif mutation == 'missing-identity':
+                    del lock['schemas']['audit/contracts/audit-chain-jcs-v1.schema.json']
+                elif mutation == 'invalid-revision':
+                    lock['canonical_base_revision'] = 'not-a-sha'
+                else:
+                    import hashlib
+                    schema = json.loads(schema_file.read_bytes())
+                    schema['$id'] = 'platform-core/not-the-audit-profile'
+                    schema_file.write_text(json.dumps(schema))
+                    lock['schemas']['audit/contracts/audit-chain-jcs-v1.schema.json'] = hashlib.sha256(schema_file.read_bytes()).hexdigest()
+                lock_file.write_text(json.dumps(lock))
+                for executable, name in ((sys.executable, 'reference.py'), ('node', 'reference.mjs')):
+                    result = subprocess.run([executable, str(directory / name)], cwd=target, capture_output=True, text=True)
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertEqual(json.loads(result.stdout)['status'], 'FAIL')
+
 
 if __name__ == '__main__':
     unittest.main()

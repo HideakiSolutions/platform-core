@@ -145,12 +145,24 @@ def main():
     raw = args.corpus.read_bytes()
     root = Path(__file__).resolve().parents[3]
     lock = json.loads(Path(__file__).with_name('corpus.lock.json').read_bytes())
-    if lock.get('protocol') != PROTOCOL or hashlib.sha256(raw).hexdigest() != lock.get('corpus_sha256'):
+    identities = {'audit/contracts/audit-event.schema.json': 'platform-core/audit/audit-event',
+                  'audit/contracts/audit-chain-jcs-v1.schema.json': 'platform-core/audit/audit-chain-jcs/v1'}
+    if (lock.get('schema_version') != 1 or lock.get('protocol') != PROTOCOL
+            or not re.fullmatch(r'[0-9a-f]{40}', lock.get('canonical_base_revision', ''))
+            or not isinstance(lock.get('schemas'), dict) or set(lock['schemas']) != set(identities)
+            or not HASH.fullmatch(lock.get('corpus_sha256', ''))):
+        raise ValueError('Mandatory audit corpus identities and pins are incomplete')
+    if hashlib.sha256(raw).hexdigest() != lock['corpus_sha256']:
         raise ValueError('Mandatory audit corpus integrity mismatch')
     for relative, digest in lock['schemas'].items():
         source = root / relative
-        if '..' in Path(relative).parts or Path(relative).is_absolute() or source.is_symlink() or hashlib.sha256(source.read_bytes()).hexdigest() != digest:
+        if (not isinstance(digest, str) or not HASH.fullmatch(digest)
+                or any(parent.is_symlink() for parent in [source, *source.parents] if parent != root and root in parent.parents)
+                or hashlib.sha256(source.read_bytes()).hexdigest() != digest):
             raise ValueError('Audit contract identity/integrity mismatch')
+        schema = json.loads(source.read_bytes())
+        if schema.get('$id') != identities[relative] or schema.get('$schema') != 'https://json-schema.org/draft/2020-12/schema':
+            raise ValueError('Unexpected audit contract identity')
     cases = json.loads(raw)
     if not cases or len({case['id'] for case in cases}) != len(cases):
         raise ValueError('Mandatory corpus must be nonempty with unique case identities')

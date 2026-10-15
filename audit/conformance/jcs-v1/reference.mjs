@@ -1,6 +1,6 @@
 // Internal independent JS oracle for this profile's integer-only JCS subset.
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readFileSync, lstatSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { resolve, isAbsolute } from 'node:path';
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -127,10 +127,23 @@ export function verifyChain(entries) {
 export function loadCorpus(corpusPath = new URL('./vectors.json', import.meta.url)) {
   const bytes = readFileSync(corpusPath);
   const lock = JSON.parse(readFileSync(new URL('./corpus.lock.json', import.meta.url)));
-  if (lock.protocol !== protocol || hash(bytes) !== lock.corpus_sha256) fail('Mandatory audit corpus integrity mismatch');
+  const identities = {
+    'audit/contracts/audit-event.schema.json': 'platform-core/audit/audit-event',
+    'audit/contracts/audit-chain-jcs-v1.schema.json': 'platform-core/audit/audit-chain-jcs/v1',
+  };
+  if (lock.schema_version !== 1 || lock.protocol !== protocol || !/^[0-9a-f]{40}$/.test(lock.canonical_base_revision ?? '') || !lock.schemas || Array.isArray(lock.schemas) || Object.keys(lock.schemas).sort().join(',') !== Object.keys(identities).sort().join(',') || !digest.test(lock.corpus_sha256 ?? '')) fail('Mandatory audit corpus identities and pins are incomplete');
+  if (hash(bytes) !== lock.corpus_sha256) fail('Mandatory audit corpus integrity mismatch');
   const root = fileURLToPath(new URL('../../../', import.meta.url));
   for (const [relative, digest] of Object.entries(lock.schemas)) {
-    if (isAbsolute(relative) || relative.split(/[\\/]/).includes('..') || hash(readFileSync(resolve(root, relative))) !== digest) fail('Audit contract identity/integrity mismatch');
+    let current = root;
+    for (const segment of relative.split('/')) {
+      current = resolve(current, segment);
+      if (lstatSync(current).isSymbolicLink()) fail('Audit source symlinks are forbidden');
+    }
+    const source = readFileSync(resolve(root, relative));
+    if (typeof digest !== 'string' || !/^[0-9a-f]{64}$/.test(digest) || isAbsolute(relative) || relative.split(/[\\/]/).includes('..') || hash(source) !== digest) fail('Audit contract identity/integrity mismatch');
+    const schema = JSON.parse(source);
+    if (schema.$id !== identities[relative] || schema.$schema !== 'https://json-schema.org/draft/2020-12/schema') fail('Unexpected audit contract identity');
   }
   const cases = JSON.parse(bytes);
   if (!cases.length || new Set(cases.map(item => item.id)).size !== cases.length) fail('Mandatory corpus empty or duplicate case identity');
