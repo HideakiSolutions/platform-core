@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { verifyCorpus } from './test-delivery-leases.mjs';
 const folder = fileURLToPath(new URL('../messaging/conformance/delivery-v1',import.meta.url));
 test('reference corpus executes every required positive, negative and compatibility case',()=>{
-  const receipt = verifyCorpus(folder); assert.equal(receipt.executed_cases,15); assert.equal(receipt.skips,0);
+  const receipt = verifyCorpus(folder); assert.equal(receipt.executed_cases,18); assert.equal(receipt.skips,0);
 });
 test('missing, empty, tampered and zero-case corpora cannot pass',()=>{
   assert(process.env.TMPDIR && !process.env.TMPDIR.startsWith('/tmp'),'disk TMPDIR required');

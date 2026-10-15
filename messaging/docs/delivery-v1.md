@@ -47,7 +47,10 @@ An expired owner cannot modify an effect or message through a durable adapter.
   the last allowed attempt fails/expires, the identity becomes terminal. No extra
   acquisition is granted. Extending a budget requires a new explicit contract policy.
 
-The corpus has positive, negative and compatibility vectors. Its clock starts at
+The corpus has 18 cases / 58 steps spanning positive, negative and compatibility
+vectors. Fences are asserted separately from opaque tokens: each new identity starts
+at 1 and each recovery increments that identity independently. Fractional renewal
+durations and terminal failure plus retry time are explicit rejection vectors. Its clock starts at
 an arbitrary UTC epoch; `now_ms` offsets are per-case monotonic. `payloads` contains
 exact UTF-8 strings, named by claim steps; `message_id` is constant per isolated
 case. Lease aliases are runner-local references to returned tokens. `legacy-surface`

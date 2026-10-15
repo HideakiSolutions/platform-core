@@ -26,7 +26,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "complete",
@@ -61,7 +62,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "claim",
@@ -73,7 +75,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "claim",
@@ -85,7 +88,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "claim",
@@ -114,7 +118,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "renew",
@@ -147,7 +152,9 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 2
+          "attempt": 2,
+          "fence": 2,
+          "different_token_from": "a"
         },
         {
           "operation": "complete",
@@ -177,7 +184,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "renew",
@@ -209,7 +217,9 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 2
+          "attempt": 2,
+          "fence": 2,
+          "different_token_from": "a"
         },
         {
           "operation": "complete",
@@ -233,7 +243,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "fail",
@@ -264,7 +275,9 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 2
+          "attempt": 2,
+          "fence": 2,
+          "different_token_from": "a"
         }
       ]
     },
@@ -282,7 +295,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "fail",
@@ -318,7 +332,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "claim",
@@ -347,7 +362,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "complete",
@@ -382,7 +398,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "fail",
@@ -418,7 +435,8 @@
           "lease_ms": 10,
           "max_attempts": 1,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "claim",
@@ -453,7 +471,8 @@
           "lease_ms": 10,
           "max_attempts": 1,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "fail",
@@ -523,7 +542,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "claim",
@@ -552,7 +572,8 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "acquired",
-          "attempt": 1
+          "attempt": 1,
+          "fence": 1
         },
         {
           "operation": "complete",
@@ -570,6 +591,142 @@
           "lease_ms": 10,
           "max_attempts": 3,
           "expected": "completed"
+        }
+      ]
+    },
+    {
+      "id": "reject-fractional-renew",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1,
+          "fence": 1
+        },
+        {
+          "operation": "renew",
+          "now_ms": 1,
+          "lease": "a",
+          "lease_ms": 20.5,
+          "expected": "invalid"
+        },
+        {
+          "operation": "complete",
+          "now_ms": 2,
+          "lease": "a",
+          "expected": "accepted"
+        }
+      ]
+    },
+    {
+      "id": "reject-terminal-retry",
+      "kind": "negative",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1,
+          "fence": 1
+        },
+        {
+          "operation": "fail",
+          "now_ms": 1,
+          "lease": "a",
+          "terminal": true,
+          "retry_at_ms": 20,
+          "expected": "invalid"
+        },
+        {
+          "operation": "claim",
+          "now_ms": 2,
+          "save_as": "b",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "busy"
+        },
+        {
+          "operation": "complete",
+          "now_ms": 3,
+          "lease": "a",
+          "expected": "accepted"
+        }
+      ]
+    },
+    {
+      "id": "fence-per-identity",
+      "kind": "positive",
+      "steps": [
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "a",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1,
+          "fence": 1
+        },
+        {
+          "operation": "claim",
+          "now_ms": 0,
+          "save_as": "b",
+          "tenant": "tenant-b",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 1,
+          "fence": 1
+        },
+        {
+          "operation": "claim",
+          "now_ms": 10,
+          "save_as": "a2",
+          "tenant": "tenant-a",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 2,
+          "fence": 2,
+          "different_token_from": "a"
+        },
+        {
+          "operation": "claim",
+          "now_ms": 10,
+          "save_as": "b2",
+          "tenant": "tenant-b",
+          "consumer": "ledger",
+          "payload": "original",
+          "lease_ms": 10,
+          "max_attempts": 3,
+          "expected": "acquired",
+          "attempt": 2,
+          "fence": 2,
+          "different_token_from": "b"
         }
       ]
     }
