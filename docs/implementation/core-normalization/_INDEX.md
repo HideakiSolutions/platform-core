@@ -1,6 +1,6 @@
 # Normalização dos cores
 
-Este pacote registra a onda 0 do programa de normalização e consolidação. Use o [baseline](BASELINE-20261015.md) para interpretar a proveniência e os limites; execute [inventory.py](inventory.py) para uma nova observação e [test_inventory.py](test_inventory.py) para verificar o comportamento do coletor.
+Este pacote registra o baseline e a execução do programa de normalização e consolidação. Leia [EXECUTION-20261015.md](EXECUTION-20261015.md) para o estado atual, PRs, provas e gates abertos. Use o [baseline](BASELINE-20261015.md) para interpretar a observação inicial e seus limites; execute [inventory.py](inventory.py) para uma nova observação e [test_inventory.py](test_inventory.py) para verificar o comportamento do coletor.
 
 A observação de fontes não comprova conformidade, instalação, adoção, durabilidade ou execução dos produtos. As seis frentes e os critérios de aceite do programa permanecem pendentes até suas provas específicas.
 
@@ -23,7 +23,7 @@ O coletor não faz fetch, checkout, alteração de refs ou instalação. Cada no
 - `/home/annonymous/.claude/AGENTS.md`, especialmente §§3f, 3h, 3i e 3k.
 - Produtor `2b4d6f37caf748947cca8195f16b8534b5c8ab9e`, sob `/workspace/local/tooling/hseos-releases/`: `.enterprise/policies/governance-discovery.md`, `.enterprise/.specs/core/_INDEX.md`, `.enterprise/.specs/constitution/Enterprise-Constitution.md`, `core/AGENT RULES STANDARD.md` e `core/Git Flow & Release Governance Standard.md`.
 
-Aplicação/enforcement e ativação AEW não foram verificados por este coletor. Não há criação de contrato compartilhado nem alteração do grafo de capacidades nesta entrega.
+Aplicação/enforcement e ativação AEW não foram verificados por este coletor. O coletor da onda 0 não cria contratos compartilhados nem altera o grafo de capacidades. Contratos propostos nas ondas posteriores têm aceite/admissão separados no dossiê.
 
 ## Revisão 1 — baseline parcial
 
@@ -31,7 +31,7 @@ Leia [REVIEW1-20261015.md](REVIEW1-20261015.md). A onda 0 permanece **parcial**:
 
 ## Evidência versionada
 
-Os três snapshots congelados também estão em [evidence/manifest.json](evidence/manifest.json),
+Os três snapshots de baseline e os recibos posteriores estão em [evidence/manifest.json](evidence/manifest.json),
 comprimidos de forma determinística. O manifesto registra SHA-256 dos bytes
 comprimidos e originais. Isso preserva a observação original em Git; uma execução
 nova do coletor continua sendo uma nova observação, nunca substituição do baseline.
@@ -39,3 +39,5 @@ nova do coletor continua sendo uma nova observação, nunca substituição do ba
 ## Execução transversal
 
 Consulte [EXECUTION-20261015.md](EXECUTION-20261015.md) para entregas verificadas, dimensões bloqueadas e critérios ainda pendentes.
+
+A [triagem de candidatos duráveis](DURABLE-CANDIDATES-20261015.md) preserva o escopo pesquisado e os dez bloqueios da matriz; não substitui provas executadas.
