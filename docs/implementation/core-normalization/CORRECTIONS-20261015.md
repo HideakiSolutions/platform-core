@@ -47,7 +47,7 @@ Cinco negativos Go reprovaram pelas causas esperadas: corpus ausente, vazio e
 adulterado, schema embarcado adulterado e seleção esperada zero. O manifesto
 Go sela 12 arquivos; seus hashes foram confrontados independentemente. O mínimo
 Go 1.23 ainda não foi executado localmente; a prova local usa Go 1.26.8.
-A execução remota do head final `865d6ed` está pendente neste registro.
+A execução remota do head final `865d6ed` concluiu todos os gates. O fechamento abaixo registra seus recibos próprios.
 A rodada funcional anterior `bef3219` passou a instalação Go no run38825852751:
 358 casos, zero skips, Go 1.23.12. O receipt aponta ao merge sintético
 `a50de625a0f8860c239e4da8f57f7e2283dd83f2`, cuja árvore é idêntica à de
@@ -66,3 +66,27 @@ Permanecem pendentes JCS .NET/Rust, demais normalizações comportamentais, admi
 de contratos/grafo, dez células de transporte, equivalência visual, triagem
 semântica e revisão/integração oficial. Conformidade legada cruzada conserva seis
 FAIL históricos revalidados. O programa permanece PARCIAL.
+
+
+## Fechamento da revisão final
+
+Todos os gates exigidos do backend em `865d6ed` passaram: validate (21 guardas
+Python e oito intakes, além dos testes de contratos), Node **444**, Python 3.10/3.12
+e wheel **389**, Go **358** em **Go 1.23.12**, .NET **923 em 42 projetos** e
+Inbox PostgreSQL **10**, mais dez falhas esperadas sem configuração. Não houve
+skips de teste obrigatório. Publicação não foi executada.
+
+Os cinco recibos instalados apontam ao merge sintético
+`dd22acd179b4d27fd3647c10c3b090c23096d09d`, pais develop `5056242` e head
+`865d6ed`. A árvore `d6f55dcd0d587c4ad6d7860c4f4dd32cac3c172c` é idêntica à do
+head; isso não equivale a merge oficial. Os recibos, logs, resultados e 42 TRX estão
+selados no arquivo final do manifesto. Revisão independente confrontou os cinco
+perfis, fontes, hashes de artefatos e casos, sem novos achados. Os caches restaurados
+do CI não foram baixados para confronto independente; sua verificação é registrada
+pelos helpers. O feed .NET tem 42 arquivos e a suíte padrão restaura 41 IDs; o
+adapter PostgreSQL tem prova separada.
+
+Runs: .NET38826812381, Node38826812174, Python38826812301, Go38826812244,
+PostgreSQL38826812239 e validate38826812277. A atualização do intake preserva
+ADR-013 e as três projeções como propostas. Sem merge, tags, publicação, deploy
+ou alteração de configuração HSEOS. Os bloqueios amplos do programa permanecem.

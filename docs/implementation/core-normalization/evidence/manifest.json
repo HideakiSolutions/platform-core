@@ -178,6 +178,14 @@
       "uncompressed_sha256": "5f1c497ee6812e7d4c0190ee1575f2153278e3f1fe200aea77870ad510e54a2b",
       "compressed_sha256": "d48aed1c6ee23ffcda24b07d9cfd21d1f3cb482f3ea8255941b1c5b19df08511",
       "status": "minimum-toolchain-installed-proof-not-official-integration"
+    },
+    {
+      "file": "final-ci-865d6ed-proofs-20261015.tar.gz",
+      "uncompressed_sha256": "fd5dda41cb7bd1f9572950d1ef0d7fc98bff2b67833883c11a80960d4daf5470",
+      "compressed_sha256": "4f374cb3509ec47f079aad1c9500971c429ab2c4584828955181c0c512905599",
+      "source_revision": "dd22acd179b4d27fd3647c10c3b090c23096d09d",
+      "head": "865d6edfd87b1c8cbebd303cbfc3a2df6476db53",
+      "status": "all-required-ci-pass-not-program-completion"
     }
   ]
 }
