@@ -241,6 +241,28 @@
       "uncompressed_sha256": "3aca98aa1dd05ff958ffeb0e9133072449c26f366bb133a73f3deab670698d94",
       "archive_members": 29,
       "status": "mixed-revision-api-observations-and-independent-reviews-not-program-completion"
+    },
+    {
+      "file": "inbox-finalization-1aefdf5-red-green-20261016.tar.gz",
+      "compressed_sha256": "c045cc3e8375a53e805a4d548e0f4211fcd4bba52c510c6fa6ef270193ab430e",
+      "uncompressed_sha256": "e650f7e57c1ff94df7f053a4425cc3a99a4a8e3adf8499836f684e3b0725d085",
+      "archive_members": 45,
+      "source_revision": "1aefdf5132667b244e661e478fffa6829eedf2e9",
+      "status": "red-before-green-native11-installed-inbox13-plus13-configuration-negatives-not-transport-certification"
+    },
+    {
+      "file": "historical330-and-official38-observations-20261016.tar.gz",
+      "compressed_sha256": "6485a23c3aa546a3f0aa9cfac7f63512c7965e7da980408ea710bda0a881ba2d",
+      "uncompressed_sha256": "b620029c9aa83b9d1855b0ec144dbdbcb4df738d5a27cea35211fb88e56518eb",
+      "archive_members": 9,
+      "status": "historical330-proposal-input-and-official38-postpush-observations-not-program-completion"
+    },
+    {
+      "file": "kafka-v2-989-ci-merge-observations-20261016.tar.gz",
+      "compressed_sha256": "8a6c8a1ae2bcd8212013633914410a3abb98d1ad90895162fc3c49b6b0171360",
+      "uncompressed_sha256": "ee4482cd596405c2e58270b4ffca08d96f7e596197405d642e82df1377f38a78",
+      "archive_members": 7,
+      "status": "989-ci-and-merge-observations-local-bc29-separately-identified-no-broker-proof"
     }
   ]
 }
