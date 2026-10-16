@@ -8,6 +8,8 @@ stack produced it. Closes the gap where each product invented its own audit tabl
 
 ## Principles
 
+> **Scope of the guarantees below.** "Append-only" and "tamper-evident" describe the legacy event contract and its hash chain. They are not a runtime guarantee by themselves: they depend on external controls (DB privileges, append authority) and are bounded by [ADR-011](../../docs/adr/ADR-011-audit-retention-authority.md), which separates append authority from finite retention (profile `platform-core/audit/retention/2.0.0`: entries may be retired only by a separate authority once individually eligible). Provider and consumer admission is not verified here.
+
 - **Append-only.** Audit entries are never updated or deleted (enforce with DB
   privileges: `REVOKE UPDATE, DELETE`).
 - **Tamper-evident.** Each entry carries `hash = SHA-256(prev_hash + canonical(entry))`,

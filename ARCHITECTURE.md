@@ -17,37 +17,24 @@ This repository is **language-agnostic** by design. It defines contracts, specif
 
 ## Module Overview
 
+Each module directory holds `contracts/` (JSON Schema) and `docs/`. Modules with extra material: `audit/` and `messaging/` (`conformance/`), `governance/` (`examples/`, `fixtures/`). `utils/` has `docs/` only.
+
 ```
 platform-core
-├── auth/                  # Authentication & authorization contracts
-│   ├── contracts/         # Interface definitions, schemas, specs
-│   └── docs/              # Module-specific documentation
-├── configuration/         # Configuration management patterns
-│   ├── contracts/
-│   └── docs/
-├── logging/               # Structured logging standards
-│   ├── contracts/
-│   └── docs/
-├── messaging/             # Event-driven messaging contracts
-│   ├── contracts/
-│   └── docs/
-├── observability/         # Metrics, tracing, health check specs
-│   ├── contracts/
-│   └── docs/
-├── security/              # Security primitives and policies
-│   ├── contracts/
-│   └── docs/
-├── feature-flags/         # Feature flag abstraction
-│   ├── contracts/
-│   └── docs/
-├── utils/                 # Shared utilities and helpers
-│   └── docs/
-├── docs/                  # Repository-wide documentation
-│   ├── architecture/      # Architectural decisions and diagrams
+├── ai/ approval/ audit/ auth/ authorization/ configuration/ data/
+├── directory/ feature-flags/ governance/ logging/ messaging/
+├── multi-tenancy/ notifications/ observability/ secrets/ security/
+├── utils/                 # documentation only, no contracts
+├── docs/
+│   ├── adr/               # Architecture Decision Records
+│   ├── architecture/      # Architecture overview
 │   ├── guidelines/        # Engineering guidelines
-│   └── adr/               # Architecture Decision Records
-└── templates/             # Templates for new modules
+│   └── implementation/    # Normalization program records
+├── scripts/  tools/       # Contract validation and capability-drift tooling
+└── templates/             # Template for new modules
 ```
+
+`auth` and `messaging` contain deprecation stubs (see Contract Format below). Per-module status and maturity: [docs/CAPABILITY-MATURITY.md](docs/CAPABILITY-MATURITY.md).
 
 ## Dependency Rules
 
@@ -109,7 +96,19 @@ All significant architectural decisions are documented in `docs/adr/` following 
 
 ```
 docs/adr/
-├── 0001-use-json-schema-for-contracts.md
-├── 0002-language-agnostic-design.md
+├── 0001-language-agnostic-contracts.md
+├── ADR-001-versioning-strategy.md
+├── ADR-002-package-publishing.md
+├── ADR-003-token-ownership.md
+├── ADR-004-multi-tenancy.md
+├── ADR-005-state-management.md
+├── ADR-006-offline-first-mobile.md
+├── ADR-007-breaking-change-policy.md
+├── ADR-008-documentation-language.md
+├── ADR-009-react-native-frontend-boundary.md
+├── ADR-010-token-transformation-pipeline.md
+├── ADR-011-audit-retention-authority.md
+├── ADR-012-delivery-lease-protocol-proposal.md
+├── ADR-013-audit-jcs-profile.md
 └── template.md
 ```

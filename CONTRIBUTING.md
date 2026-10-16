@@ -41,6 +41,10 @@ fix(messaging): correct async event schema
 4. Update ARCHITECTURE.md with the new module
 5. Add an ADR if the module introduces architectural decisions
 
+## Documentation Language
+
+The repository-root `README.md` is in Portuguese (pt-BR). Module READMEs (`<module>/docs/README.md`), ADRs, contracts and other technical documentation are in English. Keep each existing file in its current language and write new module READMEs in English, matching their neighbours. [ADR-008](docs/adr/ADR-008-documentation-language.md) records a different stated policy (READMEs in Portuguese); it is preserved unchanged, and the observed state is described here. The same rule is summarized in [docs/guidelines/contributing.md](docs/guidelines/contributing.md).
+
 ## Code Review Checklist
 
 - [ ] Contracts are language-agnostic

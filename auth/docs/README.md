@@ -26,6 +26,8 @@ the compatibility window defined by the ECP deprecation block, following ECP Dec
 
 ## Supported Grant Types
 
+> **Non-normative.** `auth-provider.schema.json` is a deprecation stub and the authority for authentication is the ECP capability `security.authn@0.1.0`. The list below is legacy, informational guidance and does not define or constrain the contract; consult the ECP contract for the normative grant types.
+
 - `password` — Resource owner password credentials
 - `refresh_token` — Token refresh
 - `client_credentials` — Machine-to-machine

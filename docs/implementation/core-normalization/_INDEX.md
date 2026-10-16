@@ -4,6 +4,8 @@ Este pacote registra o baseline e a execução do programa de normalização e c
 
 A observação de fontes não comprova conformidade, instalação, adoção, durabilidade ou execução dos produtos. As seis frentes e os critérios de aceite do programa permanecem pendentes até suas provas específicas.
 
+Maturidade por capacidade (contrato, referência em memória, durável, adotado): [CAPABILITY-MATURITY](../../CAPABILITY-MATURITY.md). Propostas e decisões relacionadas: [ADR-011](../../adr/ADR-011-audit-retention-authority.md), [ADR-012](../../adr/ADR-012-delivery-lease-protocol-proposal.md), [ADR-013](../../adr/ADR-013-audit-jcs-profile.md) e [delivery-v1](../../../messaging/docs/delivery-v1.md).
+
 ## Reprodução
 
 ```bash

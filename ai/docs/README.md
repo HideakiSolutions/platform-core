@@ -1,7 +1,7 @@
 # AI
 
 Cross-cutting **AI capability contracts** for the platform. Per workspace
-[ADR-0003](../../../../docs/decisions/ADR-0003-ai-capability-ownership.md), `platform-core` owns the
+ADR-0003 (external workspace ADR, not in this repository; the target was not found and the previous relative link pointed outside the repo), `platform-core` owns the
 AI contracts (no separate `ai-core` repo yet); packages are projected in the owning lanes
 (backend-core, ...).
 
