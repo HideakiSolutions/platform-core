@@ -1,11 +1,11 @@
 # Execução do programa — 2026-10-15
 
-Estado: **PARCIAL; não encerrado**. Nenhuma frente é aprovada por testes de uma dimensão diferente. As branches de trabalho precisam de PR e revisão de mantenedor antes de integração oficial. Não houve publicação, tag, deploy ou migração de produto.
+Estado: **PARCIAL; não encerrado**. Última continuação: [correção dos achados](CORRECTIONS-20261015.md). Nenhuma frente é aprovada por testes de uma dimensão diferente. As branches de trabalho precisam de PR e revisão de mantenedor antes de integração oficial. Não houve publicação, tag, deploy ou migração de produto.
 
 | Frente | Implementação e evidência atual | Aceite ainda pendente |
 |---|---|---|
 | 1. Conformidade | Resolvers existentes reconciliados; integridade e preflight de referências em quatro runtimes; intakes por conteúdo/versão no CI; testes negativos; instalação isolada .NET/Python/Go/Node | Revisão efetivamente integrada; fechamento integral de todas as projeções, inclusive Rust |
-| 2. Comportamento | Proposta audit-jcs-sha256/v1, oráculos e operações explícitas Node/Python com 33 vetores; suítes instaladas 444/389; histórico instalado revalidado | Auditoria legada Python/.NET mantém FAIL cruzado; admissão do novo protocolo, projeções .NET/Go/Rust e demais contratos comportamentais entre stacks |
+| 2. Comportamento | Proposta audit-jcs-sha256/v1, oráculos e operações explícitas Node/Python/Go com 33 vetores; suítes instaladas 444/389/358; histórico instalado revalidado | Auditoria legada Python/.NET mantém FAIL cruzado; admissão do novo protocolo, projeções .NET/Rust e demais contratos comportamentais entre stacks |
 | 3. Outbox/Inbox | Contrato neutro proposto, 18 casos/58 passos; Inbox .NET versionada e adapter PostgreSQL draft com 10 provas instaladas; referência em memória explicitamente não durável | As dez células PostgreSQL × RabbitMQ/Kafka × cinco stacks permanecem BLOCKED; faltam Outbox, adapters restantes e provas de transporte/durabilidade |
 | 4. Adoção | Seis pacotes Cambio Real reconciliados em revisão pinada; 42 referências verificadas; prova de seis tarballs registry em consumidor sintético; catálogo separa implementação/publicação/instalação/uso/extensão | Instalação no consumidor real não verificada; sete pacotes não admitidos no grafo canônico; proposta não altera automaticamente relações; completude BLOCKED |
 | 5. Mobile | Geração determinística a partir dos temas ativos pinados; APIs Hx históricas preservadas; instalação isolada; implementação Flutter experimental transferida a mobile e consumida por DS mediante snapshot íntegro | Equivalência visual e revisão de engenharia/design; revisão integrada; não há alegação de adoção registry para snapshots locais |

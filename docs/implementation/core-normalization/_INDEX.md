@@ -41,3 +41,5 @@ nova do coletor continua sendo uma nova observação, nunca substituição do ba
 Consulte [EXECUTION-20261015.md](EXECUTION-20261015.md) para entregas verificadas, dimensões bloqueadas e critérios ainda pendentes.
 
 A [triagem de candidatos duráveis](DURABLE-CANDIDATES-20261015.md) preserva o escopo pesquisado e os dez bloqueios da matriz; não substitui provas executadas.
+
+A [continuação de correções](CORRECTIONS-20261015.md) registra os novos gates de instalação, a projeção Go e suas provas com revisões próprias.

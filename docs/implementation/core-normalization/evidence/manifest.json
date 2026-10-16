@@ -148,6 +148,36 @@
       "uncompressed_sha256": "c054e2a2c7c530d7cd3352703e193d0c8ed266a19723072a806e9314751b068c",
       "compressed_sha256": "970e80c2c7736d3d85d4735e23a0d58e9e25467ce3dfc2bc40948332194f9569",
       "status": "272-observed-archives-not-adoption-or-installation"
+    },
+    {
+      "file": "installation-corrections-20261015.json.gz",
+      "uncompressed_sha256": "79e59a11b9a692dea3ff2dd9142654651354bc02420afa368751bdab27ec4b68",
+      "compressed_sha256": "f64998ef53848b184435a0cfb29ac55c44b699a76bb9c20f1343858ae811e568",
+      "status": "scoped-proofs-not-program-completion"
+    },
+    {
+      "file": "go-and-installation-guard-proofs-20261015.tar.gz",
+      "uncompressed_sha256": "3ccdcac29aff5df8ce70d8f72e3f189b7229d0cc6bd100016b6d0931fd0bea7b",
+      "compressed_sha256": "095ca56fdd11e963cb96744a8689552a1fb1edb612592fe72f11f177d6780977",
+      "status": "scoped-proof-not-program-acceptance"
+    },
+    {
+      "file": "dotnet-trx-38825566141-proof.tar.gz",
+      "uncompressed_sha256": "8f577917abe1014452d27b8c2f05ffdb11b2d45b39f1a41c0004bc2918f46332",
+      "compressed_sha256": "20a3dd42315d7cf5f9eccb6173555b208022aae9fcfb8da36e9eca68af1582f0",
+      "status": "scoped-proof-not-program-acceptance"
+    },
+    {
+      "file": "correction-confrontation-final-20261015.json.gz",
+      "uncompressed_sha256": "f8f6cf4022d19ba7f519944cf39f86dc4cc709bfb4397bf7e3b59bae5d0aac35",
+      "compressed_sha256": "be591cd63452581a594e28e5dc09c239610caf0cd0fe73532c301c0bd36da86d",
+      "status": "scoped-review-not-official-integration"
+    },
+    {
+      "file": "ci-go-jcs-38825852751-proof.json.gz",
+      "uncompressed_sha256": "5f1c497ee6812e7d4c0190ee1575f2153278e3f1fe200aea77870ad510e54a2b",
+      "compressed_sha256": "d48aed1c6ee23ffcda24b07d9cfd21d1f3cb482f3ea8255941b1c5b19df08511",
+      "status": "minimum-toolchain-installed-proof-not-official-integration"
     }
   ]
 }
