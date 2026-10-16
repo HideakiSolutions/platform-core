@@ -202,6 +202,45 @@
       "uncompressed_sha256": "7a06955fe37cac99905c812508971e58e8d6ee6dde9811d13a4f07f021939009",
       "archive_members": 57,
       "status": "mixed-revision-provenance-see-individual-receipts-not-program-acceptance"
+    },
+    {
+      "file": "node-delivery-formats-c677380-proof-20261016.tar.gz",
+      "compressed_sha256": "8270fc352953a6e8f0db659b005af5d32529ba595dd5b9ab91ecc656edffc10b",
+      "uncompressed_sha256": "039cd2e07ff50b3fe552901af25e5eabe4f624e157503ea43ec436acdb6e1fc9",
+      "archive_members": 30,
+      "source_revision": "c677380f2fa2e964f09f0000ec075f29ba34b6c6",
+      "status": "candidate-source-and-installed-node474-contract46-not-broker-certification"
+    },
+    {
+      "file": "postgresql-messaging-ca1d99a-default-proof-20261016.tar.gz",
+      "compressed_sha256": "80af5c493e7aae0e73dc73abcd54557ee9a7c05646fa19d5c1f51e58a76664ee",
+      "uncompressed_sha256": "6417ce1baa94ae041c66b79fefd8fdd4262fd086f059ac29e944d0cd107798e2",
+      "archive_members": 246,
+      "source_revision": "ca1d99ac0415ee6e0a7ba813c41ae5cfc5490fee",
+      "status": "candidate-default-dotnet977-source-installed-not-sql-profile"
+    },
+    {
+      "file": "postgresql-messaging-ca1d99a-mixed-v2-proof-20261016.tar.gz",
+      "compressed_sha256": "36589509b9d7596af13533352ec135775e02b3174a22eee8bf209a20c874727b",
+      "uncompressed_sha256": "b521e5ecb3a2fde554f54d4c7095fdd1a747ea7e84e39a7ea791177344e86478",
+      "archive_members": 13,
+      "source_revision": "ca1d99ac0415ee6e0a7ba813c41ae5cfc5490fee",
+      "status": "six-calls-in-two-cold-processes-not-concurrency-proof"
+    },
+    {
+      "file": "postgresql-messaging-ca1d99a-sql-proof-20261016.tar.gz",
+      "compressed_sha256": "2b5019d78fa7868574b0b68c007094b6121ff1dd934258ecc6ec407affbe9ec2",
+      "uncompressed_sha256": "11058413b3257bc596cb9c7ff07ab49a899f8cd64433be2ed312457d139a8d27",
+      "archive_members": 46,
+      "source_revision": "ca1d99ac0415ee6e0a7ba813c41ae5cfc5490fee",
+      "status": "candidate-installed-inbox10-outbox19-plus-mandatory-configuration-negatives-not-broker-certification"
+    },
+    {
+      "file": "post-merge-and-storage-reviews-20261016.tar.gz",
+      "compressed_sha256": "d4e787855e3ab6ec9100bf81bd8685ae306f45fc3ac7e15238f4703088b77af3",
+      "uncompressed_sha256": "3aca98aa1dd05ff958ffeb0e9133072449c26f366bb133a73f3deab670698d94",
+      "archive_members": 29,
+      "status": "mixed-revision-api-observations-and-independent-reviews-not-program-completion"
     }
   ]
 }
