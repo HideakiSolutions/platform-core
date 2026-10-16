@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+## [Unreleased]
+
+### Changed
 
 - Added owner-approved audit-retention profile 2.0.0 in ADR-011: preserve the legacy event schema and source pins, require individual finite expiry and a separately admitted retirement authority; provider conformance, consumer admission and migration gates remain required.
 
@@ -11,12 +17,6 @@
   matching `x-superseded-by`) and fails examples or fixtures that target a stub; `npm run test:contract-stubs` covers
   it, including compiling the stubs under strict Ajv. No example or fixture in this repository targeted them.
 - Added the reusable `capability-drift` workflow and local scorecard analyzer for the capability-reuse ratchet.
-
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
-
-## [Unreleased]
 
 ### Added
 - AEW organizational ownership in capability intake v2, with strategic-promotion and rejection fixtures validated by the existing contract gate.

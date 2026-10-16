@@ -6,7 +6,7 @@
 2. Every new module must include: `contracts/` with JSON Schema, `docs/` with README.md
 3. Contract changes require backward compatibility analysis
 4. Follow naming convention: `{module-name}.schema.json` for contracts
-5. All documentation in English (READMEs in Portuguese)
+5. Documentation language: the repository-root `README.md` is in Portuguese (pt-BR); module READMEs (`<module>/docs/README.md`) and technical docs are currently in English (all 18 existing module READMEs are English). Keep each existing file in its current language. ADR-008 states a different intent (READMEs in Portuguese) and is not changed here; see [CONTRIBUTING.md](../../CONTRIBUTING.md#documentation-language)
 
 ## Adding a New Module
 
