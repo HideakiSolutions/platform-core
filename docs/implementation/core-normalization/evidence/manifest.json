@@ -186,6 +186,22 @@
       "source_revision": "dd22acd179b4d27fd3647c10c3b090c23096d09d",
       "head": "865d6edfd87b1c8cbebd303cbfc3a2df6476db53",
       "status": "all-required-ci-pass-not-program-completion"
+    },
+    {
+      "file": "audit-projections-14876a5-proof-20261016.tar.gz",
+      "compressed_sha256": "0783bc24c7ce393579f1da2cb1218dd5b7db3ca4954dc1d70463a046051e7804",
+      "source_revision": "14876a5383d66c0b7dd30becb2e44e1238b94bfc",
+      "status": "candidate-source-and-installed-dotnet-966-in-42-zero-skips",
+      "archive_members": 234,
+      "limits": "41defaultcoreIDs;PostgreSQLseparate;notregistrypublicationoradoption",
+      "uncompressed_sha256": "f61ae51e30e60bd811f14af62867bb2316c9052d8b998457104f19cb397b3588"
+    },
+    {
+      "file": "merge-and-corrections-20261016.tar.gz",
+      "compressed_sha256": "19271bd8b12e26732864e01114fc52f6143b0d43377b6c9ffd90a46c8ebce9c0",
+      "uncompressed_sha256": "7a06955fe37cac99905c812508971e58e8d6ee6dde9811d13a4f07f021939009",
+      "archive_members": 57,
+      "status": "mixed-revision-provenance-see-individual-receipts-not-program-acceptance"
     }
   ]
 }
