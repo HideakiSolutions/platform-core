@@ -1,6 +1,6 @@
 # Normalização dos cores
 
-Este pacote registra o baseline e a execução do programa de normalização e consolidação. Leia [EXECUTION-20261015.md](EXECUTION-20261015.md) para o estado atual, PRs, provas e gates abertos. Use o [baseline](BASELINE-20261015.md) para interpretar a observação inicial e seus limites; execute [inventory.py](inventory.py) para uma nova observação e [test_inventory.py](test_inventory.py) para verificar o comportamento do coletor.
+Este pacote registra o baseline e a execução do programa de normalização e consolidação. Leia [MERGES-20261016.md](MERGES-20261016.md) para a integração oficial e a continuidade corrente; [EXECUTION-20261015.md](EXECUTION-20261015.md) preserva a execução anterior, PRs, provas e gates abertos. Use o [baseline](BASELINE-20261015.md) para interpretar a observação inicial e seus limites; execute [inventory.py](inventory.py) para uma nova observação e [test_inventory.py](test_inventory.py) para verificar o comportamento do coletor.
 
 A observação de fontes não comprova conformidade, instalação, adoção, durabilidade ou execução dos produtos. As seis frentes e os critérios de aceite do programa permanecem pendentes até suas provas específicas.
 
