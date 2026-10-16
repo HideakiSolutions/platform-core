@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/messaging/delivery-lease/v1",
+  "title": "Delivery lease request v1",
+  "description": "Proposed transport-neutral lease request. Envelope bytes remain owned by ECP messaging.event-envelope@0.1.0. Behavioral guarantees are normative in messaging/docs/delivery-v1.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "platform-core/messaging/delivery-lease/v1"
+    },
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "tenant": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$",
+      "maxLength": 128
+    },
+    "consumer": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$",
+      "maxLength": 128
+    },
+    "message_id": {
+      "type": "string",
+      "format": "uuid",
+      "not": {
+        "const": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    "envelope_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "lease_duration_ms": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 86400000
+    },
+    "max_attempts": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10000
+    }
+  },
+  "required": [
+    "$schema",
+    "contract_version",
+    "tenant",
+    "consumer",
+    "message_id",
+    "envelope_sha256",
+    "lease_duration_ms",
+    "max_attempts"
+  ]
+}

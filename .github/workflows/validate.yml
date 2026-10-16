@@ -8,21 +8,31 @@ on:
 
 jobs:
   validate:
-    runs-on: hideaki-k3s
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Use runner disk for scratch files
+        run: echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: npm
+          cache: ${{ runner.environment == 'github-hosted' && 'npm' || '' }}
 
       - name: Install pinned contract validator
         run: npm ci
 
       - name: Validate every contract fail-closed
         run: npm run validate
+
+      - name: Verify proposed audit profile structural and behavioral evidence
+        run: |
+          python3 audit/conformance/jcs-v1/reference.py
+          node audit/conformance/jcs-v1/reference.mjs
+          node audit/conformance/jcs-v1/structural.mjs
+          python3 -m unittest discover -s audit/conformance/jcs-v1 -p 'test_*.py' -v
 
       - name: Audit validator dependencies
         run: npm audit --audit-level=low

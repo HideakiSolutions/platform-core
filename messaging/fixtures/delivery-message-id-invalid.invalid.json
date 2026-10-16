@@ -1,0 +1,10 @@
+{
+  "$schema": "platform-core/messaging/delivery-lease/v1",
+  "contract_version": "1.0.0",
+  "tenant": "tenant-a",
+  "consumer": "ledger",
+  "message_id": "invalid",
+  "envelope_sha256": "6087f9071b076f05b6184c9c0f4c4c2d93fa9db73177ed9c33778eb8a43b0744",
+  "lease_duration_ms": 1000,
+  "max_attempts": 3
+}

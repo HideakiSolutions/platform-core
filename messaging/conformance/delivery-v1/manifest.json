@@ -1,0 +1,10 @@
+{
+  "contract_id": "platform-core/messaging/delivery-lease/v1",
+  "version": "1.0.0",
+  "profile": "lease-state-machine-reference-only",
+  "expected_cases": 18,
+  "expected_steps": 58,
+  "files": {
+    "corpus.json": "b8cc52608d3c82a163da65b26866141316cdcd7993f37797654a7e7e48c83849"
+  }
+}
