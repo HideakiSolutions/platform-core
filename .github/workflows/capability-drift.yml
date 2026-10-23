@@ -44,6 +44,10 @@ jobs:
       - name: Compare capability-drift baseline
         run: node .capability-drift-runner/tools/capability-drift/analyze.mjs --root "$GITHUB_WORKSPACE" --paths "${{ inputs.paths }}" --baseline "${{ inputs.baseline }}" --stack "${{ inputs.stack }}"
       - name: Publish scorecard
+        # O gate é o passo anterior: este só roda se a comparação passou, e o scorecard também vai
+        # para o job summary. Falha de publicação (ex.: "Artifact storage quota has been hit" na org
+        # que chama) não pode reprovar um ratchet que passou.
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: capability-drift
