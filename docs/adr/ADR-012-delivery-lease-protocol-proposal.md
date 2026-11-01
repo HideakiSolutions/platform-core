@@ -1,8 +1,9 @@
 # ADR-012 — proposed delivery coordination protocol v1
 
-Status: Proposed; ownership/admission and durable implementations pending.
+Status: Accepted; ownership/admission and durable implementations pending.
 Date: 2026-10-15. Program baseline SHA-256:
 `f7063d52c829eec8c48200ec9bde6e8661f4aecaab0896b9f1bc9535f24a2645`.
+Accepted: 2026-10-23.
 
 The normalization program authorizes a reviewable neutral lease/transaction boundary,
 while preserving legacy formats, interfaces and ECP authority. Existing outbox ports
