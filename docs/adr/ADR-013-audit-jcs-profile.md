@@ -2,8 +2,8 @@
 
 ## Status
 
-Proposed. Prepared under the normalization program's instruction to propose a new
-versioned SHA-256/JCS protocol. This document does not record owner acceptance or
+Accepted: 2026-10-23, by owner decision. Prepared under the normalization program's instruction to propose a new
+versioned SHA-256/JCS protocol. This document does not record
 production admission. Sources: Enterprise Constitution §§2.3, 2.6, 7–10,
 Platform Capability Governance Standard, RFC 8785 and ADR-011 (retention authority).
 
