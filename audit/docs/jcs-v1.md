@@ -77,8 +77,8 @@ inclusion, extension preservation and legacy refusal.
 No .NET, Go or Rust implementation of this new profile is certified here. Current
 production .NET/Python audit APIs remain unchanged. Interoperability of the new
 production implementations, fresh characterization against all current revisions,
-registration/admission of the capability, owner review, installed production
-artifacts and integrated-revision proof remain open. This proposal is **not** a
+registration/admission of the capability, installed production
+artifacts and integrated-revision proof remain open. This profile is **not** a
 closure of behavioral normalization.
 
 ## Governance and admission lookup
@@ -95,5 +95,5 @@ concurrent definition of its envelope/error/context capabilities is introduced.
 The inspected platform fragment only exposes governance intake nodes; therefore
 **graph registration/admission for this new profile is not verified**. This is a
 bounded finding about these sources, not an assertion of portfolio-wide absence.
-No discovery modified canonical graph relations. Final intake, graph registration
-and owner acceptance remain required before admission or production availability.
+No discovery modified canonical graph relations. Final intake and graph registration
+remain required before admission or production availability.

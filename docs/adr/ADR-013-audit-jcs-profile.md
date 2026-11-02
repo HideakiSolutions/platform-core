@@ -14,7 +14,7 @@ and UTC representations. A historical hash cannot be replaced without destroying
 the relationship between evidence and its original reader. Existing event shape
 and retention authority already have owners and must remain authoritative.
 
-## Proposed decision
+## Decision
 
 Add the opt-in `audit-jcs-sha256/v1` profile specified in
 [audit/docs/jcs-v1.md](../../audit/docs/jcs-v1.md), extending the current event
@@ -24,7 +24,7 @@ Use nine-digit UTC timestamps and an explicit safe-integer-only numeric wire
 profile; exact decimals use string fields. Production composition chooses versions
 explicitly. No feature flag or implicit selector changes the legacy operation.
 
-Internal Python and Node conformance oracles and pinned vectors make the proposal
+Internal Python and Node conformance oracles and pinned vectors make the profile
 reviewable. These are not new public SDK families. Contract, behavior, adapter,
 installation and adoption evidence stay separate.
 
@@ -33,7 +33,7 @@ installation and adoption evidence stay separate.
 Rehashing historical records, relying on serializer insertion order and silently
 rounding high-precision values are rejected. Supporting all IEEE-754 fractional
 wire lexemes would require a separately specified input precision policy and
-additional cross-runtime number-parsing evidence. The proposed narrow profile
+additional cross-runtime number-parsing evidence. The narrow profile
 keeps exact decimal domain values out of implicit numeric conversion.
 
 ## Consequences and risks
