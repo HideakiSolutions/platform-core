@@ -1,6 +1,6 @@
-# Delivery leases v1 — proposed behavioral contract
+# Delivery leases v1 — behavioral contract (accepted: ADR-012, 2026-10-23; not admitted)
 
-Contract `platform-core/messaging/delivery-lease/v1`, version `1.0.0`, is a proposed
+Contract `platform-core/messaging/delivery-lease/v1`, version `1.0.0`, is an accepted (ADR-012, 2026-10-23; not admitted)
 extension boundary for Outbox/Inbox coordination. It is not an envelope replacement,
 a durable adapter, an admitted graph capability or an exactly-once claim.
 The ECP authority remains `messaging.event-envelope@0.1.0`; its legacy platform stub
