@@ -31,13 +31,13 @@ Exemplos:
 
 ## Estrutura
 
-Inventário derivado dos diretórios do repositório. Status: **ativo** = contrato JSON Schema presente sem aviso de substituição; **stub deprecado** = schema que apenas delega ao ECP (Enterprise Capability Platform); **proposto** = contrato ou perfil sem aceite/admissão. "Ativo" descreve o contrato, não instalação, publicação ou adoção por produtos (ver [CAPABILITY-MATURITY](docs/CAPABILITY-MATURITY.md)).
+Inventário derivado dos diretórios do repositório. Status: **ativo** = contrato JSON Schema presente sem aviso de substituição; **stub deprecado** = schema que apenas delega ao ECP (Enterprise Capability Platform); **aceito, ainda não admitido** = ADR aceita pelo owner em 2026-10-23, sem admissão no grafo/intake e sem implementação durável. "Ativo" descreve o contrato, não instalação, publicação ou adoção por produtos (ver [CAPABILITY-MATURITY](docs/CAPABILITY-MATURITY.md)).
 
 | Módulo | Status | Observação |
 |--------|--------|------------|
 | ai | ativo | token-usage, guardrail-result, mcp-tool-descriptor |
 | approval | ativo | approval-request |
-| audit | ativo (schema legado) | perfil de retenção 2.0.0 aceito (ADR-011); perfil JCS v1 **proposto** (ADR-013) |
+| audit | ativo (schema legado) | perfil de retenção 2.0.0 aceito (ADR-011); perfil JCS v1 **aceito (ADR-013), ainda não admitido** |
 | auth | stub deprecado | `auth-provider` delega a `security.authn` (ECP) |
 | authorization | ativo | decision |
 | configuration | ativo | config-provider |
@@ -46,7 +46,7 @@ Inventário derivado dos diretórios do repositório. Status: **ativo** = contra
 | feature-flags | ativo | feature-flag |
 | governance | ativo | capability-intake e capability-intake-v2 |
 | logging | ativo | log-entry |
-| messaging | stub deprecado + proposto | `event-envelope` delega a `messaging.event-envelope` (ECP); `delivery-lease-v1` **proposto** (ADR-012) |
+| messaging | stub deprecado | `event-envelope` delega a `messaging.event-envelope` (ECP); `delivery-lease-v1` **aceito (ADR-012), ainda não admitido** |
 | multi-tenancy | ativo | tenant-context |
 | notifications | ativo | notification-intent, delivery-result |
 | observability | ativo | health-check |
