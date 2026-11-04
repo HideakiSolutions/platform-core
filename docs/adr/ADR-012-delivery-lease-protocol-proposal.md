@@ -53,3 +53,27 @@ Validation: platform strict structural gates plus required-case/byte-integrity r
 runner; .NET executes the same corpus from a pinned vendored copy, candidate regressions,
 expiry/fence/payload/tenant tests. An independent skeptical review is required. None of
 these proofs upgrades a durable cell, transaction or installation state to PASS.
+
+## Amendment 1 — 2026-11-04
+
+Decision: owner decision D-C (2026-11-04), "amend ADR-012 and close the hole".
+
+Problem: `messaging/contracts/delivery-lease-v1.schema.json` expressed `message_id` as
+`format: uuid` plus `not: {const: "00000000-0000-0000-0000-000000000000"}`. Under this
+repository's validator (Ajv 2020 with ajv-formats), `format: uuid` also accepts the
+`urn:uuid:` prefix (case-insensitive), so `urn:uuid:00000000-0000-0000-0000-000000000000`
+and `URN:UUID:00000000-0000-0000-0000-000000000000` passed: the nil UUID was admitted in
+URN form because the `const` exclusion compares only the canonical text.
+
+Change: `message_id` keeps `type: string` and `format: uuid` and replaces `not` with the
+`pattern` already used by the ECP copy (`messaging.delivery-lease`
+`schema.delivery-lease-request.json`). Only the canonical hex 8-4-4-4-12 form (lowercase or
+uppercase) is accepted; the nil UUID, `urn:uuid:` and braced forms are rejected. Negative
+fixtures cover the nil URN (lowercase and uppercase prefix), a non-nil URN and a braced id.
+
+Compatibility: producers that emit URN or braced ids now fail validation; canonical ids,
+including the existing example and the conformance corpus, are unaffected. The contract
+stays at `contract_version` 1.0.0: ADR-001 and ADR-007 require a major bump for breaking
+changes of released contracts, but this contract is accepted and not admitted (no graph
+admission, no consumer migration, no tag or publication; see `docs/CAPABILITY-MATURITY.md`),
+so the change is a tightening fix of an unreleased contract. Recorded in `CHANGELOG.md`.

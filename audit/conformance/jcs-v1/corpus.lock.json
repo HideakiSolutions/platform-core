@@ -6,6 +6,6 @@
   "corpus_sha256": "3d4b5cd7680fa0db0639aec8961938771c715d642fdaffabcfeb853f6ee84da8",
   "schemas": {
     "audit/contracts/audit-event.schema.json": "36fa079f9c879db41f2eb5c4710e1cbc1f69f0a6941a738ff50e5f0d4b1bc7a8",
-    "audit/contracts/audit-chain-jcs-v1.schema.json": "9fc7df505fa0d77b19546478a892ead6ff4a9f64d4e782d00cbb0db9faabb626"
+    "audit/contracts/audit-chain-jcs-v1.schema.json": "78ab9535eb6f6b9c463065b84759986cb2a5e24a0a7a05a9c3cf552777489229"
   }
 }

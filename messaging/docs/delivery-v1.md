@@ -13,8 +13,9 @@ provenance must be verified at authenticated ingress; propagation is explicit fo
 each request/message. Core does not invent a default tenant or authorize business
 operations. V1 identifiers use `[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}` and are never
 trimmed or case-folded. Unsupported values fail explicitly; legacy identifiers and
-readers retain their existing interfaces. Message ID is a nonempty UUID matching
-the ECP envelope `event_id`. Adapters validate the full ECP schema at ingress.
+readers retain their existing interfaces. Message ID is a canonical UUID (hex 8-4-4-4-12, lowercase or uppercase)
+matching the ECP envelope `event_id`; the nil UUID is excluded and URN (`urn:uuid:`) and
+braced forms are rejected (ADR-012 amendment 1). Adapters validate the full ECP schema at ingress.
 
 `envelope_sha256` is lowercase SHA-256 of the exact immutable UTF-8 envelope bytes
 persisted on first ingest, not a hash of a parsed/reserialized object. Redelivery
