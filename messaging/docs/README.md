@@ -47,7 +47,8 @@ only after the compatibility window defined by the ECP deprecation block, follow
 | Node.js | BullMQ / KafkaJS |
 | Go | Watermill / Sarama |
 
-## Proposed delivery coordination
+## Delivery coordination
 
-[Delivery leases v1](delivery-v1.md) adds a neutral behavioral proposal and corpus.
+[Delivery leases v1](delivery-v1.md) is an accepted (ADR-012, 2026-10-23), not admitted,
+neutral behavioral contract with an executable corpus. Durable adapters are BLOCKED.
 It does not replace the ECP envelope or claim durable transport support.

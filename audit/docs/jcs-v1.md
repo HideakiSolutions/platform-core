@@ -1,8 +1,8 @@
-# Proposed audit JCS profile v1
+# Audit JCS profile v1
 
-Status: **proposed, not admitted**. Type: behavioral contract and conformance
+Status: **accepted (ADR-013, 2026-10-23), not admitted**. Type: behavioral contract and conformance
 reference. Owner boundary: platform-core audit; stack implementations belong to
-backend-core. This proposal implements the new-protocol portion of the approved
+backend-core. This profile implements the new-protocol portion of the approved
 normalization program. It does not certify a production adapter.
 
 Contract identity: `platform-core/audit/audit-chain-jcs/v1`.
