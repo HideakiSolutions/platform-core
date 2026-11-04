@@ -14,7 +14,9 @@
     "capability_id": "resilience.http",
     "owner": "python-core",
     "contract_id": "backend-core/resilience/http",
-    "package": "hideakisolutions-platform-resilience"
+    "package": "hideakisolutions-platform-resilience",
+    "stack": "python",
+    "repository": "HideakiSolutions/backend-core"
   },
   "evidence": {
     "graph_query": {

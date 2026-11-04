@@ -13,7 +13,9 @@
   "target": {
     "capability_id": "resilience.http",
     "owner": "backend-core",
-    "package": "hideakisolutions-platform-resilience"
+    "package": "hideakisolutions-platform-resilience",
+    "stack": "python",
+    "repository": "HideakiSolutions/backend-core"
   },
   "evidence": {
     "graph_query": {

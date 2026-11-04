@@ -14,7 +14,9 @@
     "capability_id": "resilience.http",
     "owner": "backend-core",
     "contract_id": "https://contracts.hideakisolutions.local/capabilities/resilience.http/retry-policy.schema.json",
-    "package": "hideakisolutions-platform"
+    "package": "hideakisolutions-platform",
+    "stack": "python",
+    "repository": "HideakiSolutions/backend-core"
   },
   "evidence": {
     "graph_query": {
