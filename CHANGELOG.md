@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   matching `x-superseded-by`) and fails examples or fixtures that target a stub; `npm run test:contract-stubs` covers
   it, including compiling the stubs under strict Ajv. No example or fixture in this repository targeted them.
 - Added the reusable `capability-drift` workflow and local scorecard analyzer for the capability-reuse ratchet.
+- `capability-drift` analyzer: a missing baseline now exits 2 instead of passing unchecked, and `main()` now runs when invoked through a symlink or a path with spaces (it was silently skipped with exit 0). The reusable workflow fetches the analyzer from `main`, so callers without a committed `governance/capability-drift.baseline.json` (or `inputs.baseline` path) will fail after merge; the known callers (`cambioreal/cambio-real-v3` and `cambioreal/cambio-real-platforms`, per GitHub code search in HideakiSolutions and cambioreal on 2026-11-04) already commit a baseline at the default path and are unaffected.
 
 ### Added
 - AEW organizational ownership in capability intake v2, with strategic-promotion and rejection fixtures validated by the existing contract gate.
