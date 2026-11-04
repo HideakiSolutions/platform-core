@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const ignored = new Set(['node_modules', '.git', 'dist', 'build', 'coverage']);
 const extensions = new Set(['.ts', '.tsx', '.js', '.jsx', '.cs']);
@@ -87,16 +88,31 @@ export function compare(actual, baseline) {
   return regressions;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+/** True when this module is the entry point, even via a symlink or a path with spaces/URL-encoded characters. */
+function isEntryPoint() {
+  const entry = process.argv[1];
+  if (!entry) return false;
+  try {
+    return pathToFileURL(fs.realpathSync(entry)).href === import.meta.url;
+  } catch {
+    return false;
+  }
+}
+
+if (isEntryPoint()) {
   const args = process.argv.slice(2);
   const value = (name, fallback) => args.includes(name) ? args[args.indexOf(name) + 1] : fallback;
   const root = path.resolve(value('--root', process.cwd()));
   const baselinePath = value('--baseline', 'governance/capability-drift.baseline.json');
   const stack = value('--stack', 'node');
   const selected = value('--paths', '.').split(',').filter(Boolean);
-  const result = analyze(root, stack, selected);
   const baselineFile = path.resolve(root, baselinePath);
-  const baseline = fs.existsSync(baselineFile) ? JSON.parse(fs.readFileSync(baselineFile, 'utf8')) : { metrics: {} };
+  if (!fs.existsSync(baselineFile)) {
+    console.error(`capability-drift: baseline not found: ${baselineFile}. Refusing to pass without a baseline.`);
+    process.exit(2);
+  }
+  const baseline = JSON.parse(fs.readFileSync(baselineFile, 'utf8'));
+  const result = analyze(root, stack, selected);
   const regressions = compare(result, baseline);
   const reductions = Object.entries(result.metrics).filter(([metric, value]) => typeof baseline.metrics?.[metric] === 'number' && value < baseline.metrics[metric]);
   const output = { ...result, baseline: path.relative(root, baselineFile), regressions };
