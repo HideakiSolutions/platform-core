@@ -18,6 +18,10 @@ The decision order is:
    approval record;
 7. use an exception only with an explicit, expiring approval reference.
 
+When the decision is `extend`, `target.stack` (a canonical stack id from the ECP
+`contracts/stacks.json`, Decision 0011) and `target.repository` (`org/repo` of the
+owning core) are required; both are optional for the other decisions.
+
 Every record must identify deterministic verification, rollback, failure mode and
 risk domains. Publication, product adoption, security-policy changes, migrations,
 deployments and external writes remain separately human-gated.

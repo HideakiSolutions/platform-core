@@ -14,7 +14,9 @@
     "capability_id": "capability.aew.durability",
     "owner": "aew",
     "contract_id": "contract.aew.durability.local.v1",
-    "package": "fixture-aew-state"
+    "package": "fixture-aew-state",
+    "stack": "python",
+    "repository": "HideakiSolutions/backend-core"
   },
   "evidence": {
     "graph_query": {
