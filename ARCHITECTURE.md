@@ -71,6 +71,11 @@ will not compile. Today `messaging/contracts/event-envelope.schema.json` (ECP
 matches `x-superseded-by`) and does not resolve it; the ECP conformance vectors validate the content, and examples or
 negative fixtures that target a stub fail validation and belong in those vectors.
 
+The authority of every capability and contract is tabulated in
+[`docs/architecture/contract-authority/capability-authority.csv`](docs/architecture/contract-authority/capability-authority.csv)
+(proposed by [ADR-CEP-001](docs/adr/ADR-CEP-001-contract-authority.md)) and checked by
+`scripts/validate-capability-authority.mjs`.
+
 ## How Products Consume platform-core
 
 Products must follow the Platform-first intake before implementing a cross-cutting

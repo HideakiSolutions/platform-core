@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `capability-drift` analyzer: a missing baseline now exits 2 instead of passing unchecked, and `main()` now runs when invoked through a symlink or a path with spaces (it was silently skipped with exit 0). The reusable workflow fetches the analyzer from `main`, so callers without a committed `governance/capability-drift.baseline.json` (or `inputs.baseline` path) will fail after merge; the known callers (`cambioreal/cambio-real-v3` and `cambioreal/cambio-real-platforms`, per GitHub code search in HideakiSolutions and cambioreal on 2026-11-04) already commit a baseline at the default path and are unaffected.
 
 ### Added
+- Proposed ADR-CEP-001 (contract authority between ECP and platform-core), the per-capability authority table `docs/architecture/contract-authority/capability-authority.csv` a minimal pin projection of the ECP registry and a validator (`npm run validate:capability-authority`) that fails on double authority, unpinned or mismatching ECP references, ECP-stub conflicts and any `supported` claim. No contract, schema or stub changed.
 - AEW organizational ownership in capability intake v2, with strategic-promotion and rejection fixtures validated by the existing contract gate.
 - Initial repository scaffold
 - Module structure: auth, configuration, logging, messaging, observability, security, feature-flags, utils

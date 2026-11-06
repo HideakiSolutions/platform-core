@@ -1,0 +1,63 @@
+{
+  "tag": "contracts-v0.4.0",
+  "commit": "ab1fcc92797224c428ec6362e02ee1eaf2de8abb",
+  "registry_sha256": "c71dd1eabb0ae12db0ea75475e7ae196a83cc02ea2edef64cc7be875a1f032fb",
+  "capabilities": [
+    {
+      "id": "auth.authenticate",
+      "version": "0.1.0"
+    },
+    {
+      "id": "cache.typed",
+      "version": "0.1.0"
+    },
+    {
+      "id": "calendar.event.create",
+      "version": "0.1.0"
+    },
+    {
+      "id": "data.query",
+      "version": "0.1.0"
+    },
+    {
+      "id": "design.login-pattern",
+      "version": "0.1.0"
+    },
+    {
+      "id": "design.mobile-tokens",
+      "version": "0.1.0"
+    },
+    {
+      "id": "drive.file.upload",
+      "version": "0.1.0"
+    },
+    {
+      "id": "llm.generate",
+      "version": "0.1.0"
+    },
+    {
+      "id": "mcp.invoke",
+      "version": "0.1.0"
+    },
+    {
+      "id": "messaging.event-envelope",
+      "version": "0.1.0"
+    },
+    {
+      "id": "notification.send",
+      "version": "0.1.0"
+    },
+    {
+      "id": "security.authn",
+      "version": "0.1.0"
+    },
+    {
+      "id": "telemetry.publish",
+      "version": "0.1.0"
+    },
+    {
+      "id": "workflow.execute",
+      "version": "0.1.0"
+    }
+  ]
+}
