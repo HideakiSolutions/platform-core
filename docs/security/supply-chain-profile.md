@@ -1,12 +1,13 @@
 # Supply chain and security profile (CEP WP-11)
 
-Status: proposal for owner review. Scope: reusable CI policy and templates in `platform-core`. It changes nothing in
+Status: the section "Digest evidence sources" was accepted by the platform owner on 2026-11-06; the rest is unchanged. Scope: reusable CI policy and templates in `platform-core`. It changes nothing in
 production, publishes nothing and holds no credential.
 
 **Adoption.** Nothing here is enforced on any other repository until that repository calls
 `.github/workflows/supply-chain-baseline.yml`. Only `platform-core` calls it today (through
-`.github/workflows/supply-chain.yml`). Branch protection that would make the checks required is an organisation setting and
-is not changed by this work: NOT_VERIFIED whether the checks are required to merge.
+`.github/workflows/supply-chain.yml`). Requiring the checks is a branch protection setting, not changed by this work. On 2026-11-06 the owner required these contexts on `develop`: `validate`,
+`baseline / workflow-policy`, `baseline / secret-detection`, `baseline / dependency-audit`, `baseline / sbom`,
+`gate-selftest` and `ratchet`. `main` is unchanged, because `supply-chain.yml` does not exist there.
 
 Placement: `security/` in this repository is a contract module, so the policy lives in `docs/security/`,
 `.github/workflows/`, `tools/supply-chain/` and `scripts/`, not in `security/policies/**` as the execution plan names it.
@@ -70,10 +71,9 @@ In this repository `supply-chain.yml` passes `checker-ref: ${{ github.sha }}`, s
 request's own commit. A pull request can therefore edit the caller, the reusable workflow, `tools/supply-chain/`, the
 scripts and the baseline file. The ratchet only compares the baseline against the base branch; it does not protect the
 checker, the workflows or the tooling. The hardening below stops a pull request from switching off the secret gate by
-the usual repository-level means, not from rewriting the gate itself. This is a fundamental limit until (a) the checks
-are required by branch protection, with the workflow files reviewed by an owner, and (b) consumers pin the reusable workflow
-and `checker-ref` to a trusted SHA that the pull request cannot change. Required-check configuration is an organisation
-setting and has not been changed by this work.
+the usual repository-level means, not from rewriting the gate itself. The checks are required on `develop` and not on `main`. The limit stands until (a) the workflow files are also
+reviewed by an owner and (b) consumers pin the reusable workflow
+and `checker-ref` to a trusted SHA that the pull request cannot change. Required-check configuration is a repository setting, not part of this change.
 
 ### Secret gate: repository-level bypasses are closed
 
@@ -113,9 +113,9 @@ non-emptiness, not for completeness.
 gitleaks is not an action: `install-gitleaks.sh` pins version 8.30.1 and the sha256 of the release archive
 (`551f6fc8...470eb`), checked against the project's published checksum file.
 
-## Digest evidence sources (proposal, closes ADR-CEP-002 item 4)
+## Digest evidence sources (accepted 2026-11-06, closes ADR-CEP-002 item 4)
 
-ADR-CEP-002 is accepted and is not edited here. The owner may accept this as the answer to item 4. An `artifact-digest`
+The platform owner accepted this section on 2026-11-06 as the answer to ADR-CEP-002 item 4. An `artifact-digest`
 in the release ledger should be backed by one of, in order of strength:
 
 1. **Signed attestation / provenance** bound to the digest (for example a SLSA provenance statement from the publishing
@@ -162,6 +162,6 @@ job `REQUIRE_GATE_TOOLS=1` turns that into a failure. Reusable workflows do not 
 
 - Remote CI runs of `supply-chain.yml` and `supply-chain-baseline.yml`, including `anchore/sbom-action` and the SBOM
   artifact (the action cannot run locally).
-- Whether the checks are required for merge (organisation or branch protection setting).
+- Whether the checks are required for merge on branches other than `develop`: not required on `main`.
 - Behaviour of the baseline on runners other than GitHub-hosted `ubuntu-latest`.
 - Image scanning, provenance, dotnet and python audit: not implemented.

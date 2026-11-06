@@ -68,7 +68,7 @@ content is not validated.
 
 - From `admitted` on, `admission.evidenceRefs` must also carry one `guarantee-declaration`: a pinned
   `<owner>/<repo>@<40-hex>:<path>/implementations.json` reference to the file that declares the provider's operations
-  and guarantees (ECP Decision 0014). Without it the derived state stays `candidate`, so a declared `admitted` or higher
+  and guarantees (ECP Decision 0014, Accepted, 2026-11-06; amendment ratified in ADR-CEP-002). Without it the derived state stays `candidate`, so a declared `admitted` or higher
   is rejected. The validator checks the **form** of the reference only. It makes no network call, so it does not prove the
   file exists at that commit or that the guarantees are true; that stays with review and conformance evidence.
 - A `deprecation` without `replacedBy` needs a non-blank `deprecation.justification`. The ADR-007 gap is still a review rule.

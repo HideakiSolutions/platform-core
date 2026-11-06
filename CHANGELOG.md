@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- Recorded owner decisions of 2026-11-06 (documentation only): ADR-CEP-002 amendments (a) and (b) ratified (`admitted` and above requires a `guarantee-declaration`; the validator already enforced it), the digest evidence sources of the supply-chain profile accepted as the answer to ADR-CEP-002 item 4, ECP Decision 0014 recorded as Accepted, and the supply-chain checks required on `develop` (not on `main`).
 - ADR-CEP-002 (release policy) accepted by the platform owner on 2026-11-06, with decisions for its six open items. PyPI/Go/pub registries, the support window (WP-13) and digest evidence sources (WP-11) stay open; gate G2 still depends on WP-03. No release is recorded and the validator is unchanged.
 - ADR-CEP-001 (contract authority) accepted by the platform owner on 2026-11-06. The six `unknown` rows of the authority table remain pending an owner decision.
 - Tightened `message_id` in `messaging/delivery-lease/v1` (ADR-012 amendment 1, 2026-11-04): canonical hex 8-4-4-4-12 only; the nil UUID in `urn:uuid:` form and braced ids are now rejected. The contract is accepted and not admitted, so `contract_version` stays 1.0.0; producers emitting URN or braced ids must emit the canonical form.

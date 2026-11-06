@@ -72,7 +72,7 @@ This ADR supersedes nothing.
    | State | Evidence the ledger must carry |
    |---|---|
    | `candidate` | contract version, source repository and full commit SHA. A version and digest are optional here. |
-   | `admitted` | an exact version, a real `sha256` digest (the all-zero digest is rejected) and an admission record: a decision reference plus evidence of kind `decision`, `test-report`, `conformance-report`, `ci-run`, `attestation` or `commit`. |
+   | `admitted` | an exact version, a real `sha256` digest (the all-zero digest is rejected) and an admission record: a decision reference plus evidence of kind `decision`, `test-report`, `conformance-report`, `ci-run`, `attestation` or `commit`, and evidence of kind `guarantee-declaration` (amendment (a), ratified 2026-11-06). |
    | `published` | registry coordinates, a rollback procedure and publication evidence of kind `ci-run`, `attestation` or `artifact-digest` (an `artifact-digest` ref must equal `package.digest`). |
    | `adopted` | at least one consumer whose lockfile (path and full commit) resolves exactly this version and digest, and `lockfile` evidence on the transition. |
    | `supported` | an accountable owner, a runbook, a support policy and operational evidence that contains a `conformance-report` (provider verified), a `certification-report` (consumer certified) and one of `operational-report`, `incident-report` or `recovery-test` (operational profile verified). |
@@ -125,14 +125,14 @@ Owner decisions (2026-11-06), which close the six items that were open:
    for how long) is deferred to WP-13 and stays open.
 3. Packages in `0.x`: a breaking change bumps MINOR, as in ECP Decision 0006. The validator does not classify
    compatibility, so this is a policy for review and is not enforced by it.
-4. Sources of artifact-digest evidence: defined by WP-11 (supply-chain profile) and stay open until then.
+4. Sources of artifact-digest evidence: closed on 2026-11-06 by accepting the section "Digest evidence sources" of `docs/security/supply-chain-profile.md`.
 5. Ledger location: one ledger per repository, with a federated index. No federated index file exists yet and none is
    created by this change. Reconciling the Helix publication documentation in `design-system-core` against this policy
    is a separate pull request.
 6. `deprecated` without a replacement is allowed, with a written justification. For packages, the deprecation gap is
    the ADR-007 gap (minimum 2 minor releases).
 
-Still open: registries for PyPI, Go and pub; the support window (WP-13); the digest evidence sources (WP-11).
+Still open: registries for PyPI, Go and pub; the support window (WP-13).
 
 Known enforcement gaps: the validator does not check the ADR-007 gap; it stays a review rule until a later change adds
 it. The justification for a deprecation without `replacedBy` is now enforced (optional `deprecation.justification`,
@@ -165,15 +165,16 @@ required by the validator when `replacedBy` is absent).
 - Limit: the validator trusts the references it is given. Authenticity is for review and for the later gates.
 - No breaking change: nothing existing is modified. Rollback is a revert of this change.
 
-## Proposed amendments (not accepted), 2026-11-06
+## Amendments, ratified 2026-11-06
 
-Not part of the Decision above, which is unchanged. Pending ratification by the platform owner.
+Ratified by the platform owner on 2026-11-06. The proposal was recorded earlier the same day as "Proposed amendments
+(not accepted)"; the text below keeps it and its outcome.
 
 - (a) State `admitted` and above also requires evidence of kind `guarantee-declaration` (a pinned reference to the
-  `implementations.json` that declares operations and guarantees), implementing AC-03. The validator already enforces it;
-  this has no effect on real data because the ledger is empty. The Decision table keeps its current wording until the
-  owner ratifies this.
-- (b) The `<owner>/<repo>` part of that reference is not restricted: the validator checks form only.
+  `implementations.json` that declares operations and guarantees), implementing AC-03. **Ratified.** The validator
+  already enforces it; this has no effect on real data because the ledger is empty. The Decision table row for
+  `admitted` carries it.
+- (b) The `<owner>/<repo>` part of that reference is not restricted: the validator checks form only. **Ratified.**
 
 ## Acceptance
 
