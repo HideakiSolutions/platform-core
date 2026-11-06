@@ -1,0 +1,564 @@
+{
+  "schemaVersion": "1",
+  "releases": [
+    {
+      "id": "synthetic-candidate-1.0.0",
+      "capability": "example.synthetic-capability",
+      "contractAuthority": "ecp",
+      "contractVersion": "0.1.0",
+      "package": {
+        "ecosystem": "npm",
+        "name": "@example-org/synthetic-candidate"
+      },
+      "source": {
+        "repository": "example-org/synthetic-repo",
+        "commit": "0123456789abcdef0123456789abcdef01234561"
+      },
+      "state": "candidate",
+      "transitions": [
+        {
+          "from": "none",
+          "to": "candidate",
+          "at": "2000-01-01",
+          "evidenceRefs": [
+            {
+              "kind": "commit",
+              "ref": "0123456789abcdef0123456789abcdef01234561"
+            }
+          ]
+        }
+      ],
+      "rollout": {
+        "production": "manual"
+      }
+    },
+    {
+      "id": "synthetic-admitted-1.0.0",
+      "capability": "example.synthetic-capability",
+      "contractAuthority": "ecp",
+      "contractVersion": "0.1.0",
+      "package": {
+        "ecosystem": "npm",
+        "name": "@example-org/synthetic-admitted",
+        "version": "1.0.0",
+        "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      },
+      "source": {
+        "repository": "example-org/synthetic-repo",
+        "commit": "0123456789abcdef0123456789abcdef01234562"
+      },
+      "state": "admitted",
+      "transitions": [
+        {
+          "from": "none",
+          "to": "candidate",
+          "at": "2000-01-01",
+          "evidenceRefs": [
+            {
+              "kind": "commit",
+              "ref": "0123456789abcdef0123456789abcdef01234562"
+            }
+          ]
+        },
+        {
+          "from": "candidate",
+          "to": "admitted",
+          "at": "2000-01-02",
+          "evidenceRefs": [
+            {
+              "kind": "decision",
+              "ref": "https://evidence.example.test/decision/1"
+            }
+          ]
+        }
+      ],
+      "rollout": {
+        "production": "manual"
+      },
+      "admission": {
+        "decisionRef": "decision: synthetic-admission-1",
+        "admittedAt": "2000-01-02",
+        "evidenceRefs": [
+          {
+            "kind": "test-report",
+            "ref": "https://evidence.example.test/test-report/2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "synthetic-published-1.0.0",
+      "capability": "example.synthetic-capability",
+      "contractAuthority": "ecp",
+      "contractVersion": "0.1.0",
+      "package": {
+        "ecosystem": "npm",
+        "name": "@example-org/synthetic-published",
+        "version": "1.0.0",
+        "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "registry": "https://registry.example.test/npm"
+      },
+      "source": {
+        "repository": "example-org/synthetic-repo",
+        "commit": "0123456789abcdef0123456789abcdef01234563"
+      },
+      "state": "published",
+      "transitions": [
+        {
+          "from": "none",
+          "to": "candidate",
+          "at": "2000-01-01",
+          "evidenceRefs": [
+            {
+              "kind": "commit",
+              "ref": "0123456789abcdef0123456789abcdef01234563"
+            }
+          ]
+        },
+        {
+          "from": "candidate",
+          "to": "admitted",
+          "at": "2000-01-02",
+          "evidenceRefs": [
+            {
+              "kind": "decision",
+              "ref": "https://evidence.example.test/decision/3"
+            }
+          ]
+        },
+        {
+          "from": "admitted",
+          "to": "published",
+          "at": "2000-01-03",
+          "evidenceRefs": [
+            {
+              "kind": "artifact-digest",
+              "ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            }
+          ]
+        }
+      ],
+      "rollout": {
+        "production": "manual"
+      },
+      "admission": {
+        "decisionRef": "decision: synthetic-admission-1",
+        "admittedAt": "2000-01-02",
+        "evidenceRefs": [
+          {
+            "kind": "test-report",
+            "ref": "https://evidence.example.test/test-report/4"
+          }
+        ]
+      },
+      "publication": {
+        "publishedAt": "2000-01-03",
+        "evidenceRefs": [
+          {
+            "kind": "artifact-digest",
+            "ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          },
+          {
+            "kind": "ci-run",
+            "ref": "https://evidence.example.test/ci-run/5"
+          }
+        ]
+      },
+      "rollback": {
+        "procedureRef": "synthetic-rollback-procedure-1"
+      }
+    },
+    {
+      "id": "synthetic-adopted-1.0.0",
+      "capability": "example.synthetic-capability",
+      "contractAuthority": "ecp",
+      "contractVersion": "0.1.0",
+      "package": {
+        "ecosystem": "npm",
+        "name": "@example-org/synthetic-adopted",
+        "version": "1.0.0",
+        "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "registry": "https://registry.example.test/npm"
+      },
+      "source": {
+        "repository": "example-org/synthetic-repo",
+        "commit": "0123456789abcdef0123456789abcdef01234564"
+      },
+      "state": "adopted",
+      "transitions": [
+        {
+          "from": "none",
+          "to": "candidate",
+          "at": "2000-01-01",
+          "evidenceRefs": [
+            {
+              "kind": "commit",
+              "ref": "0123456789abcdef0123456789abcdef01234564"
+            }
+          ]
+        },
+        {
+          "from": "candidate",
+          "to": "admitted",
+          "at": "2000-01-02",
+          "evidenceRefs": [
+            {
+              "kind": "decision",
+              "ref": "https://evidence.example.test/decision/6"
+            }
+          ]
+        },
+        {
+          "from": "admitted",
+          "to": "published",
+          "at": "2000-01-03",
+          "evidenceRefs": [
+            {
+              "kind": "artifact-digest",
+              "ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            }
+          ]
+        },
+        {
+          "from": "published",
+          "to": "adopted",
+          "at": "2000-01-04",
+          "evidenceRefs": [
+            {
+              "kind": "lockfile",
+              "ref": "https://evidence.example.test/lockfile/7"
+            }
+          ]
+        }
+      ],
+      "rollout": {
+        "production": "manual"
+      },
+      "admission": {
+        "decisionRef": "decision: synthetic-admission-1",
+        "admittedAt": "2000-01-02",
+        "evidenceRefs": [
+          {
+            "kind": "test-report",
+            "ref": "https://evidence.example.test/test-report/8"
+          }
+        ]
+      },
+      "publication": {
+        "publishedAt": "2000-01-03",
+        "evidenceRefs": [
+          {
+            "kind": "artifact-digest",
+            "ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          },
+          {
+            "kind": "ci-run",
+            "ref": "https://evidence.example.test/ci-run/9"
+          }
+        ]
+      },
+      "rollback": {
+        "procedureRef": "synthetic-rollback-procedure-1"
+      },
+      "consumers": [
+        {
+          "name": "example-consumer",
+          "repository": "example-org/synthetic-consumer",
+          "resolvedVersion": "1.0.0",
+          "resolvedDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "lockfile": {
+            "path": "package-lock.json",
+            "commit": "0123456789abcdef0123456789abcdef01234569"
+          }
+        }
+      ]
+    },
+    {
+      "id": "synthetic-supported-1.0.0",
+      "capability": "example.synthetic-capability",
+      "contractAuthority": "ecp",
+      "contractVersion": "0.1.0",
+      "package": {
+        "ecosystem": "npm",
+        "name": "@example-org/synthetic-supported",
+        "version": "1.0.0",
+        "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "registry": "https://registry.example.test/npm"
+      },
+      "source": {
+        "repository": "example-org/synthetic-repo",
+        "commit": "0123456789abcdef0123456789abcdef01234565"
+      },
+      "state": "supported",
+      "transitions": [
+        {
+          "from": "none",
+          "to": "candidate",
+          "at": "2000-01-01",
+          "evidenceRefs": [
+            {
+              "kind": "commit",
+              "ref": "0123456789abcdef0123456789abcdef01234565"
+            }
+          ]
+        },
+        {
+          "from": "candidate",
+          "to": "admitted",
+          "at": "2000-01-02",
+          "evidenceRefs": [
+            {
+              "kind": "decision",
+              "ref": "https://evidence.example.test/decision/10"
+            }
+          ]
+        },
+        {
+          "from": "admitted",
+          "to": "published",
+          "at": "2000-01-03",
+          "evidenceRefs": [
+            {
+              "kind": "artifact-digest",
+              "ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            }
+          ]
+        },
+        {
+          "from": "published",
+          "to": "adopted",
+          "at": "2000-01-04",
+          "evidenceRefs": [
+            {
+              "kind": "lockfile",
+              "ref": "https://evidence.example.test/lockfile/11"
+            }
+          ]
+        },
+        {
+          "from": "adopted",
+          "to": "supported",
+          "at": "2000-01-05",
+          "evidenceRefs": [
+            {
+              "kind": "policy",
+              "ref": "https://evidence.example.test/policy/12"
+            }
+          ]
+        }
+      ],
+      "rollout": {
+        "production": "manual"
+      },
+      "admission": {
+        "decisionRef": "decision: synthetic-admission-1",
+        "admittedAt": "2000-01-02",
+        "evidenceRefs": [
+          {
+            "kind": "test-report",
+            "ref": "https://evidence.example.test/test-report/13"
+          }
+        ]
+      },
+      "publication": {
+        "publishedAt": "2000-01-03",
+        "evidenceRefs": [
+          {
+            "kind": "artifact-digest",
+            "ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          },
+          {
+            "kind": "ci-run",
+            "ref": "https://evidence.example.test/ci-run/14"
+          }
+        ]
+      },
+      "rollback": {
+        "procedureRef": "synthetic-rollback-procedure-1"
+      },
+      "consumers": [
+        {
+          "name": "example-consumer",
+          "repository": "example-org/synthetic-consumer",
+          "resolvedVersion": "1.0.0",
+          "resolvedDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "lockfile": {
+            "path": "package-lock.json",
+            "commit": "0123456789abcdef0123456789abcdef01234569"
+          }
+        }
+      ],
+      "support": {
+        "owner": "example-owner-team",
+        "runbookRef": "synthetic-runbook-1",
+        "supportPolicyRef": "synthetic-support-policy-1",
+        "operationalEvidenceRefs": [
+          {
+            "kind": "conformance-report",
+            "ref": "https://evidence.example.test/conformance/1"
+          },
+          {
+            "kind": "certification-report",
+            "ref": "https://evidence.example.test/certification/1"
+          },
+          {
+            "kind": "operational-report",
+            "ref": "example-org/synthetic-repo@0123456789abcdef0123456789abcdef01234567:reports/operational.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "synthetic-deprecated-1.0.0",
+      "capability": "example.synthetic-capability",
+      "contractAuthority": "ecp",
+      "contractVersion": "0.1.0",
+      "package": {
+        "ecosystem": "npm",
+        "name": "@example-org/synthetic-deprecated",
+        "version": "1.0.0",
+        "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "registry": "https://registry.example.test/npm"
+      },
+      "source": {
+        "repository": "example-org/synthetic-repo",
+        "commit": "0123456789abcdef0123456789abcdef01234567"
+      },
+      "state": "deprecated",
+      "transitions": [
+        {
+          "from": "none",
+          "to": "candidate",
+          "at": "2000-01-01",
+          "evidenceRefs": [
+            {
+              "kind": "commit",
+              "ref": "0123456789abcdef0123456789abcdef01234565"
+            }
+          ]
+        },
+        {
+          "from": "candidate",
+          "to": "admitted",
+          "at": "2000-01-02",
+          "evidenceRefs": [
+            {
+              "kind": "decision",
+              "ref": "https://evidence.example.test/decision/15"
+            }
+          ]
+        },
+        {
+          "from": "admitted",
+          "to": "published",
+          "at": "2000-01-03",
+          "evidenceRefs": [
+            {
+              "kind": "artifact-digest",
+              "ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            }
+          ]
+        },
+        {
+          "from": "published",
+          "to": "adopted",
+          "at": "2000-01-04",
+          "evidenceRefs": [
+            {
+              "kind": "lockfile",
+              "ref": "https://evidence.example.test/lockfile/16"
+            }
+          ]
+        },
+        {
+          "from": "adopted",
+          "to": "supported",
+          "at": "2000-01-05",
+          "evidenceRefs": [
+            {
+              "kind": "policy",
+              "ref": "https://evidence.example.test/policy/17"
+            }
+          ]
+        },
+        {
+          "from": "supported",
+          "to": "deprecated",
+          "at": "2000-02-01",
+          "evidenceRefs": [
+            {
+              "kind": "decision",
+              "ref": "https://evidence.example.test/decision/18"
+            }
+          ]
+        }
+      ],
+      "rollout": {
+        "production": "manual"
+      },
+      "admission": {
+        "decisionRef": "decision: synthetic-admission-1",
+        "admittedAt": "2000-01-02",
+        "evidenceRefs": [
+          {
+            "kind": "test-report",
+            "ref": "https://evidence.example.test/test-report/19"
+          }
+        ]
+      },
+      "publication": {
+        "publishedAt": "2000-01-03",
+        "evidenceRefs": [
+          {
+            "kind": "artifact-digest",
+            "ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          },
+          {
+            "kind": "ci-run",
+            "ref": "https://evidence.example.test/ci-run/20"
+          }
+        ]
+      },
+      "rollback": {
+        "procedureRef": "synthetic-rollback-procedure-1"
+      },
+      "consumers": [
+        {
+          "name": "example-consumer",
+          "repository": "example-org/synthetic-consumer",
+          "resolvedVersion": "1.0.0",
+          "resolvedDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "lockfile": {
+            "path": "package-lock.json",
+            "commit": "0123456789abcdef0123456789abcdef01234569"
+          }
+        }
+      ],
+      "support": {
+        "owner": "example-owner-team",
+        "runbookRef": "synthetic-runbook-1",
+        "supportPolicyRef": "synthetic-support-policy-1",
+        "operationalEvidenceRefs": [
+          {
+            "kind": "conformance-report",
+            "ref": "https://evidence.example.test/conformance/1"
+          },
+          {
+            "kind": "certification-report",
+            "ref": "https://evidence.example.test/certification/1"
+          },
+          {
+            "kind": "operational-report",
+            "ref": "example-org/synthetic-repo@0123456789abcdef0123456789abcdef01234567:reports/operational.md"
+          }
+        ]
+      },
+      "deprecation": {
+        "since": "2000-02-01",
+        "sunset": "2000-08-01",
+        "replacedBy": "synthetic-supported-1.0.0",
+        "migrationRef": "synthetic-migration-1"
+      }
+    }
+  ]
+}
