@@ -4,12 +4,14 @@
   "scripts": {
     "validate:contracts": "node scripts/validate-contracts.mjs",
     "validate:capability-graph": "node scripts/validate-platform-capability-graph.mjs --self-test",
-    "validate": "npm run validate:contracts && npm run test:contract-stubs && npm run validate:capability-graph && npm run test:delivery-leases && npm run test:capability-drift && npm run validate:capability-authority && npm run test:capability-authority",
+    "validate": "npm run validate:contracts && npm run test:contract-stubs && npm run validate:capability-graph && npm run test:delivery-leases && npm run test:capability-drift && npm run validate:capability-authority && npm run test:capability-authority && npm run validate:release-ledger && npm run test:release-ledger",
     "test:capability-drift": "node tools/capability-drift/test.mjs && node --test tools/capability-drift/cli.test.mjs",
     "test:contract-stubs": "node --test scripts/test-contract-stubs.mjs",
     "test:delivery-leases": "node --test scripts/test-delivery-leases.test.mjs",
     "validate:capability-authority": "node scripts/validate-capability-authority.mjs",
-    "test:capability-authority": "node --test scripts/test-capability-authority.test.mjs"
+    "test:capability-authority": "node --test scripts/test-capability-authority.test.mjs",
+    "validate:release-ledger": "node scripts/validate-release-ledger.mjs",
+    "test:release-ledger": "node --test scripts/test-release-ledger.test.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0",

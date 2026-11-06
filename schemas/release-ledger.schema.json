@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/schemas/release-ledger/v1",
+  "title": "Release ledger (platform-core governance schema)",
+  "description": "Maps contract version -> package coordinates and version -> commit SHA -> artifact digest -> consumer, with a lifecycle state derived from evidence. This is a platform-core GOVERNANCE schema (ADR-CEP-002), not a capability contract: it lives outside <module>/contracts/ and is not scanned by scripts/validate-contracts.mjs. It uses the keyword profile of ECP Decision 0006 section 5. That profile has no conditional keywords, so the state-dependent requirements (what evidence each state needs, derived-state equality, transition chain, uniqueness across releases) are enforced by scripts/validate-release-ledger.mjs. This schema is necessary but NOT sufficient: only the validator decides whether a ledger is acceptable.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "releases"],
+  "properties": {
+    "schemaVersion": { "const": "1" },
+    "releases": {
+      "description": "An explicit empty array is a valid, honest ledger (no release recorded). A missing or empty file is not.",
+      "type": "array",
+      "maxItems": 5000,
+      "items": { "$ref": "#/$defs/release" }
+    }
+  },
+  "$defs": {
+    "semver": {
+      "description": "Strict SemVer 2.0.0 version. Ranges, wildcards, dist-tags and moving refs do not match.",
+      "type": "string",
+      "maxLength": 128,
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "digest": {
+      "description": "Content digest of the published artifact, algorithm sha256, lowercase hex.",
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "commitSha": {
+      "description": "Full 40-hex commit SHA. Abbreviated SHAs and refs are rejected.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "date": {
+      "description": "Calendar date, YYYY-MM-DD (calendar validity is checked by the validator).",
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+    },
+    "state": {
+      "description": "Lifecycle state. Derived from evidence by the validator; the declared value must equal the derived one.",
+      "enum": ["candidate", "admitted", "published", "adopted", "supported", "deprecated"]
+    },
+    "repository": {
+      "type": "string",
+      "maxLength": 140,
+      "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "evidenceRef": {
+      "description": "Pointer to evidence. git-tag and branch are mutable kinds and can never be the only evidence for a state. Which kinds each state accepts is a closed list defined in scripts/validate-release-ledger.mjs and ADR-CEP-002.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "ref"],
+      "properties": {
+        "kind": {
+          "enum": ["commit", "ci-run", "artifact-digest", "lockfile", "attestation", "test-report", "conformance-report", "certification-report", "operational-report", "incident-report", "recovery-test", "runbook", "policy", "decision", "git-tag", "branch"]
+        },
+        "ref": { "$ref": "#/$defs/text" }
+      }
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": { "$ref": "#/$defs/evidenceRef" }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ecosystem", "name"],
+      "properties": {
+        "ecosystem": { "enum": ["npm", "nuget", "pypi", "go", "maven", "oci", "pub", "cargo"] },
+        "name": { "type": "string", "minLength": 1, "maxLength": 214 },
+        "version": { "$ref": "#/$defs/semver" },
+        "digest": { "$ref": "#/$defs/digest" },
+        "registry": {
+          "description": "Registry coordinates (https URL without credentials). Required once published.",
+          "type": "string",
+          "maxLength": 300,
+          "pattern": "^https://[A-Za-z0-9][A-Za-z0-9.-]*(:[0-9]{1,5})?(/[A-Za-z0-9._~/-]*)?$"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "commit"],
+      "properties": {
+        "repository": { "$ref": "#/$defs/repository" },
+        "commit": { "$ref": "#/$defs/commitSha" },
+        "tag": {
+          "description": "Informational only. A tag is mutable and is never evidence by itself.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      }
+    },
+    "admission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decisionRef", "admittedAt", "evidenceRefs"],
+      "properties": {
+        "decisionRef": { "$ref": "#/$defs/text" },
+        "admittedAt": { "$ref": "#/$defs/date" },
+        "evidenceRefs": { "$ref": "#/$defs/evidenceRefs" }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publishedAt", "evidenceRefs"],
+      "properties": {
+        "publishedAt": { "$ref": "#/$defs/date" },
+        "evidenceRefs": { "$ref": "#/$defs/evidenceRefs" }
+      }
+    },
+    "consumer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "repository", "resolvedVersion", "resolvedDigest", "lockfile"],
+      "properties": {
+        "name": { "$ref": "#/$defs/text" },
+        "repository": { "$ref": "#/$defs/repository" },
+        "resolvedVersion": { "$ref": "#/$defs/semver" },
+        "resolvedDigest": { "$ref": "#/$defs/digest" },
+        "lockfile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "commit"],
+          "properties": {
+            "path": { "$ref": "#/$defs/text" },
+            "commit": { "$ref": "#/$defs/commitSha" }
+          }
+        }
+      }
+    },
+    "support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "runbookRef", "supportPolicyRef", "operationalEvidenceRefs"],
+      "properties": {
+        "owner": { "$ref": "#/$defs/text" },
+        "runbookRef": { "$ref": "#/$defs/text" },
+        "supportPolicyRef": { "$ref": "#/$defs/text" },
+        "operationalEvidenceRefs": { "$ref": "#/$defs/evidenceRefs" }
+      }
+    },
+    "deprecation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["since", "sunset", "migrationRef"],
+      "properties": {
+        "since": { "$ref": "#/$defs/date" },
+        "sunset": { "$ref": "#/$defs/date" },
+        "replacedBy": { "$ref": "#/$defs/text" },
+        "migrationRef": { "$ref": "#/$defs/text" }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["procedureRef"],
+      "properties": {
+        "procedureRef": { "$ref": "#/$defs/text" },
+        "previousReleaseId": { "$ref": "#/$defs/releaseId" }
+      }
+    },
+    "rollout": {
+      "description": "Production rollout is never automatic. The only accepted values are manual (human-approved) and none.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["production"],
+      "properties": {
+        "production": { "enum": ["manual", "none"] },
+        "approvalRef": { "$ref": "#/$defs/text" }
+      }
+    },
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "at", "evidenceRefs"],
+      "properties": {
+        "from": { "enum": ["none", "candidate", "admitted", "published", "adopted", "supported", "deprecated"] },
+        "to": { "$ref": "#/$defs/state" },
+        "at": { "$ref": "#/$defs/date" },
+        "evidenceRefs": { "$ref": "#/$defs/evidenceRefs" }
+      }
+    },
+    "releaseId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,100}$"
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "capability", "contractAuthority", "contractVersion", "package", "source", "state", "transitions", "rollout"],
+      "properties": {
+        "id": { "$ref": "#/$defs/releaseId" },
+        "capability": {
+          "type": "string",
+          "maxLength": 120,
+          "pattern": "^[a-z][a-z0-9-]*([./][a-z][a-z0-9_-]*)+$"
+        },
+        "contractAuthority": {
+          "description": "Who owns the contract (ADR-CEP-001). Contract versioning itself belongs to the ECP (Decision 0006 section 6) and is only recorded here.",
+          "enum": ["ecp", "core"]
+        },
+        "contractVersion": { "$ref": "#/$defs/semver" },
+        "package": { "$ref": "#/$defs/package" },
+        "source": { "$ref": "#/$defs/source" },
+        "state": { "$ref": "#/$defs/state" },
+        "transitions": { "type": "array", "minItems": 1, "maxItems": 20, "items": { "$ref": "#/$defs/transition" } },
+        "admission": { "$ref": "#/$defs/admission" },
+        "publication": { "$ref": "#/$defs/publication" },
+        "consumers": { "type": "array", "maxItems": 200, "items": { "$ref": "#/$defs/consumer" } },
+        "support": { "$ref": "#/$defs/support" },
+        "deprecation": { "$ref": "#/$defs/deprecation" },
+        "rollback": { "$ref": "#/$defs/rollback" },
+        "backportOf": { "$ref": "#/$defs/releaseId" },
+        "rollout": { "$ref": "#/$defs/rollout" }
+      }
+    }
+  }
+}
