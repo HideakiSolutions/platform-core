@@ -73,7 +73,7 @@ negative fixtures that target a stub fail validation and belong in those vectors
 
 The authority of every capability and contract is tabulated in
 [`docs/architecture/contract-authority/capability-authority.csv`](docs/architecture/contract-authority/capability-authority.csv)
-(proposed by [ADR-CEP-001](docs/adr/ADR-CEP-001-contract-authority.md)) and checked by
+(defined by [ADR-CEP-001](docs/adr/ADR-CEP-001-contract-authority.md)) and checked by
 `scripts/validate-capability-authority.mjs`.
 
 ## How Products Consume platform-core

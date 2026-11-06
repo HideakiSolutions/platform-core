@@ -2,8 +2,11 @@
 
 ## Status
 
-Proposed. Not accepted: acceptance is a decision of the platform owner and is not implied by merging this document.
-Until it is accepted, gate G1 of the CEP program stays open and no dependent work package may start.
+Accepted (2026-11-06, platform owner).
+
+Acceptance covers the decisions in this ADR. Owner confirmation or correction of the six `unknown` rows is still
+pending: those rows stay `unknown`, and no authority or status claim may be made for them until decided. Gate G1 is
+closed for every other row and stays blocked for those six.
 
 ## Context
 
@@ -88,6 +91,11 @@ performs no network access.
 
 ## Acceptance requires
 
-- A decision of the platform owner to move this ADR to Accepted.
-- Owner confirmation, or correction, of each `unknown` row.
-- CI green on the change that introduces the table and validator.
+Done:
+
+- Decision of the platform owner to accept this ADR (2026-11-06).
+- CI green on the change that introduced the table and validator (PR #33).
+
+Pending:
+
+- Owner confirmation, or correction, of each of the six `unknown` rows.
