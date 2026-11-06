@@ -58,7 +58,7 @@
       "required": ["kind", "ref"],
       "properties": {
         "kind": {
-          "enum": ["commit", "ci-run", "artifact-digest", "lockfile", "attestation", "test-report", "conformance-report", "certification-report", "operational-report", "incident-report", "recovery-test", "runbook", "policy", "decision", "git-tag", "branch"]
+          "enum": ["commit", "ci-run", "artifact-digest", "lockfile", "attestation", "test-report", "conformance-report", "certification-report", "operational-report", "incident-report", "recovery-test", "guarantee-declaration", "runbook", "policy", "decision", "git-tag", "branch"]
         },
         "ref": { "$ref": "#/$defs/text" }
       }
@@ -159,6 +159,10 @@
         "since": { "$ref": "#/$defs/date" },
         "sunset": { "$ref": "#/$defs/date" },
         "replacedBy": { "$ref": "#/$defs/text" },
+        "justification": {
+          "description": "Written reason for retiring without a replacement. The validator requires it when replacedBy is absent (ADR-CEP-002, owner decision 6).",
+          "$ref": "#/$defs/text"
+        },
         "migrationRef": { "$ref": "#/$defs/text" }
       }
     },

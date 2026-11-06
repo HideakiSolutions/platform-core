@@ -284,7 +284,7 @@ describe("release ledger (round 1): blank strings and ref formats", () => {
     }
   });
   it("accepts a pinned reference", () => {
-    const d = base(); byState(d, "admitted").admission.evidenceRefs = [ev("test-report", PIN)];
+    const d = base(); byState(d, "admitted").admission.evidenceRefs.unshift(ev("test-report", PIN));
     assert.deepEqual(validateLedger(d), []);
   });
 });
@@ -309,4 +309,41 @@ describe("release ledger (round 1): immutability is normalized", () => {
     d.releases.push(prev); pub.rollback.previousReleaseId = prev.id;
     assert.deepEqual(validateLedger(d), []);
   });
+});
+
+describe("release ledger (WP-03): declared guarantees are required from admitted (AC-03)", () => {
+  const GREF = "example-org/synthetic-contracts@0123456789abcdef0123456789abcdef0123456f:contracts/capabilities/x.y/implementations.json";
+  const withoutGuarantee = (r) => { r.admission.evidenceRefs = r.admission.evidenceRefs.filter((e) => e.kind !== "guarantee-declaration"); };
+  for (const state of ["admitted", "published", "adopted", "supported"]) {
+    it(`rejects a declared '${state}' without guarantee-declaration evidence`, () => {
+      rejects((d) => withoutGuarantee(byState(d, state)), "guarantee-declaration");
+      rejects((d) => withoutGuarantee(byState(d, state)), `declared '${state}' but evidence derives 'candidate'`);
+    });
+  }
+  it("still accepts candidate without guarantee evidence", () => {
+    assert.deepEqual(validateLedger({ schemaVersion: "1", releases: [byState(base(), "candidate")] }), []);
+  });
+  it("does not let guarantee-declaration replace the admission evidence", () => {
+    rejects((d) => { byState(d, "admitted").admission.evidenceRefs = [ev("guarantee-declaration", GREF)]; }, "derives 'candidate'");
+  });
+  it("rejects a malformed guarantee-declaration reference", () => {
+    for (const ref of ["https://evidence.example.test/g", "example-org/r@abc:contracts/implementations.json", "example-org/r@0123456789abcdef0123456789abcdef0123456f:contracts/other.json"]) {
+      rejects((d) => { byState(d, "admitted").admission.evidenceRefs = [ev("test-report", "https://evidence.example.test/t"), ev("guarantee-declaration", ref)]; }, "guarantee-declaration");
+    }
+  });
+  it("accepts a well-formed pinned guarantee-declaration (form only, no network)", () => {
+    const d = base(); byState(d, "admitted").admission.evidenceRefs.push(ev("guarantee-declaration", GREF));
+    assert.deepEqual(validateLedger(d), []);
+  });
+});
+
+describe("release ledger (WP-03): deprecation without replacement needs a justification", () => {
+  const dep = (d) => byState(d, "deprecated").deprecation;
+  it("rejects deprecation with neither replacedBy nor justification", () => rejects((d) => { delete dep(d).replacedBy; }, "justification"));
+  it("rejects a blank justification", () => rejects((d) => { delete dep(d).replacedBy; dep(d).justification = "  "; }, "whitespace-only"));
+  it("accepts deprecation without replacedBy when justified", () => {
+    const d = base(); delete dep(d).replacedBy; dep(d).justification = "Synthetic: no successor planned";
+    assert.deepEqual(validateLedger(d), []);
+  });
+  it("accepts deprecation with a replacement and no justification", () => assert.deepEqual(validateLedger(base()), []));
 });

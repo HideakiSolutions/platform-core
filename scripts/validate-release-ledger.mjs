@@ -26,6 +26,12 @@ const MOVING_NAMES = new Set(["latest", "next", "main", "master", "develop", "he
 export const ADMISSION_KINDS = new Set(["decision", "test-report", "conformance-report", "ci-run", "attestation", "commit"]);
 export const PUBLICATION_KINDS = new Set(["ci-run", "attestation", "artifact-digest"]);
 export const OPERATIONAL_KINDS = new Set(["operational-report", "incident-report", "recovery-test"]);
+// AC-03 (admitted): a provider without an explicit guarantee cannot be admitted. Admission must also carry one
+// evidence item of this kind: a pinned '<owner>/<repo>@<40-hex>:<path>' reference to an implementations.json that declares
+// operations and guarantees. FORM ONLY: no network call, so the validator cannot confirm the file exists at that commit
+// or that its guarantees are true. It does not replace ADMISSION_KINDS: it is required in addition to one of them.
+export const GUARANTEE_KIND = "guarantee-declaration";
+const GUARANTEE_REF_FILE = "implementations.json";
 const INTRINSIC_KINDS = new Set(["commit", "artifact-digest", "git-tag", "branch"]);
 const TRANSITION_KINDS = { admitted: ADMISSION_KINDS, published: PUBLICATION_KINDS, adopted: new Set(["lockfile"]) };
 const URL_REF = /^https:\/\/[A-Za-z0-9][A-Za-z0-9.-]*(:[0-9]{1,5})?(\/[^\s@]*)?$/;
@@ -44,6 +50,7 @@ function schemaValidator() {
 
 const nonBlank = (v) => typeof v === "string" && v.trim() !== "";
 const hasKind = (list, kinds) => Array.isArray(list) && list.some((e) => isObject(e) && kinds.has(e.kind) && nonBlank(e.ref));
+const hasGuarantee = (list) => Array.isArray(list) && list.some((e) => isObject(e) && e.kind === GUARANTEE_KIND && PINNED_REF.test(e.ref ?? "") && e.ref.split(":").pop().split("/").pop() === GUARANTEE_REF_FILE);
 const pkgKey = (p) => `${p.ecosystem}:${String(p.name).toLowerCase()}`;
 const baseVersion = (v) => String(v).split("+")[0];
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
@@ -75,6 +82,7 @@ function checkEvidence(list, at, problems) {
     if (!INTRINSIC_KINDS.has(item.kind) && nonBlank(item.ref) && !URL_REF.test(item.ref) && !PINNED_REF.test(item.ref) && !isLocalPath(item.ref)) {
       problems.push(`${where}: evidence of kind ${item.kind} needs an https URL or a pinned '<owner>/<repo>@<40-hex>:<path>' reference`);
     }
+    if (item.kind === GUARANTEE_KIND && nonBlank(item.ref) && !hasGuarantee([item])) problems.push(`${where}: evidence of kind ${GUARANTEE_KIND} must be a pinned '<owner>/<repo>@<40-hex>:<path>/${GUARANTEE_REF_FILE}' reference`);
     if (item.kind === "commit" && !SHA40.test(item.ref ?? "")) problems.push(`${where}: evidence of kind commit must be a full 40-hex SHA`);
     if (item.kind === "artifact-digest" && !DIGEST.test(item.ref ?? "")) problems.push(`${where}: evidence of kind artifact-digest must be a sha256 digest`);
   });
@@ -96,6 +104,7 @@ function unmet(r, level) {
     if (typeof p.version !== "string" || !SEMVER.test(p.version)) out.push("package.version (an immutable version is required to promote beyond candidate)");
     if (typeof p.digest !== "string" || !DIGEST.test(p.digest) || p.digest === ZERO_DIGEST) out.push("package.digest (a real sha256 digest is required to promote beyond candidate)");
     if (!isObject(r.admission) || !nonBlank(r.admission.decisionRef) || !hasKind(r.admission.evidenceRefs, ADMISSION_KINDS)) out.push(`admission (decision plus evidence of kind ${[...ADMISSION_KINDS].join("|")})`);
+    if (!hasGuarantee(r.admission?.evidenceRefs)) out.push(`admission.evidenceRefs needs evidence of kind ${GUARANTEE_KIND} (a pinned reference to the declared guarantees in ${GUARANTEE_REF_FILE}; a provider without explicit guarantees cannot be admitted)`);
   } else if (level === 2) {
     if (!nonBlank(p.registry)) out.push("package.registry (registry coordinates)");
     const pub = r.publication?.evidenceRefs;
@@ -124,7 +133,7 @@ function unmet(r, level) {
   return out;
 }
 
-function deriveLevel(r) {
+export function deriveLevel(r) {
   const missing = [];
   let level = 0;
   for (let l = 1; l <= 4; l++) {
@@ -203,6 +212,7 @@ function checkRelease(r, at, problems) {
   const { level, missing } = deriveLevel(r);
   if (r.state === "deprecated") {
     if (!isObject(r.deprecation)) problems.push(`${at}.deprecation: state 'deprecated' requires a deprecation block`);
+    else if (!nonBlank(r.deprecation.replacedBy) && !nonBlank(r.deprecation.justification)) problems.push(`${at}.deprecation: a deprecation without replacedBy needs a non-blank justification (ADR-CEP-002, owner decision 6)`);
     if (level < 2) problems.push(`${at}: a deprecated release must have been published (evidence derives '${STATES[level]}')`);
   } else if (STATES.includes(r.state)) {
     if (isObject(r.deprecation)) problems.push(`${at}.deprecation: a deprecation block is present but state is '${r.state}'`);

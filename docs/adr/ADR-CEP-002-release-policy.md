@@ -134,8 +134,9 @@ Owner decisions (2026-11-06), which close the six items that were open:
 
 Still open: registries for PyPI, Go and pub; the support window (WP-13); the digest evidence sources (WP-11).
 
-Known enforcement gaps: the schema and the validator do not yet carry a justification for a deprecation without
-`replacedBy`, and they do not check the ADR-007 gap. Both are review rules until a later change adds them.
+Known enforcement gaps: the validator does not check the ADR-007 gap; it stays a review rule until a later change adds
+it. The justification for a deprecation without `replacedBy` is now enforced (optional `deprecation.justification`,
+required by the validator when `replacedBy` is absent).
 
 ## What the validator does and does not establish
 
@@ -163,6 +164,16 @@ Known enforcement gaps: the schema and the validator do not yet carry a justific
 - Cost: every release needs an entry and its evidence, and the entry must be updated when the state changes.
 - Limit: the validator trusts the references it is given. Authenticity is for review and for the later gates.
 - No breaking change: nothing existing is modified. Rollback is a revert of this change.
+
+## Proposed amendments (not accepted), 2026-11-06
+
+Not part of the Decision above, which is unchanged. Pending ratification by the platform owner.
+
+- (a) State `admitted` and above also requires evidence of kind `guarantee-declaration` (a pinned reference to the
+  `implementations.json` that declares operations and guarantees), implementing AC-03. The validator already enforces it;
+  this has no effect on real data because the ledger is empty. The Decision table keeps its current wording until the
+  owner ratifies this.
+- (b) The `<owner>/<repo>` part of that reference is not restricted: the validator checks form only.
 
 ## Acceptance
 

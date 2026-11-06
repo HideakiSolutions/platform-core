@@ -39,7 +39,7 @@ Evidence kinds accepted per state (closed lists, defined in the validator):
 
 | State or step | Required evidence kinds |
 |---|---|
-| `admitted` (admission) | one of `decision`, `test-report`, `conformance-report`, `ci-run`, `attestation`, `commit` |
+| `admitted` (admission) | one of `decision`, `test-report`, `conformance-report`, `ci-run`, `attestation`, `commit`, **and** one `guarantee-declaration` (see below) |
 | `published` (publication) | one of `ci-run`, `attestation`, `artifact-digest` (an `artifact-digest` ref equals `package.digest`) |
 | `adopted` | consumer lockfile (path, full commit) plus `lockfile` evidence on the transition |
 | `supported` (operational) | `conformance-report` and `certification-report` and one of `operational-report`, `incident-report`, `recovery-test` |
@@ -63,3 +63,29 @@ The validator checks form, closed evidence kinds and the internal consistency of
 digest matches a registry, that a referenced run passed, or that a URL exists, and it does not check immutability
 against git history. `supported` needs a conformance report and a certification report as evidence kinds; their
 content is not validated.
+
+## Declared guarantees (AC-03) and deprecation without a replacement
+
+- From `admitted` on, `admission.evidenceRefs` must also carry one `guarantee-declaration`: a pinned
+  `<owner>/<repo>@<40-hex>:<path>/implementations.json` reference to the file that declares the provider's operations
+  and guarantees (ECP Decision 0014). Without it the derived state stays `candidate`, so a declared `admitted` or higher
+  is rejected. The validator checks the **form** of the reference only. It makes no network call, so it does not prove the
+  file exists at that commit or that the guarantees are true; that stays with review and conformance evidence.
+- A `deprecation` without `replacedBy` needs a non-blank `deprecation.justification`. The ADR-007 gap is still a review rule.
+
+## Cross-check with the authority table and the scorecard
+
+`npm run validate:ledger-authority` checks the ledger against `capability-authority.csv` and the ECP pin: every release
+needs a row; `contractAuthority` follows the classification (`ecp-canonical` is `ecp`, `core-canonical` is `core`);
+`unknown` rows stay at `candidate`; `compatibility` and `deprecated` stubs, and legacy identifiers, are never released;
+an `ecp-canonical` `contractVersion` equals the pinned version; and `claimed_status` equals the state the ledger derives
+(`none` with no release). The table claim is therefore a consequence of the ledger, not free text.
+
+[`docs/capabilities/scorecard.md`](../capabilities/scorecard.md) is generated from the table, the pin and the ledger
+(`npm run generate:scorecard`); `npm run validate` fails when it is stale. It is not a registry and has no editable status.
+
+## Known deadlock: `supported`
+
+A ledger entry that derives `supported` cannot pass the cross-check, because ADR-CEP-001 Decision 5 rejects
+`claimed_status: supported` in the authority table and the claim must equal the derived state. Resolving it needs an
+owner decision on ADR-CEP-001; it has no effect today because the ledger is empty.

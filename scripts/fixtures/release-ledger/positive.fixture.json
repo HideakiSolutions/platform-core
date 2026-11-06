@@ -82,6 +82,10 @@
           {
             "kind": "test-report",
             "ref": "https://evidence.example.test/test-report/2"
+          },
+          {
+            "kind": "guarantee-declaration",
+            "ref": "example-org/synthetic-contracts@0123456789abcdef0123456789abcdef0123456f:contracts/capabilities/example.synthetic-capability/implementations.json"
           }
         ]
       }
@@ -148,6 +152,10 @@
           {
             "kind": "test-report",
             "ref": "https://evidence.example.test/test-report/4"
+          },
+          {
+            "kind": "guarantee-declaration",
+            "ref": "example-org/synthetic-contracts@0123456789abcdef0123456789abcdef0123456f:contracts/capabilities/example.synthetic-capability/implementations.json"
           }
         ]
       },
@@ -241,6 +249,10 @@
           {
             "kind": "test-report",
             "ref": "https://evidence.example.test/test-report/8"
+          },
+          {
+            "kind": "guarantee-declaration",
+            "ref": "example-org/synthetic-contracts@0123456789abcdef0123456789abcdef0123456f:contracts/capabilities/example.synthetic-capability/implementations.json"
           }
         ]
       },
@@ -357,6 +369,10 @@
           {
             "kind": "test-report",
             "ref": "https://evidence.example.test/test-report/13"
+          },
+          {
+            "kind": "guarantee-declaration",
+            "ref": "example-org/synthetic-contracts@0123456789abcdef0123456789abcdef0123456f:contracts/capabilities/example.synthetic-capability/implementations.json"
           }
         ]
       },
@@ -503,6 +519,10 @@
           {
             "kind": "test-report",
             "ref": "https://evidence.example.test/test-report/19"
+          },
+          {
+            "kind": "guarantee-declaration",
+            "ref": "example-org/synthetic-contracts@0123456789abcdef0123456789abcdef0123456f:contracts/capabilities/example.synthetic-capability/implementations.json"
           }
         ]
       },
