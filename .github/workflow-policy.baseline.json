@@ -1,0 +1,49 @@
+{
+  "$comment": "Existing violations of scripts/validate-workflow-policy.mjs found when the checker was introduced (CEP WP-11). The list may only shrink: a new entry, or an entry that no longer occurs, fails the checker. Fix the workflow and delete the entry.",
+  "schemaVersion": "1",
+  "entries": [
+    {
+      "file": ".github/workflows/capability-drift.yml",
+      "rule": "permissions-missing",
+      "match": "permissions",
+      "reason": "Reusable workflow consumed by external repositories through @main; adding permissions changes the token scope those callers receive. Needs an owner decision and a coordinated caller check."
+    },
+    {
+      "file": ".github/workflows/capability-drift.yml",
+      "rule": "unpinned-action",
+      "match": "actions/checkout@v4",
+      "reason": "Pinned by major tag only. Workflow is a published interface and is out of scope for WP-11; pin by SHA in a separate change.",
+      "count": 2
+    },
+    {
+      "file": ".github/workflows/capability-drift.yml",
+      "rule": "unpinned-action",
+      "match": "actions/setup-node@v4",
+      "reason": "Pinned by major tag only. Same as above."
+    },
+    {
+      "file": ".github/workflows/capability-drift.yml",
+      "rule": "unpinned-action",
+      "match": "actions/upload-artifact@v4",
+      "reason": "Pinned by major tag only. Same as above."
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "rule": "permissions-missing",
+      "match": "permissions",
+      "reason": "Pre-existing workflow without a permissions block; add `permissions: contents: read` in a follow-up change."
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "rule": "unpinned-action",
+      "match": "actions/checkout@v4",
+      "reason": "Pinned by major tag only; pin by SHA in a follow-up change."
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "rule": "unpinned-action",
+      "match": "actions/setup-node@v4",
+      "reason": "Pinned by major tag only; pin by SHA in a follow-up change."
+    }
+  ]
+}

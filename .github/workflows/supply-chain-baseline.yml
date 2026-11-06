@@ -1,0 +1,199 @@
+name: Supply Chain Baseline
+
+# Reusable supply-chain profile (CEP WP-11). Profile and scope: docs/security/supply-chain-profile.md.
+# Classes implemented here: secret detection, dependency audit (npm), SBOM, workflow policy.
+# Classes declared but NOT_IMPLEMENTED (they need a registry push, signing identity or new credentials): image scanning,
+# build provenance, dependency audit for dotnet and python. They are not faked here; see the profile.
+# Nothing in this workflow publishes, signs, pushes or reads a secret. Adopting repositories opt in by calling it.
+
+on:
+  workflow_call:
+    inputs:
+      runs-on:
+        description: Runner label for every job. Default keeps GitHub-hosted.
+        required: false
+        default: ubuntu-24.04
+        type: string
+      checker-ref:
+        description: >-
+          Full 40-hex commit SHA of platform-core that supplies the gate tooling (policy checker, SBOM check, secret
+          rules). A branch or tag is rejected on purpose: gate code must not move under the caller.
+        required: true
+        type: string
+      checker-repository:
+        description: Repository that supplies the gate tooling.
+        required: false
+        default: hideakisolutions/platform-core
+        type: string
+      ecosystems:
+        description: Comma-separated ecosystems for the dependency audit. Only `npm` is implemented; any other value fails.
+        required: false
+        default: npm
+        type: string
+      working-directory:
+        description: Directory holding the lockfile for the dependency audit.
+        required: false
+        default: .
+        type: string
+      audit-level:
+        description: Lowest npm advisory severity that fails the audit.
+        required: false
+        default: low
+        type: string
+      sbom-path:
+        description: Path scanned for the SBOM.
+        required: false
+        default: .
+        type: string
+      policy-baseline:
+        description: Repository-relative path of the workflow-policy baseline. A missing file means an empty baseline.
+        required: false
+        default: .github/workflow-policy.baseline.json
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  secret-detection:
+    runs-on: ${{ inputs.runs-on }}
+    permissions:
+      contents: read
+    steps:
+      - name: Require a pinned tooling ref
+        env:
+          CHECKER_REF: ${{ inputs.checker-ref }}
+        run: |
+          [[ "$CHECKER_REF" =~ ^[0-9a-f]{40}$ ]] || { echo "checker-ref must be a full 40-hex commit SHA" >&2; exit 1; }
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ inputs.checker-repository }}
+          ref: ${{ inputs.checker-ref }}
+          path: .sc-tooling
+          persist-credentials: false
+      - name: Move tooling out of the scanned tree
+        run: mv .sc-tooling "$RUNNER_TEMP/sc-tooling"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: Install pinned gitleaks (sha256 verified)
+        run: |
+          bin="$("$RUNNER_TEMP/sc-tooling/tools/supply-chain/install-gitleaks.sh" "$RUNNER_TEMP/gitleaks")"
+          echo "GITLEAKS_BIN=$bin" >> "$GITHUB_ENV"
+      - name: Refuse repository-level gitleaks overrides and a weakened policy
+        run: node "$RUNNER_TEMP/sc-tooling/scripts/check-secret-gate-config.mjs" --root "$GITHUB_WORKSPACE" --config "$RUNNER_TEMP/sc-tooling/tools/supply-chain/gitleaks.toml"
+      - name: Scan history for secrets (mirror clone, no worktree; allow comments and ignore files are not honoured; findings are redacted)
+        # gitleaks reads a `.gitleaksignore` from a scanned worktree even when --gitleaks-ignore-path points elsewhere
+        # (verified on 8.30.1), so the scan runs on a bare mirror of the repository, which has no worktree.
+        run: |
+          mkdir -p "$RUNNER_TEMP/no-ignore"
+          git clone --mirror --no-local "$GITHUB_WORKSPACE" "$RUNNER_TEMP/scan.git"
+          cd "$RUNNER_TEMP"
+          "$GITLEAKS_BIN" git --config "$RUNNER_TEMP/sc-tooling/tools/supply-chain/gitleaks.toml" --ignore-gitleaks-allow --gitleaks-ignore-path "$RUNNER_TEMP/no-ignore" --redact --no-banner --exit-code 1 "$RUNNER_TEMP/scan.git"
+
+  dependency-audit:
+    runs-on: ${{ inputs.runs-on }}
+    permissions:
+      contents: read
+    steps:
+      - name: Reject ecosystems that are not implemented
+        env:
+          ECOSYSTEMS: ${{ inputs.ecosystems }}
+        run: |
+          IFS=',' read -ra items <<< "$ECOSYSTEMS"
+          for e in "${items[@]}"; do
+            e="${e// /}"
+            [ "$e" = "npm" ] || { echo "ecosystem '$e' is NOT_IMPLEMENTED in this baseline (only npm); failing instead of skipping" >&2; exit 1; }
+          done
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: npm audit from the lockfile (no install, no lifecycle scripts)
+        working-directory: ${{ inputs.working-directory }}
+        env:
+          AUDIT_LEVEL: ${{ inputs.audit-level }}
+        run: |
+          [[ "$AUDIT_LEVEL" =~ ^(info|low|moderate|high|critical)$ ]] || { echo "invalid audit-level" >&2; exit 1; }
+          test -f package-lock.json || { echo "package-lock.json not found; refusing to pass without a lockfile" >&2; exit 1; }
+          npm audit --package-lock-only --audit-level="$AUDIT_LEVEL"
+
+  sbom:
+    runs-on: ${{ inputs.runs-on }}
+    permissions:
+      contents: read
+    steps:
+      - name: Require a pinned tooling ref
+        env:
+          CHECKER_REF: ${{ inputs.checker-ref }}
+        run: |
+          [[ "$CHECKER_REF" =~ ^[0-9a-f]{40}$ ]] || { echo "checker-ref must be a full 40-hex commit SHA" >&2; exit 1; }
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ inputs.checker-repository }}
+          ref: ${{ inputs.checker-ref }}
+          path: .sc-tooling
+          persist-credentials: false
+      - name: Move tooling out of the scanned tree
+        run: mv .sc-tooling "$RUNNER_TEMP/sc-tooling"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: Generate SBOM (CycloneDX JSON)
+        uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
+        with:
+          path: ${{ inputs.sbom-path }}
+          format: cyclonedx-json
+          output-file: ${{ runner.temp }}/sbom.cdx.json
+          upload-artifact: false
+          upload-release-assets: false
+      - name: Reject a missing or empty SBOM and record its hash
+        run: |
+          node "$RUNNER_TEMP/sc-tooling/scripts/validate-sbom.mjs" "$RUNNER_TEMP/sbom.cdx.json" | tee sbom-check.txt
+          { echo '## SBOM'; echo; echo "commit: $GITHUB_SHA"; echo; cat sbom-check.txt; } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: sbom-cyclonedx
+          path: ${{ runner.temp }}/sbom.cdx.json
+          if-no-files-found: error
+          retention-days: 30
+
+  workflow-policy:
+    runs-on: ${{ inputs.runs-on }}
+    permissions:
+      contents: read
+    steps:
+      - name: Require a pinned tooling ref
+        env:
+          CHECKER_REF: ${{ inputs.checker-ref }}
+        run: |
+          [[ "$CHECKER_REF" =~ ^[0-9a-f]{40}$ ]] || { echo "checker-ref must be a full 40-hex commit SHA" >&2; exit 1; }
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ inputs.checker-repository }}
+          ref: ${{ inputs.checker-ref }}
+          path: .sc-tooling
+          persist-credentials: false
+      - name: Move tooling out of the scanned tree
+        run: mv .sc-tooling "$RUNNER_TEMP/sc-tooling"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: Install the checker's pinned dependency (lockfile, no lifecycle scripts)
+        run: npm ci --ignore-scripts --prefix "$RUNNER_TEMP/sc-tooling"
+      - name: Check workflows against the policy
+        env:
+          POLICY_BASELINE: ${{ inputs.policy-baseline }}
+        run: node "$RUNNER_TEMP/sc-tooling/scripts/validate-workflow-policy.mjs" --root "$GITHUB_WORKSPACE" --baseline "$POLICY_BASELINE"
