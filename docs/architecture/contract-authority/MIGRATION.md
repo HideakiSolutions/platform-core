@@ -1,6 +1,6 @@
 # Contract authority migration report (ADR-CEP-001)
 
-Status: Proposed, with the ADR. This change adds governance artifacts only.
+Status: follows the ADR (Accepted, 2026-11-06). This change adds governance artifacts only.
 
 ## What changes
 

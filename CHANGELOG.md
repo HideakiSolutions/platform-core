@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- ADR-CEP-001 (contract authority) accepted by the platform owner on 2026-11-06. The six `unknown` rows of the authority table remain pending an owner decision.
 - Tightened `message_id` in `messaging/delivery-lease/v1` (ADR-012 amendment 1, 2026-11-04): canonical hex 8-4-4-4-12 only; the nil UUID in `urn:uuid:` form and braced ids are now rejected. The contract is accepted and not admitted, so `contract_version` stays 1.0.0; producers emitting URN or braced ids must emit the canonical form.
 - Added owner-approved audit-retention profile 2.0.0 in ADR-011: preserve the legacy event schema and source pins, require individual finite expiry and a separately admitted retirement authority; provider conformance, consumer admission and migration gates remain required.
 
