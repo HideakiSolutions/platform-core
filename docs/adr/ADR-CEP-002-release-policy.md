@@ -2,9 +2,12 @@
 
 ## Status
 
-Proposed. Not accepted: acceptance is a decision of the platform owner and is not implied by merging this document.
-Until it is accepted, gate G2 of the CEP program stays open for the release track and no dependent work package may
-rely on the ledger as an agreed contract.
+Accepted (2026-11-06, platform owner).
+
+Acceptance covers the decisions in this ADR and the owner decisions under Registry policy. It does not establish that
+any release exists: the ledger is still empty. Gate G2 of the CEP program still depends on WP-03 (the capability
+manifest and the cross-check against `capability-authority.csv`), so it is not closed by this acceptance. The limits
+of the validator, described below, stand.
 
 ## Context
 
@@ -35,7 +38,7 @@ References, by name and number only:
 | ECP Decision 0006 | **Consumed, not redefined.** The contract version is the ECP `capability.yaml` version (section 6). The ledger records it as `contractVersion` and never computes or classifies compatibility. Section 8 (bundle with SHA-256 and lock file) is the model for the digest and lockfile evidence required here. |
 | ADR-CEP-001 | **Depends on.** `contractAuthority` in the ledger uses the same vocabulary (`ecp`, `core`). Cross-checking the ledger against `capability-authority.csv` is not done here and is left to WP-03. |
 | ADR-001 | **Extended.** SemVer per artifact stays. This ADR adds that a version number is an identifier, never evidence: the evidence is the digest and the commit. The `v{major}.{minor}.{patch}` git tag is a mutable label. |
-| ADR-007 | **Extended.** Its major-bump rule and the minimum gap of 2 minor releases between deprecation and removal stay. This ADR adds where the deprecation is recorded (the ledger) and what it must carry. |
+| ADR-007 | **Extended.** Its major-bump rule (from 1.0.0; in `0.x` a breaking change bumps MINOR, per the owner decision under Registry policy) and the minimum gap of 2 minor releases between deprecation and removal stay. This ADR adds where the deprecation is recorded (the ledger) and what it must carry. |
 | ADR-002 | **Clarified, not superseded, not edited.** Its package scopes and groups are illustrative and already carry a status note that says so. This ADR names no scope: the registry coordinates of record are whatever a ledger entry proves (see Registry policy). ADR-002 is Accepted and is not changed by this proposal. |
 
 This ADR supersedes nothing.
@@ -86,7 +89,7 @@ This ADR supersedes nothing.
    needs an immutable artifact (version plus digest).
 
 6. **Breaking changes, deprecation, backport and rollback.**
-   - Breaking changes: a package follows ADR-001 and ADR-007 (major bump, migration guide). A breaking change to a
+   - Breaking changes: a package follows ADR-001 and ADR-007 (major bump, migration guide) from 1.0.0; in `0.x` a breaking change bumps MINOR, per the owner decision under Registry policy (2026-11-06), as in ECP Decision 0006. A breaking change to a
      contract follows ECP Decision 0006 section 6, including its migration and rollback evidence; this ADR only records
      the resulting versions.
    - Deprecation: recorded in the ledger as a `deprecation` block. The ADR-007 window for platform-core artifacts is
@@ -114,17 +117,25 @@ explicit empty ledger, and the fixtures use synthetic values only. A real entry 
 publishes, with evidence the reviewer can check. The validator checks that evidence is present and well-formed, not that
 it is true: it makes no network call and cannot confirm a digest against a registry.
 
-Open items for the owner (not decided here and not invented):
+Owner decisions (2026-11-06), which close the six items that were open:
 
-1. The registry, package names and scopes of record for each ecosystem. ADR-002's scopes are stale; the real ones are
-   to be declared by the owner.
-2. Who may attest `supported`, and the support window for each line (how many lines are backported, for how long).
-3. Whether a package in `0.x` follows ECP Decision 0006's "breaking change requires a MINOR bump" or plain SemVer.
-4. Which sources count as artifact-digest evidence (registry API, signed attestation, provenance); WP-11 owns the
-   supply-chain profile.
-5. Where the ledger lives per repository (one per repository, or one central ledger). Reconciling the Helix publication
-   documentation in `design-system-core` against this policy is a separate pull request.
-6. Whether `deprecated` should be allowed to have no replacement, and the deprecation gap for packages versus contracts.
+1. Registry and scopes: GitHub Packages, with the scope `@hideakisolutions` for npm and the prefix `Hideakisolutions.*`
+   for NuGet. PyPI, Go and pub stay open: no registry or naming is decided for them.
+2. Attestation of `supported`: the platform owner attests it. The support window (how many lines are backported, and
+   for how long) is deferred to WP-13 and stays open.
+3. Packages in `0.x`: a breaking change bumps MINOR, as in ECP Decision 0006. The validator does not classify
+   compatibility, so this is a policy for review and is not enforced by it.
+4. Sources of artifact-digest evidence: defined by WP-11 (supply-chain profile) and stay open until then.
+5. Ledger location: one ledger per repository, with a federated index. No federated index file exists yet and none is
+   created by this change. Reconciling the Helix publication documentation in `design-system-core` against this policy
+   is a separate pull request.
+6. `deprecated` without a replacement is allowed, with a written justification. For packages, the deprecation gap is
+   the ADR-007 gap (minimum 2 minor releases).
+
+Still open: registries for PyPI, Go and pub; the support window (WP-13); the digest evidence sources (WP-11).
+
+Known enforcement gaps: the schema and the validator do not yet carry a justification for a deprecation without
+`replacedBy`, and they do not check the ADR-007 gap. Both are review rules until a later change adds them.
 
 ## What the validator does and does not establish
 
@@ -153,8 +164,7 @@ Open items for the owner (not decided here and not invented):
 - Limit: the validator trusts the references it is given. Authenticity is for review and for the later gates.
 - No breaking change: nothing existing is modified. Rollback is a revert of this change.
 
-## Acceptance requires
+## Acceptance
 
-- A decision of the platform owner to move this ADR to Accepted.
-- Owner answers (or explicit deferral) for the open items above.
-- CI green on the change that introduces the schema and the validator.
+Accepted by the platform owner on 2026-11-06, with the decisions listed under Registry policy. CI was green on the change
+that introduced the schema and the validator (#35).
