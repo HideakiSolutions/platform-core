@@ -2,7 +2,7 @@
 
 The release ledger records, per released artifact, the chain **contract version -> package coordinates and version ->
 source commit -> artifact digest -> consumers**, with a lifecycle state that is derived from evidence. The policy is in
-[ADR-CEP-002](../adr/ADR-CEP-002-release-policy.md) (Proposed). This directory holds no real release: the committed
+[ADR-CEP-002](../adr/ADR-CEP-002-release-policy.md) (Accepted 2026-11-06). This directory holds no real release: the committed
 `release-ledger.json` is an explicit empty ledger.
 
 - Schema (structure): [`schemas/release-ledger.schema.json`](../../schemas/release-ledger.schema.json)

@@ -77,7 +77,7 @@ The authority of every capability and contract is tabulated in
 `scripts/validate-capability-authority.mjs`.
 
 Releases are recorded in a release ledger whose lifecycle state is derived from evidence
-(proposed by [ADR-CEP-002](docs/adr/ADR-CEP-002-release-policy.md); see [docs/release](docs/release/README.md)) and checked
+(defined by [ADR-CEP-002](docs/adr/ADR-CEP-002-release-policy.md); see [docs/release](docs/release/README.md)) and checked
 by `scripts/validate-release-ledger.mjs`.
 
 ## How Products Consume platform-core
