@@ -1,0 +1,75 @@
+{
+  "$schema": "platform-core/governance/capability-intake/v2",
+  "schema_version": 2,
+  "request_id": "5b427fc9-106d-438a-9495-6f708192a3b6",
+  "submitted_at": "2026-11-04T00:00:00Z",
+  "source": {
+    "repository": "example-python-product",
+    "path": "src/clients/http_retry",
+    "need": "Use the resilience.http capability from a Python service; the capability exists for dotnet and go but has no python implementation."
+  },
+  "classification": "platform",
+  "decision": "extend",
+  "target": {
+    "capability_id": "resilience.http",
+    "owner": "backend-core",
+    "contract_id": "https://contracts.hideakisolutions.local/capabilities/resilience.http/retry-policy.schema.json",
+    "package": "hideakisolutions-platform",
+    "stack": "python"
+  },
+  "evidence": {
+    "graph_query": {
+      "graph_id": "hideaki.enterprise-capabilities",
+      "schema_version": "1.0.0",
+      "queried_at": "2026-11-04T00:00:00Z",
+      "terms": [
+        "resilience http",
+        "http retry",
+        "circuit breaker"
+      ],
+      "result": "existing",
+      "matched_node_ids": [
+        "capability.resilience.http"
+      ]
+    },
+    "semantic_discovery": {
+      "status": "completed",
+      "query": "http resilience retry timeout circuit breaker python",
+      "provenance": "qdrant:platform-capabilities@2026-11-04",
+      "candidates": [
+        "capability.resilience.http"
+      ]
+    },
+    "existing_implementations": [
+      "HideakiSolutions/backend-core:dotnet (resilience.http)",
+      "HideakiSolutions/backend-core:go (resilience.http)"
+    ],
+    "candidate_consumers": [
+      "example-python-product"
+    ],
+    "compatibility_assessment": "The stack python is missing from the coverage of resilience.http. The new implementation must satisfy the existing contract and its derived conformance vectors without changing the contract."
+  },
+  "graph_update": {
+    "owning_fragment": ".platform/capability-graph.fragment.json",
+    "proposed_node_ids": [
+      "package.hideakisolutions-platform.python"
+    ],
+    "conformance_evidence": [
+      "derived ECP conformance runner for python at the contract version of resilience.http"
+    ]
+  },
+  "hardening": {
+    "risk_domains": [
+      "public-contract",
+      "runtime"
+    ],
+    "failure_mode": "fail-closed",
+    "verification": [
+      "contract conformance",
+      "retry budget exhaustion",
+      "timeout propagation"
+    ],
+    "rollback": "Remove the python package reference and fall back to the product-local retry wrapper."
+  },
+  "rationale": "Must fail: extend names no owning core repository."
+}

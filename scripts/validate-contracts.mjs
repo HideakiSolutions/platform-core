@@ -4,6 +4,7 @@ import path from "node:path";
 import process from "node:process";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
+import { isStubCandidate, stubProblems, supersededCapability } from "./lib/contract-stub.mjs";
 
 const root = process.cwd();
 const contractSuffix = `${path.sep}contracts${path.sep}`;
@@ -51,6 +52,7 @@ if (files.length === 0) fail("no contract schemas found");
 
 const records = [];
 const ids = new Map();
+const stubIds = new Map();
 for (const file of files) {
   const relative = path.relative(root, file);
   let schema;
@@ -58,6 +60,22 @@ for (const file of files) {
     schema = JSON.parse(readFileSync(file, "utf8"));
   } catch (error) {
     fail(`${relative}: invalid JSON: ${error.message}`);
+    continue;
+  }
+
+  if (isStubCandidate(schema)) {
+    // Deprecation stub (ECP Decision 0006, section 9): strict shape check only; the external $ref is not resolved.
+    const problems = stubProblems(schema, { metaSchema: expectedMetaSchema, idPrefix: expectedIdPrefix });
+    for (const problem of problems) fail(`${relative}: ${problem}`);
+    if (typeof schema.$id === "string") {
+      if (ids.has(schema.$id)) fail(`${relative}: duplicate $id ${schema.$id} (also ${ids.get(schema.$id)})`);
+      else ids.set(schema.$id, relative);
+      stubIds.set(schema.$id, { relative, capability: supersededCapability(schema) });
+    }
+    const moduleRoot = relative.split(path.sep)[0];
+    if (!existsSync(path.join(root, moduleRoot, "docs", "README.md"))) {
+      fail(`${relative}: owning module must provide ${moduleRoot}/docs/README.md`);
+    }
     continue;
   }
 
@@ -83,24 +101,28 @@ for (const file of files) {
 
 // ECP-owned aliases resolve only through an integrity-checked vendored snapshot.
 // Missing files or hash drift fail closed; validation never fetches the network.
-const snapshotLock = path.join(root, ".platform/ecp/ai.provider-access.lock.json");
-try {
-  const lock = JSON.parse(readFileSync(snapshotLock, "utf8"));
-  if (lock.capability !== "ai.provider-access" || lock.version !== "0.1.0"
-    || !Array.isArray(lock.files) || lock.files.length !== 4) throw new Error("invalid ECP snapshot lock");
-  for (const entry of lock.files) {
-    const file = path.resolve(root, entry.path);
-    if (!file.startsWith(path.join(root, ".platform/ecp/ai.provider-access/"))) throw new Error("snapshot path escapes owning directory");
-    const bytes = readFileSync(file);
-    if (createHash("sha256").update(bytes).digest("hex") !== entry.sha256) throw new Error(`snapshot hash mismatch: ${entry.path}`);
-    const schema = JSON.parse(bytes);
-    if (!schema.$id?.startsWith("https://contracts.hideakisolutions.local/capabilities/ai.provider-access/")) throw new Error("unexpected ECP schema authority");
-    if (ids.has(schema.$id)) throw new Error(`duplicate ECP schema: ${schema.$id}`);
-    ids.set(schema.$id, entry.path);
-    records.push({ relative: entry.path, schema });
+const requiresProviderSnapshot = [...stubIds.values()].some((entry) => entry.capability === "ai.provider-access")
+  || existsSync(path.join(root, "governance/intakes/ai.provider-access.json"));
+if (requiresProviderSnapshot) {
+  const snapshotLock = path.join(root, ".platform/ecp/ai.provider-access.lock.json");
+  try {
+    const lock = JSON.parse(readFileSync(snapshotLock, "utf8"));
+    if (lock.capability !== "ai.provider-access" || lock.version !== "0.1.0"
+      || !Array.isArray(lock.files) || lock.files.length !== 4) throw new Error("invalid ECP snapshot lock");
+    for (const entry of lock.files) {
+      const file = path.resolve(root, entry.path);
+      if (!file.startsWith(path.join(root, ".platform/ecp/ai.provider-access/"))) throw new Error("snapshot path escapes owning directory");
+      const bytes = readFileSync(file);
+      if (createHash("sha256").update(bytes).digest("hex") !== entry.sha256) throw new Error(`snapshot hash mismatch: ${entry.path}`);
+      const schema = JSON.parse(bytes);
+      if (!schema.$id?.startsWith("https://contracts.hideakisolutions.local/capabilities/ai.provider-access/")) throw new Error("unexpected ECP schema authority");
+      if (ids.has(schema.$id)) throw new Error(`duplicate ECP schema: ${schema.$id}`);
+      ids.set(schema.$id, entry.path);
+      records.push({ relative: entry.path, schema });
+    }
+  } catch (error) {
+    fail(`ECP provider-access snapshot: ${error.message}`);
   }
-} catch (error) {
-  fail(`ECP provider-access snapshot: ${error.message}`);
 }
 
 const ajv = new Ajv2020({ allErrors: true, strict: true });
@@ -108,6 +130,18 @@ addFormats(ajv);
 ajv.addKeyword({ keyword: "x-superseded-by", schemaType: "string", valid: true });
 const schemaUri = (id) => id.startsWith(expectedIdPrefix) ? `${validationBase}${id}` : id;
 const knownIds = new Set(records.map((record) => record.schema.$id));
+
+// A live schema must reference ECP directly, not through a deprecated stub whose $ref is never resolved here.
+function findStubReferences(value, relative) {
+  if (Array.isArray(value)) return value.forEach((child) => findStubReferences(child, relative));
+  if (!value || typeof value !== "object") return;
+  for (const [key, child] of Object.entries(value)) {
+    if (key === "$ref" && typeof child === "string" && stubIds.has(child)) {
+      fail(`${relative}: $ref targets the deprecated stub ${child}; reference its ECP schema instead`);
+    } else findStubReferences(child, relative);
+  }
+}
+for (const record of records) findStubReferences(record.schema, record.relative);
 
 function normalizeIdentifiers(value) {
   if (Array.isArray(value)) return value.map(normalizeIdentifiers);
@@ -149,6 +183,12 @@ for (const file of [...walkExamples(root), ...intakeRecords].sort()) {
     continue;
   }
   const contractId = instance.$schema;
+  if (stubIds.has(contractId)) {
+    fail(
+      `${relative}: targets the deprecated stub ${contractId}; move this to the ECP conformance vectors of ${stubIds.get(contractId).capability ?? "its superseding capability"}`,
+    );
+    continue;
+  }
   if (!knownIds.has(contractId)) {
     fail(`${relative}: $schema does not resolve to a local contract: ${contractId ?? "(missing)"}`);
     continue;
@@ -172,6 +212,12 @@ for (const file of walkInvalidFixtures(root).sort()) {
     continue;
   }
   const contractId = instance.$schema;
+  if (stubIds.has(contractId)) {
+    fail(
+      `${relative}: targets the deprecated stub ${contractId}; move this to the ECP conformance vectors of ${stubIds.get(contractId).capability ?? "its superseding capability"}`,
+    );
+    continue;
+  }
   if (!knownIds.has(contractId)) {
     fail(`${relative}: negative fixture $schema does not resolve: ${contractId ?? "(missing)"}`);
     continue;
@@ -186,5 +232,5 @@ for (const file of walkInvalidFixtures(root).sort()) {
 
 if (process.exitCode) process.exit(process.exitCode);
 console.log(
-  `[contracts] ${records.length} schemas, ${exampleCount} examples and ${negativeFixtureCount} negative fixtures validated with strict JSON Schema 2020-12 rules`
+  `[contracts] ${records.length} schemas, ${stubIds.size} deprecation stubs, ${exampleCount} examples and ${negativeFixtureCount} negative fixtures validated with strict JSON Schema 2020-12 rules`
 );

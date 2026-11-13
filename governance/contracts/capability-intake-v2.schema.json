@@ -49,11 +49,22 @@
             "design-system-core",
             "provider-protocol",
             "partner-contracts",
+            "aew",
             "enterprise-capability-platform"
           ]
         },
         "contract_id": { "type": "string", "minLength": 1 },
-        "package": { "type": "string", "minLength": 1 }
+        "package": { "type": "string", "minLength": 1 },
+        "stack": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "Target stack of the implementation. Must be a canonical stack id from contracts/stacks.json of the Enterprise Capability Platform (Decision 0011); required when decision is extend."
+        },
+        "repository": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "description": "Owning core repository in org/repo form that receives the implementation; required when decision is extend."
+        }
       },
       "required": ["capability_id", "owner", "contract_id"]
     },
@@ -241,6 +252,21 @@
       "then": {
         "properties": { "target": true },
         "required": ["target"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "decision": { "const": "extend" } },
+        "required": ["decision"]
+      },
+      "then": {
+        "properties": {
+          "target": {
+            "type": "object",
+            "properties": { "stack": true, "repository": true },
+            "required": ["stack", "repository"]
+          }
+        }
       }
     },
     {

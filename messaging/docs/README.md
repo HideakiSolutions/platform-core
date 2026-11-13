@@ -6,7 +6,23 @@ Defines event-driven messaging contracts for the platform.
 
 ## Contracts
 
-- `event-envelope.schema.json` — Standard event envelope wrapping all messages
+- `event-envelope.schema.json` — **Deprecated stub.** The event envelope contract is owned by ECP as the capability
+  `messaging.event-envelope` (version 0.1.0, ECP `contracts-v0.3.0`). The stub keeps the legacy id
+  `platform-core/messaging/event-envelope` and points at the ECP schema
+  (`https://contracts.hideakisolutions.local/capabilities/messaging.event-envelope/event-envelope.schema.json`).
+  New work must consume the ECP contract; conformance vectors live in ECP.
+
+Consuming a stub: the legacy id resolves to the ECP schema only when the consumer (1) can resolve the ECP `$id` (the ECP
+schema must be registered or fetchable) and (2) accepts `x-superseded-by`. Strict validators such as Ajv strict mode
+reject it as an unknown keyword unless it is registered as an annotation keyword
+(`ajv.addKeyword({ keyword: "x-superseded-by", schemaType: "string" })`); ECP Decision 0006 section 5 lists it as an
+extension. `scripts/test-contract-stubs.mjs` proves both conditions against test doubles of the ECP schemas.
+
+### Deprecation notice
+
+Superseded by `messaging.event-envelope@0.1.0` (ECP). No sunset date is set in this repository: the stub is removed
+only after the compatibility window defined by the ECP deprecation block, following ECP Decision 0006 sections 6 and 9
+(`documentation/decisions/0006-contract-authority-and-kinds.md` in the enterprise-capability-platform repository).
 
 ## Guidelines
 
@@ -30,3 +46,9 @@ Defines event-driven messaging contracts for the platform.
 | .NET | MassTransit / NServiceBus |
 | Node.js | BullMQ / KafkaJS |
 | Go | Watermill / Sarama |
+
+## Delivery coordination
+
+[Delivery leases v1](delivery-v1.md) is an accepted (ADR-012, 2026-10-23), not admitted,
+neutral behavioral contract with an executable corpus. Durable adapters are BLOCKED.
+It does not replace the ECP envelope or claim durable transport support.

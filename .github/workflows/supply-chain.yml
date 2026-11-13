@@ -1,0 +1,68 @@
+name: Supply Chain
+
+# Runs the reusable baseline against this repository on pull requests, and proves each gate rejects a synthetic defect
+# (AC-11). Read-only token, no secrets. A reusable workflow does not run by itself; this caller is what executes it.
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    permissions:
+      contents: read
+    uses: ./.github/workflows/supply-chain-baseline.yml
+    with:
+      runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+      checker-ref: ${{ github.sha }}
+
+  ratchet:
+    # The workflow-policy baseline may only shrink: compare it with the one on the base branch.
+    if: github.event_name == 'pull_request'
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: Install the checker's pinned dependency
+        run: npm ci --ignore-scripts
+      - name: Workflow policy against the base baseline
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git show "origin/${BASE_REF}:.github/workflow-policy.baseline.json" > "$RUNNER_TEMP/base-baseline.json" 2>/dev/null || rm -f "$RUNNER_TEMP/base-baseline.json"
+          node scripts/validate-workflow-policy.mjs --base-baseline "$RUNNER_TEMP/base-baseline.json"
+
+  gate-selftest:
+    # AC-11: one synthetic defect per implemented class must be rejected. Here the tools are required, never skipped.
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: Install the checker's pinned dependency
+        run: npm ci --ignore-scripts
+      - name: Install pinned gitleaks (sha256 verified)
+        run: |
+          bin="$(tools/supply-chain/install-gitleaks.sh "$RUNNER_TEMP/gitleaks")"
+          echo "GITLEAKS_BIN=$bin" >> "$GITHUB_ENV"
+      - name: Synthetic defect per class is rejected
+        env:
+          REQUIRE_GATE_TOOLS: '1'
+        run: node --test scripts/test-supply-chain-gates.test.mjs

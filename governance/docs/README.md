@@ -18,6 +18,10 @@ The decision order is:
    approval record;
 7. use an exception only with an explicit, expiring approval reference.
 
+When the decision is `extend`, `target.stack` (a canonical stack id from the ECP
+`contracts/stacks.json`, Decision 0011) and `target.repository` (`org/repo` of the
+owning core) are required; both are optional for the other decisions.
+
 Every record must identify deterministic verification, rollback, failure mode and
 risk domains. Publication, product adoption, security-policy changes, migrations,
 deployments and external writes remain separately human-gated.
@@ -26,3 +30,14 @@ deployments and external writes remain separately human-gated.
 query evidence, semantic discovery evidence, and a graph-update plan for promotion.
 The v1 schema remains only for compatibility and is deprecated by the repository's
 `.platform/capability-graph.fragment.json`.
+
+The v2 intake accepts `aew` as an organizational owner for AEW framework capabilities.
+This value does not assign AEW contracts to another core or certify owner-node
+registration, strategic ADR acceptance, publication, installation, or adoption.
+Those references are resolved independently during intake review and graph admission.
+
+`npm run validate:contracts` validates every contract example and negative fixture.
+The AEW promotion example is synthetic conformance input, not a real approval or
+consumption record. Its empty consumer list exercises the strategic-ADR branch;
+negative fixtures retain rejection of unknown owners, extension without an existing
+node, and promotion without consumers or a strategic ADR.

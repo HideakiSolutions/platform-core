@@ -1,0 +1,14 @@
+# Secret-detection profile for the supply-chain baseline (CEP WP-11).
+# Extends the gitleaks default ruleset and adds one synthetic canary rule so the gate itself can be proven to fire
+# without storing anything that resembles a provider credential. The canary value is assembled from fragments at test time
+# (scripts/test-supply-chain-gates.test.mjs); only the pattern below is stored.
+title = "platform-core supply-chain baseline"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "cep-synthetic-canary"
+description = "Synthetic canary used to prove the secret gate blocks. Not a credential."
+regex = '''CEPSYNTH_[A-Z0-9]{20}_NOTREAL'''
+keywords = ["cepsynth_"]

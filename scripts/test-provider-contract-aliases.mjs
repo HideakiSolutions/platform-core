@@ -7,7 +7,7 @@ import { spawnSync } from "node:child_process";
 const source = process.cwd();
 const scratch = mkdtempSync(path.join(process.env.TMPDIR || tmpdir(), "provider-aliases-"));
 try {
-  for (const relative of ["ai/contracts", "ai/docs", ".platform/ecp", "governance/contracts", "governance/docs", "governance/intakes", "scripts/validate-contracts.mjs"]) {
+  for (const relative of ["ai/contracts", "ai/docs", ".platform/ecp", "governance/contracts", "governance/docs", "governance/intakes", "scripts/validate-contracts.mjs", "scripts/lib/contract-stub.mjs"]) {
     const target = path.join(scratch, relative);
     mkdirSync(path.dirname(target), { recursive: true });
     cpSync(path.join(source, relative), target, { recursive: true });
@@ -40,7 +40,13 @@ try {
   const missing = run();
   assert.equal(missing.status, 1);
   assert.match(missing.stderr, /ECP provider-access snapshot/);
-  console.log("Provider aliases: canonical ECP owner accepted; unknown owner, changed hash and missing schema rejected.");
+  writeFileSync(schema, original);
+  rmSync(intakePath);
+  rmSync(path.join(scratch, ".platform/ecp/ai.provider-access.lock.json"));
+  const missingLock = run();
+  assert.equal(missingLock.status, 1);
+  assert.match(missingLock.stderr, /ECP provider-access snapshot/);
+  console.log("Provider aliases: canonical ECP owner accepted; unknown owner, changed hash, missing schema and missing lock rejected (including aliases without intake).");
 } finally {
   rmSync(scratch, { recursive: true, force: true });
 }

@@ -4,6 +4,8 @@
 
 Accepted
 
+> Status note (2026-10-16): the package scopes and groups below (`@srm-banking/`, `com.srm.banking`) are illustrative and superseded by repository reality. This repository does not publish packages: the root `package.json` is `private` (`@hideakisolutions/platform-contract-validation`) and no workflow publishes packages. The historical text below is preserved unchanged.
+
 ## Context
 
 Core repositories produce artifacts consumed by multiple technology stacks (JavaScript/TypeScript, Java, Go). A clear publishing strategy is needed so that consumers can reliably depend on these artifacts through standard package managers without requiring a monorepo orchestration tool.

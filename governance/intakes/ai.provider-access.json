@@ -52,7 +52,7 @@
     "candidate_consumers": [
       "reference-banking-web (planned real consumer; installation/adoption not yet verified)"
     ],
-    "strategic_adr": "ECP documentation/decisions/0010-ai-provider-access.md (PROPOSED; owner approval pending)",
+    "strategic_adr": "ECP documentation/decisions/0016-ai-provider-access.md (Accepted by the owner; original approval retained in the canonical decision)",
     "compatibility_assessment": "Additive neutral contracts and Node subpath; existing AI contracts preserved. Remote federation pinned revisions not composed locally; no full-federation absence claim."
   },
   "graph_update": {

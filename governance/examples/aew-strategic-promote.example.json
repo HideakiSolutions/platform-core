@@ -1,0 +1,68 @@
+{
+  "$schema": "platform-core/governance/capability-intake/v2",
+  "schema_version": 2,
+  "request_id": "5862ad3c-581f-46a7-9db9-82ee54e1b062",
+  "submitted_at": "2026-10-13T00:00:00Z",
+  "source": {
+    "repository": "fixture-aew-workspace",
+    "path": "src/state",
+    "need": "Synthetic fixture for a strategic AEW durability promotion; not an execution or approval record."
+  },
+  "classification": "shared",
+  "decision": "promote",
+  "target": {
+    "capability_id": "capability.aew.durability",
+    "owner": "aew",
+    "contract_id": "contract.aew.durability.local.v1",
+    "package": "fixture-aew-state"
+  },
+  "evidence": {
+    "graph_query": {
+      "graph_id": "hideaki.enterprise-capabilities",
+      "schema_version": "1.0.0",
+      "queried_at": "2026-08-24T00:00:00Z",
+      "terms": [
+        "http idempotency",
+        "request replay"
+      ],
+      "result": "adjacent-only",
+      "matched_node_ids": [
+        "capability.messaging.event-envelope"
+      ]
+    },
+    "semantic_discovery": {
+      "status": "unavailable",
+      "query": "local durability CAS receipt atomic outbox",
+      "reason": "Synthetic fixture, no semantic index invoked.",
+      "candidates": []
+    },
+    "existing_implementations": [],
+    "candidate_consumers": [],
+    "compatibility_assessment": "Synthetic contract fixture only; tests the strategic ADR branch without claiming real consumers or adoption.",
+    "strategic_adr": "fixture:accepted-strategic-adr"
+  },
+  "graph_update": {
+    "owning_fragment": ".platform/capability-graph.fragment.json",
+    "proposed_node_ids": [
+      "capability.aew.durability",
+      "contract.aew.durability.local.v1"
+    ],
+    "conformance_evidence": [
+      "synthetic positive fixture and negative CLI cases"
+    ]
+  },
+  "hardening": {
+    "risk_domains": [
+      "public-contract",
+      "runtime"
+    ],
+    "failure_mode": "caller-owned",
+    "verification": [
+      "contract conformance",
+      "duplicate request replay",
+      "non-success claim release"
+    ],
+    "rollback": "Remove the package reference and restore the product adapter composition."
+  },
+  "rationale": "Synthetic example: owner aew and a strategic ADR allow structural promotion with no real consumer claimed. Real ADR acceptance is independently checked."
+}

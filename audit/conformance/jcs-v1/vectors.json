@@ -1,0 +1,233 @@
+[
+  {
+    "id": "utc-genesis",
+    "operation": "sign",
+    "verdict": "valid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null}",
+    "canonical_utf8": "{\"action\":\"example.recorded\",\"actor\":{\"id\":\"service-a\",\"type\":\"service\"},\"audit_id\":\"c21a58fe-1e10-414b-a566-c077609514ce\",\"outcome\":\"success\",\"prev_hash\":null,\"protocol\":\"audit-jcs-sha256/v1\",\"source\":\"conformance-only\",\"timestamp\":\"2026-10-15T18:00:00.000000000Z\"}",
+    "canonical_hex": "7b22616374696f6e223a226578616d706c652e7265636f72646564222c226163746f72223a7b226964223a22736572766963652d61222c2274797065223a2273657276696365227d2c2261756469745f6964223a2263323161353866652d316531302d343134622d613536362d633037373630393531346365222c226f7574636f6d65223a2273756363657373222c22707265765f68617368223a6e756c6c2c2270726f746f636f6c223a2261756469742d6a63732d7368613235362f7631222c22736f75726365223a22636f6e666f726d616e63652d6f6e6c79222c2274696d657374616d70223a22323032362d31302d31355431383a30303a30302e3030303030303030305a227d",
+    "hash": "7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56"
+  },
+  {
+    "id": "nanosecond-offset",
+    "operation": "sign",
+    "verdict": "valid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T15:00:00.123456789-03:00\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null}",
+    "canonical_utf8": "{\"action\":\"example.recorded\",\"actor\":{\"id\":\"service-a\",\"type\":\"service\"},\"audit_id\":\"c21a58fe-1e10-414b-a566-c077609514ce\",\"outcome\":\"success\",\"prev_hash\":null,\"protocol\":\"audit-jcs-sha256/v1\",\"source\":\"conformance-only\",\"timestamp\":\"2026-10-15T18:00:00.123456789Z\"}",
+    "canonical_hex": "7b22616374696f6e223a226578616d706c652e7265636f72646564222c226163746f72223a7b226964223a22736572766963652d61222c2274797065223a2273657276696365227d2c2261756469745f6964223a2263323161353866652d316531302d343134622d613536362d633037373630393531346365222c226f7574636f6d65223a2273756363657373222c22707265765f68617368223a6e756c6c2c2270726f746f636f6c223a2261756469742d6a63732d7368613235362f7631222c22736f75726365223a22636f6e666f726d616e63652d6f6e6c79222c2274696d657374616d70223a22323032362d31302d31355431383a30303a30302e3132333435363738395a227d",
+    "hash": "3ea289394811626f0e035f0f0cc30e6fdc2b1cce9626133db5baec43c10683a4"
+  },
+  {
+    "id": "utf16-order-no-normalization",
+    "operation": "sign",
+    "verdict": "valid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"metadata\": {\"2\": \"two\", \"10\": \"ten\", \"\ud83d\ude00\": \"astral\", \"\ue000\": \"bmp\", \"\u00e9\": \"composed\", \"e\u0301\": \"decomposed\"}}",
+    "canonical_utf8": "{\"action\":\"example.recorded\",\"actor\":{\"id\":\"service-a\",\"type\":\"service\"},\"audit_id\":\"c21a58fe-1e10-414b-a566-c077609514ce\",\"metadata\":{\"10\":\"ten\",\"2\":\"two\",\"e\u0301\":\"decomposed\",\"\u00e9\":\"composed\",\"\ud83d\ude00\":\"astral\",\"\ue000\":\"bmp\"},\"outcome\":\"success\",\"prev_hash\":null,\"protocol\":\"audit-jcs-sha256/v1\",\"source\":\"conformance-only\",\"timestamp\":\"2026-10-15T18:00:00.000000000Z\"}",
+    "canonical_hex": "7b22616374696f6e223a226578616d706c652e7265636f72646564222c226163746f72223a7b226964223a22736572766963652d61222c2274797065223a2273657276696365227d2c2261756469745f6964223a2263323161353866652d316531302d343134622d613536362d633037373630393531346365222c226d65746164617461223a7b223130223a2274656e222c2232223a2274776f222c2265cc81223a226465636f6d706f736564222c22c3a9223a22636f6d706f736564222c22f09f9880223a2261737472616c222c22ee8080223a22626d70227d2c226f7574636f6d65223a2273756363657373222c22707265765f68617368223a6e756c6c2c2270726f746f636f6c223a2261756469742d6a63732d7368613235362f7631222c22736f75726365223a22636f6e666f726d616e63652d6f6e6c79222c2274696d657374616d70223a22323032362d31302d31355431383a30303a30302e3030303030303030305a227d",
+    "hash": "ea1194f1ead58d61e22605baa8b6612b6ebb3c75edcd70d34ec62d59d7ddd83d"
+  },
+  {
+    "id": "exact-decimal-string-and-nested-hash",
+    "operation": "sign",
+    "verdict": "valid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"metadata\": {\"amount\": \"9007199254740993.123456789\", \"hash\": \"nested-is-included\", \"prev_hash\": \"extension-is-included\", \"safe\": 9007199254740991}}",
+    "canonical_utf8": "{\"action\":\"example.recorded\",\"actor\":{\"id\":\"service-a\",\"type\":\"service\"},\"audit_id\":\"c21a58fe-1e10-414b-a566-c077609514ce\",\"metadata\":{\"amount\":\"9007199254740993.123456789\",\"hash\":\"nested-is-included\",\"prev_hash\":\"extension-is-included\",\"safe\":9007199254740991},\"outcome\":\"success\",\"prev_hash\":null,\"protocol\":\"audit-jcs-sha256/v1\",\"source\":\"conformance-only\",\"timestamp\":\"2026-10-15T18:00:00.000000000Z\"}",
+    "canonical_hex": "7b22616374696f6e223a226578616d706c652e7265636f72646564222c226163746f72223a7b226964223a22736572766963652d61222c2274797065223a2273657276696365227d2c2261756469745f6964223a2263323161353866652d316531302d343134622d613536362d633037373630393531346365222c226d65746164617461223a7b22616d6f756e74223a22393030373139393235343734303939332e313233343536373839222c2268617368223a226e65737465642d69732d696e636c75646564222c22707265765f68617368223a22657874656e73696f6e2d69732d696e636c75646564222c2273616665223a393030373139393235343734303939317d2c226f7574636f6d65223a2273756363657373222c22707265765f68617368223a6e756c6c2c2270726f746f636f6c223a2261756469742d6a63732d7368613235362f7631222c22736f75726365223a22636f6e666f726d616e63652d6f6e6c79222c2274696d657374616d70223a22323032362d31302d31355431383a30303a30302e3030303030303030305a227d",
+    "hash": "a2f6cd713cf387d407646f9d3c3701da6d595303653f96f38e923a39c9f8cd44"
+  },
+  {
+    "id": "extension-null",
+    "operation": "sign",
+    "verdict": "valid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"metadata\": {\"extension\": null}}",
+    "canonical_utf8": "{\"action\":\"example.recorded\",\"actor\":{\"id\":\"service-a\",\"type\":\"service\"},\"audit_id\":\"c21a58fe-1e10-414b-a566-c077609514ce\",\"metadata\":{\"extension\":null},\"outcome\":\"success\",\"prev_hash\":null,\"protocol\":\"audit-jcs-sha256/v1\",\"source\":\"conformance-only\",\"timestamp\":\"2026-10-15T18:00:00.000000000Z\"}",
+    "canonical_hex": "7b22616374696f6e223a226578616d706c652e7265636f72646564222c226163746f72223a7b226964223a22736572766963652d61222c2274797065223a2273657276696365227d2c2261756469745f6964223a2263323161353866652d316531302d343134622d613536362d633037373630393531346365222c226d65746164617461223a7b22657874656e73696f6e223a6e756c6c7d2c226f7574636f6d65223a2273756363657373222c22707265765f68617368223a6e756c6c2c2270726f746f636f6c223a2261756469742d6a63732d7368613235362f7631222c22736f75726365223a22636f6e666f726d616e63652d6f6e6c79222c2274696d657374616d70223a22323032362d31302d31355431383a30303a30302e3030303030303030305a227d",
+    "hash": "e938ca40ed0973deb9bd3cf311956ed4f553e3eef3507977bc3e47acd19489b8"
+  },
+  {
+    "id": "extension-empty",
+    "operation": "sign",
+    "verdict": "valid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"metadata\": {\"extension\": \"\"}}",
+    "canonical_utf8": "{\"action\":\"example.recorded\",\"actor\":{\"id\":\"service-a\",\"type\":\"service\"},\"audit_id\":\"c21a58fe-1e10-414b-a566-c077609514ce\",\"metadata\":{\"extension\":\"\"},\"outcome\":\"success\",\"prev_hash\":null,\"protocol\":\"audit-jcs-sha256/v1\",\"source\":\"conformance-only\",\"timestamp\":\"2026-10-15T18:00:00.000000000Z\"}",
+    "canonical_hex": "7b22616374696f6e223a226578616d706c652e7265636f72646564222c226163746f72223a7b226964223a22736572766963652d61222c2274797065223a2273657276696365227d2c2261756469745f6964223a2263323161353866652d316531302d343134622d613536362d633037373630393531346365222c226d65746164617461223a7b22657874656e73696f6e223a22227d2c226f7574636f6d65223a2273756363657373222c22707265765f68617368223a6e756c6c2c2270726f746f636f6c223a2261756469742d6a63732d7368613235362f7631222c22736f75726365223a22636f6e666f726d616e63652d6f6e6c79222c2274696d657374616d70223a22323032362d31302d31355431383a30303a30302e3030303030303030305a227d",
+    "hash": "b7611b9f324acbbc4a4e09699defd291a8c345d1a32f93771259c24eac276c1d"
+  },
+  {
+    "id": "extension-empty-object",
+    "operation": "sign",
+    "verdict": "valid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"metadata\": {\"extension\": {}}}",
+    "canonical_utf8": "{\"action\":\"example.recorded\",\"actor\":{\"id\":\"service-a\",\"type\":\"service\"},\"audit_id\":\"c21a58fe-1e10-414b-a566-c077609514ce\",\"metadata\":{\"extension\":{}},\"outcome\":\"success\",\"prev_hash\":null,\"protocol\":\"audit-jcs-sha256/v1\",\"source\":\"conformance-only\",\"timestamp\":\"2026-10-15T18:00:00.000000000Z\"}",
+    "canonical_hex": "7b22616374696f6e223a226578616d706c652e7265636f72646564222c226163746f72223a7b226964223a22736572766963652d61222c2274797065223a2273657276696365227d2c2261756469745f6964223a2263323161353866652d316531302d343134622d613536362d633037373630393531346365222c226d65746164617461223a7b22657874656e73696f6e223a7b7d7d2c226f7574636f6d65223a2273756363657373222c22707265765f68617368223a6e756c6c2c2270726f746f636f6c223a2261756469742d6a63732d7368613235362f7631222c22736f75726365223a22636f6e666f726d616e63652d6f6e6c79222c2274696d657374616d70223a22323032362d31302d31355431383a30303a30302e3030303030303030305a227d",
+    "hash": "26ba4b37b46bb1e1b9387b22e35f2d5720fac8730fc2d37dbccdae27361e410c"
+  },
+  {
+    "id": "extension-empty-list",
+    "operation": "sign",
+    "verdict": "valid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"metadata\": {\"extension\": []}}",
+    "canonical_utf8": "{\"action\":\"example.recorded\",\"actor\":{\"id\":\"service-a\",\"type\":\"service\"},\"audit_id\":\"c21a58fe-1e10-414b-a566-c077609514ce\",\"metadata\":{\"extension\":[]},\"outcome\":\"success\",\"prev_hash\":null,\"protocol\":\"audit-jcs-sha256/v1\",\"source\":\"conformance-only\",\"timestamp\":\"2026-10-15T18:00:00.000000000Z\"}",
+    "canonical_hex": "7b22616374696f6e223a226578616d706c652e7265636f72646564222c226163746f72223a7b226964223a22736572766963652d61222c2274797065223a2273657276696365227d2c2261756469745f6964223a2263323161353866652d316531302d343134622d613536362d633037373630393531346365222c226d65746164617461223a7b22657874656e73696f6e223a5b5d7d2c226f7574636f6d65223a2273756363657373222c22707265765f68617368223a6e756c6c2c2270726f746f636f6c223a2261756469742d6a63732d7368613235362f7631222c22736f75726365223a22636f6e666f726d616e63652d6f6e6c79222c2274696d657374616d70223a22323032362d31302d31355431383a30303a30302e3030303030303030305a227d",
+    "hash": "20359171f9f8fa7abedf4fb6520c9c3328efa8ee01b2af3e55086b49a6d101b3"
+  },
+  {
+    "id": "linked-successor",
+    "operation": "sign",
+    "verdict": "valid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": \"7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56\"}",
+    "canonical_utf8": "{\"action\":\"example.recorded\",\"actor\":{\"id\":\"service-a\",\"type\":\"service\"},\"audit_id\":\"c21a58fe-1e10-414b-a566-c077609514ce\",\"outcome\":\"success\",\"prev_hash\":\"7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56\",\"protocol\":\"audit-jcs-sha256/v1\",\"source\":\"conformance-only\",\"timestamp\":\"2026-10-15T18:00:00.000000000Z\"}",
+    "canonical_hex": "7b22616374696f6e223a226578616d706c652e7265636f72646564222c226163746f72223a7b226964223a22736572766963652d61222c2274797065223a2273657276696365227d2c2261756469745f6964223a2263323161353866652d316531302d343134622d613536362d633037373630393531346365222c226f7574636f6d65223a2273756363657373222c22707265765f68617368223a2237633439313862653266346433373939313033366666396539653235396263633663326436393431313263383364653036343932386434306563333631653536222c2270726f746f636f6c223a2261756469742d6a63732d7368613235362f7631222c22736f75726365223a22636f6e666f726d616e63652d6f6e6c79222c2274696d657374616d70223a22323032362d31302d31355431383a30303a30302e3030303030303030305a227d",
+    "hash": "777aa98458937e719ab0cd715fd2d67e3424d4f79f1663d83a738886cb92f4d4"
+  },
+  {
+    "id": "verify-entry",
+    "operation": "verify",
+    "verdict": "valid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00.000000000Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"hash\": \"7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56\"}"
+  },
+  {
+    "id": "verify-linked-chain",
+    "operation": "chain",
+    "verdict": "valid",
+    "raw": [
+      "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00.000000000Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"hash\": \"7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56\"}",
+      "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00.000000000Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": \"7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56\", \"hash\": \"777aa98458937e719ab0cd715fd2d67e3424d4f79f1663d83a738886cb92f4d4\"}"
+    ]
+  },
+  {
+    "id": "broken-chain-with-valid-entry-hashes",
+    "operation": "chain",
+    "verdict": "invalid",
+    "raw": [
+      "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00.000000000Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"hash\": \"7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56\"}",
+      "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00.000000000Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"hash\": \"7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56\"}"
+    ]
+  },
+  {
+    "id": "empty-chain",
+    "operation": "chain",
+    "verdict": "invalid",
+    "raw": []
+  },
+  {
+    "id": "unknown-protocol",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"legacy\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null}"
+  },
+  {
+    "id": "unknown-enum",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"later\", \"source\": \"conformance-only\", \"prev_hash\": null}"
+  },
+  {
+    "id": "invalid-calendar",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-02-30T00:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null}"
+  },
+  {
+    "id": "unknown-offset",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00-00:00\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null}"
+  },
+  {
+    "id": "precision-overflow",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00.1234567891Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null}"
+  },
+  {
+    "id": "null-timestamp",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": null, \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null}"
+  },
+  {
+    "id": "invalid-predecessor",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": \"abc\"}"
+  },
+  {
+    "id": "leap-second",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-12-31T23:59:60Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null}"
+  },
+  {
+    "id": "missing-versus-null",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\"}"
+  },
+  {
+    "id": "duplicate-predecessor",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null,\"prev_hash\":null}"
+  },
+  {
+    "id": "unsafe-integer",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null,\"metadata\":{\"amount\":9007199254740993}}"
+  },
+  {
+    "id": "fractional-number",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null,\"metadata\":{\"amount\":0.1}}"
+  },
+  {
+    "id": "rounded-fraction-to-safe-integer",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null,\"metadata\":{\"amount\":9007199254740991.1}}"
+  },
+  {
+    "id": "exponent-number",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null,\"metadata\":{\"amount\":1e0}}"
+  },
+  {
+    "id": "nonfinite-number",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null,\"metadata\":{\"amount\":NaN}}"
+  },
+  {
+    "id": "unpaired-surrogate",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null,\"metadata\":{\"text\":\"\\ud800\"}}"
+  },
+  {
+    "id": "sign-existing-evidence",
+    "operation": "sign",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00.000000000Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"hash\": \"7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56\"}"
+  },
+  {
+    "id": "tampered-content",
+    "operation": "verify",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00.000000000Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"tampered\", \"prev_hash\": null, \"hash\": \"7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56\"}"
+  },
+  {
+    "id": "persisted-timestamp-must-not-renormalize",
+    "operation": "verify",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T15:00:00-03:00\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"hash\": \"7c4918be2f4d37991036ff9e9e259bcc6c2d694112c83de064928d40ec361e56\"}"
+  },
+  {
+    "id": "uppercase-hash",
+    "operation": "verify",
+    "verdict": "invalid",
+    "raw": "{\"protocol\": \"audit-jcs-sha256/v1\", \"audit_id\": \"c21a58fe-1e10-414b-a566-c077609514ce\", \"timestamp\": \"2026-10-15T18:00:00.000000000Z\", \"actor\": {\"id\": \"service-a\", \"type\": \"service\"}, \"action\": \"example.recorded\", \"outcome\": \"success\", \"source\": \"conformance-only\", \"prev_hash\": null, \"hash\": \"7C4918BE2F4D37991036FF9E9E259BCC6C2D694112C83DE064928D40EC361E56\"}"
+  }
+]

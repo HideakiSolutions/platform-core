@@ -1,8 +1,10 @@
 # AI
 
 Cross-cutting **AI capability contracts** for the platform. Per workspace
-[ADR-0003](../../../../docs/decisions/ADR-0003-ai-capability-ownership.md), legacy AI contracts remain in `platform-core`; the canonical provider-access library
-is owned by ECP under Decision 0006. Packages are projected in backend-core.
+ADR-0003 (external workspace precedent, not versioned in this repository), the legacy AI
+contracts remain in this lane. ECP Decision 0006 owns the canonical provider-access library;
+backend-core supplies its stack projections.
+
 
 ## Contracts
 

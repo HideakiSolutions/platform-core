@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/messaging/delivery-lease/v1",
+  "title": "Delivery lease request v1",
+  "description": "Accepted (ADR-012, 2026-10-23; amended 2026-11-04), not admitted. Transport-neutral lease request. Envelope bytes remain owned by ECP messaging.event-envelope@0.1.0. Behavioral guarantees are normative in messaging/docs/delivery-v1.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "platform-core/messaging/delivery-lease/v1"
+    },
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "tenant": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$",
+      "maxLength": 128
+    },
+    "consumer": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$",
+      "maxLength": 128
+    },
+    "message_id": {
+      "description": "Canonical UUID text, hex 8-4-4-4-12 (lowercase or uppercase), nil UUID excluded; URN (urn:uuid:) and braced forms are rejected. Amended 2026-11-04 (ADR-012 amendment 1).",
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^(?:[1-9a-fA-F][0-9a-fA-F]{7}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0[1-9a-fA-F][0-9a-fA-F]{6}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{2}[1-9a-fA-F][0-9a-fA-F]{5}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{3}[1-9a-fA-F][0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{4}[1-9a-fA-F][0-9a-fA-F]{3}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{5}[1-9a-fA-F][0-9a-fA-F]{2}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{6}[1-9a-fA-F][0-9a-fA-F]-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{7}[1-9a-fA-F]-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{8}-[1-9a-fA-F][0-9a-fA-F]{3}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{8}-0[1-9a-fA-F][0-9a-fA-F]{2}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{8}-0{2}[1-9a-fA-F][0-9a-fA-F]-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{8}-0{3}[1-9a-fA-F]-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{8}-0{4}-[1-9a-fA-F][0-9a-fA-F]{3}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{8}-0{4}-0[1-9a-fA-F][0-9a-fA-F]{2}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{8}-0{4}-0{2}[1-9a-fA-F][0-9a-fA-F]-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{8}-0{4}-0{3}[1-9a-fA-F]-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|0{8}-0{4}-0{4}-[1-9a-fA-F][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|0{8}-0{4}-0{4}-0[1-9a-fA-F][0-9a-fA-F]{2}-[0-9a-fA-F]{12}|0{8}-0{4}-0{4}-0{2}[1-9a-fA-F][0-9a-fA-F]-[0-9a-fA-F]{12}|0{8}-0{4}-0{4}-0{3}[1-9a-fA-F]-[0-9a-fA-F]{12}|0{8}-0{4}-0{4}-0{4}-[1-9a-fA-F][0-9a-fA-F]{11}|0{8}-0{4}-0{4}-0{4}-0[1-9a-fA-F][0-9a-fA-F]{10}|0{8}-0{4}-0{4}-0{4}-0{2}[1-9a-fA-F][0-9a-fA-F]{9}|0{8}-0{4}-0{4}-0{4}-0{3}[1-9a-fA-F][0-9a-fA-F]{8}|0{8}-0{4}-0{4}-0{4}-0{4}[1-9a-fA-F][0-9a-fA-F]{7}|0{8}-0{4}-0{4}-0{4}-0{5}[1-9a-fA-F][0-9a-fA-F]{6}|0{8}-0{4}-0{4}-0{4}-0{6}[1-9a-fA-F][0-9a-fA-F]{5}|0{8}-0{4}-0{4}-0{4}-0{7}[1-9a-fA-F][0-9a-fA-F]{4}|0{8}-0{4}-0{4}-0{4}-0{8}[1-9a-fA-F][0-9a-fA-F]{3}|0{8}-0{4}-0{4}-0{4}-0{9}[1-9a-fA-F][0-9a-fA-F]{2}|0{8}-0{4}-0{4}-0{4}-0{10}[1-9a-fA-F][0-9a-fA-F]|0{8}-0{4}-0{4}-0{4}-0{11}[1-9a-fA-F])$"
+    },
+    "envelope_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "lease_duration_ms": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 86400000
+    },
+    "max_attempts": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10000
+    }
+  },
+  "required": [
+    "$schema",
+    "contract_version",
+    "tenant",
+    "consumer",
+    "message_id",
+    "envelope_sha256",
+    "lease_duration_ms",
+    "max_attempts"
+  ]
+}

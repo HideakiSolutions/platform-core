@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.hideakisolutions.local/capabilities/security.authn/auth-provider.schema.json",
+  "title": "Authentication Provider (minimal test double of the ECP schema)",
+  "description": "Test double used only to prove that a deprecation stub compiles and delegates through its $ref. The authoritative schema lives in ECP.",
+  "type": "object",
+  "properties": {
+    "authenticate": {
+      "type": "object",
+      "properties": {
+        "output": {
+          "type": "object",
+          "required": ["access_token", "token_type", "expires_in"],
+          "properties": {
+            "access_token": { "type": "string" },
+            "token_type": { "type": "string", "const": "Bearer" },
+            "expires_in": { "type": "integer" }
+          }
+        }
+      }
+    }
+  }
+}

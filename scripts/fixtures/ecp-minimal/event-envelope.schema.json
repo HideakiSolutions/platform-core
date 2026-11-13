@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.hideakisolutions.local/capabilities/messaging.event-envelope/event-envelope.schema.json",
+  "title": "Event Envelope (minimal test double of the ECP schema)",
+  "description": "Test double used only to prove that a deprecation stub compiles and delegates through its $ref. The authoritative schema lives in ECP.",
+  "type": "object",
+  "required": ["event_id", "event_type", "data"],
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string" },
+    "data": { "type": "object" }
+  }
+}
