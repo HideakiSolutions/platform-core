@@ -12,6 +12,13 @@ MATRIX = json.loads((ROOT/'docs/srm-absorption/traceability.json').read_text())
 DECISIONS = json.loads((ROOT/'docs/srm-absorption/acceptance-decisions.json').read_text())
 
 class AcceptanceTest(unittest.TestCase):
+    def test_admitted_jira_cannot_still_claim_proposed_contracts(self):
+        gate.verify_jira_governing_contract(MATRIX)
+        matrix = copy.deepcopy(MATRIX)
+        next(row for row in matrix['deliveries'] if row['source_package'] == 'jira')['governing_contract'] = 'ECP proposed work-item command/query; not admitted'
+        with self.assertRaisesRegex(ValueError, 'Jira governing contract'):
+            gate.verify_jira_governing_contract(matrix)
+
     def test_only_three_owner_dispensations_are_accepted(self):
         _, waived=gate.unresolved_gates(MATRIX['global_open_gates'],DECISIONS)
         self.assertEqual(set(waived),gate.DISPENSABLE_GATES)

@@ -388,7 +388,7 @@
     {
       "source_package": "jira",
       "intake_outcome": "promotion-proposal",
-      "governing_contract": "ECP proposed work-item command/query; not admitted",
+      "governing_contract": "ECP workitem.query@0.1.0 and workitem.command@0.1.0; admitted local surface in contracts bundle 0.6.0; unpublished",
       "selected_functionality": [
         "query create edit transition",
         "backlog dry-run",

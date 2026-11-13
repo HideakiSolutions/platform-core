@@ -96,6 +96,17 @@ def verify_admitted_surface(ecp, admission):
         verify_evidence([{"path": str(ecp / item["path"]), "sha256": item["sha256"]} for item in entry["files"]])
 
 
+def verify_jira_governing_contract(matrix):
+    if not any(item["id"] == "work-items-admission" and item["status"] == "PASS"
+               for item in matrix["global_open_gates"]):
+        return
+    jira = [row for row in matrix["deliveries"] if row["source_package"] == "jira"]
+    value = jira[0]["governing_contract"] if len(jira) == 1 else ""
+    expected = ("workitem.query@0.1.0", "workitem.command@0.1.0", "0.6.0")
+    if any(token not in value for token in expected) or "not admitted" in value or "proposed" in value:
+        raise ValueError("Jira governing contract must match the admitted work-items surface")
+
+
 def validate(args):
     root = Path(__file__).resolve().parents[1]
     matrix = json.loads((root / "docs/srm-absorption/traceability.json").read_text())
@@ -114,6 +125,7 @@ def validate(args):
     unknown = [row["capability"] for row in csv.DictReader(current.splitlines()) if row["classification"] == "unknown"]
     if unknown != matrix["authority_unknown_preserved"]:
         raise ValueError("unresolved authority changed")
+    verify_jira_governing_contract(matrix)
     records = matrix["deliveries"]
     names = [row["source_package"] for row in records]
     if len(names) != len(set(names)) or len(names) != 17:
