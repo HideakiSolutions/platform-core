@@ -40,7 +40,13 @@ try {
   const missing = run();
   assert.equal(missing.status, 1);
   assert.match(missing.stderr, /ECP provider-access snapshot/);
-  console.log("Provider aliases: canonical ECP owner accepted; unknown owner, changed hash and missing schema rejected.");
+  writeFileSync(schema, original);
+  rmSync(intakePath);
+  rmSync(path.join(scratch, ".platform/ecp/ai.provider-access.lock.json"));
+  const missingLock = run();
+  assert.equal(missingLock.status, 1);
+  assert.match(missingLock.stderr, /ECP provider-access snapshot/);
+  console.log("Provider aliases: canonical ECP owner accepted; unknown owner, changed hash, missing schema and missing lock rejected (including aliases without intake).");
 } finally {
   rmSync(scratch, { recursive: true, force: true });
 }

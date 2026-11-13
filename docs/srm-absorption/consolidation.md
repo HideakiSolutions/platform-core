@@ -29,7 +29,7 @@ remain intact. Dispensed external smoke tests remain dispensations, not passes.
   The existing snapshot lock also binds exactly four candidate aliases through a
   shared contract/authority validator helper; the admitted CSV/global pin remain
   byte-identical. See [ADR-CEP-003 (Proposed)](../adr/ADR-CEP-003-provider-access-candidate-aliases.md).
-  The provider proposal is [ADR-PA-001](../adr/ADR-PA-001-ai-provider-access.md),
+  The provider proposal is [ADR-014](../adr/ADR-014-ai-provider-access.md),
   renamed from its colliding candidate identifier without changing its status.
 - Jira traceability: `governing_contract` now names admitted local
   `workitem.query@0.1.0` and `workitem.command@0.1.0` in bundle `0.6.0`.

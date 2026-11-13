@@ -112,7 +112,7 @@ response and safe error shapes. The `platform-core/ai/*` identifiers remain
 compatibility stubs. `.platform/ecp/ai.provider-access.lock.json` pins the vendored
 candidate schemas; `scripts/validate-contracts.mjs` rejects missing/changed bytes.
 The real intake is `governance/intakes/ai.provider-access.json`; the strategic
-promotion decision is ECP `documentation/decisions/0010-ai-provider-access.md`.
+promotion decision is ECP `documentation/decisions/0016-ai-provider-access.md`.
 The intake v2 owner enum now explicitly admits `enterprise-capability-platform`;
 the actual record identifies ECP as canonical owner and backend-core as projection source.
 
