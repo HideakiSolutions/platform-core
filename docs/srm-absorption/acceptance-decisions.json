@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": "Owner-provided revised plan: Conclusão da absorção SRM, section 1, supplied in the implementation request of 2026-11-13",
+  "owner_instruction": "Implement the plan in a fresh context. Treat the plan as the source of user intent.",
+  "decisions": [
+    {
+      "gate": "jira-write-smoke",
+      "status": "WAIVED",
+      "basis": "Encerrar o gate de escrita pelo aceite do proprietário. Preservar leituras reais nos dois sites e testes de comandos/retomada/persistência. Não executar novas escritas.",
+      "test_executed": false
+    },
+    {
+      "gate": "graph-external-smoke",
+      "status": "WAIVED",
+      "basis": "Dispensar novos smokes externos; origem produtiva informada pelo proprietário. Manter conformidade dos adapters refatorados.",
+      "test_executed": false
+    },
+    {
+      "gate": "teams-external-smoke",
+      "status": "WAIVED",
+      "basis": "Dispensar novos smokes externos; origem produtiva informada pelo proprietário. Manter conformidade dos adapters refatorados.",
+      "test_executed": false
+    }
+  ],
+  "not_waived": [
+    "sqs-emulator",
+    "identity-live",
+    "integrated-reference",
+    "canonical-clients",
+    "shared-conformance",
+    "independent-review",
+    "cleanup",
+    "work-items-admission"
+  ],
+  "scope_limits": [
+    "No new production validation of Graph/Teams",
+    "No managed AWS SQS claim",
+    "No ADR acceptance inferred",
+    "No registry publication, merge or product deployment"
+  ],
+  "closure_authorizations": [
+    {
+      "gate": "independent-review",
+      "status": "ACCEPTED_EXCEPTION",
+      "owner": "Marcio Hideaki",
+      "instruction": "Autorizado!",
+      "source": "Direct reply to the explicit ADR0016 and exceptional delivery closeout question in this session.",
+      "historical_process_status": "NONCONFORMANT",
+      "scope": "This SRM absorption delivery only; no general policy change.",
+      "approval_record": {
+        "path": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/proposals/work-items/owner-acceptance.json",
+        "sha256": "e9bdf4ffd87cc37dbcfdcede04b52658a29e7c0bc1d1bb3d16a1e4482d84723d"
+      }
+    }
+  ]
+}

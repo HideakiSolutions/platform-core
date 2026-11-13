@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.hideakisolutions.local/capabilities/ai.provider-access/provider-error.schema.json",
+  "title": "AI Provider Error",
+  "description": "Safe error catalog. Only the canonical code crosses process/API boundaries; provider output, prompts and secrets are never error messages.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "enum": [
+        "invalid_request",
+        "unsupported_mode",
+        "auth_required",
+        "quota_exceeded",
+        "timeout",
+        "cancelled",
+        "unavailable",
+        "invalid_response",
+        "guardrail_blocked",
+        "billing_policy"
+      ]
+    }
+  },
+  "required": [
+    "code"
+  ]
+}

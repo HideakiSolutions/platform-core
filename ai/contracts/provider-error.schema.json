@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/ai/provider-error",
+  "title": "AI provider-error compatibility alias",
+  "description": "Deprecated compatibility alias. Canonical authority is ECP ai.provider-access; validation uses the hash-verified vendored candidate snapshot.",
+  "$ref": "https://contracts.hideakisolutions.local/capabilities/ai.provider-access/provider-error.schema.json",
+  "deprecated": true,
+  "x-superseded-by": "ai.provider-access@0.1.0"
+}

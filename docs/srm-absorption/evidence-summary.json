@@ -1,0 +1,3037 @@
+{
+  "schema_version": "srm-evidence-summary/v2",
+  "original": {
+    "path": "history/evidence-summary.json.v1.gz",
+    "original_sha256": "2087d89e8d8a7425c474cda06ab7a4850c49040f697282693e40c93ca51b0365",
+    "archive_sha256": "793c596fe1405cea432a51888788193b164f8ef4665871b4bed68585dc38253a"
+  },
+  "payload": {
+    "schema_version": 1,
+    "classification": "implementation and local contract admission COMPLETE under explicit owner authorization; process exception accepted, historical NONCONFORMANT preserved",
+    "source_revisions": {
+      "backend": {
+        "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-backend",
+        "revision": "6402d187b89cc7b794cb55dd6497da8320686107",
+        "branch": "feature/srm-absorption",
+        "working_tree": "modified, no continuation commit",
+        "changed_file_sha256": {
+          "record_type": "artifact-digests/v2",
+          "entries": [
+            {
+              "path": "dotnet/examples/sqs-installed-smoke/Program.cs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "20ed2e8794749201f1cb02b53b8bf594644d435212ed5c21fbe716df0902fba8"
+              }
+            },
+            {
+              "path": "dotnet/examples/sqs-installed-smoke/README.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "cde84a83bf46024d994afa496e480cb238c8ba76b329b15ba96d65de8d1e49a5"
+              }
+            },
+            {
+              "path": "dotnet/examples/sqs-installed-smoke/sqs-installed-smoke.csproj",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b8a8d222098666329f1e8db19f7d52790e341c28bb3953afc4e46abfaf5b7768"
+              }
+            },
+            {
+              "path": "dotnet/examples/srm-absorption-consumer/SrmAbsorption.Consumer.csproj",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "5c338075c54305c738e206bf720c286dd2b421304addbdedc2f3ef6f006bbcf1"
+              }
+            },
+            {
+              "path": "dotnet/examples/srm-absorption-consumer/WorkItemsConsumer.cs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "15b03e3b936b81f348b538b3c3ad0146af031835948db3f80575b22eb495671a"
+              }
+            },
+            {
+              "path": "dotnet/examples/srm-identity-consumer/Identity.csproj",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "26e59b7abf3803b1930ce866119e4e0780614c5a677fe6abf7677ce7beca5d2c"
+              }
+            },
+            {
+              "path": "dotnet/examples/srm-identity-consumer/Program.cs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "829fb5cb276d3e622a7081e3ed2c6148bbb58eb7a89b4583a4cb35224ba0f903"
+              }
+            },
+            {
+              "path": "dotnet/examples/srm-identity-consumer/README.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "1b5830307564377b1c59b7dfbf236cb18464e003cf53ed3a994dfc2829057023"
+              }
+            },
+            {
+              "path": "dotnet/scripts/verify-work-items-package.sh",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "d3a8a26e3c66a56639d1cfca57e600cc8dcbd6c0d4028add5ff1600dfe1f9653"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/CanonicalContracts/command-input.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3983bb8aba85d0006e9192d8f932e89c57a8371bd2a4037b71ac2d475d986bdf"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/CanonicalContracts/command-output.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "c0ad38e1d23ef568324873d605483aa6e5b29660f50530a71065a858526900ae"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/CanonicalContracts/manifest.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "9bac7125339347c495942950f2aa7d433b93ea3fcd4e5d783af06a07b9b74c95"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/CanonicalContracts/query-input.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "14f32d40cf08133faeafc9afec7bcfeb97d19aa7dafb6c402979a82c5719ed5e"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/CanonicalContracts/query-output.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "032f68577ec499c9266d8baf287ff42a474b5d67be0b20f21f0db1c86a0bdb95"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/CanonicalContracts/types.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "7a845de01f1e72cc4e0daa28ce2ed87c0655d62267eb1c99ba0aed6a02174c41"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/ExperimentalWorkItemsHttpInvoker.cs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "2ea081a3af623139832e382ed14e7633677f0bc38f569ea0dfb915eba53f63a5"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/Hideakisolutions.Platform.WorkItems.Ecp.csproj",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "88ccf72f81a277c3bc9e0645492db86d00f9ba7e8a3f5ce9f75dfe91d7adab74"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/README.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "a88447776f04427f2e9b8e46f2c06775899c9d9d8edf50677ea64da0565f461f"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/WorkItemsContracts.cs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "737c624c59c73888e249487651f13dda134d083450173a9f0b16348c15ae0a8b"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/WorkItemsDraftValidator.cs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "86febf61716852b42216c0be3b4607079347cccef57bbd8ca1c7243a43301098"
+              }
+            },
+            {
+              "path": "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp/WorkItemsEcpClient.cs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "1578a941deda8f13888bbaede128c4e0e3b1a0eb1129917c73c9c594f1df5891"
+              }
+            },
+            {
+              "path": "dotnet/tests/Hideakisolutions.Platform.WorkItems.Ecp.Tests/WorkItemsTests.cs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "17d282b22d19ef0fed215c0c914adcffcc3ce5cdf6736874f7b105dc68b9cf09"
+              }
+            },
+            {
+              "path": "node/CHANGELOG.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "9e69981cf943e52e1e6c8c1dcf6b3c8eea60a70197401b8840430a52bf3597ae"
+              }
+            },
+            {
+              "path": "node/docs/srm-absorption.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "5292805a0ebf9cd39954a8b5a8c2bc4eae194a81b249538e4fc5933286aa065a"
+              }
+            },
+            {
+              "path": "node/docs/srm-identity-validation.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4fb120fa273b85bae272a0da387f89cea869e1724ccac81c4b790d735f0cc916"
+              }
+            },
+            {
+              "path": "node/examples/integrated-doubles-smoke.mjs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "a47b2594d934a41e49cc11666b5eae719923742d663a367853ef4ffddb3bae92"
+              }
+            },
+            {
+              "path": "node/examples/keycloak-identity-smoke.mjs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "39eb3eb0e2d75e5ce614b15c388f39be88fd122fbea550b81ce8ea8e88503f99"
+              }
+            },
+            {
+              "path": "node/examples/sqs-installed-smoke.mjs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "c5ac37e15331dfad5fad6c98c9420e3fdd5a8b47bb574b408a39ec4ca6227955"
+              }
+            },
+            {
+              "path": "node/examples/work-items-ecp-harness.mjs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "d52e908130b48adab02d422c58996859b08760e787d43ef2d474f9ffac3f88b5"
+              }
+            },
+            {
+              "path": "node/package-lock.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "10098141f380165add7962996703b342e7e55c0a362bb60421a340a67f19eaad"
+              }
+            },
+            {
+              "path": "node/package.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "cbda97f8f36546d5be7e8e0241071bb8bea0ae6de413d6bbc75596c88b91ebbd"
+              }
+            },
+            {
+              "path": "node/scripts/copy-work-items-contracts.mjs",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "6995d60c91015d9021b6a038ad65c6705fffa4f6a901a4ef20aee13a22f43a64"
+              }
+            },
+            {
+              "path": "node/scripts/verify-pack.sh",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "6cb502fe46f5da6f045a7fdd9034fa288d84ef1988142533fcb734ace9b24680"
+              }
+            },
+            {
+              "path": "node/src/work-items-ecp/_canonical_contracts/command.input.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3983bb8aba85d0006e9192d8f932e89c57a8371bd2a4037b71ac2d475d986bdf"
+              }
+            },
+            {
+              "path": "node/src/work-items-ecp/_canonical_contracts/command.output.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "c0ad38e1d23ef568324873d605483aa6e5b29660f50530a71065a858526900ae"
+              }
+            },
+            {
+              "path": "node/src/work-items-ecp/_canonical_contracts/manifest.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "62b99bc70ccfd32b6ed57fb420b6f830f74004581f564aae2b4fc61d0dbc27f0"
+              }
+            },
+            {
+              "path": "node/src/work-items-ecp/_canonical_contracts/query.input.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "14f32d40cf08133faeafc9afec7bcfeb97d19aa7dafb6c402979a82c5719ed5e"
+              }
+            },
+            {
+              "path": "node/src/work-items-ecp/_canonical_contracts/query.output.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "032f68577ec499c9266d8baf287ff42a474b5d67be0b20f21f0db1c86a0bdb95"
+              }
+            },
+            {
+              "path": "node/src/work-items-ecp/_canonical_contracts/types.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "7a845de01f1e72cc4e0daa28ce2ed87c0655d62267eb1c99ba0aed6a02174c41"
+              }
+            },
+            {
+              "path": "node/src/work-items-ecp/contracts.ts",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "9a07c095e732a54c25df7567a8da3d8018b2e0ca64738975b109f95a44e790f6"
+              }
+            },
+            {
+              "path": "node/src/work-items-ecp/index.ts",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "ac01d30b56f09f75ddea2e1a21e01e0f034346ddcf25737eaf5054469887bf9a"
+              }
+            },
+            {
+              "path": "node/test/srm-work-items-ecp.test.ts",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "6fe584299f34b23320e199e149a5e519b5d5fcb9a7361172d448061b39b1be6a"
+              }
+            },
+            {
+              "path": "scripts/smoke-identity-installed.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4a93cb05eb31dfd67c1cdc214f3eb62e8f701dd3c595cc7fd5430169d4a10198"
+              }
+            },
+            {
+              "path": "scripts/smoke-integrated-doubles.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "77c8eb511e6fed205b1da082bb827f183ec513f564479335b1f9a81158a2d379"
+              }
+            },
+            {
+              "path": "scripts/smoke-sqs-installed.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "f1756cb98ace9ff5d04a6b71728a409a3a26b22d68622d38185bcaf5bb20caa8"
+              }
+            }
+          ]
+        }
+      },
+      "frontend": {
+        "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-frontend",
+        "revision": "c63b15433df02639f0ec87bc6c20487c0230b488",
+        "branch": "feature/srm-absorption",
+        "working_tree": "clean",
+        "changed_file_sha256": {}
+      },
+      "ecp": {
+        "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp",
+        "revision": "77ac826a05eb9348745802aac5806a338e7c6d11",
+        "branch": "feature/srm-absorption",
+        "working_tree": "modified, no continuation commit",
+        "changed_file_sha256": {
+          "record_type": "artifact-digests/v2",
+          "entries": [
+            {
+              "path": "capabilities/workitem.command/asyncapi.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "abf4a5a8ace2fe8c229ef5a85558acffbf58bb40f201b290482328e91015492f"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/capability.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "f6c4bd5c957d1c019d081cdb02f157db512c3f5b645af15a3fbe8fa2151b3225"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/actual-work-needs-start.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "cdb025d06912e2d510816db4f53e56cc975681ada5537edad751107ad1933ba8"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/actual-work-success-needs-record-id.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e759a76b61d3c701d38129a584263e0b5df6af4cdf1986205c0bd2b11818d5ef"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/adf-not-neutral.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b93bc54a4bb38c0ebe03355c804f06d8456eb8993f31d2a9987d7e8a963c0423"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/dry-run-cannot-claim-journal.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "03d865651644e0c434ef26865a306083c17d9f34f0312acf610b81744de7b50b"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/dry-run-preview-operation-mismatch.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "fb0675c5659107ac0d95ebd48e38af0a385220f102652ead8e0d2436372048ff"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/empty-backlog.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "dab9c09829f10092aee76c1a6650ee201c9d47e9e286615c97ab0afe67640b4b"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/empty-edit.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4a18005833a02c25585ed80f9412c2ad31bd0e8aa884bd690251a1bdb7692f7c"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/estimate-cannot-carry-worklog.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "cde6140a841252858add484c4d997975ac00b5f858d78df8724398f5e17aeb46"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/estimate-result-cannot-be-actual.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "acf64849447957ddaaf56b75083e53255e49712a9b2ac3c84f93899406ada565"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/malformed-work-timestamp.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "817f44c4ab14641c6cda28cd35b3912d24793c60dd84b2bc7370b0dff45fbd12"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/missing-actor_id.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4415b46c2d165d15471ce483bb39c443abdba9db5eb2e02a2611c16b0ae042dc"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/missing-connection_id.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "18d966140fa0a4faedb68d8e4e8419fb0ef0a65827d0e5e0a5eda5efc41dda27"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/missing-correlation_id.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4da778877f48adbc25260710c8528edee76c10fede9308bf622d1394b0aa6cb9"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/missing-dry_run.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3d7611f21e1740155a8ab1533ae444d021aca6c7a6ffc7f374cc63a4baf6b413"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/missing-idempotency_key.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "138569be17dc190168a5ccac057170adc2d2a292ac0ec1b33d7a17fdeb5b4ae0"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/missing-tenant_id.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "107c1b0501ed3b323bbdc443750a048f8a907a9b9f9403f1a6474c3efe4af921"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/partial-never-implies-automatic-retry.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "c80dc10537234b062fca5928129279fc286c922b7bedcc90e71abbe84f4c3b9d"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/provider-parameters-forbidden.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "d7ac0115be815d7c32d76dd1e819500d7516fd18e7ec4f1f25f53068bfb4b12f"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/resume-without-fingerprint.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "1c50fa730f5382ef8443c051e4c1872bf62a2b863b290da015d24f366932006c"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/success-needs-resource.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "60a0167d409785e3523fe61cf8b8a1c6f3adc782ebdfac666b072cc909185506"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/uncertain-cannot-auto-retry.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "2d138b74f4d092f852c5224731e467cdd5e5f8f858ec4949e14cf91714fe5daf"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/uncertain-needs-journal.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e85f58e5821c4d8c02bbcc3070fa5c4c803d84b2d5f8616916e7eb8ab309897a"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/uncertain-partial-cannot-hide-reconciliation.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "01495dd15e2c3c07e38a686d5800e3dca0a5ebace8c58ebb4eb67f16ec964fe2"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/zero-actual-work.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "aff6298fba9fae040b93bed312f4103b3d2b09f1c1e10790b2c2d73cd5bb008c"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/invalid/zero-estimate.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "84e4f7556f4c8d46395347c704d3e421487efb563c8c4a0684f9f47a104e246f"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/backlog-result-known-partial.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "11d461abbb9167fe75de24bf8a82070821df5be3c7f7bedd2c75ff7344c1e1fc"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/backlog-result-uncertain-partial.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "86eb427f3f34e8a20b3caf621220d5d6db5448a93fb34fbc6f8a5f6197a59935"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-actual_work.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "eacffec234a3afa84c3c03d76af2ab70cd29918d72c354c8ed7a28b873e7b8bf"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-backlog-resume.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e8b93cea149f02a8b3739dc0771a3cfe9385e0c1f5a1e9f6dd69d3f62360cd14"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-backlog.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "75d11a3c50136c9c4ada123ef8fe1b5165d35bf69fe978a2eb5c7377cb9886c6"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-create.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4a9d4f7160a0ed94820d117b7fb25956b4beeff9181a209afdbaa5893f073211"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-edit-clear-description.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "50dde2620e2ab712a9bbc7b1ee8fb3e9263ee666042ad0267a038643e8a58471"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-edit.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b5398840e2aad44e1a06354d2aa3049221caeae850d27f9441dfcfcbed8c5d32"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-estimate.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "642ff9d75d05b1793c8ce77d90f1dda7f95d64e48f1b3b5b49e3d71ee662b515"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-result-actual_work.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b0685aa11f540f13c13312e017db5232c7d9a20fd35655a92021d63b4e06a7cb"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-result-backlog.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "358c8718741affaf00b26817b1f0ae865dfa36d2d141019b5b8d9282eb440cc9"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-result-create.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b0a35ae795bc87828319e9818df3367757f0bf26dd9168ef34f2dde97b6f0761"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-result-edit.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b68ac7f8d3effb0b08e5f9f463526d3585d2f26021fa7065af46e3ac374a6099"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-result-estimate.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b00f2b3c1b717f116fe7f07929f552d8ae477d3ab4c0b7045072580039ab06c5"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-result-known-failure.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b79527a5266e197248bf518069e77f7bcd2ad647a708e82fbcb553fb539e5985"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-result-transition.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4a76bafd64f8ee656d9663c06030d3117fd8039f68f2aed0301086ecc7cfb512"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-result-uncertain.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e0457d038c58acf1b4ab7d81b92729d736efb02d203da674bcf41ed19af856e0"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/command-transition.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "2688c80d60dd71d1c8c23ba1d556c20cc68468a7de740c751fddde5a6a116796"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/dry-run-result-actual_work.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4c7f1c768c7298d14e7d0fc88bae5ff56c4f2d4378de167494deb03e32b75a3c"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/dry-run-result-backlog.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "bc5912000e5a37fc8aea294555b51ca71e1fd2e14a4c163965afa7ad3245e8cb"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/dry-run-result-create.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "7e0a78d1c0f4ebcc13530defd30a843dcc6a28d3efe62c614a6f92b4d782128f"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/dry-run-result-edit.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "28ffaafaf8f60a233baaf6826ce4463890450f3fa26e2212586197a69d885db8"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/dry-run-result-estimate.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "240957122f1087348c3c21a7d44d66bdb0676657061ce1591b48a984c1418851"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/conformance/valid/dry-run-result-transition.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e0d6239bc60502a6c4cb60cad9d8cbb1802dff00998435998764d520ba403f4e"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/examples/request.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "7437902d2ebaa0a5b186d6af7ee26cdd97add4386e3de71bac9ff576e8d4604f"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/implementations.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e6b71ac0b93ac5a8714f87da795210c892ef7230b7bda9dd569729178010de5c"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/mcp.manifest.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "ccc9ec05badecfe13f89799b45be7313a503004c281ccecdcb773b31d05db1ad"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/openapi.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "ea51772ae9f54f005ee1f8eb47e689bd73919ace1d0b7cecc4d67b90749faca6"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/policy.toml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "47c4623b92e181d666f131410c2095067684a7248ae88e89374881fa7c5de9b6"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/providers.toml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "02918a12a5043e2dee7431c051a867b72d285a4f4840847a3eac1b715279f9e7"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/schema.input.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3983bb8aba85d0006e9192d8f932e89c57a8371bd2a4037b71ac2d475d986bdf"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/schema.output.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "c0ad38e1d23ef568324873d605483aa6e5b29660f50530a71065a858526900ae"
+              }
+            },
+            {
+              "path": "capabilities/workitem.command/tests/README.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "9a70abb4feba2aede4f0e251ae1dc1749a8d2d5c7ad3138a48d224e4cfb1a4d6"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/asyncapi.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "26fc0560c0ffc508d6ec5d98aa49d4df1b07650603e10c616dcc4baa1721f3c3"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/capability.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "83996cdf0e4f9a6fccaef6bcd6956d5086e36319bbb35967d9fd2ae0831dafb7"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/invalid/incomplete-page-needs-cursor.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "a233bcc15ea3cc9f38b182906fcee7dc77f9d7b85cf4a6ab8bb0972b804fd2c5"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/invalid/provider-field-selection-forbidden.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "0389c0bad86e10c4889f68d0f711dca1a492f6780fd45c9731aee9ba579d56bc"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/invalid/query-cannot-create.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "cab266043fd162d59bab6cbfbd2a174fa5f134a6a5c463f90e51d87ec3d05d28"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/invalid/query-missing-item.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3619e9bb8f21ab40e18ecf75fd34df877b0c100f6d476c5cb4ee90dd67a1f67c"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/invalid/query-page-unbounded.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "995a40054a93688e1551deec9eda38df28f154195cb79fc52deda0b2a7854a86"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/invalid/query-uses-read-outcome.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "eaed768bf46d921f66a83c4faf866ad89eab833d1a233ce0dc17889ef3649ef2"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/invalid/raw-jql-forbidden.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "39921235a2660c968d022f60d09333d4c19f7683a984cc96c4d9b983e63c940c"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/valid/query-get.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "90aa11ad386775fa9d0c4a7cb927899e8d9e1ee1f47427aae82ebeba26c7b01b"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/valid/query-result-failure.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "80031eee35f7cfe890e351a2a7398163f7df2c920c78008d10ad1e1e2209af6e"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/valid/query-result-get.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e92d52bc112d772f59bb98d6c940814900d3c321db59b856c0809550f54c360f"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/valid/query-result-search-complete.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "5a67264ec661219aa136ea182f27c9888edd601977f8500f4c94a1cda94de943"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/valid/query-result-search-next-page.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "094de1e62c2ea24d25f695c3714ca90d9acb2f7f9631c53634fd50069aea8d32"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/valid/query-result-search-partial.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4426c96284f70b8fde1550dfcaa585345153fb71297aa0bd496ea1e7cd9e02c9"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/valid/query-result-transitions.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e7b966002a7d7b3b9d73256466a2c8cefbf35c7446ef494bbb7aaed3c63cf1ee"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/valid/query-search-next-page.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "fdbebb7e341c9983e20da33be9b684e0ac8ad0a7c205389c1af74ed1f5dc9956"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/valid/query-search.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "867613960c55baf1262caaa1d4f4441f441841b344ebed6ccbafa468ce9db722"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/conformance/valid/query-transitions.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3e10f10a85c56d23db100e3737fc00f59acf3ce8be8500263b6ef04e349b375e"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/examples/request.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "c832306a73248709e1907490f52b790ac436266cebef8eb38f3076fead5ca4c6"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/implementations.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "a91c91d1f8693c46a49fcca07d48d787181069a0e2210779ed8446aeb022f48f"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/mcp.manifest.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "10abfd6dc12f2aec428b99413731a9fc95cd246c01f2f16af9e98ed57d5a9814"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/openapi.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3247c3e7e81dd26aa8b1c0b2a2310f03d07d4351d3f0f90ae418da645bf6bf5d"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/policy.toml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "47c4623b92e181d666f131410c2095067684a7248ae88e89374881fa7c5de9b6"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/providers.toml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "02918a12a5043e2dee7431c051a867b72d285a4f4840847a3eac1b715279f9e7"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/schema.input.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "14f32d40cf08133faeafc9afec7bcfeb97d19aa7dafb6c402979a82c5719ed5e"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/schema.output.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "032f68577ec499c9266d8baf287ff42a474b5d67be0b20f21f0db1c86a0bdb95"
+              }
+            },
+            {
+              "path": "capabilities/workitem.query/tests/README.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "9a70abb4feba2aede4f0e251ae1dc1749a8d2d5c7ad3138a48d224e4cfb1a4d6"
+              }
+            },
+            {
+              "path": "catalog/capability-registry.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "32b34dfe875bece7a9247de50254f6c875bc04854bf57be318d22cd4f9135e5a"
+              }
+            },
+            {
+              "path": "catalog/coverage-matrix.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b625c5c356b4d2b531ec2b40f6ef43e93c32edfd419b3cfc50082695c0093d72"
+              }
+            },
+            {
+              "path": "catalog/coverage-matrix.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b4859af591be9b523614196c9a1fc8bdf24f1114b465481e6c408d33e12db15e"
+              }
+            },
+            {
+              "path": "contracts/VERSION",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "97a5d6e540a6120d09c39ddb667e0e8e2bac7fcc2ffef813b82e08fd60365bce"
+              }
+            },
+            {
+              "path": "docs/experimental/work-items/README.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "0d2018a5bab4516772d0fb1c2f88e968b9b5a12b2fc3bfc583e5a896ce4cf64a"
+              }
+            },
+            {
+              "path": "docs/intents/0066-srm-work-items-jira.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "0e6ceafaaf5f9f3e779361800a2c6a881473ef8b3fb2d1d5ffda22d0c6e133cd"
+              }
+            },
+            {
+              "path": "docs/intents/0069-canonical-work-items-candidate.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "8f29212b99fe597b33d360eea2858a872aa27499dada7546fa792d2940aa03f4"
+              }
+            },
+            {
+              "path": "documentation/decisions/0016-work-items-strategic-admission.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "6ed5dbfea21686d1d86d44b454528159c871be6ddc24954d288bd28e9c5218f3"
+              }
+            },
+            {
+              "path": "gateways/python/ecp_gateway/server.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "01d8a969e3139cf821aec5d6b31052bfe8df1a96c12bae07c73c1c8a71ed417c"
+              }
+            },
+            {
+              "path": "proposals/work-items/README.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "30b724bccf262c770dce3d316d42eec23436a6937b83369b1714c491bb2ce3a1"
+              }
+            },
+            {
+              "path": "proposals/work-items/admission.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b9672c9386a541dce9c80c53fa72f64d2959b8291e8acace2bc6d0a811f80aa4"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/asyncapi.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "abf4a5a8ace2fe8c229ef5a85558acffbf58bb40f201b290482328e91015492f"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/capability.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "f6c4bd5c957d1c019d081cdb02f157db512c3f5b645af15a3fbe8fa2151b3225"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/actual-work-needs-start.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "cdb025d06912e2d510816db4f53e56cc975681ada5537edad751107ad1933ba8"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/actual-work-success-needs-record-id.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e759a76b61d3c701d38129a584263e0b5df6af4cdf1986205c0bd2b11818d5ef"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/adf-not-neutral.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b93bc54a4bb38c0ebe03355c804f06d8456eb8993f31d2a9987d7e8a963c0423"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/dry-run-cannot-claim-journal.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "03d865651644e0c434ef26865a306083c17d9f34f0312acf610b81744de7b50b"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/dry-run-preview-operation-mismatch.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "fb0675c5659107ac0d95ebd48e38af0a385220f102652ead8e0d2436372048ff"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/empty-backlog.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "dab9c09829f10092aee76c1a6650ee201c9d47e9e286615c97ab0afe67640b4b"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/empty-edit.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4a18005833a02c25585ed80f9412c2ad31bd0e8aa884bd690251a1bdb7692f7c"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/estimate-cannot-carry-worklog.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "cde6140a841252858add484c4d997975ac00b5f858d78df8724398f5e17aeb46"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/estimate-result-cannot-be-actual.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "acf64849447957ddaaf56b75083e53255e49712a9b2ac3c84f93899406ada565"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/malformed-work-timestamp.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "817f44c4ab14641c6cda28cd35b3912d24793c60dd84b2bc7370b0dff45fbd12"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/missing-actor_id.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4415b46c2d165d15471ce483bb39c443abdba9db5eb2e02a2611c16b0ae042dc"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/missing-connection_id.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "18d966140fa0a4faedb68d8e4e8419fb0ef0a65827d0e5e0a5eda5efc41dda27"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/missing-correlation_id.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4da778877f48adbc25260710c8528edee76c10fede9308bf622d1394b0aa6cb9"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/missing-dry_run.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3d7611f21e1740155a8ab1533ae444d021aca6c7a6ffc7f374cc63a4baf6b413"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/missing-idempotency_key.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "138569be17dc190168a5ccac057170adc2d2a292ac0ec1b33d7a17fdeb5b4ae0"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/missing-tenant_id.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "107c1b0501ed3b323bbdc443750a048f8a907a9b9f9403f1a6474c3efe4af921"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/partial-never-implies-automatic-retry.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "c80dc10537234b062fca5928129279fc286c922b7bedcc90e71abbe84f4c3b9d"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/provider-parameters-forbidden.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "d7ac0115be815d7c32d76dd1e819500d7516fd18e7ec4f1f25f53068bfb4b12f"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/resume-without-fingerprint.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "1c50fa730f5382ef8443c051e4c1872bf62a2b863b290da015d24f366932006c"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/success-needs-resource.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "60a0167d409785e3523fe61cf8b8a1c6f3adc782ebdfac666b072cc909185506"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/uncertain-cannot-auto-retry.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "2d138b74f4d092f852c5224731e467cdd5e5f8f858ec4949e14cf91714fe5daf"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/uncertain-needs-journal.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e85f58e5821c4d8c02bbcc3070fa5c4c803d84b2d5f8616916e7eb8ab309897a"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/uncertain-partial-cannot-hide-reconciliation.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "01495dd15e2c3c07e38a686d5800e3dca0a5ebace8c58ebb4eb67f16ec964fe2"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/zero-actual-work.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "aff6298fba9fae040b93bed312f4103b3d2b09f1c1e10790b2c2d73cd5bb008c"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/invalid/zero-estimate.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "84e4f7556f4c8d46395347c704d3e421487efb563c8c4a0684f9f47a104e246f"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/backlog-result-known-partial.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "11d461abbb9167fe75de24bf8a82070821df5be3c7f7bedd2c75ff7344c1e1fc"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/backlog-result-uncertain-partial.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "86eb427f3f34e8a20b3caf621220d5d6db5448a93fb34fbc6f8a5f6197a59935"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-actual_work.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "eacffec234a3afa84c3c03d76af2ab70cd29918d72c354c8ed7a28b873e7b8bf"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-backlog-resume.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e8b93cea149f02a8b3739dc0771a3cfe9385e0c1f5a1e9f6dd69d3f62360cd14"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-backlog.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "75d11a3c50136c9c4ada123ef8fe1b5165d35bf69fe978a2eb5c7377cb9886c6"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-create.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4a9d4f7160a0ed94820d117b7fb25956b4beeff9181a209afdbaa5893f073211"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-edit-clear-description.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "50dde2620e2ab712a9bbc7b1ee8fb3e9263ee666042ad0267a038643e8a58471"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-edit.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b5398840e2aad44e1a06354d2aa3049221caeae850d27f9441dfcfcbed8c5d32"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-estimate.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "642ff9d75d05b1793c8ce77d90f1dda7f95d64e48f1b3b5b49e3d71ee662b515"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-result-actual_work.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b0685aa11f540f13c13312e017db5232c7d9a20fd35655a92021d63b4e06a7cb"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-result-backlog.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "358c8718741affaf00b26817b1f0ae865dfa36d2d141019b5b8d9282eb440cc9"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-result-create.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b0a35ae795bc87828319e9818df3367757f0bf26dd9168ef34f2dde97b6f0761"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-result-edit.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b68ac7f8d3effb0b08e5f9f463526d3585d2f26021fa7065af46e3ac374a6099"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-result-estimate.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b00f2b3c1b717f116fe7f07929f552d8ae477d3ab4c0b7045072580039ab06c5"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-result-known-failure.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "b79527a5266e197248bf518069e77f7bcd2ad647a708e82fbcb553fb539e5985"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-result-transition.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4a76bafd64f8ee656d9663c06030d3117fd8039f68f2aed0301086ecc7cfb512"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-result-uncertain.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e0457d038c58acf1b4ab7d81b92729d736efb02d203da674bcf41ed19af856e0"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/command-transition.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "2688c80d60dd71d1c8c23ba1d556c20cc68468a7de740c751fddde5a6a116796"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/dry-run-result-actual_work.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4c7f1c768c7298d14e7d0fc88bae5ff56c4f2d4378de167494deb03e32b75a3c"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/dry-run-result-backlog.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "bc5912000e5a37fc8aea294555b51ca71e1fd2e14a4c163965afa7ad3245e8cb"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/dry-run-result-create.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "7e0a78d1c0f4ebcc13530defd30a843dcc6a28d3efe62c614a6f92b4d782128f"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/dry-run-result-edit.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "28ffaafaf8f60a233baaf6826ce4463890450f3fa26e2212586197a69d885db8"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/dry-run-result-estimate.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "240957122f1087348c3c21a7d44d66bdb0676657061ce1591b48a984c1418851"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/conformance/valid/dry-run-result-transition.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e0d6239bc60502a6c4cb60cad9d8cbb1802dff00998435998764d520ba403f4e"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/examples/request.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "7437902d2ebaa0a5b186d6af7ee26cdd97add4386e3de71bac9ff576e8d4604f"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/implementations.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e6b71ac0b93ac5a8714f87da795210c892ef7230b7bda9dd569729178010de5c"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/mcp.manifest.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "ccc9ec05badecfe13f89799b45be7313a503004c281ccecdcb773b31d05db1ad"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/openapi.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "ea51772ae9f54f005ee1f8eb47e689bd73919ace1d0b7cecc4d67b90749faca6"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/policy.toml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "47c4623b92e181d666f131410c2095067684a7248ae88e89374881fa7c5de9b6"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/providers.toml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "02918a12a5043e2dee7431c051a867b72d285a4f4840847a3eac1b715279f9e7"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/schema.input.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3983bb8aba85d0006e9192d8f932e89c57a8371bd2a4037b71ac2d475d986bdf"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/schema.output.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "c0ad38e1d23ef568324873d605483aa6e5b29660f50530a71065a858526900ae"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.command/tests/README.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "9a70abb4feba2aede4f0e251ae1dc1749a8d2d5c7ad3138a48d224e4cfb1a4d6"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/asyncapi.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "26fc0560c0ffc508d6ec5d98aa49d4df1b07650603e10c616dcc4baa1721f3c3"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/capability.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "83996cdf0e4f9a6fccaef6bcd6956d5086e36319bbb35967d9fd2ae0831dafb7"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/invalid/incomplete-page-needs-cursor.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "a233bcc15ea3cc9f38b182906fcee7dc77f9d7b85cf4a6ab8bb0972b804fd2c5"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/invalid/provider-field-selection-forbidden.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "0389c0bad86e10c4889f68d0f711dca1a492f6780fd45c9731aee9ba579d56bc"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/invalid/query-cannot-create.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "cab266043fd162d59bab6cbfbd2a174fa5f134a6a5c463f90e51d87ec3d05d28"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/invalid/query-missing-item.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3619e9bb8f21ab40e18ecf75fd34df877b0c100f6d476c5cb4ee90dd67a1f67c"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/invalid/query-page-unbounded.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "995a40054a93688e1551deec9eda38df28f154195cb79fc52deda0b2a7854a86"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/invalid/query-uses-read-outcome.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "eaed768bf46d921f66a83c4faf866ad89eab833d1a233ce0dc17889ef3649ef2"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/invalid/raw-jql-forbidden.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "39921235a2660c968d022f60d09333d4c19f7683a984cc96c4d9b983e63c940c"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/valid/query-get.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "90aa11ad386775fa9d0c4a7cb927899e8d9e1ee1f47427aae82ebeba26c7b01b"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/valid/query-result-failure.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "80031eee35f7cfe890e351a2a7398163f7df2c920c78008d10ad1e1e2209af6e"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/valid/query-result-get.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e92d52bc112d772f59bb98d6c940814900d3c321db59b856c0809550f54c360f"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/valid/query-result-search-complete.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "5a67264ec661219aa136ea182f27c9888edd601977f8500f4c94a1cda94de943"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/valid/query-result-search-next-page.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "094de1e62c2ea24d25f695c3714ca90d9acb2f7f9631c53634fd50069aea8d32"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/valid/query-result-search-partial.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "4426c96284f70b8fde1550dfcaa585345153fb71297aa0bd496ea1e7cd9e02c9"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/valid/query-result-transitions.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e7b966002a7d7b3b9d73256466a2c8cefbf35c7446ef494bbb7aaed3c63cf1ee"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/valid/query-search-next-page.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "fdbebb7e341c9983e20da33be9b684e0ac8ad0a7c205389c1af74ed1f5dc9956"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/valid/query-search.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "867613960c55baf1262caaa1d4f4441f441841b344ebed6ccbafa468ce9db722"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/conformance/valid/query-transitions.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3e10f10a85c56d23db100e3737fc00f59acf3ce8be8500263b6ef04e349b375e"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/examples/request.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "c832306a73248709e1907490f52b790ac436266cebef8eb38f3076fead5ca4c6"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/implementations.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "a91c91d1f8693c46a49fcca07d48d787181069a0e2210779ed8446aeb022f48f"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/mcp.manifest.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "10abfd6dc12f2aec428b99413731a9fc95cd246c01f2f16af9e98ed57d5a9814"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/openapi.yaml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3247c3e7e81dd26aa8b1c0b2a2310f03d07d4351d3f0f90ae418da645bf6bf5d"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/policy.toml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "47c4623b92e181d666f131410c2095067684a7248ae88e89374881fa7c5de9b6"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/providers.toml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "02918a12a5043e2dee7431c051a867b72d285a4f4840847a3eac1b715279f9e7"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/schema.input.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "14f32d40cf08133faeafc9afec7bcfeb97d19aa7dafb6c402979a82c5719ed5e"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/schema.output.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "032f68577ec499c9266d8baf287ff42a474b5d67be0b20f21f0db1c86a0bdb95"
+              }
+            },
+            {
+              "path": "proposals/work-items/capabilities/workitem.query/tests/README.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "9a70abb4feba2aede4f0e251ae1dc1749a8d2d5c7ad3138a48d224e4cfb1a4d6"
+              }
+            },
+            {
+              "path": "proposals/work-items/contracts/command/schema.input.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "3983bb8aba85d0006e9192d8f932e89c57a8371bd2a4037b71ac2d475d986bdf"
+              }
+            },
+            {
+              "path": "proposals/work-items/contracts/command/schema.output.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "c0ad38e1d23ef568324873d605483aa6e5b29660f50530a71065a858526900ae"
+              }
+            },
+            {
+              "path": "proposals/work-items/contracts/query/schema.input.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "14f32d40cf08133faeafc9afec7bcfeb97d19aa7dafb6c402979a82c5719ed5e"
+              }
+            },
+            {
+              "path": "proposals/work-items/contracts/query/schema.output.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "032f68577ec499c9266d8baf287ff42a474b5d67be0b20f21f0db1c86a0bdb95"
+              }
+            },
+            {
+              "path": "proposals/work-items/contracts/types.schema.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "7a845de01f1e72cc4e0daa28ce2ed87c0655d62267eb1c99ba0aed6a02174c41"
+              }
+            },
+            {
+              "path": "proposals/work-items/implementation-evidence.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "593eeb67e76af010f81b50163cc44674c49c2760ac2738ef2c19b7e8f6b84126"
+              }
+            },
+            {
+              "path": "proposals/work-items/owner-acceptance.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e9bdf4ffd87cc37dbcfdcede04b52658a29e7c0bc1d1bb3d16a1e4482d84723d"
+              }
+            },
+            {
+              "path": "pyproject.toml",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "0216e04cf7e35233d00453ded2ceb6405c01fae643f94a758ddb0ce14f0713ee"
+              }
+            },
+            {
+              "path": "runtimes/python/ecp_runtime/cli.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "2b23b9b3d021b07de7647e5d5e619502c19edce22e1a70783f271e52ade1c15b"
+              }
+            },
+            {
+              "path": "runtimes/python/ecp_runtime/experimental_work_items.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "35ca6187169e77ea27087dbc71f9a113a1850ad4b9abfe6ffa45633340d1113b"
+              }
+            },
+            {
+              "path": "runtimes/python/ecp_runtime/registry.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "567f02dcf724b01f8a97ddac5a78062c908f5815b0dea8eece4697fe6d2e8343"
+              }
+            },
+            {
+              "path": "runtimes/python/ecp_runtime/work_items.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "e27c6b3df917bdce6f6eb3a5213d26d0a77e198114dbf2e262b4e62cf9af0213"
+              }
+            },
+            {
+              "path": "scripts/catalog/generate_demo_capabilities.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "62b24740b47dcd512e9975d8a899d8c31e03f2946c70cdc357fbc6afb94dc01d"
+              }
+            },
+            {
+              "path": "scripts/generators/generate_mcp_catalog.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "147fed9749d07c213db06f58a565116fb5c7b686dbc7c11a3aa6474119815e72"
+              }
+            },
+            {
+              "path": "scripts/generators/generate_sdks.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "76983de682f1f6aa0d897f94a8b7527465e75aaa74506b442dd0c8665c591d7c"
+              }
+            },
+            {
+              "path": "scripts/prepare_work_items_bundle.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "47937aeec6038b4ec31864f9f8cca276ee9e2c424a58d26cb6935338eb49fbe3"
+              }
+            },
+            {
+              "path": "scripts/smoke_work_items_clients.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "861caac5c6880dbc997f9ba46e55cb8a9e276dd99dd97b26f56589f7680c6522"
+              }
+            },
+            {
+              "path": "tests/test_canonical_work_items.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "92ff04b417e966529e46c7b9877e751bff9c5888df1245a99c2a384cef4520ae"
+              }
+            },
+            {
+              "path": "tests/test_capability_registry.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "9643200fd4245c0cbf35241c286b5171e554235a39d70c5ec03b9913ecaa69b5"
+              }
+            },
+            {
+              "path": "tests/test_ecp_mcp.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "228caf6da08f2a9bf51c5c9f03f3ed86587062896f17ff694bf3c4870a5b132c"
+              }
+            },
+            {
+              "path": "tests/test_gateway.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "439b5765bbfdcffdf04aa8ffa2430101e55a8949f1188e6a962767cfed4354c9"
+              }
+            },
+            {
+              "path": "tests/test_runtime.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "0cd75902b5c25867652f957614e699e2689a76c965ba2241bbc39c9bbbaae3a5"
+              }
+            },
+            {
+              "path": "tests/test_sdk_generation.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "d11d102b168f83c4a7be5988d7c747fd44ea5f7f6f9af70548d4d79eb8309ebb"
+              }
+            },
+            {
+              "path": "tests/test_work_items_draft.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "7b468618c9a56b4fb1fa460b01e10d6130dfd3735b7e6cf63a4cbfb273291056"
+              }
+            },
+            {
+              "path": "tests/test_yaml_subset.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "2f6ab9d84ef195b759998be46161faa08925a2b7b874c91b275866102694520f"
+              }
+            }
+          ]
+        }
+      },
+      "platform": {
+        "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-platform",
+        "revision": "e96f05fa29cd65a9762c6f2786949bd6e21a1492",
+        "branch": "feature/srm-absorption",
+        "working_tree": "modified, no continuation commit",
+        "changed_file_sha256": {
+          "record_type": "artifact-digests/v2",
+          "entries": [
+            {
+              "path": "docs/architecture/contract-authority/work-items-admission.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "82c495ab8fa6b150b22c96135e793b726decb18e9e249b5f0426246f86a54f5e"
+              }
+            },
+            {
+              "path": "docs/srm-absorption/_INDEX.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "6b0182ea89c7f4fc390e8f027ae40395186dc098561ea2748c875f2ffe6878a8"
+              }
+            },
+            {
+              "path": "docs/srm-absorption/acceptance-decisions.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "0ad5c8d941efd4eb704559c8edb08777ee14df747c1c8f326767fc65d062d085"
+              }
+            },
+            {
+              "path": "docs/srm-absorption/acceptance.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "36aa4e1af3e02b1aa9e735ab40dd85902342a557effa668d123eabf2c24d42ed"
+              }
+            },
+            {
+              "path": "docs/srm-absorption/continuation-review.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "f313d9774deb739282c19ca2fcc9cc56cc23aee64d7eefab1bb57577c1b3ded0"
+              }
+            },
+            {
+              "path": "docs/srm-absorption/delivery.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "82b97c3ed02cca2371a03c89185659237350e999d77337e939305d05c9ce0464"
+              }
+            },
+            {
+              "path": "docs/srm-absorption/independent-review.md",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "a368498fc49e28954c6cc26502fe2b9b5ffe448c03a569bc2785cd875c2acbbb"
+              }
+            },
+            {
+              "path": "docs/srm-absorption/traceability.json",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "425471015162ce44b3af8ef822d1d9665c5b296236ad66a9a4d194706a614c93"
+              }
+            },
+            {
+              "path": "scripts/test-srm-acceptance.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "7948f7d67f344f6e3ec019e644988b073155a19171c56e46308e306d45e9d5bb"
+              }
+            },
+            {
+              "path": "scripts/validate-srm-absorption.py",
+              "digest": {
+                "algorithm": "sha256",
+                "hex": "607a83f38129ba26009bdedb87dce068bf076d5257f1dd6816eda5e737c645e7"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "authority_pin_unchanged": "contracts-v0.4.0@ab1fcc92797224c428ec6362e02ee1eaf2de8abb",
+    "tests": {
+      "dotnet_source": {
+        "current_focused_passed": 153,
+        "failed": 0,
+        "skipped": 0,
+        "whole_source_suite_repeated": false,
+        "prior_full_source_passed": 1242
+      },
+      "dotnet_installed": {
+        "status": "PASS",
+        "projects": 48,
+        "final_results_by_project": 1310,
+        "failed": 0,
+        "skipped": 0,
+        "composition": "45 first-attempt project passes plus3 corrected-harness revalidations; not one fresh all-green full invocation",
+        "changed_nupkg_installed_sha256": "cc538aaf6bbd813ce55b7164b6d148fcd19ba1c0e4fbf197ce667ad295f3d021"
+      },
+      "ecp": {
+        "reported_tests": 825,
+        "skipped": 4,
+        "failed": 0,
+        "contracts_registry_coverage": "PASS",
+        "active_capabilities": 25,
+        "active_stacks": 8,
+        "compatibility": "PASS -2new initial contracts only",
+        "implementation_policy": "PASS - planned metadata honestly retained"
+      },
+      "node": {
+        "focused_current_passed": 101,
+        "failed": 0,
+        "full_suite_repeated": false,
+        "typecheck_build_installed_dual_profile_tamper": "PASS"
+      },
+      "react": {
+        "unchanged_frontend_prior_unit_results": [
+          {
+            "react": "18.3.1",
+            "installed": true,
+            "typecheck": "passed",
+            "tests": 42,
+            "failed": 0,
+            "browserBundle": "passed",
+            "browserModules": 40
+          },
+          {
+            "react": "19.2.6",
+            "installed": true,
+            "typecheck": "passed",
+            "tests": 42,
+            "failed": 0,
+            "browserBundle": "passed",
+            "browserModules": 34
+          }
+        ],
+        "real_idp_installed_journeys": [
+          {
+            "react": "19.2.6",
+            "receipt": "keycloak-identity-react19-integrated-final2.json"
+          },
+          {
+            "react": "18.3.1",
+            "receipt": "keycloak-identity-react18-integrated-final4.json"
+          }
+        ]
+      },
+      "acceptance_gate_regressions": {
+        "passed": 9,
+        "failed": 0,
+        "owner_exception_scope": "only independent-review, proof and preserved history required"
+      }
+    },
+    "evidence": [
+      {
+        "path": "/build/artifacts/srm-absorption/dotnet-installed-conformance-final/receipt.json",
+        "sha256": "fbf38de348d276daf5e4796d101ade60fc4fd1833e31c2504858e23c5f12d3da"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-work-items-solution.json",
+        "sha256": "7a4c99a3db0481ae92b6d1f33b96b2828cec69f20260530697f2d0daab2658bd"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-work-items-postcommit-package.json",
+        "sha256": "aae6cf8505aac6fd46dfd34cbaa111ff304657372bacc6368c4f137b508ef3be"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-work-items-consumer.json",
+        "sha256": "b19438fb45ad70c1029aa62c917558e150169ca443b07e4c406687fdecea26be"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-work-items-package-receipt.json",
+        "sha256": "ad15c66ea12c0edfe843081a5d8f99ac1f985a77128d4294cfd518bc4466beb7"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-work-items-package-receipt.pre-resume-fix.json",
+        "sha256": "30f432beff15f343585ee737b1781c24444fd2f42ced70abe3466fa035e7bc1b"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-work-items-focused-resume-fix.json",
+        "sha256": "0ac66fa694b478783200ad6437a56f9b29c68e11f307494b40db6c6c15545523"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/frontend-auth-consumers.json",
+        "sha256": "b08bb56f3f13e55cf15559c376e830066783ad50c6acc9440257b5d292a8329a"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-work-items-final-gates.log",
+        "sha256": "9b97838491605b8dbc26c279a34e9a43b1154448d23c1268a44794c32bcf2792"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-notifications-commit-gates.log",
+        "sha256": "4961e30b7df9a45d63d8b833db0eb413af3403a12eacfc890de2299a29d226e8"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-installed-http-postgres.json",
+        "sha256": "f0b46a6fcd9312bace70b1ad43c62854940626ad5128f8fcf9365f3cc6f9865a"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/jira-postgres-smoke.json",
+        "sha256": "37cb3c86834cf327411183a6f24d461ae2617321b00662f4292f2825aab396ef"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/approval-postgres-smoke.json",
+        "sha256": "1166044532f73bf6d3ed8f3ae36bb12296b491cd7e41108d3e77b9b0a8d2c916"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/mfa-redis-smoke.json",
+        "sha256": "65fab7dcee5ebc8fad4e74f616573eb20ce5e2c02aa2daebe26355610dfb244d"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/smtp-mailpit-smoke.json",
+        "sha256": "9098457cea4f7cf7b74793a873aefd35c55cb2944545644f349b82c9e905594e"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-live-postgres.log",
+        "sha256": "65cf77c8475a3de6ac8169c54d13a511fa5474990eb91d226e0aae1ce3799361"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-live-redis.log",
+        "sha256": "104cad57ce562d7e543e8312280c0c78921ce6e0009b9125f2db5a578ec2ebed"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/traceability-final.json",
+        "sha256": "8513b607a03ff8166dabf253e0fe9eec18084685ccf3fa1c4b2699240b2f59d1"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/completion-gate-negative.json",
+        "sha256": "1e040ec3d720a76409123d9af7eaf65e499df72ba3ef8304307195b33a61e18c"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/changed-files-secret-patterns.json",
+        "sha256": "8b8783711a2fc4a3c9cc1cc94722e98d3f4bf70a9058fadd817c9ca02559beac"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/owned-tunnels-cleanup.json",
+        "sha256": "950aa3d31447ab87d23641b73952c9cb87442a4ac5cbe5836cca13133a091e23"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/scratch-cleanup.json",
+        "sha256": "219b597dfdc33a1eb112940d03644ccad4b76e803d007e41e39a0fd1392e3970"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/jira-live-readonly-cambioreal.json",
+        "sha256": "5f5262d00558f621a393f306d36bf9929a6ab0c9ba793eef4208cdf14298925a"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/jira-live-readonly-4smart.json",
+        "sha256": "bd562b15a0bdaa117e615d86c4269a3cd3f6199bc46078df56fc4a8317c11a3e"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/jira-live-readonly-cambioreal-attempt1.json",
+        "sha256": "8c389ef4dcdf076788f2a39db719670426f62f9632c33e49586a533910598b47"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/jira-live-readonly-4smart-attempt1.json",
+        "sha256": "d1e26afb5b5a48ae49402520e92371184e418947950b18b0bec680d652f396e3"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/jira-parent-projection-tests.log",
+        "sha256": "3f57e9dd08ba475eb014ca0ecbb5ecc04b362993922cf24cf372921e9200d9d3"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-jira-live-readonly-gates.log",
+        "sha256": "6b3bb47bd28acc0f77b6b74485887a290cb8889aa603f4d164527ae683b7a5af"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-jira-live-readonly-gates-attempt1.log",
+        "sha256": "551f1989faa7491a6b8024389435c4ad077e21cd2411ef6279b939ab4143bf86"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/jira-readonly-changed-secret-patterns.json",
+        "sha256": "a9a4d87b1a691a7efb422b35b543e06f3c4814892b375773225b6c7bf8fe46d3"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/acceptance-gate-regressions.log",
+        "sha256": "1121ea7f46212b81e4ae34c3024e9a6da62b8b9af1d40c84fbf35ee95e1beb90"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/canonical-workitems-focused-attempt2.log",
+        "sha256": "30e51747c710e384c4c32e1bae8522b753fe7787fd891939839a007d4c2cc06c"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/canonical-workitems-focused.log",
+        "sha256": "a4eb790ff457afd18f062562926c855dda69d21bed04262fcd130eda0e18e0e1"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/continuation-static-checks.json",
+        "sha256": "1e6af4319327f36da7eb333a0e6c6a13dba526dbf9d75fe14d13d6b884dcc0d2"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-approval-postgres-smoke.json",
+        "sha256": "a60e7c99e3252de862616305aca3c46d4382943117bb4945d01fd460860a6290"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-audit-messaging-sqs.json",
+        "sha256": "cfcf4598841cc97623e5029bdacaf3a715382b7427d581bfc1aaa360d82cb3e7"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-audit-observability.json",
+        "sha256": "7ea808b2d49916d3987cf656f501e6dfd7491211bcc7e8c9d9d48eb73e7e89ce"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-audit-security-authn-saml.json",
+        "sha256": "b3426622c3e25542e17c4c8d7c0c92b21822fbbb8d45cefb9a2787f85ef876cc"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-audit-security-mfa-redis.json",
+        "sha256": "5b51dbd8c3d977fbe462c59008f66c4ce204d12855b466747f18f17795717e0d"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-build-server-shutdown.log",
+        "sha256": "830e5cd707f90e485d1b96b500318ea1d4c6248cd46f3da146a5887084144dbf"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-final.json",
+        "sha256": "0138462478399c1a74c29b7b9281522e4ca163766e6f3122a83d762d839e55a6"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-full-attempt1.json",
+        "sha256": "3874b3ae407fbc21d12e4ed294e98d2e2149c9cf3c2f89c61c0066d089ca1485"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-full-attempt1.log",
+        "sha256": "16fdf8f747c131f2db2a315444d5f7d0538cfa9a37cf778b8ea13a04885c6d75"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-full.json",
+        "sha256": "3874b3ae407fbc21d12e4ed294e98d2e2149c9cf3c2f89c61c0066d089ca1485"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-full.log",
+        "sha256": "16fdf8f747c131f2db2a315444d5f7d0538cfa9a37cf778b8ea13a04885c6d75"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-inputs-attempt1.json",
+        "sha256": "aa5c542a1e87bbc7e4a8951e766a46f49881e8f549f4cbef4934947d9e80b14a"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-inputs.json",
+        "sha256": "aa5c542a1e87bbc7e4a8951e766a46f49881e8f549f4cbef4934947d9e80b14a"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-revalidation.json",
+        "sha256": "2369fcbd1305bf3361a126f4f038386235d6e6ecda9a2eae0426658280146440"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-revalidation.log",
+        "sha256": "a72ab3f5274852cf6e1df5b899a5c311b8fc8055c836983f42aec842b5f24165"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-complete-pack-attempt1.log",
+        "sha256": "02afdca20b094ff058ae23c27c58ef99fe29a92d329e671a38697f1afcd6ff1c"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-dependent-pack.log",
+        "sha256": "b62bd9c3e27af05110d6fea97fbe1424fe03d8f1230c7627125e26979e6cb8fc"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-format.json",
+        "sha256": "7b472b063c3dfe66c81d0343c1a262a9f740bb36f21861670fc72557f1410ce0"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-installed-conformance-final.log",
+        "sha256": "ce909d395130cde8728c8f22fdcef97d3b1236981c781202703bc8f878bd5e45"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-installed-conformance.log",
+        "sha256": "79bc9bab6fec4ef790ff33d663292ea6e4d8ebd4c79a263c90f02ff5c9592d06"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-notifications-audit.json",
+        "sha256": "f392d988e7fd9f1717bdabbc0c73b20bcef517decfdfa3c5a66831fb8d63b195"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-notifications-ecp.log",
+        "sha256": "1f2534eae53365dd57036424335a47dafb698a708af4c3e5993557fb46b8dfca"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-observability.log",
+        "sha256": "8ed9d682ccf0c1160657990246fa92f238154dc3bd0cd57f13acbb5b0e44b2c8"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-pack-final.json",
+        "sha256": "47caf8e1a59d2cbdae2a0650065bd6edfa3a3ea28f0a7a6c8f7531f7e1187a05"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-pack-final.log",
+        "sha256": "79356eb70d9e81728210715312f085b294fe11e297ebce983f11cb0245832550"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-solution-tests.log",
+        "sha256": "8bdc5bda7ab7db62362f3a2a72aa2908c815a93057c98a18b75000b0972c6eab"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-source-files.json",
+        "sha256": "294b747b28690e576faeeea62b000d078a21d13a1aff5c811e6d4ba6574f82a9"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-work-items-audit.json",
+        "sha256": "1b826e0dd39a3153d299c86b3aaf4bc8fca81dc4084515fea0af45bacb2a1178"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-work-items-consumer.log",
+        "sha256": "c6f5e3275093a9c07b5e74636e8387411137ce244a7fe880ae548a9c121cdfed"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-work-items-postcommit-pack.log",
+        "sha256": "55f46e4476e8014a4ad3f46c7fdbd2a1728971b75a15d0450bf996c57796c0b6"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/dotnet-work-items-solution-tests.log",
+        "sha256": "3206a3275a84872b0cfb28cce6b0c71043bf67f6f730b213dcd51b9ea9e50fd8"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-canonical-compat.json",
+        "sha256": "ef7bd1319ebd7e2bd527410855c7f48aa196708d189a8279845d819904671ffd"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-canonical-gates-final.log",
+        "sha256": "128e65b51e14208f0c7a7a123bc89f283ffe1ce4b6048e3b80b930bc19eabf3b"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-canonical-gates.log",
+        "sha256": "64ce30b5ffe56321067cc6d04fc856cb355b06fc7ac0ea46f8021d01fe7bf871"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-canonical-promotion-policy.json",
+        "sha256": "c23ef473014590c8136c63cea6d1efe8d6692825978172975ada13ec9aaac0cd"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-canonical-static.json",
+        "sha256": "4e2af649bf8f38fb06ae7b74bb3bc51284722989ecfc4cecedf6a5f501be3b02"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-quality-gates-final.log",
+        "sha256": "ac77023307142c885b24a7557d4a2ef2260adde32c86300b4b13b47b54e1a314"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-quality-gates.log",
+        "sha256": "786c651d7144ac0e237487e04fb4822e95cff66d317da80cb3b88944a47275c0"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/identity-development-scratch-cleanup.json",
+        "sha256": "afe46b12ad223b30bf1a2cceaf89cb47fe4e950bd27eb69107844e23b4768728"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/identity-final4-execution-order.json",
+        "sha256": "33ecc336c750b2e3a07e04eb567fa438c2790a5b1233c9b3832f26e148037383"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/integrated-doubles-diagnostic-failure-cleanup.json",
+        "sha256": "f6f5a3b5a33e0ed5e5731370e5bc2783a9c6bf3a74af2a4cb105c5a1ffd1570b"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/integrated-doubles-diagnostic.json",
+        "sha256": "d671086208c06491910b23a335325386c522fc731054f0172cbaa692d5539607"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/integrated-graph-diagnostic-failure.json",
+        "sha256": "796c34007dd5f032f37d1b9e17441824f071868ecfbe199bd37cf6de1c8d2e8e"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-attempt1.json",
+        "sha256": "486f4f095885871394d588d3393066a2d51c8017f1aa5806fb1f7ae014fe1e9d"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-attempt10.json",
+        "sha256": "54d2375835587bf040cbda0abeba6a9c1aec4a6590eaca3f2aceeed3506a4a3d"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-attempt2.json",
+        "sha256": "a05f115948f41d71f1973a6f6b1986c23f30dec28d4d789878ed8554ae15db0b"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-attempt3.json",
+        "sha256": "bc057be9d629f7b663de72f9eef87e508279f5b241722daa7bfa30d5735636bd"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-attempt4.json",
+        "sha256": "4635fa4e1ed6103333fa3ffb451cd30ecc105ce6f8ea4d6dd29093faeb751051"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-attempt5.json",
+        "sha256": "3ebbf71b03a28bb6fbc14eedfd016ba38c761f9b9d5fbf3a9d24484763e8aba8"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-attempt6.json",
+        "sha256": "39db00945048234b9bcf146cbb81390d1afbf8bf2f1a3c58513b085db0867114"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-attempt7.json",
+        "sha256": "d8c73d278877e27c32031a37f9891ed3c98ce17622508784be4066ae8023306a"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-attempt8.json",
+        "sha256": "a8931ebd7e88c78fab69a13f5e542cacadb4d47321d31d6b2df7c040795f3311"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-attempt9.json",
+        "sha256": "1eb2a7e3a0c35f831978fc0155e46510fb5cbd77748e425e70ff850afe60b812"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react18-integrated-final3.json",
+        "sha256": "c1e315bba8fa209f08d97814c582ca5cec20e40a01231c2068912866d4fff798"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react18-integrated-final4.json",
+        "sha256": "8273740a1046c1ea182c33c1a6f6e3646f08e0d6b2a9372d71ca0ec3fcbeb410"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react19-integrated-final.json",
+        "sha256": "731a7d81eb26d0b1bb88591b75da07e76c520250c6183465d030a310e7b06671"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react19-integrated-final2.json",
+        "sha256": "708efd6e2635c21d04ea3f250faf50e5fd05594d7bd8bae706bc95d499e6bfcc"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react19-integrated.json",
+        "sha256": "5954fe82effb20f7fc32cdd96469e072b267857e95a4e3764b3c8be24a88be5c"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-audit-all.json",
+        "sha256": "206b5764e22fdd9571b69184b733dc06e1a3688c696fa6136836588965e3ef7a"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-final-tests.log",
+        "sha256": "47b17cc31f708e87fef90a3db65e6ad5604d5c61172125d196d0ac9f21f8a71b"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-npm-pack.json",
+        "sha256": "bd6ce114993c7630f424360cc0734dd6c456e0ab99277fbf2aebe6f49eaa0d6e"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-package-receipt.json",
+        "sha256": "3bb02db0af6c69f3f4b51e4e0d32fe18e23f47063201ce582a260ecc9edb3666"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-vitest-cache.json",
+        "sha256": "06274d5893753fb534459d2be2234c957b320ade6696ab2b3f9b5edbed27d02e"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-work-items-npm-pack.json",
+        "sha256": "104ac33a229c27558c268760ef86d727f63fe37d262e70bda78fa9008eaa7509"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-work-items-npm-pack.review-1.json",
+        "sha256": "b99d87843f72119f48eafbd8a438b9773bb2dc2a966dbe63507c16f43fb4e3b6"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/node-work-items-vitest-cache.json",
+        "sha256": "b47651268ddcd3e64c20f0e1056e8ec1903a89eadfabf6068e241d7402bfa712"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/require-complete-exit-stale-index-attempt.json",
+        "sha256": "6bae2ea14772d02cc8b56eb6f5beb0074d30335604bf67cbd9e5f46333f044ec"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/require-complete-exit.json",
+        "sha256": "f5c62fb1d22c6bfbc63bea80b402955f281108060909dded645f3812af5be563"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/sqs-anonymous-volume-cleanup.json",
+        "sha256": "0c991c4fa800c546a1a8e70b8b27c8f2db70736a4dddf82729fe1b52547f5490"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/sqs-final-owned-consumer-cleanup.json",
+        "sha256": "044068f1ee610a99ce9a0347a6cdc5878e8b26becb8c5580724eb766f79d7b1d"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/sqs-final2-process-volume-hygiene.json",
+        "sha256": "5ccfab8b70c7f34a136d1ea26c18f6f14239af8904c0c10aaffce9f1bfdfb679"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/sqs-final4-process-volume-hygiene.json",
+        "sha256": "50b001637f0a839455f18af4235b01e0d377d3264f6db5bd4f067d66660633eb"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/sqs-installed-localstack-attempt1.json",
+        "sha256": "70d89cf242b40552af890ab7017b33e4c1d6415f5755df646bd6ad27f696ea1e"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/sqs-installed-localstack-attempt2.json",
+        "sha256": "1369b8a313eddeb28250aaaeef8607165be6247d2495568e488af77714115b99"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/sqs-installed-preparation.json",
+        "sha256": "8d9f4f6fed47038e4a363d64d653d2ed3c16bfcd9e5630dfd44e1cefeaa4c889"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/sqs-nuget-cache-diagnosis.json",
+        "sha256": "437e0a9b48c4251011770cf55898a1b259ae1724778373f6906a8092aa08fea7"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-doubles-final3-cleanup-check.json",
+        "sha256": "358b0cbd98ac9e4c4f18bfb1e3dc0006efc60e65462669cbb9075ea084f20203"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-doubles-final3.json",
+        "sha256": "c222ed8fa10842a634a478196ff40eaadd2881190d65f8ce50d99d349c13c2f2"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-doubles-final4.json",
+        "sha256": "a7ce00b29903737c5fefcc15d35ace32ed183e102437a3bf80e7d9d4f553b74c"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-keycloak-sqs-final.json",
+        "sha256": "f8ff2bfd81b7547f16aad3e6321c5cd6155d1302d5f8bd717d5cbe5940a6c6c5"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-keycloak-sqs-final2.json",
+        "sha256": "cbc150f691c77fb330cbcc55c6bf1bc9049608b4c1996fea19c467dc9ee681f6"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-keycloak-sqs-final3.json",
+        "sha256": "af51497a9b028f76751291f25492d079a95a71ee529356e75ef74a29707b047d"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-keycloak-sqs-final4.json",
+        "sha256": "da6ed8f3cf33fdc0cb8a2496f0417eee434514b750729aea7371d03e35ab4bed"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-keycloak-sqs.json",
+        "sha256": "00a34769e1b8d1ac7a9b72f28964aff56cb666cd8ed82d4e8fa37194502a27d7"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/traceability-require-complete-final-stale-index-attempt.json",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/traceability-require-complete-final.json",
+        "sha256": "c060778cc07883a74a5f82ec38ca9b43468d0bfe8204a4edb3bc0d8f5e0395f1"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/traceability-revised-final.json",
+        "sha256": "c060778cc07883a74a5f82ec38ca9b43468d0bfe8204a4edb3bc0d8f5e0395f1"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/traceability-revised-inprogress.json",
+        "sha256": "a573b254c10ddd9a4c0a61469f3b98c34f383bbaab336d31c89fdaad91a3fc0b"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-clients.json",
+        "sha256": "7ba085354c848adbac135be8e985c8342eb924aee2c9e799fa8a95aa29a69e0b"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-dotnet-audit.json",
+        "sha256": "5708376f1f333c4788125c56a3ba3fc09ee4a28f017920da5b7fd3fef8a090f6"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-dotnet-installed.log",
+        "sha256": "197466aceeaeeb132c7869961f6ac80625ffa018946c495e4d9ce1fcb61c3c2d"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-dotnet-source.log",
+        "sha256": "0a836032a839c2ed21c04b1afec96943c76c4ac0617e4317ea87390bcc2c6230"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-http-install.log",
+        "sha256": "cc49d9f9daf5d96a692aa54ce71a800292a84e993f8631d4d089a3e1369fa743"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-http-postgres.json",
+        "sha256": "fe5e592fdbe03c1eeb2e32c99a9018620c20b356a887541599092574f58439b8"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-node-audit.json",
+        "sha256": "206b5764e22fdd9571b69184b733dc06e1a3688c696fa6136836588965e3ef7a"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-node-build.log",
+        "sha256": "327f72dad8a813e56d3cc43890023e6d082b7ce85a897ca43f9c8e1e4dc95f83"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-node-installed.log",
+        "sha256": "c43ade3bef39dbdf81b138fc4939f3f349be41c14936cefd7f306bf56b9ea43f"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-node-pack.log",
+        "sha256": "c81c614203ce8a8cfb3960e749f4398a304e24c30ba4652ec4b98dd855189361"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-node-tests.log",
+        "sha256": "bb7bd3561807f0fa77d6410f01cc6c23032a35cf3ff23cd4f502969a1896a880"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-node-typecheck.log",
+        "sha256": "d4aa60aaf9aa396f34de5f32116f01f9c0c5d947ebf84b86394a3e9b4c15c6f0"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-draft-contracts.json",
+        "sha256": "b6822e909520fbdb37b15df22c1e9d41147a3737e8ee9276ebaf55ef27d84e24"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-node-interop-install.log",
+        "sha256": "5a5421dfb91b81aacbbe1f892f9b1aa4898f5c696fde915b3266245ad0b24d3c"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/workitems-candidate/candidate-receipt.json",
+        "sha256": "3b986350b25ec69b97770b01cc37a68771c934a2a69e3bdfe27766e2e2f21ddb"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/workitems-candidate/ecp-contracts-0.6.0.tar.gz",
+        "sha256": "7c4b845812608d3d5409f0073d309d9268e377d57d451538b97b0ddc4a08f6fa"
+      },
+      {
+        "path": "/workspace/github/hideaki-solutions-core/.wt/srm-platform/docs/srm-absorption/continuation-review.json",
+        "sha256": "f313d9774deb739282c19ca2fcc9cc56cc23aee64d7eefab1bb57577c1b3ded0"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-admission-review.json",
+        "sha256": "2676856c886c223b9340372031fa04b0e26f4000e0199769a8465c1d6b59c3ab"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-admission-preview.log",
+        "sha256": "e14f9de67e48a79c1f5ad31030deca8bbcca164a1f727e700de915257e2cd0fe"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-admission-gates-attempt1.log",
+        "sha256": "043d74abbb98be12a061d98b94512fc7fe2a08c0954cefe0166040039a326843"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/evidence-summary-before-owner-admission.json",
+        "sha256": "4752e85ebd8e6664df8941d0ea4448c39ff475b31399e27841a124960b0f7c95"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-admission-implementation-policy.json",
+        "sha256": "c23ef473014590c8136c63cea6d1efe8d6692825978172975ada13ec9aaac0cd"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/evidence-index-verification.json",
+        "sha256": "653a6a4cc0ef4a7bc9a5006fddc89b4cc0224f82801aba83b38c70a41d6ae568"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-admission-bundle.log",
+        "sha256": "3ed4b9c48534f59ee94796f4ce783435d8c15ce3bd5061c7895b8ef012854597"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/traceability-before-owner-admission.json",
+        "sha256": "8f69c0ff10a1f3606348225f766578766effaedf512fb343838bba7d67df0844"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/traceability-owner-authorized-complete.json",
+        "sha256": "93cc63b1d5021f0cc9c22b25a17cb3b2cde99b9643ec8cdf56a3c99afbe426ba"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/traceability-admission-inprogress.json",
+        "sha256": "e177f6118caf7bbe0a5c5fd9142d50973174233f3b54f6e0e285fcf1e7187285"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-admission-compatibility.json",
+        "sha256": "353983798b923b95431d0268f71db934d11c1e460bd8087209654968ae61af4e"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/ecp-admission-gates.log",
+        "sha256": "3ab037d2b45b8b3c99c9bc01bd88dc3438bf741e40698113cc8336b96e105d08"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/work-items-admission.json",
+        "sha256": "16703c68169bb5370ca62f9aec12f8bad143093e1c7f51297ccf3b045b462b82"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/acceptance-owner-closure-regressions.log",
+        "sha256": "55df81c03b1fc09a739803668e8b10b1a1cd87ac7e716666dddb1c968f87bb76"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/admission-static-checks.json",
+        "sha256": "e74c97a3ff64950fbda2850a3ffb5d5e5e09a72c0bfe9ad4de1f628984ede9b4"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/evidence/continuation-review-before-owner-admission.json",
+        "sha256": "c89e9ea3cd4f072f44719f7c90d898d109cd5901dcc0242dba60fc7fb924c3ad"
+      },
+      {
+        "path": "/workspace/github/hideaki-solutions-core/.wt/srm-platform/docs/architecture/contract-authority/work-items-admission.json",
+        "sha256": "82c495ab8fa6b150b22c96135e793b726decb18e9e249b5f0426246f86a54f5e"
+      },
+      {
+        "path": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/proposals/work-items/owner-acceptance.json",
+        "sha256": "e9bdf4ffd87cc37dbcfdcede04b52658a29e7c0bc1d1bb3d16a1e4482d84723d"
+      },
+      {
+        "path": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/proposals/work-items/admission.json",
+        "sha256": "b9672c9386a541dce9c80c53fa72f64d2959b8291e8acace2bc6d0a811f80aa4"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/workitems-admitted/ecp-contracts-0.6.0.tar.gz",
+        "sha256": "78a431353d2f25ecbaec3f37c7cdefc09778522315769fc148de5d95f16f3ed7"
+      },
+      {
+        "path": "/build/artifacts/srm-absorption/workitems-admitted-preview/candidate-receipt.json",
+        "sha256": "30498eadfb5bb80a3b7c2b2822a4752837a7fd4dc1c035800e4bb8298420e938"
+      }
+    ],
+    "installable_packages": [
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Ai.Guardrails.0.3.0.nupkg",
+        "sha256": "0a046e339f2675bf7045a7834a53e44fb7250dc74737494aee6f776a986af3c3"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Ai.TokenMetering.0.3.0.nupkg",
+        "sha256": "de0ed9fe3d78e474cc6a52efe91a568285301b8d02584217c9fc03d13b75f3be"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Api.AspNetCore.0.1.0.nupkg",
+        "sha256": "037cf82f2ee2922319bc87f13b09dee376c81f69b8c83e1ec9c2dd2155e6bf8c"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Api.Contracts.0.3.0.nupkg",
+        "sha256": "517cc85872abf3284db5d4f82e86c242eddfbcf367fca4d829694666a45751b8"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Application.Abstractions.0.1.0.nupkg",
+        "sha256": "6c75828b1b2733647927541e1512bcab3456c166f8561aac5417851556d8e615"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Application.Wolverine.0.1.0.nupkg",
+        "sha256": "e175192e06e9b3d236d3477190aba75a48f7ead7975a8ae9c55f669540dbd2a4"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Approval.0.4.0-experimental.1.nupkg",
+        "sha256": "15c638e6699d1aa0443da5bd45c279f4f5948ff5ba04167049c286b9cfeaf55d"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Approval.Postgres.0.1.0-experimental.1.nupkg",
+        "sha256": "009dad0089666e69ffca4ea5c032b8201390a11fe402acb9eab463478f80d632"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Auditing.0.4.0-experimental.1.nupkg",
+        "sha256": "60c64c39d3afa38249fea071bf46b51bd7b10e79c632ff8a26abb01442e05170"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Caching.Abstractions.0.1.0.nupkg",
+        "sha256": "d9e64412781e6669fb5c6e330a65523f48aaed029f8fe6ecc1d98dd7c406d1c1"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Caching.Redis.0.3.0.nupkg",
+        "sha256": "cd0c9b722fe94fdfec27f4288c046979b96f33ddd84bb8545bab8f27fa923485"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Configuration.0.4.0-experimental.1.nupkg",
+        "sha256": "21cf6c3720137aac78257996fa9d1ecb9d36c708b89c532bfe5d6529d4ab2f59"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Data.Contracts.0.3.0.nupkg",
+        "sha256": "278a9ddbb380a20952abd12718cfad0a0c37404d60442aa57db8fda79108f04d"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Directory.0.4.0-experimental.1.nupkg",
+        "sha256": "fba97f9eba8fc7ab848a14bd178adbf900fbfb8bdb16dd3f08ced6d9db9d5738"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Directory.EntraGraph.0.1.0-experimental.1.nupkg",
+        "sha256": "38f39122862bcca0e4c0c65f148f9711325da83025f01d27cae983645a47f3ce"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Directory.Ldap.0.3.1-experimental.1.nupkg",
+        "sha256": "86fe54ef52bcac521e51ca356cdae26d09688cca15a25852b3ddb9947129e0a7"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.ExecutionContext.Abstractions.0.1.0.nupkg",
+        "sha256": "685eb50c6bca8006551d5c8b8fba818aaedb9dc36eae5ca5ddac01edd8b307b8"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.ExecutionContext.AspNetCore.0.1.0.nupkg",
+        "sha256": "8913d3c32e3e1ca30b001505d9429e8ae12497a9d0e4d9c764625c8d73fa0d89"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.ExecutionContext.MultiTenancy.0.1.0.nupkg",
+        "sha256": "79402c81130a4f4f06e349619de490f97d5307a7b42f5663e0213591d9b8cc26"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.FeatureFlags.0.3.0.nupkg",
+        "sha256": "f49ffdff8ca6a3359ce40dd1731093c76906d2bc7be10d9559a7eed94647381a"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Http.CorrelationId.0.3.0.nupkg",
+        "sha256": "13721f555985669f1f1a76d422fd77d8da708ab05bfe45e1791337e62512c7f0"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Http.SecurityHeaders.0.3.0.nupkg",
+        "sha256": "015f189535bf9a65942d52045d969bb342debcc7e6159a24672cabf8e24ffe9d"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Identity.Keycloak.0.3.0.nupkg",
+        "sha256": "ea08d9de8b1668fc37fc1b4a1db5ce514f9664fdf06694bdf07fc74d6ed6b179"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Logging.0.4.0-experimental.1.nupkg",
+        "sha256": "8d37e269aad521df31edc3fceeea037424d74cca41e9c6a1330ff699a48b09ee"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Abstractions.0.3.1.nupkg",
+        "sha256": "cf7bf0863fe7abcb2dade816965e4559dda1952ea1b5ad8d9987903e3c4eea45"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Contracts.0.3.1.nupkg",
+        "sha256": "df85d156024a84f6d81a7fd005d57ae665fd759153807c54f90a967f2880ed48"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Inbox.0.3.1.nupkg",
+        "sha256": "4a0ce427e0e7e454b772abd19594a66b77d0e31f52fdec7d88480e9093913b38"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Inbox.PostgreSql.0.1.0-draft.4.nupkg",
+        "sha256": "e8351c8d9db72d33e6f0256d2542a5f1bfc4ef5145b96ebb6298db86e3d825b0"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Kafka.0.2.0-draft.1.nupkg",
+        "sha256": "45f6f250b48d10446fcc1859219bda7745d919a10386a961530093b4e8637263"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Outbox.0.4.0-draft.1.nupkg",
+        "sha256": "4fc6963d8c68584aced448b9e40f5ad707ddc4faf4cd35af85e212a0bd87caea"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Outbox.PostgreSql.0.1.0-draft.1.nupkg",
+        "sha256": "888d15025b6117836489861a630d6265b55ec8b20a09d6d254b911525e6e255c"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.RabbitMq.0.1.2.nupkg",
+        "sha256": "70d1da75799caac2e87461bd7b44a377a443f38d9daade66a05d37aa472ce2ca"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Sqs.0.1.0-experimental.1.nupkg",
+        "sha256": "bd1657a52f39de9d7a683f4022f79554b74c49627180b6b5594093b84ca0cab1"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Wolverine.0.1.1.nupkg",
+        "sha256": "ab87bc00ba9042c8f4c0008292cd1261bdc8a7e030ffb575edbe82b47ea3504d"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Middleware.0.3.0.nupkg",
+        "sha256": "e135c13fb8126e9ceafe77b0d80469fadad50ab3c5e420ae22d2505d217da509"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.MultiTenancy.0.3.0.nupkg",
+        "sha256": "5802348a0ef51d2a51099f723908f8acbd604cf18b3a35719d337bda42d4648f"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Notifications.0.3.0.nupkg",
+        "sha256": "9d499d69f0ec09dcc3b89b67d1fae3745359e6c5598e8ff8f7363e49d0900435"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Notifications.Channels.0.3.0.nupkg",
+        "sha256": "d568611f64299a194cd639e7b3aa074ae155bff70cd02b772db8c0a1e0c57de8"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Notifications.Ecp.0.1.0-experimental.1.nupkg",
+        "sha256": "842de0abb3bb8c97e986bdb35ef1b4413c2b757f5b2bed486e1a92569942908e"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Observability.0.1.1-experimental.1.nupkg",
+        "sha256": "9ba2989c4fabd3ef0daae878ff3125b45afe1d95701a72ebd4de13c4c3802ca8"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Persistence.0.3.0.nupkg",
+        "sha256": "df1f021ff320f9c8408301bfd4b599a8b4a9f88ef05d841e8451c5c658ded440"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Resilience.0.3.0.nupkg",
+        "sha256": "a747e0774227f88bbb433b8a3759c6db60d934444a1c847d1e05dee009ae5b4b"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Secrets.0.3.0.nupkg",
+        "sha256": "dd1b9bfbed4d9e0db21876d807a434a86f40c1251c578ae96b0cc1015d1e4aa9"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Authn.0.3.0.nupkg",
+        "sha256": "346133830f5c551a3e1a23b8a0a8c811377b2ba4c880e471de91c8e3442a8fe9"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Authn.Saml.0.1.0-experimental.1.nupkg",
+        "sha256": "fdf8a8fa086602c7f0539b7d8aa9c2041ae844a7f453b5551cb156fc103bdc1b"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Authz.0.4.0-experimental.1.nupkg",
+        "sha256": "9a00b9babaec116fadfc6990abef8834a521f48bc6508ea6de34f62498867bf7"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Authz.Opa.0.3.1-experimental.1.nupkg",
+        "sha256": "6454d9706505c7b154092b4f17d05c03a0ba8eecdd166f5a8d6e904e3b7bccb7"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Mfa.0.1.0-experimental.1.nupkg",
+        "sha256": "c9560b00bb690cf930cf60ee92e70a26530295641c8507457ee5edf357302d68"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Mfa.Redis.0.1.0-experimental.1.nupkg",
+        "sha256": "7af1010c3c352d63ce816011abb73b0dbd7d2a9382ed96b421e16bbdef82ec4b"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.ServiceDefaults.0.3.0.nupkg",
+        "sha256": "3da4068f5e04d05615d4c6099071e1461766eac4fcb18551ce811ea081c94536"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.WorkItems.Ecp.0.1.0-experimental.1.nupkg",
+        "sha256": "1ff65486d98e0f4d1b76f3d0303b9eeaf13510a970e2b8fffeaa1b4c5082f2ce"
+      },
+      {
+        "stack": "node",
+        "path": "/build/artifacts/srm-absorption/node-work-items-candidate/review-1/hideakisolutions-platform-node-0.3.0-experimental.0.tgz",
+        "sha256": "ded001693f5510835fc837eccb6f5548706ae3a56b98b55b2c696197045bd7ab"
+      },
+      {
+        "stack": "react",
+        "path": "/build/artifacts/srm-absorption/frontend-auth-tarballs/hideakisolutions-ds-tokens-0.6.0.tgz",
+        "sha256": "877234025e22931fa0f0b752d7eeca547f704aab181442378fd182be160a38f5"
+      },
+      {
+        "stack": "react",
+        "path": "/build/artifacts/srm-absorption/frontend-auth-tarballs/hideakisolutions-ui-react-primitives-0.13.0.tgz",
+        "sha256": "8ef0135a1e038362cd5be34560e654175103c13ff6d54f6c6b825a1faf030262"
+      },
+      {
+        "stack": "react",
+        "path": "/build/artifacts/srm-absorption/frontend-auth-tarballs/hideakisolutions-ui-react-forms-0.4.2.tgz",
+        "sha256": "40234ac117459d6d94645d67da5c9a76f10b270bb26d2b596bb0fca2ef8f1d9b"
+      },
+      {
+        "stack": "react",
+        "path": "/build/artifacts/srm-absorption/frontend-auth-tarballs/hideakisolutions-ui-react-layout-0.8.0.tgz",
+        "sha256": "face74b814f80ac6d05c270e45184dcf894be5ce6fdc4d631203a00d7665db0e"
+      },
+      {
+        "stack": "react",
+        "path": "/build/artifacts/srm-absorption/frontend-auth-tarballs/hideakisolutions-ui-react-auth-0.0.2.tgz",
+        "sha256": "e8cfa9dc518c4807c23793119c23981f00b23fe4792219e996690f1029ab3b41"
+      },
+      {
+        "stack": "dotnet",
+        "path": "/build/artifacts/srm-absorption/work-items-canonical-packages/Hideakisolutions.Platform.WorkItems.Ecp.0.1.0-experimental.2.nupkg",
+        "sha256": "cc538aaf6bbd813ce55b7164b6d148fcd19ba1c0e4fbf197ce667ad295f3d021"
+      },
+      {
+        "stack": "node",
+        "path": "/build/artifacts/srm-absorption/work-items-canonical-packages/hideakisolutions-platform-node-0.3.0-experimental.1.tgz",
+        "sha256": "8855b0f8786d12b3b32304e50ea2151331ba5c7cf8f3c58477ea529b05abdb43"
+      }
+    ],
+    "open_gates": [],
+    "publication": "not performed",
+    "merge": "not performed",
+    "deployment": "not performed",
+    "adoption": "not claimed",
+    "live_jira_readonly": {
+      "status": "PASS",
+      "sites": 2,
+      "checks_per_site": 10,
+      "GET_requests_per_site": 12,
+      "mutations": 0,
+      "commands_authorized": false,
+      "scope": "provider and neutral get/search/transitions; not live SDK HTTP or writes"
+    },
+    "updated_at_utc": "2026-11-13T17:20:55.583324+00:00",
+    "prior_source_revisions": {
+      "backend": {
+        "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-backend",
+        "revision": "6402d187b89cc7b794cb55dd6497da8320686107",
+        "branch": "feature/srm-absorption"
+      },
+      "frontend": {
+        "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-frontend",
+        "revision": "c63b15433df02639f0ec87bc6c20487c0230b488",
+        "branch": "feature/srm-absorption"
+      },
+      "ecp": {
+        "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp",
+        "revision": "77ac826a05eb9348745802aac5806a338e7c6d11",
+        "branch": "feature/srm-absorption"
+      }
+    },
+    "prior_tests": {
+      "dotnet_source": {
+        "projects": 48,
+        "passed": 1242,
+        "failed": 0
+      },
+      "dotnet_installed": {
+        "status": "PASS",
+        "test_source_revision": "6402d187b89cc7b794cb55dd6497da8320686107",
+        "test_projects_executed": 48,
+        "cases_executed": 1242,
+        "skips": 0,
+        "restored_archive_integrity": "verified"
+      },
+      "ecp": {
+        "executed": 816,
+        "skipped": 4,
+        "failed": 0,
+        "contracts_registry_coverage": "PASS"
+      },
+      "react": [
+        {
+          "react": "18.3.1",
+          "installed": true,
+          "typecheck": "passed",
+          "tests": 42,
+          "failed": 0,
+          "browserBundle": "passed",
+          "browserModules": 40
+        },
+        {
+          "react": "19.2.6",
+          "installed": true,
+          "typecheck": "passed",
+          "tests": 42,
+          "failed": 0,
+          "browserBundle": "passed",
+          "browserModules": 34
+        }
+      ],
+      "node": {
+        "full_suite_before_last_review_fix": 717,
+        "focused_after_fix": 108,
+        "full_suite_repeated_after_fix": false,
+        "typecheck_build_install_tamper": "PASS"
+      }
+    },
+    "accepted_dispensations_not_test_passes": [
+      "jira-write-smoke",
+      "graph-external-smoke",
+      "teams-external-smoke"
+    ],
+    "implementation": "COMPLETE",
+    "admission": "COMPLETE - owner-accepted ADR0016, local ECP bundle0.6.0 and registry25, no publication",
+    "process_nonconformance": {
+      "status": "NONCONFORMANT",
+      "criterion": "Owner revised plan section4 and global AGENTS.md section3h: maximum3 correction rounds",
+      "observed": "10 development attempts before recorded independent diagnosis",
+      "historical_status": "preserved; not retroactively conformant",
+      "owner_decision": "Exceptional closeout accepted explicitly by direct “Autorizado!” reply, for this delivery only.",
+      "owner_acceptance_ref": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/proposals/work-items/owner-acceptance.json"
+    },
+    "cleanup": "owned resources, same-UID process references, volume event window, temporary consumers/tools and identity resources verified; scoped limits in receipts",
+    "infrastructure_issues": [
+      "INFRA-0051: global NuGet cache differs; isolated restore mitigates, shared cache untouched",
+      "INFRA-0052: Podman125 warning; owned resource absence proven, shared process not killed"
+    ],
+    "review_resolution": "ACCEPTED_EXCEPTION - specific owner authorization; historical process NONCONFORMANT unchanged",
+    "accepted_process_exceptions_not_test_passes": [
+      "independent-review"
+    ]
+  }
+}

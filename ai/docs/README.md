@@ -1,11 +1,15 @@
 # AI
 
 Cross-cutting **AI capability contracts** for the platform. Per workspace
-ADR-0003 (external workspace ADR, not in this repository; the target was not found and the previous relative link pointed outside the repo), `platform-core` owns the
-AI contracts (no separate `ai-core` repo yet); packages are projected in the owning lanes
+ADR-0003 (external workspace ADR, not in this repository; the target was not found and the previous relative link pointed outside the repo), `platform-core` retains the
+legacy AI contracts (no separate `ai-core` repo yet); packages are projected in the owning lanes
 (backend-core, ...).
 
 ## Contracts
+
+Canonical provider-access authority belongs to ECP `ai.provider-access@0.1.0`.
+
+- `contracts/{provider-connection,inference-request,inference-response,provider-error}.schema.json` — compatibility aliases backed by a hash-verified candidate snapshot. See [provider access](provider-access.md) for verification boundaries.
 
 - `contracts/token-usage.schema.json` — per-call LLM token usage and cost (cost in integer
   **micro-units** to avoid float drift). Source of truth for AI telemetry and cost governance;

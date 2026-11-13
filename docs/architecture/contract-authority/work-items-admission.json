@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "authority": "ECP",
+  "scope": [
+    "workitem.query@0.1.0",
+    "workitem.command@0.1.0"
+  ],
+  "contracts_version": "0.6.0",
+  "source_state": "local registered contracts; unpublished working tree",
+  "registry": {
+    "path": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/catalog/capability-registry.json",
+    "sha256": "32b34dfe875bece7a9247de50254f6c875bc04854bf57be318d22cd4f9135e5a"
+  },
+  "bundle": {
+    "path": "/build/artifacts/srm-absorption/workitems-admitted/ecp-contracts-0.6.0.tar.gz",
+    "sha256": "78a431353d2f25ecbaec3f37c7cdefc09778522315769fc148de5d95f16f3ed7"
+  },
+  "admission_receipt": {
+    "path": "/build/artifacts/srm-absorption/evidence/work-items-admission.json",
+    "sha256": "16703c68169bb5370ca62f9aec12f8bad143093e1c7f51297ccf3b045b462b82"
+  },
+  "legacy_global_pin": "contracts-v0.4.0 (unchanged)",
+  "six_unknown_authorities": "unchanged",
+  "note": "Additional work-items surface only; not registry publication or product adoption."
+}
