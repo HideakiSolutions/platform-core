@@ -1,6 +1,10 @@
-# ADR-012: Explicit vendor access modes for AI inference
+# ADR-PA-001: Explicit vendor access modes for AI inference
 
 Status: proposed. Date: 2026-11-13.
+
+Historical candidate identifier: ADR-012. Renamed during consolidation to avoid
+colliding with the existing delivery coordination ADR-012; its proposal and
+acceptance status are unchanged.
 
 ## Context
 
