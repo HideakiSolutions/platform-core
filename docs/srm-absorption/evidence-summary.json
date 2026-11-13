@@ -14,7 +14,7 @@
     },
     "ecp": {
       "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp",
-      "revision": "3dd27784d8b543625d9cd69b3580f3575aa1d9db",
+      "revision": "77ac826a05eb9348745802aac5806a338e7c6d11",
       "branch": "feature/srm-absorption"
     }
   },
@@ -34,7 +34,7 @@
       "restored_archive_integrity": "verified"
     },
     "ecp": {
-      "executed": 808,
+      "executed": 816,
       "skipped": 4,
       "failed": 0,
       "contracts_registry_coverage": "PASS"
@@ -154,6 +154,38 @@
     {
       "path": "/build/artifacts/srm-absorption/evidence/scratch-cleanup.json",
       "sha256": "219b597dfdc33a1eb112940d03644ccad4b76e803d007e41e39a0fd1392e3970"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/jira-live-readonly-cambioreal.json",
+      "sha256": "5f5262d00558f621a393f306d36bf9929a6ab0c9ba793eef4208cdf14298925a"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/jira-live-readonly-4smart.json",
+      "sha256": "bd562b15a0bdaa117e615d86c4269a3cd3f6199bc46078df56fc4a8317c11a3e"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/jira-live-readonly-cambioreal-attempt1.json",
+      "sha256": "8c389ef4dcdf076788f2a39db719670426f62f9632c33e49586a533910598b47"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/jira-live-readonly-4smart-attempt1.json",
+      "sha256": "d1e26afb5b5a48ae49402520e92371184e418947950b18b0bec680d652f396e3"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/jira-parent-projection-tests.log",
+      "sha256": "3f57e9dd08ba475eb014ca0ecbb5ecc04b362993922cf24cf372921e9200d9d3"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/ecp-jira-live-readonly-gates.log",
+      "sha256": "6b3bb47bd28acc0f77b6b74485887a290cb8889aa603f4d164527ae683b7a5af"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/ecp-jira-live-readonly-gates-attempt1.log",
+      "sha256": "551f1989faa7491a6b8024389435c4ad077e21cd2411ef6279b939ab4143bf86"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/jira-readonly-changed-secret-patterns.json",
+      "sha256": "a9a4d87b1a691a7efb422b35b543e06f3c4814892b375773225b6c7bf8fe46d3"
     }
   ],
   "installable_packages": [
@@ -444,12 +476,22 @@
     }
   ],
   "open_gates": [
-    "designated external Graph/Jira/Teams/SQS/IdP targets and smokes",
+    "designated external Graph/Teams/SQS/IdP targets and smokes",
+    "Jira commands: designated writable test project and explicit authorization; reads already passed",
     "work-items owner admission/promotion/service metadata",
     "integrated live reference journeys"
   ],
   "publication": "not performed",
   "merge": "not performed",
   "deployment": "not performed",
-  "adoption": "not claimed"
+  "adoption": "not claimed",
+  "live_jira_readonly": {
+    "status": "PASS",
+    "sites": 2,
+    "checks_per_site": 10,
+    "GET_requests_per_site": 12,
+    "mutations": 0,
+    "commands_authorized": false,
+    "scope": "provider and neutral get/search/transitions; not live SDK HTTP or writes"
+  }
 }

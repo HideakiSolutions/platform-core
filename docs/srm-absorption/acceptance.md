@@ -60,7 +60,14 @@ actual source/package state tested. Their path is not a publication claim.
   .NET; estimate and actual-work remain distinct; all dry-runs have zero provider/journal
   effects; audit context persists and forced audit failure rolls back journal begin.
   Receipt `evidence/work-items-installed-http-postgres.json`. This is not live Jira.
-- Graph/Jira/Teams/SQS/IdP: credentials may exist in pass, but those test targets are
+- Jira real: `cambio-real/jira-api-token` and `4smart/confluence-api-token` both passed
+  provider and neutral get/search/transitions checks, GET-only with zero mutations.
+  Receipts `evidence/jira-live-readonly-cambioreal.json` and
+  `evidence/jira-live-readonly-4smart.json`; initial failed projections are retained as
+  `*-attempt1.json`. Missing nested parent project was diagnosed independently and
+  resolved through an authorized bounded metadata GET with exact identity/project checks.
+  No command/write smoke is authorized or claimed.
+- Graph/Teams/SQS/IdP: credentials may exist in pass, but those test targets are
   not yet identified for this execution. Do not infer permission for a customer
   tenant, Jira project, external recipient or channel merely from a credential name.
 

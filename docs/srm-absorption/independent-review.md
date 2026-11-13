@@ -125,8 +125,10 @@ dessas execuções não foi salvo em arquivo e não foi recriado como se fosse l
   entrega, com a distinção de evidência descrita acima.
 - Approval assíncrono PostgreSQL .NET: duas passagens concluídas sem achado material;
   escopo e limites da evidência live registrados acima.
-- Graph, Jira, Teams, SQS e IdP não têm integração live comprovada por esta
-  revisão. Falta de alvo identificado é gate bloqueado, nunca PASS.
+- No fechamento anterior à investigação de 2026-11-13T15:32Z, Graph, Jira,
+  Teams, SQS e IdP não tinham integração live comprovada por esta revisão.
+  O adendo 0068 abaixo registra a validação posterior de leitura Jira. Comandos
+  Jira e integrações live Graph/Teams/SQS/IdP continuam fora da evidência aprovada.
 - Tarballs/NuGets locais demonstram instalação no escopo testado; não demonstram
   publicação, adoção ou comportamento em produção.
 - Correlação omitida em recibo ECP é permitida pelo contrato. O cliente verifica
@@ -151,7 +153,7 @@ público. Clientes e harness permanecem candidatos explícitos.
 | Achado cego/confronto | Correção e evidência de fechamento |
 |---|---|
 | `_get` validava projeto, mas uma resposta para outro item do mesmo projeto redirecionava a mutação depois da autorização do item solicitado. | Exige igualdade da chave retornada com a referência autorizada antes do efeito. Repro próprio com pedido `TEST-1` e resposta `OTHER-9`: antes executava PUT em `OTHER-9`; depois retorna failed sem POST/PUT. |
-| `_item` inventava o projeto do parent a partir do projeto do child. | Rejeita referência sem projeto comprovado correspondente. Mesmo fake antes produzia referência falsa; depois retorna `provider_failure`. Provider que omite esse dado passa a falhar explicitamente; suporte live a itens parentados ainda precisa ser verificado. |
+| `_item` inventava o projeto do parent a partir do projeto do child. | Na estratégia anterior à investigação live de 2026-11-13T15:32Z, passou a rejeitar referência sem projeto comprovado: o fake deixou de produzir referência falsa e retornou `provider_failure`. A entrega 0068, revisada abaixo, acrescenta enriquecimento autorizado antes da projeção pura e valida leitura de amostras parentadas reais. |
 | Busca/transitions não reavaliavam cancelamento depois do GET final. | Checkpoints adicionados após ambos os reads. Repro próprio de cancelamento durante search mudou de `ok` para `failed/cancelled`; regressão cobre ambas as operações. |
 | Node aceitava journal de resume com execução/fingerprint diferentes dos solicitados. | Binding explícito de `execution_id` e `plan_sha256` reinspecionado, com regressão. |
 | .NET aceitava `actual_work.started_at` divergente e backlog `partial` com todos os itens completed. | Instantes são comparados, aceitando offset equivalente; partial exige item incompleto e conserva conjunto/ordem original de IDs. TRX final focado lido: 85 executados/aprovados, zero falhos. |
@@ -191,8 +193,68 @@ O schema e servidor HTTP são removidos antes do recibo de sucesso.
 O provider desse smoke é expressamente `recording-jira-double-not-live-jira`. O
 servidor injeta identidade sintética fixa; não comprova autenticação HTTP de
 produção. Os fluxos entre SDKs são sequenciais; não se afirma teste concorrente de
-comandos HTTP. Queries de itens parentados também não são demonstradas nesse
-smoke. Nenhum desses testes equivale a integração com Jira real, aceitação do
+comandos HTTP. Queries de itens parentados não foram demonstradas naquele
+smoke; a entrega 0068 abaixo registra a verificação posterior com GETs reais.
+Os testes daquele smoke não equivalem a integração com Jira real, aceitação do
 proprietário, promoção do contrato ou adoção por consumidores reais. A revisão do
 candidato fecha sem achado material aberto no escopo confrontado; a admissão
 permanece independente e pendente.
+
+## Adendo 0068: diagnóstico e leitura Jira real
+
+Escopo autorizado: somente leitura com as duas credenciais existentes indicadas
+pelo proprietário. Não houve autorização de comandos Jira. A implementação da
+nova estratégia e sua primeira revisão são uma entrega distinta, apoiada em
+diagnóstico independente depois de atingido o limite de três rodadas anterior.
+Referência ECP: `docs/experimental/work-items/ADR-READONLY-PARENT-PROJECTION.md`.
+Revisão ECP conferida ao fechamento:
+`77ac826a05eb9348745802aac5806a338e7c6d11`, checkout sem alterações pendentes.
+
+Os recibos iniciais de 2026-11-13T15:32–15:33Z foram preservados como
+`jira-live-readonly-*-attempt1.json`. Autenticação e reads internos passaram;
+get/search neutros falharam. A investigação desta revisão executou somente GETs,
+com a guarda de transporte, e produziu apenas shapes/booleans/causas, sem persistir
+conteúdo, IDs ou títulos de itens nem valores de credenciais. Nos dois ambientes:
+
+- Parent e seus fields existiam, mas `parent.fields.project` estava ausente.
+- Projeto, título, tipo e status do child eram válidos para a projeção.
+- Remover apenas parent da cópia em memória fazia a projeção passar; remover
+  apenas description mantinha a falha. O ADF não era a causa dessas amostras.
+- GET mínimo do parent com `fields=project` comprovou chave exata e mesmo projeto.
+  Enriquecer apenas essa metadata na cópia fez get e search passarem.
+
+A leitura cega da nova entrega confirmou `_project_item` antes da projeção pura:
+projeto do child verificado, autorização object do parent antes do GET adicional,
+segmento percent-encoded no origin configurado, somente `fields=project`, chave
+exata e mesmo projeto exigidos. O cache é local à requisição, limitado a 100
+parents; não há caminhada recursiva de ancestrais. A cópia enriquecida preserva
+o objeto original. Negação, identidade/projeto divergentes e cancelamento continuam
+falhas explícitas, sem inferência de projeto ou omissão silenciosa do parent.
+
+`JiraHttpTransport.request_bounded` limita o timeout passado ao transporte ao menor
+valor entre budget restante e configuração, sem alterar o timeout compartilhado.
+A guarda read-only também cobre essa chamada. Transportes legados injetados
+continuam responsáveis por cumprir seus limites, conforme a composição existente.
+Os testes lidos cobrem negação antes do GET, chave/projeto ausentes ou divergentes,
+child estrangeiro, cache por requisição, ausência de recursão, cancelamento e
+isolamento do timeout. Não foi encontrado achado material aberto nesta entrega.
+
+No confronto final, foram lidos estes recibos sob
+`/build/artifacts/srm-absorption/evidence/`:
+
+| Evidência | Resultado no escopo registrado |
+|---|---|
+| `jira-live-readonly-cambioreal.json`, observado em 2026-11-13T15:37:44Z | PASS: dez checks; doze GETs e zero mutações. Inclui get/search/transitions neutros. |
+| `jira-live-readonly-4smart.json`, observado em 2026-11-13T15:38:09Z | PASS: dez checks; doze GETs e zero mutações. Inclui get/search/transitions neutros. |
+| `jira-parent-projection-tests.log` | 28 testes aprovados, zero falhos. |
+| `ecp-jira-live-readonly-gates.log` | 816 testes, quatro skips, contratos/governança, registry com 23 capabilities e coverage aprovados. |
+
+A primeira tentativa do gate foi preservada em
+`ecp-jira-live-readonly-gates-attempt1.log`: um failure e três errors decorrentes
+do heading obrigatório ausente no intent. O heading foi corrigido antes do rerun;
+a evidência negativa não foi sobrescrita nem tratada como PASS.
+
+O resultado atual comprova reads nas amostras dos dois sites autorizados. Não
+comprova comandos, todas as combinações de hierarquia/paginação/ACL, exposição de
+serviço público, admissão do draft, publicação ou adoção. A revisão alterou somente
+este relatório; as correções de implementação ficaram com o executor.

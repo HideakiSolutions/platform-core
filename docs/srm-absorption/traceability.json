@@ -416,13 +416,13 @@
       "adoption_state": "not-claimed",
       "remaining_acceptance": [
         "Owner admission and full canonical service metadata/promotion pending; default dispatch unchanged.",
-        "Identified live Jira test site/project/actor."
+        "Jira command smokes require a designated writable test project and explicit write authorization; both sites already passed real read-only provider and neutral queries."
       ],
       "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
       "limitations": [
         "Installed SDK interop uses real HTTP/shared PostgreSQL with a recording Jira double, not a live Jira provider.",
-        "Parent references without a verified matching provider project fail explicitly; verify against designated live fixtures.",
-        "Explicit pure synchronous authorization/secret/transport composition callbacks must enforce their own bounded timeouts; runtime checks between calls."
+        "Explicit pure synchronous authorization/secret/transport composition callbacks must enforce their own bounded timeouts; runtime checks between calls.",
+        "Missing nested parent project is resolved by an object-authorized bounded GET and exact identity/project checks; validated on two real Jira sites with zero mutations."
       ]
     },
     {
@@ -1226,7 +1226,7 @@
     {
       "id": "external-targets",
       "status": "BLOCKED",
-      "reason": "Designated test Graph tenant/profile, Jira site/project/actor, Teams channel, SQS queue and IdP realm/step-up journey not identified; credentials availability is not the missing evidence."
+      "reason": "Graph tenant/profile, Teams channel, SQS queue and IdP realm/step-up targets remain unidentified. Real Jira GET-only provider and neutral queries passed on both authorized sites; commands still need a designated writable test project and authorization."
     },
     {
       "id": "work-items-admission",

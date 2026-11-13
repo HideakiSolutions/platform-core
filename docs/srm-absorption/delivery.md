@@ -3,7 +3,7 @@
 Classificação: **componentes experimentais utilizáveis em consumidores isolados; objetivo
 integral ainda incompleto**. As capacidades selecionadas foram incorporadas aos contratos
 existentes, com adapters opcionais, pacotes locais e consumidores de referência. Os alvos
-externos e a admissão do novo contrato de work items continuam pendentes. Isso não é uma
+externos restantes, as operações Jira de escrita e a admissão do novo contrato de work items continuam pendentes. Isso não é uma
 declaração de disponibilidade de produção, publicação ou adoção.
 
 ## Resultado utilizável
@@ -40,8 +40,9 @@ contêm hashes e escopo; não foram substituídos por uma narrativa de sucesso. 
 | .NET pacotes | 51 NuGets no feed local; 48 projetos e 1.242 testes novamente aprovados em consumidor isolado, zero skips. Integridade dos arquivos restaurados e source revision verificados. O teste não usa ProjectReference para produção. |
 | Node | Suíte completa de 717 testes antes da última correção de vínculo do journal; depois dela, 108 testes focados, typecheck, build e instalação/tamper do pacote aprovados. Recibos preservam essa sequência, sem somar contagens como uma nova suíte. |
 | React | Cinco tarballs instalados; React 18.3.1 e 19.2.6: 42 testes em cada, typecheck e bundle sem dependências backend; axe/teclado/foco/temas no escopo dos testes. Não é smoke de IdP ou revisão visual em produção. |
-| ECP | 808 testes executados, quatro ignorados, sem falhas; contratos, registry de 23 capacidades e coverage aprovados. |
+| ECP | 816 testes executados, quatro ignorados, sem falhas; contratos, registry de 23 capacidades e coverage aprovados. |
 | Integração work items | Clientes .NET/Node instalados, HTTP real e PostgreSQL compartilhado com TLS verificado; **Jira simulado**. Criação única entre stacks, retomada parcial, estimativa distinta de trabalho realizado, dry-runs sem efeitos e rollback da auditoria. |
+| Jira real somente leitura | Duas credenciais/sites autorizados: autenticação, projetos/tipos, item/busca e transições; neutral get/search/transitions passaram, somente GET e zero mutações. A projeção de parent foi corrigida após diagnóstico independente. |
 | Infra compartilhada | Smokes reais de Redis (OTP/TOTP concorrentes), PostgreSQL (aprovações/journal) e SMTP no Mailpit. Os recibos detalham concorrência, recuperação e limpeza. |
 | Dependências e código | Auditorias dos novos adapters sem vulnerabilidades reportadas nos recibos; typecheck/compilação, gates dos repositórios e diff-check. Varredura limitada de padrões de segredos nos arquivos alterados passou; não equivale a um scanner exaustivo. |
 | Revisão independente | Duas passagens; achados corrigidos, três rodadas no runtime WorkItems; limites e evidências em [independent-review.md](independent-review.md). |
@@ -51,15 +52,17 @@ do ZIP. Esses artefatos não foram publicados em registry.
 
 ## Pendências que impedem encerrar o objetivo integral
 
-1. Identificar os alvos de teste: Graph tenant/perfil, Jira site/projeto/ator,
-   Teams canal, SQS fila e IdP realm/tenant/jornada de step-up. O usuário informou
+1. Identificar os alvos restantes: Graph tenant/perfil, Teams canal, SQS fila e IdP
+   realm/tenant/jornada de step-up. Jira de escrita exige projeto de teste e autorização
+   explícita; as duas credenciais existentes já foram usadas com êxito somente para leitura. O usuário informou
    que credenciais existem em `pass`; o bloqueio é a identificação dos ambientes
    de teste, não uma alegação de falta de credenciais. Não foi usado um projeto
    Jira de cliente por inferência.
 2. Executar os smokes externos e a jornada integrada nesses alvos. HTTP/PG com Jira
    simulado não comprova Jira real, autenticação HTTP de produção ou concorrência
-   HTTP entre SDKs. Consultas de itens com parent precisam validar a projeção real;
-   projeto de parent ausente ou divergente falha explicitamente.
+   HTTP entre SDKs. Consultas reais de itens com parent passaram nos dois sites após enriquecimento autorizado
+   do projeto do pai; identidade ou projeto divergente continuam negados. Escritas reais
+   não foram tentadas nem ficam autorizadas por esse resultado de leitura.
 3. Aceite do proprietário para admissão dos novos contratos CQRS, promoção e
    metadados canônicos de serviço. A implementação experimental concreta já está
    disponível para revisão; o aceite não bloqueou seu desenvolvimento.
