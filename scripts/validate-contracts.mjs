@@ -102,23 +102,29 @@ for (const file of files) {
 // ECP-owned aliases resolve only through an integrity-checked vendored snapshot.
 // Missing files or hash drift fail closed; validation never fetches the network.
 const snapshotLock = path.join(root, ".platform/ecp/ai.provider-access.lock.json");
-try {
-  const lock = JSON.parse(readFileSync(snapshotLock, "utf8"));
-  if (lock.capability !== "ai.provider-access" || lock.version !== "0.1.0"
-    || !Array.isArray(lock.files) || lock.files.length !== 4) throw new Error("invalid ECP snapshot lock");
-  for (const entry of lock.files) {
-    const file = path.resolve(root, entry.path);
-    if (!file.startsWith(path.join(root, ".platform/ecp/ai.provider-access/"))) throw new Error("snapshot path escapes owning directory");
-    const bytes = readFileSync(file);
-    if (createHash("sha256").update(bytes).digest("hex") !== entry.sha256) throw new Error(`snapshot hash mismatch: ${entry.path}`);
-    const schema = JSON.parse(bytes);
-    if (!schema.$id?.startsWith("https://contracts.hideakisolutions.local/capabilities/ai.provider-access/")) throw new Error("unexpected ECP schema authority");
-    if (ids.has(schema.$id)) throw new Error(`duplicate ECP schema: ${schema.$id}`);
-    ids.set(schema.$id, entry.path);
-    records.push({ relative: entry.path, schema });
+// A standalone module/stub fixture has no provider aliases. Once aliases or a
+// snapshot are present, their snapshot remains mandatory and fail closed.
+const needsProviderSnapshot = existsSync(snapshotLock)
+  || [...stubIds.values()].some(({ capability }) => capability === "ai.provider-access");
+if (needsProviderSnapshot) {
+  try {
+    const lock = JSON.parse(readFileSync(snapshotLock, "utf8"));
+    if (lock.capability !== "ai.provider-access" || lock.version !== "0.1.0"
+      || !Array.isArray(lock.files) || lock.files.length !== 4) throw new Error("invalid ECP snapshot lock");
+    for (const entry of lock.files) {
+      const file = path.resolve(root, entry.path);
+      if (!file.startsWith(path.join(root, ".platform/ecp/ai.provider-access/"))) throw new Error("snapshot path escapes owning directory");
+      const bytes = readFileSync(file);
+      if (createHash("sha256").update(bytes).digest("hex") !== entry.sha256) throw new Error(`snapshot hash mismatch: ${entry.path}`);
+      const schema = JSON.parse(bytes);
+      if (!schema.$id?.startsWith("https://contracts.hideakisolutions.local/capabilities/ai.provider-access/")) throw new Error("unexpected ECP schema authority");
+      if (ids.has(schema.$id)) throw new Error(`duplicate ECP schema: ${schema.$id}`);
+      ids.set(schema.$id, entry.path);
+      records.push({ relative: entry.path, schema });
+    }
+  } catch (error) {
+    fail(`ECP provider-access snapshot: ${error.message}`);
   }
-} catch (error) {
-  fail(`ECP provider-access snapshot: ${error.message}`);
 }
 
 const ajv = new Ajv2020({ allErrors: true, strict: true });
