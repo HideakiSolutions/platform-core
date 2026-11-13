@@ -5,6 +5,8 @@ import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { isStubCandidate, stubProblems, supersededCapability } from "./lib/contract-stub.mjs";
 
+import { loadProviderAccessSnapshot } from "./lib/provider-access-snapshot.mjs";
+
 const root = process.cwd();
 const contractSuffix = `${path.sep}contracts${path.sep}`;
 const expectedMetaSchema = "https://json-schema.org/draft/2020-12/schema";
@@ -98,8 +100,22 @@ for (const file of files) {
   records.push({ relative, schema });
 }
 
+// The shared helper also binds candidate aliases for the authority validator.
+try {
+  const sourceSchemas = files.map((file) => ({ file: path.relative(root, file).split(path.sep).join("/"), schema: JSON.parse(readFileSync(file, "utf8")) }));
+  for (const record of loadProviderAccessSnapshot(root, sourceSchemas).records) {
+    if (ids.has(record.schema.$id)) throw new Error(`duplicate ECP schema: ${record.schema.$id}`);
+    ids.set(record.schema.$id, record.relative);
+    records.push(record);
+  }
+} catch (error) {
+  fail(`ECP provider-access snapshot: ${error.message}`);
+}
+
 const ajv = new Ajv2020({ allErrors: true, strict: true });
 addFormats(ajv);
+ajv.addKeyword({ keyword: "x-superseded-by", schemaType: "string", valid: true });
+const schemaUri = (id) => id.startsWith(expectedIdPrefix) ? `${validationBase}${id}` : id;
 const knownIds = new Set(records.map((record) => record.schema.$id));
 
 // A live schema must reference ECP directly, not through a deprecated stub whose $ref is never resolved here.
@@ -119,8 +135,8 @@ function normalizeIdentifiers(value) {
   if (!value || typeof value !== "object") return value;
   const normalized = {};
   for (const [key, child] of Object.entries(value)) {
-    if (key === "$id" && typeof child === "string") normalized[key] = `${validationBase}${child}`;
-    else if (key === "$ref" && knownIds.has(child)) normalized[key] = `${validationBase}${child}`;
+    if (key === "$id" && typeof child === "string" && child.startsWith(expectedIdPrefix)) normalized[key] = `${validationBase}${child}`;
+    else if (key === "$ref" && knownIds.has(child) && child.startsWith(expectedIdPrefix)) normalized[key] = `${validationBase}${child}`;
     else normalized[key] = normalizeIdentifiers(child);
   }
   return normalized;
@@ -135,14 +151,16 @@ for (const record of records) {
 }
 for (const record of records) {
   try {
-    if (!ajv.getSchema(`${validationBase}${record.schema.$id}`)) fail(`${record.relative}: schema did not compile`);
+    if (!ajv.getSchema(schemaUri(record.schema.$id))) fail(`${record.relative}: schema did not compile`);
   } catch (error) {
     fail(`${record.relative}: schema compilation failed: ${error.message}`);
   }
 }
 
+const intakeDirectory = path.join(root, "governance/intakes");
+const intakeRecords = existsSync(intakeDirectory) ? readdirSync(intakeDirectory).filter(name => name.endsWith(".json")).map(name => path.join(intakeDirectory, name)) : [];
 let exampleCount = 0;
-for (const file of walkExamples(root).sort()) {
+for (const file of [...walkExamples(root), ...intakeRecords].sort()) {
   const relative = path.relative(root, file);
   let instance;
   try {

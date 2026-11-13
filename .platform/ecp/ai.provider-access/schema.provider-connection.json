@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.hideakisolutions.local/capabilities/ai.provider-access/provider-connection.schema.json",
+  "title": "AI Provider Connection",
+  "description": "Server-owned named connection with explicit vendor, access and billing mode. Credentials are references; native included-only access never falls back to paid APIs.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "connection_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "[^ \\t\\r\\n]"
+    },
+    "vendor": {
+      "enum": [
+        "openai",
+        "anthropic",
+        "google",
+        "ollama"
+      ]
+    },
+    "access_mode": {
+      "enum": [
+        "subscription",
+        "api",
+        "local"
+      ]
+    },
+    "credential_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "[^ \\t\\r\\n]"
+    },
+    "included_usage_only": {
+      "type": "boolean"
+    },
+    "base_url": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uri"
+    },
+    "local_models": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "[^ \\t\\r\\n]"
+      }
+    },
+    "cloud_models": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "[^ \\t\\r\\n]"
+      }
+    }
+  },
+  "required": [
+    "connection_id",
+    "vendor",
+    "access_mode"
+  ],
+  "oneOf": [
+    {
+      "properties": {
+        "access_mode": {
+          "const": "subscription"
+        },
+        "vendor": {
+          "enum": [
+            "openai",
+            "anthropic",
+            "google"
+          ]
+        },
+        "included_usage_only": {
+          "const": true
+        },
+        "credential_ref": false,
+        "local_models": false,
+        "base_url": false,
+        "cloud_models": false
+      },
+      "required": [
+        "access_mode",
+        "vendor",
+        "included_usage_only"
+      ]
+    },
+    {
+      "properties": {
+        "access_mode": {
+          "const": "subscription"
+        },
+        "vendor": {
+          "const": "ollama"
+        },
+        "included_usage_only": {
+          "const": true
+        },
+        "credential_ref": false,
+        "local_models": false,
+        "cloud_models": true
+      },
+      "required": [
+        "access_mode",
+        "vendor",
+        "included_usage_only",
+        "cloud_models"
+      ]
+    },
+    {
+      "properties": {
+        "access_mode": {
+          "const": "api"
+        },
+        "credential_ref": true,
+        "included_usage_only": {
+          "const": false
+        },
+        "local_models": false,
+        "cloud_models": false
+      },
+      "required": [
+        "access_mode",
+        "credential_ref"
+      ]
+    },
+    {
+      "properties": {
+        "access_mode": {
+          "const": "local"
+        },
+        "vendor": {
+          "const": "ollama"
+        },
+        "credential_ref": false,
+        "cloud_models": false,
+        "local_models": true
+      },
+      "required": [
+        "access_mode",
+        "vendor",
+        "local_models"
+      ]
+    }
+  ]
+}
