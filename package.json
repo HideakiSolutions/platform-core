@@ -4,7 +4,7 @@
   "scripts": {
     "validate:contracts": "node scripts/validate-contracts.mjs",
     "validate:capability-graph": "node scripts/validate-platform-capability-graph.mjs --self-test",
-    "validate": "npm run validate:contracts && npm run test:contract-stubs && npm run validate:capability-graph && npm run test:delivery-leases && npm run test:capability-drift && npm run validate:capability-authority && npm run test:capability-authority && npm run validate:release-ledger && npm run test:release-ledger && npm run validate:ledger-authority && npm run test:ledger-authority && npm run validate:scorecard && npm run test:scorecard && npm run validate:workflow-policy && npm run test:workflow-policy && npm run test:supply-chain-gates",
+    "validate": "npm run validate:contracts && npm run test:contract-stubs && npm run validate:capability-graph && npm run test:delivery-leases && npm run test:capability-drift && npm run validate:capability-authority && npm run test:capability-authority && npm run validate:release-ledger && npm run test:release-ledger && npm run validate:ledger-authority && npm run test:ledger-authority && npm run validate:scorecard && npm run test:scorecard && npm run validate:workflow-policy && npm run test:workflow-policy && npm run test:supply-chain-gates && npm run test:provider-aliases",
     "test:capability-drift": "node tools/capability-drift/test.mjs && node --test tools/capability-drift/cli.test.mjs",
     "test:contract-stubs": "node --test scripts/test-contract-stubs.mjs",
     "test:delivery-leases": "node --test scripts/test-delivery-leases.test.mjs",
@@ -19,7 +19,8 @@
     "test:scorecard": "node --test scripts/test-capability-scorecard.test.mjs",
     "validate:workflow-policy": "node scripts/validate-workflow-policy.mjs",
     "test:workflow-policy": "node --test scripts/test-workflow-policy.test.mjs",
-    "test:supply-chain-gates": "node --test scripts/test-supply-chain-gates.test.mjs"
+    "test:supply-chain-gates": "node --test scripts/test-supply-chain-gates.test.mjs",
+    "test:provider-aliases": "node scripts/test-provider-contract-aliases.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0",

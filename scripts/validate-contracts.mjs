@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -98,8 +99,32 @@ for (const file of files) {
   records.push({ relative, schema });
 }
 
+// ECP-owned aliases resolve only through an integrity-checked vendored snapshot.
+// Missing files or hash drift fail closed; validation never fetches the network.
+const snapshotLock = path.join(root, ".platform/ecp/ai.provider-access.lock.json");
+try {
+  const lock = JSON.parse(readFileSync(snapshotLock, "utf8"));
+  if (lock.capability !== "ai.provider-access" || lock.version !== "0.1.0"
+    || !Array.isArray(lock.files) || lock.files.length !== 4) throw new Error("invalid ECP snapshot lock");
+  for (const entry of lock.files) {
+    const file = path.resolve(root, entry.path);
+    if (!file.startsWith(path.join(root, ".platform/ecp/ai.provider-access/"))) throw new Error("snapshot path escapes owning directory");
+    const bytes = readFileSync(file);
+    if (createHash("sha256").update(bytes).digest("hex") !== entry.sha256) throw new Error(`snapshot hash mismatch: ${entry.path}`);
+    const schema = JSON.parse(bytes);
+    if (!schema.$id?.startsWith("https://contracts.hideakisolutions.local/capabilities/ai.provider-access/")) throw new Error("unexpected ECP schema authority");
+    if (ids.has(schema.$id)) throw new Error(`duplicate ECP schema: ${schema.$id}`);
+    ids.set(schema.$id, entry.path);
+    records.push({ relative: entry.path, schema });
+  }
+} catch (error) {
+  fail(`ECP provider-access snapshot: ${error.message}`);
+}
+
 const ajv = new Ajv2020({ allErrors: true, strict: true });
 addFormats(ajv);
+ajv.addKeyword({ keyword: "x-superseded-by", schemaType: "string", valid: true });
+const schemaUri = (id) => id.startsWith(expectedIdPrefix) ? `${validationBase}${id}` : id;
 const knownIds = new Set(records.map((record) => record.schema.$id));
 
 // A live schema must reference ECP directly, not through a deprecated stub whose $ref is never resolved here.
@@ -119,8 +144,8 @@ function normalizeIdentifiers(value) {
   if (!value || typeof value !== "object") return value;
   const normalized = {};
   for (const [key, child] of Object.entries(value)) {
-    if (key === "$id" && typeof child === "string") normalized[key] = `${validationBase}${child}`;
-    else if (key === "$ref" && knownIds.has(child)) normalized[key] = `${validationBase}${child}`;
+    if (key === "$id" && typeof child === "string" && child.startsWith(expectedIdPrefix)) normalized[key] = `${validationBase}${child}`;
+    else if (key === "$ref" && knownIds.has(child) && child.startsWith(expectedIdPrefix)) normalized[key] = `${validationBase}${child}`;
     else normalized[key] = normalizeIdentifiers(child);
   }
   return normalized;
@@ -135,14 +160,16 @@ for (const record of records) {
 }
 for (const record of records) {
   try {
-    if (!ajv.getSchema(`${validationBase}${record.schema.$id}`)) fail(`${record.relative}: schema did not compile`);
+    if (!ajv.getSchema(schemaUri(record.schema.$id))) fail(`${record.relative}: schema did not compile`);
   } catch (error) {
     fail(`${record.relative}: schema compilation failed: ${error.message}`);
   }
 }
 
+const intakeDirectory = path.join(root, "governance/intakes");
+const intakeRecords = existsSync(intakeDirectory) ? readdirSync(intakeDirectory).filter(name => name.endsWith(".json")).map(name => path.join(intakeDirectory, name)) : [];
 let exampleCount = 0;
-for (const file of walkExamples(root).sort()) {
+for (const file of [...walkExamples(root), ...intakeRecords].sort()) {
   const relative = path.relative(root, file);
   let instance;
   try {

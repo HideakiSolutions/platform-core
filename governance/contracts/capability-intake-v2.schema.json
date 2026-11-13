@@ -49,7 +49,8 @@
             "design-system-core",
             "provider-protocol",
             "partner-contracts",
-            "aew"
+            "aew",
+            "enterprise-capability-platform"
           ]
         },
         "contract_id": { "type": "string", "minLength": 1 },
