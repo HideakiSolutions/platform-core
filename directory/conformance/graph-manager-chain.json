@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "tenant_id": "test",
+  "user_id": "u",
+  "manager_ids": [
+    "m1",
+    "m2"
+  ],
+  "expected_edges": [
+    {
+      "subject_id": "test:u",
+      "target_id": "test:m1",
+      "relation": "manager_of",
+      "depth": 0,
+      "transitive": false
+    },
+    {
+      "subject_id": "test:m1",
+      "target_id": "test:m2",
+      "relation": "manager_of",
+      "depth": 1,
+      "transitive": true
+    }
+  ],
+  "interpretation": "Matches existing InMemoryOrgDirectory chain direction and zero-based depth; no change to authorization relation semantics."
+}

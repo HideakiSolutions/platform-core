@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "classification": "usable experimental components; overall acceptance INCOMPLETE",
+  "source_revisions": {
+    "backend": {
+      "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-backend",
+      "revision": "6402d187b89cc7b794cb55dd6497da8320686107",
+      "branch": "feature/srm-absorption"
+    },
+    "frontend": {
+      "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-frontend",
+      "revision": "c63b15433df02639f0ec87bc6c20487c0230b488",
+      "branch": "feature/srm-absorption"
+    },
+    "ecp": {
+      "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp",
+      "revision": "3dd27784d8b543625d9cd69b3580f3575aa1d9db",
+      "branch": "feature/srm-absorption"
+    }
+  },
+  "authority_pin_unchanged": "contracts-v0.4.0@ab1fcc92797224c428ec6362e02ee1eaf2de8abb",
+  "tests": {
+    "dotnet_source": {
+      "projects": 48,
+      "passed": 1242,
+      "failed": 0
+    },
+    "dotnet_installed": {
+      "status": "PASS",
+      "test_source_revision": "6402d187b89cc7b794cb55dd6497da8320686107",
+      "test_projects_executed": 48,
+      "cases_executed": 1242,
+      "skips": 0,
+      "restored_archive_integrity": "verified"
+    },
+    "ecp": {
+      "executed": 808,
+      "skipped": 4,
+      "failed": 0,
+      "contracts_registry_coverage": "PASS"
+    },
+    "react": [
+      {
+        "react": "18.3.1",
+        "installed": true,
+        "typecheck": "passed",
+        "tests": 42,
+        "failed": 0,
+        "browserBundle": "passed",
+        "browserModules": 40
+      },
+      {
+        "react": "19.2.6",
+        "installed": true,
+        "typecheck": "passed",
+        "tests": 42,
+        "failed": 0,
+        "browserBundle": "passed",
+        "browserModules": 34
+      }
+    ],
+    "node": {
+      "full_suite_before_last_review_fix": 717,
+      "focused_after_fix": 108,
+      "full_suite_repeated_after_fix": false,
+      "typecheck_build_install_tamper": "PASS"
+    }
+  },
+  "evidence": [
+    {
+      "path": "/build/artifacts/srm-absorption/dotnet-installed-conformance-final/receipt.json",
+      "sha256": "fbf38de348d276daf5e4796d101ade60fc4fd1833e31c2504858e23c5f12d3da"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/dotnet-work-items-solution.json",
+      "sha256": "7a4c99a3db0481ae92b6d1f33b96b2828cec69f20260530697f2d0daab2658bd"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/dotnet-work-items-postcommit-package.json",
+      "sha256": "aae6cf8505aac6fd46dfd34cbaa111ff304657372bacc6368c4f137b508ef3be"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/dotnet-work-items-consumer.json",
+      "sha256": "b19438fb45ad70c1029aa62c917558e150169ca443b07e4c406687fdecea26be"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/node-work-items-package-receipt.json",
+      "sha256": "ad15c66ea12c0edfe843081a5d8f99ac1f985a77128d4294cfd518bc4466beb7"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/node-work-items-package-receipt.pre-resume-fix.json",
+      "sha256": "30f432beff15f343585ee737b1781c24444fd2f42ced70abe3466fa035e7bc1b"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/node-work-items-focused-resume-fix.json",
+      "sha256": "0ac66fa694b478783200ad6437a56f9b29c68e11f307494b40db6c6c15545523"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/frontend-auth-consumers.json",
+      "sha256": "b08bb56f3f13e55cf15559c376e830066783ad50c6acc9440257b5d292a8329a"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/ecp-work-items-final-gates.log",
+      "sha256": "9b97838491605b8dbc26c279a34e9a43b1154448d23c1268a44794c32bcf2792"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/ecp-notifications-commit-gates.log",
+      "sha256": "4961e30b7df9a45d63d8b833db0eb413af3403a12eacfc890de2299a29d226e8"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/work-items-installed-http-postgres.json",
+      "sha256": "f0b46a6fcd9312bace70b1ad43c62854940626ad5128f8fcf9365f3cc6f9865a"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/jira-postgres-smoke.json",
+      "sha256": "37cb3c86834cf327411183a6f24d461ae2617321b00662f4292f2825aab396ef"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/approval-postgres-smoke.json",
+      "sha256": "1166044532f73bf6d3ed8f3ae36bb12296b491cd7e41108d3e77b9b0a8d2c916"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/mfa-redis-smoke.json",
+      "sha256": "65fab7dcee5ebc8fad4e74f616573eb20ce5e2c02aa2daebe26355610dfb244d"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/smtp-mailpit-smoke.json",
+      "sha256": "9098457cea4f7cf7b74793a873aefd35c55cb2944545644f349b82c9e905594e"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/dotnet-live-postgres.log",
+      "sha256": "65cf77c8475a3de6ac8169c54d13a511fa5474990eb91d226e0aae1ce3799361"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/dotnet-live-redis.log",
+      "sha256": "104cad57ce562d7e543e8312280c0c78921ce6e0009b9125f2db5a578ec2ebed"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/traceability-final.json",
+      "sha256": "8513b607a03ff8166dabf253e0fe9eec18084685ccf3fa1c4b2699240b2f59d1"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/completion-gate-negative.json",
+      "sha256": "1e040ec3d720a76409123d9af7eaf65e499df72ba3ef8304307195b33a61e18c"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/changed-files-secret-patterns.json",
+      "sha256": "8b8783711a2fc4a3c9cc1cc94722e98d3f4bf70a9058fadd817c9ca02559beac"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/owned-tunnels-cleanup.json",
+      "sha256": "950aa3d31447ab87d23641b73952c9cb87442a4ac5cbe5836cca13133a091e23"
+    },
+    {
+      "path": "/build/artifacts/srm-absorption/evidence/scratch-cleanup.json",
+      "sha256": "219b597dfdc33a1eb112940d03644ccad4b76e803d007e41e39a0fd1392e3970"
+    }
+  ],
+  "installable_packages": [
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Ai.Guardrails.0.3.0.nupkg",
+      "sha256": "0a046e339f2675bf7045a7834a53e44fb7250dc74737494aee6f776a986af3c3"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Ai.TokenMetering.0.3.0.nupkg",
+      "sha256": "de0ed9fe3d78e474cc6a52efe91a568285301b8d02584217c9fc03d13b75f3be"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Api.AspNetCore.0.1.0.nupkg",
+      "sha256": "037cf82f2ee2922319bc87f13b09dee376c81f69b8c83e1ec9c2dd2155e6bf8c"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Api.Contracts.0.3.0.nupkg",
+      "sha256": "517cc85872abf3284db5d4f82e86c242eddfbcf367fca4d829694666a45751b8"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Application.Abstractions.0.1.0.nupkg",
+      "sha256": "6c75828b1b2733647927541e1512bcab3456c166f8561aac5417851556d8e615"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Application.Wolverine.0.1.0.nupkg",
+      "sha256": "e175192e06e9b3d236d3477190aba75a48f7ead7975a8ae9c55f669540dbd2a4"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Approval.0.4.0-experimental.1.nupkg",
+      "sha256": "15c638e6699d1aa0443da5bd45c279f4f5948ff5ba04167049c286b9cfeaf55d"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Approval.Postgres.0.1.0-experimental.1.nupkg",
+      "sha256": "009dad0089666e69ffca4ea5c032b8201390a11fe402acb9eab463478f80d632"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Auditing.0.4.0-experimental.1.nupkg",
+      "sha256": "60c64c39d3afa38249fea071bf46b51bd7b10e79c632ff8a26abb01442e05170"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Caching.Abstractions.0.1.0.nupkg",
+      "sha256": "d9e64412781e6669fb5c6e330a65523f48aaed029f8fe6ecc1d98dd7c406d1c1"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Caching.Redis.0.3.0.nupkg",
+      "sha256": "cd0c9b722fe94fdfec27f4288c046979b96f33ddd84bb8545bab8f27fa923485"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Configuration.0.4.0-experimental.1.nupkg",
+      "sha256": "21cf6c3720137aac78257996fa9d1ecb9d36c708b89c532bfe5d6529d4ab2f59"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Data.Contracts.0.3.0.nupkg",
+      "sha256": "278a9ddbb380a20952abd12718cfad0a0c37404d60442aa57db8fda79108f04d"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Directory.0.4.0-experimental.1.nupkg",
+      "sha256": "fba97f9eba8fc7ab848a14bd178adbf900fbfb8bdb16dd3f08ced6d9db9d5738"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Directory.EntraGraph.0.1.0-experimental.1.nupkg",
+      "sha256": "38f39122862bcca0e4c0c65f148f9711325da83025f01d27cae983645a47f3ce"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Directory.Ldap.0.3.1-experimental.1.nupkg",
+      "sha256": "86fe54ef52bcac521e51ca356cdae26d09688cca15a25852b3ddb9947129e0a7"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.ExecutionContext.Abstractions.0.1.0.nupkg",
+      "sha256": "685eb50c6bca8006551d5c8b8fba818aaedb9dc36eae5ca5ddac01edd8b307b8"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.ExecutionContext.AspNetCore.0.1.0.nupkg",
+      "sha256": "8913d3c32e3e1ca30b001505d9429e8ae12497a9d0e4d9c764625c8d73fa0d89"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.ExecutionContext.MultiTenancy.0.1.0.nupkg",
+      "sha256": "79402c81130a4f4f06e349619de490f97d5307a7b42f5663e0213591d9b8cc26"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.FeatureFlags.0.3.0.nupkg",
+      "sha256": "f49ffdff8ca6a3359ce40dd1731093c76906d2bc7be10d9559a7eed94647381a"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Http.CorrelationId.0.3.0.nupkg",
+      "sha256": "13721f555985669f1f1a76d422fd77d8da708ab05bfe45e1791337e62512c7f0"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Http.SecurityHeaders.0.3.0.nupkg",
+      "sha256": "015f189535bf9a65942d52045d969bb342debcc7e6159a24672cabf8e24ffe9d"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Identity.Keycloak.0.3.0.nupkg",
+      "sha256": "ea08d9de8b1668fc37fc1b4a1db5ce514f9664fdf06694bdf07fc74d6ed6b179"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Logging.0.4.0-experimental.1.nupkg",
+      "sha256": "8d37e269aad521df31edc3fceeea037424d74cca41e9c6a1330ff699a48b09ee"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Abstractions.0.3.1.nupkg",
+      "sha256": "cf7bf0863fe7abcb2dade816965e4559dda1952ea1b5ad8d9987903e3c4eea45"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Contracts.0.3.1.nupkg",
+      "sha256": "df85d156024a84f6d81a7fd005d57ae665fd759153807c54f90a967f2880ed48"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Inbox.0.3.1.nupkg",
+      "sha256": "4a0ce427e0e7e454b772abd19594a66b77d0e31f52fdec7d88480e9093913b38"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Inbox.PostgreSql.0.1.0-draft.4.nupkg",
+      "sha256": "e8351c8d9db72d33e6f0256d2542a5f1bfc4ef5145b96ebb6298db86e3d825b0"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Kafka.0.2.0-draft.1.nupkg",
+      "sha256": "45f6f250b48d10446fcc1859219bda7745d919a10386a961530093b4e8637263"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Outbox.0.4.0-draft.1.nupkg",
+      "sha256": "4fc6963d8c68584aced448b9e40f5ad707ddc4faf4cd35af85e212a0bd87caea"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Outbox.PostgreSql.0.1.0-draft.1.nupkg",
+      "sha256": "888d15025b6117836489861a630d6265b55ec8b20a09d6d254b911525e6e255c"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.RabbitMq.0.1.2.nupkg",
+      "sha256": "70d1da75799caac2e87461bd7b44a377a443f38d9daade66a05d37aa472ce2ca"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Sqs.0.1.0-experimental.1.nupkg",
+      "sha256": "bd1657a52f39de9d7a683f4022f79554b74c49627180b6b5594093b84ca0cab1"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Messaging.Wolverine.0.1.1.nupkg",
+      "sha256": "ab87bc00ba9042c8f4c0008292cd1261bdc8a7e030ffb575edbe82b47ea3504d"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Middleware.0.3.0.nupkg",
+      "sha256": "e135c13fb8126e9ceafe77b0d80469fadad50ab3c5e420ae22d2505d217da509"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.MultiTenancy.0.3.0.nupkg",
+      "sha256": "5802348a0ef51d2a51099f723908f8acbd604cf18b3a35719d337bda42d4648f"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Notifications.0.3.0.nupkg",
+      "sha256": "9d499d69f0ec09dcc3b89b67d1fae3745359e6c5598e8ff8f7363e49d0900435"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Notifications.Channels.0.3.0.nupkg",
+      "sha256": "d568611f64299a194cd639e7b3aa074ae155bff70cd02b772db8c0a1e0c57de8"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Notifications.Ecp.0.1.0-experimental.1.nupkg",
+      "sha256": "842de0abb3bb8c97e986bdb35ef1b4413c2b757f5b2bed486e1a92569942908e"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Observability.0.1.1-experimental.1.nupkg",
+      "sha256": "9ba2989c4fabd3ef0daae878ff3125b45afe1d95701a72ebd4de13c4c3802ca8"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Persistence.0.3.0.nupkg",
+      "sha256": "df1f021ff320f9c8408301bfd4b599a8b4a9f88ef05d841e8451c5c658ded440"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Resilience.0.3.0.nupkg",
+      "sha256": "a747e0774227f88bbb433b8a3759c6db60d934444a1c847d1e05dee009ae5b4b"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Secrets.0.3.0.nupkg",
+      "sha256": "dd1b9bfbed4d9e0db21876d807a434a86f40c1251c578ae96b0cc1015d1e4aa9"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Authn.0.3.0.nupkg",
+      "sha256": "346133830f5c551a3e1a23b8a0a8c811377b2ba4c880e471de91c8e3442a8fe9"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Authn.Saml.0.1.0-experimental.1.nupkg",
+      "sha256": "fdf8a8fa086602c7f0539b7d8aa9c2041ae844a7f453b5551cb156fc103bdc1b"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Authz.0.4.0-experimental.1.nupkg",
+      "sha256": "9a00b9babaec116fadfc6990abef8834a521f48bc6508ea6de34f62498867bf7"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Authz.Opa.0.3.1-experimental.1.nupkg",
+      "sha256": "6454d9706505c7b154092b4f17d05c03a0ba8eecdd166f5a8d6e904e3b7bccb7"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Mfa.0.1.0-experimental.1.nupkg",
+      "sha256": "c9560b00bb690cf930cf60ee92e70a26530295641c8507457ee5edf357302d68"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.Security.Mfa.Redis.0.1.0-experimental.1.nupkg",
+      "sha256": "7af1010c3c352d63ce816011abb73b0dbd7d2a9382ed96b421e16bbdef82ec4b"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.ServiceDefaults.0.3.0.nupkg",
+      "sha256": "3da4068f5e04d05615d4c6099071e1461766eac4fcb18551ce811ea081c94536"
+    },
+    {
+      "stack": "dotnet",
+      "path": "/build/artifacts/srm-absorption/dotnet-complete-packages/Hideakisolutions.Platform.WorkItems.Ecp.0.1.0-experimental.1.nupkg",
+      "sha256": "1ff65486d98e0f4d1b76f3d0303b9eeaf13510a970e2b8fffeaa1b4c5082f2ce"
+    },
+    {
+      "stack": "node",
+      "path": "/build/artifacts/srm-absorption/node-work-items-candidate/review-1/hideakisolutions-platform-node-0.3.0-experimental.0.tgz",
+      "sha256": "ded001693f5510835fc837eccb6f5548706ae3a56b98b55b2c696197045bd7ab"
+    },
+    {
+      "stack": "react",
+      "path": "/build/artifacts/srm-absorption/frontend-auth-tarballs/hideakisolutions-ds-tokens-0.6.0.tgz",
+      "sha256": "877234025e22931fa0f0b752d7eeca547f704aab181442378fd182be160a38f5"
+    },
+    {
+      "stack": "react",
+      "path": "/build/artifacts/srm-absorption/frontend-auth-tarballs/hideakisolutions-ui-react-primitives-0.13.0.tgz",
+      "sha256": "8ef0135a1e038362cd5be34560e654175103c13ff6d54f6c6b825a1faf030262"
+    },
+    {
+      "stack": "react",
+      "path": "/build/artifacts/srm-absorption/frontend-auth-tarballs/hideakisolutions-ui-react-forms-0.4.2.tgz",
+      "sha256": "40234ac117459d6d94645d67da5c9a76f10b270bb26d2b596bb0fca2ef8f1d9b"
+    },
+    {
+      "stack": "react",
+      "path": "/build/artifacts/srm-absorption/frontend-auth-tarballs/hideakisolutions-ui-react-layout-0.8.0.tgz",
+      "sha256": "face74b814f80ac6d05c270e45184dcf894be5ce6fdc4d631203a00d7665db0e"
+    },
+    {
+      "stack": "react",
+      "path": "/build/artifacts/srm-absorption/frontend-auth-tarballs/hideakisolutions-ui-react-auth-0.0.2.tgz",
+      "sha256": "e8cfa9dc518c4807c23793119c23981f00b23fe4792219e996690f1029ab3b41"
+    }
+  ],
+  "open_gates": [
+    "designated external Graph/Jira/Teams/SQS/IdP targets and smokes",
+    "work-items owner admission/promotion/service metadata",
+    "integrated live reference journeys"
+  ],
+  "publication": "not performed",
+  "merge": "not performed",
+  "deployment": "not performed",
+  "adoption": "not claimed"
+}
