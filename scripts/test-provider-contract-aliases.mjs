@@ -7,7 +7,7 @@ import { spawnSync } from "node:child_process";
 const source = process.cwd();
 const scratch = mkdtempSync(path.join(process.env.TMPDIR || tmpdir(), "provider-aliases-"));
 try {
-  for (const relative of ["ai/contracts", "ai/docs", ".platform/ecp", "governance/contracts", "governance/docs", "governance/intakes", "scripts/validate-contracts.mjs", "scripts/lib/contract-stub.mjs"]) {
+  for (const relative of ["ai/contracts", "ai/docs", ".platform/ecp", "governance/contracts", "governance/docs", "governance/intakes", "scripts/validate-contracts.mjs", "scripts/lib"]) {
     const target = path.join(scratch, relative);
     mkdirSync(path.dirname(target), { recursive: true });
     cpSync(path.join(source, relative), target, { recursive: true });

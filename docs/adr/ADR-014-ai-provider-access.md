@@ -2,6 +2,11 @@
 
 Status: proposed. Date: 2026-11-13.
 
+Historical candidate identifiers: ADR-012 and ADR-PA-001. Renumbered to the next
+available numeric slot during integration to avoid
+colliding with the existing delivery coordination ADR-012; its proposal and
+acceptance status are unchanged.
+
 ## Context
 
 The requested platform capability covers Claude, Codex/ChatGPT, Gemini and Ollama through both
@@ -64,6 +69,6 @@ Hexagonal & Clean Architecture Standard; SOLID Principles & Software Craftsmansh
 producer distribution `25e673ff9c7e9dee99ef88a554cc9144d99c5b40`.
 
 Canonical strategic approval is tracked in ECP
-`documentation/decisions/0016-ai-provider-access.md` (Accepted). This local draft
+`documentation/decisions/0016-ai-provider-access.md` (approved by the owner). This local draft
 does not approve that decision. The two stack adapters and their tests are not
 two consumers. The reference banking Copilot is one planned real consumer.

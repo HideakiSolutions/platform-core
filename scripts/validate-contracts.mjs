@@ -1,10 +1,11 @@
-import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { isStubCandidate, stubProblems, supersededCapability } from "./lib/contract-stub.mjs";
+
+import { loadProviderAccessSnapshot } from "./lib/provider-access-snapshot.mjs";
 
 const root = process.cwd();
 const contractSuffix = `${path.sep}contracts${path.sep}`;
@@ -99,30 +100,16 @@ for (const file of files) {
   records.push({ relative, schema });
 }
 
-// ECP-owned aliases resolve only through an integrity-checked vendored snapshot.
-// Missing files or hash drift fail closed; validation never fetches the network.
-const requiresProviderSnapshot = [...stubIds.values()].some((entry) => entry.capability === "ai.provider-access")
-  || existsSync(path.join(root, "governance/intakes/ai.provider-access.json"));
-if (requiresProviderSnapshot) {
-  const snapshotLock = path.join(root, ".platform/ecp/ai.provider-access.lock.json");
-  try {
-    const lock = JSON.parse(readFileSync(snapshotLock, "utf8"));
-    if (lock.capability !== "ai.provider-access" || lock.version !== "0.1.0"
-      || !Array.isArray(lock.files) || lock.files.length !== 4) throw new Error("invalid ECP snapshot lock");
-    for (const entry of lock.files) {
-      const file = path.resolve(root, entry.path);
-      if (!file.startsWith(path.join(root, ".platform/ecp/ai.provider-access/"))) throw new Error("snapshot path escapes owning directory");
-      const bytes = readFileSync(file);
-      if (createHash("sha256").update(bytes).digest("hex") !== entry.sha256) throw new Error(`snapshot hash mismatch: ${entry.path}`);
-      const schema = JSON.parse(bytes);
-      if (!schema.$id?.startsWith("https://contracts.hideakisolutions.local/capabilities/ai.provider-access/")) throw new Error("unexpected ECP schema authority");
-      if (ids.has(schema.$id)) throw new Error(`duplicate ECP schema: ${schema.$id}`);
-      ids.set(schema.$id, entry.path);
-      records.push({ relative: entry.path, schema });
-    }
-  } catch (error) {
-    fail(`ECP provider-access snapshot: ${error.message}`);
+// The shared helper also binds candidate aliases for the authority validator.
+try {
+  const sourceSchemas = files.map((file) => ({ file: path.relative(root, file).split(path.sep).join("/"), schema: JSON.parse(readFileSync(file, "utf8")) }));
+  for (const record of loadProviderAccessSnapshot(root, sourceSchemas).records) {
+    if (ids.has(record.schema.$id)) throw new Error(`duplicate ECP schema: ${record.schema.$id}`);
+    ids.set(record.schema.$id, record.relative);
+    records.push(record);
   }
+} catch (error) {
+  fail(`ECP provider-access snapshot: ${error.message}`);
 }
 
 const ajv = new Ajv2020({ allErrors: true, strict: true });

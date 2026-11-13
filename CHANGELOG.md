@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+- Added ECP-owned provider-access compatibility aliases with an integrity-checked candidate snapshot, intake validation and negative tests. No publication or product adoption is claimed.
+
 ### Changed
 
 - Recorded owner decisions of 2026-11-06 (documentation only): ADR-CEP-002 amendments (a) and (b) ratified (`admitted` and above requires a `guarantee-declaration`; the validator already enforced it), the digest evidence sources of the supply-chain profile accepted as the answer to ADR-CEP-002 item 4, ECP Decision 0014 recorded as Accepted, and the supply-chain checks required on `develop` (not on `main`).

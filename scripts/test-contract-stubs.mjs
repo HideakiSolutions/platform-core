@@ -208,6 +208,10 @@ describe("shipped pilot stubs", () => {
   const shipped = [
     ["messaging/contracts/event-envelope.schema.json", "platform-core/messaging/event-envelope", "messaging.event-envelope@0.1.0", "/capabilities/messaging.event-envelope/event-envelope.schema.json"],
     ["auth/contracts/auth-provider.schema.json", "platform-core/auth/auth-provider", "security.authn@0.1.0", "/capabilities/security.authn/auth-provider.schema.json"],
+    ...["provider-connection", "inference-request", "inference-response", "provider-error"].map((name) => [
+      `ai/contracts/${name}.schema.json`, `platform-core/ai/${name}`, "ai.provider-access@0.1.0",
+      `/capabilities/ai.provider-access/${name}.schema.json`,
+    ]),
   ];
 
   for (const [file, legacyId, supersededBy, refTail] of shipped) {
@@ -223,7 +227,7 @@ describe("shipped pilot stubs", () => {
   it("the repository validates with the stubs in place", () => {
     const result = spawnSync(process.execPath, [validator], { cwd: repoRoot, encoding: "utf8" });
     assert.equal(result.status, 0, result.stderr);
-    assert.match(result.stdout, /6 deprecation stubs/);
+    assert.match(result.stdout, new RegExp(`${shipped.length} deprecation stubs`));
   });
 });
 

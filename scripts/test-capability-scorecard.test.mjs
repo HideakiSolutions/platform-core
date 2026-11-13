@@ -19,7 +19,7 @@ const empty = { schemaVersion: "1", releases: [] };
 const cli = (root, ...args) => { let code; const err = console.error; const out = console.log; console.error = () => {}; console.log = () => {}; try { code = main(root, args); } finally { console.error = err; console.log = out; } return code; };
 const sandbox = () => {
   const root = mkdtempSync(path.join(scratch, "repo-"));
-  for (const f of ["docs/architecture/contract-authority", "docs/release", ".platform"]) cpSync(path.join(repoRoot, f), path.join(root, f), { recursive: true });
+  for (const f of ["docs/architecture/contract-authority", "docs/release", ".platform", "ai/contracts"]) cpSync(path.join(repoRoot, f), path.join(root, f), { recursive: true });
   mkdirSync(path.join(root, "docs/capabilities"), { recursive: true });
   return root;
 };

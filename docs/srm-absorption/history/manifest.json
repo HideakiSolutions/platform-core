@@ -1,0 +1,12 @@
+{
+  "evidence-summary.json": {
+    "path": "history/evidence-summary.json.v1.gz",
+    "original_sha256": "2087d89e8d8a7425c474cda06ab7a4850c49040f697282693e40c93ca51b0365",
+    "archive_sha256": "793c596fe1405cea432a51888788193b164f8ef4665871b4bed68585dc38253a"
+  },
+  "independent-review.md": {
+    "path": "history/independent-review.md.v1.gz",
+    "original_sha256": "a368498fc49e28954c6cc26502fe2b9b5ffe448c03a569bc2785cd875c2acbbb",
+    "archive_sha256": "a4d68eaefc7878ee8a475922a48c1d83ea55c64ec8cc1d072ce4de129eba977c"
+  }
+}

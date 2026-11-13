@@ -21,5 +21,32 @@
       "sha256": "dd2c1731ef6e3945a27f38ac2baaace71820b1abce89610d63c7e3780c0a1fb4"
     }
   ],
-  "ref": "23a4ffb1f4b7708ef03b38f6c2e91e3fd5fecbfd"
+  "ref": "23a4ffb1f4b7708ef03b38f6c2e91e3fd5fecbfd",
+  "owner": "ECP",
+  "aliases": [
+    {
+      "path": "ai/contracts/provider-connection.schema.json",
+      "id": "platform-core/ai/provider-connection",
+      "target": "https://contracts.hideakisolutions.local/capabilities/ai.provider-access/provider-connection.schema.json",
+      "source_path": ".platform/ecp/ai.provider-access/schema.provider-connection.json"
+    },
+    {
+      "path": "ai/contracts/inference-request.schema.json",
+      "id": "platform-core/ai/inference-request",
+      "target": "https://contracts.hideakisolutions.local/capabilities/ai.provider-access/inference-request.schema.json",
+      "source_path": ".platform/ecp/ai.provider-access/schema.inference-request.json"
+    },
+    {
+      "path": "ai/contracts/inference-response.schema.json",
+      "id": "platform-core/ai/inference-response",
+      "target": "https://contracts.hideakisolutions.local/capabilities/ai.provider-access/inference-response.schema.json",
+      "source_path": ".platform/ecp/ai.provider-access/schema.inference-response.json"
+    },
+    {
+      "path": "ai/contracts/provider-error.schema.json",
+      "id": "platform-core/ai/provider-error",
+      "target": "https://contracts.hideakisolutions.local/capabilities/ai.provider-access/provider-error.schema.json",
+      "source_path": ".platform/ecp/ai.provider-access/schema.provider-error.json"
+    }
+  ]
 }

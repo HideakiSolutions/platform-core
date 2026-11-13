@@ -1,0 +1,1415 @@
+{
+  "schema_version": 1,
+  "objective": "SRM generic capabilities absorption across .NET/Node and React/Helix",
+  "source_archive": "platform-packages-2026-07-09.zip",
+  "source_sha256": "c397f0a0ad66be2a9c7eda3325e63631f0884a25f4b0fc5fd6ae9fdfb38c047e",
+  "governance_producer": "25e673ff9c7e9dee99ef88a554cc9144d99c5b40",
+  "contract_pin": {
+    "tag": "contracts-v0.4.0",
+    "commit": "ab1fcc92797224c428ec6362e02ee1eaf2de8abb",
+    "unchanged": true
+  },
+  "authority_unknown_preserved": [
+    "audit/audit-chain-jcs/v1",
+    "audit/audit-event",
+    "logging/log-entry",
+    "messaging/delivery-lease/v1",
+    "observability/health-check",
+    "utils"
+  ],
+  "bases": {
+    "platform-core": "f5b12be455ef88fa086bb64c701fbf9e77744a5a",
+    "backend-core": "8dbcd84be52cc9f5d81ce8866a0e63a56d61791e",
+    "frontend-core": "d64fd9b498eb57dd42efd89e58bccbff46beece3",
+    "ecp": "2ae0818a2047dc117812dcb5ec9b16e91edd1586"
+  },
+  "excluded": [
+    "avatars",
+    "SRM brand",
+    "demonstration data",
+    "all .env files",
+    "customer-specific policies",
+    "sample-app singleton/store runtime"
+  ],
+  "deliveries": [
+    {
+      "source_package": "shared-kernel",
+      "intake_outcome": "extend",
+      "governing_contract": "utils + existing Result/TimeProvider",
+      "selected_functionality": [
+        "types",
+        "errors",
+        "clock",
+        "id generation"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/foundation/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Application.Abstractions/Result.cs"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    },
+    {
+      "source_package": "config",
+      "intake_outcome": "extend",
+      "governing_contract": "configuration/config-provider",
+      "selected_functionality": [
+        "typed coercion",
+        "aggregate validation",
+        "startup validation"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/configuration/load.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Configuration"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    },
+    {
+      "source_package": "logger",
+      "intake_outcome": "extend",
+      "governing_contract": "logging/log-entry (authority unknown)",
+      "selected_functionality": [
+        "canonical fields",
+        "nested redaction",
+        "minimum protections",
+        "Pino adapter"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/logging/redaction.ts",
+          "node/src/logging-pino/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Logging"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    },
+    {
+      "source_package": "observability",
+      "intake_outcome": "extend",
+      "governing_contract": "observability/health-check (authority unknown); OTel extension",
+      "selected_functionality": [
+        "HTTP instrumentation",
+        "metrics",
+        "W3C propagation",
+        "ports separate from exporters"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/observability/index.ts",
+          "node/src/observability-otel/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Observability/PlatformObservabilityExtensions.cs"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
+      "limitations": [
+        ".NET live HTTP evidence covers client spans and traceparent; exporter/collector and server integration are application-owned."
+      ]
+    },
+    {
+      "source_package": "audit",
+      "intake_outcome": "extend",
+      "governing_contract": "audit/audit-event; JCS authority unknown",
+      "selected_functionality": [
+        "recorder deterministic IDs/time",
+        "recursive redaction",
+        "sink composition",
+        "retain integrity/retention profiles"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/audit/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Auditing"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
+      "limitations": [
+        "Sink composition reports partial failure; independent sinks are not an implicit distributed transaction."
+      ]
+    },
+    {
+      "source_package": "approvals",
+      "intake_outcome": "extend",
+      "governing_contract": "approval/approval-request",
+      "selected_functionality": [
+        "policy validation",
+        "maker-checker distinct approvers",
+        "delegation",
+        "expiry",
+        "version CAS",
+        "transactional audit and execution outbox"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/approval/index.ts",
+          "node/src/approval/persistence.ts",
+          "node/src/approval-postgres/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Approval",
+          "dotnet/src/Hideakisolutions.Platform.Approval.Postgres"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    },
+    {
+      "source_package": "rbac",
+      "intake_outcome": "extend",
+      "governing_contract": "authorization/decision",
+      "selected_functionality": [
+        "unknown action denied",
+        "explicit deny precedence",
+        "tenant isolation"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/authorization/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Security.Authz"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    },
+    {
+      "source_package": "abac",
+      "intake_outcome": "extend",
+      "governing_contract": "authorization/decision",
+      "selected_functionality": [
+        "repeatable predicates",
+        "reserved attribute protection",
+        "policy validation"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/authorization/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Security.Authz"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    },
+    {
+      "source_package": "authz",
+      "intake_outcome": "extend",
+      "governing_contract": "authorization/decision",
+      "selected_functionality": [
+        "async decisions",
+        "obligations required",
+        "collection/object distinction",
+        "effect-free simulator"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/authorization/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Security.Authz"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    },
+    {
+      "source_package": "entra-auth",
+      "intake_outcome": "extend",
+      "governing_contract": "ecp:security.authn@0.1.0",
+      "selected_functionality": [
+        "optional signed SAML adapter",
+        "issuer audience expiry",
+        "atomic correlation/replay",
+        "stable identity mapping",
+        "session separate from access tokens"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/identity-saml/index.ts",
+          "node/src/auth-session/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Security.Authn.Saml"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    },
+    {
+      "source_package": "entra-graph",
+      "intake_outcome": "extend",
+      "governing_contract": "directory/org-node + directory/membership",
+      "selected_functionality": [
+        "async port",
+        "delegated/app-only tokens",
+        "stable identity",
+        "provenance and completeness",
+        "safe origin/pagination/cycles",
+        "timeout/cancel/429"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/directory-graph/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Directory.EntraGraph"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
+      "limitations": [
+        ".NET access token acquisition is an injected delegated/app-only port; no SDK-specific type leaks."
+      ],
+      "accepted_dispensations": [
+        "graph-external-smoke"
+      ]
+    },
+    {
+      "source_package": "mfa",
+      "intake_outcome": "extend",
+      "governing_contract": "ecp:security.authn + authorization step_up_auth",
+      "selected_functionality": [
+        "HOTP TOTP RFC vectors",
+        "atomic OTP attempts/consume",
+        "operation context binding",
+        "shared Redis",
+        "credential-counter replay"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/mfa/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Security.Mfa",
+          "dotnet/src/Hideakisolutions.Platform.Security.Mfa.Redis"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
+      "limitations": [
+        "Enrollment and recovery remain IdP-owned by design."
+      ]
+    },
+    {
+      "source_package": "notifications",
+      "intake_outcome": "extend",
+      "governing_contract": "notifications intent/result distinct from ecp:notification.send",
+      "selected_functionality": [
+        "Teams adaptive cards",
+        "SMTP STARTTLS",
+        "per recipient/channel outcomes",
+        "explicit skipped/failed/throttled",
+        "safe application links",
+        "SQS to messaging"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/src/notifications/index.ts",
+          "node/src/notifications-ecp/index.ts",
+          "node/src/messaging-sqs/index.ts",
+          "node/src/messaging-sqs-aws/index.ts"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.Notifications",
+          "dotnet/src/Hideakisolutions.Platform.Notifications.Ecp",
+          "dotnet/src/Hideakisolutions.Platform.Messaging.Sqs"
+        ],
+        "ecp": [
+          "runtimes/python/ecp_runtime/srm_notifications.py"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
+      "limitations": [
+        "SMTP delivered to shared Mailpit only; SQS requires a caller-supplied durable inbox/lease composition."
+      ],
+      "accepted_dispensations": [
+        "teams-external-smoke"
+      ]
+    },
+    {
+      "source_package": "jira",
+      "intake_outcome": "promotion-proposal",
+      "governing_contract": "ECP workitem.query@0.1.0 and workitem.command@0.1.0; admitted local surface in contracts bundle 0.6.0; unpublished",
+      "selected_functionality": [
+        "query create edit transition",
+        "backlog dry-run",
+        "durable journal partial-failure recovery",
+        "estimate distinct from worklog"
+      ],
+      "implementation_paths": {
+        "ecp": [
+          "runtimes/python/ecp_runtime/jira.py",
+          "runtimes/python/ecp_runtime/jira_journal.py",
+          "runtimes/python/ecp_runtime/experimental_work_items.py",
+          "docs/experimental/work-items"
+        ],
+        "node": [
+          "node/src/work-items-ecp"
+        ],
+        "dotnet": [
+          "dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
+      "limitations": [
+        "Installed SDK interop uses real HTTP/shared PostgreSQL with a recording Jira double, not a live Jira provider.",
+        "Explicit pure synchronous authorization/secret/transport composition callbacks must enforce their own bounded timeouts; runtime checks between calls.",
+        "Missing nested parent project is resolved by an object-authorized bounded GET and exact identity/project checks; validated on two real Jira sites with zero mutations."
+      ],
+      "admission_pending": [],
+      "accepted_dispensations": [
+        "jira-write-smoke"
+      ],
+      "admission_state": "owner accepted; registered local ECP work-item0.1.0 surface in bundle0.6.0"
+    },
+    {
+      "source_package": "ui-kit",
+      "intake_outcome": "extend",
+      "governing_contract": "Helix existing primitives/forms/layout/feedback",
+      "selected_functionality": [
+        "table navigation indicator composition",
+        "themes",
+        "keyboard focus axe",
+        "no customer brand"
+      ],
+      "implementation_paths": {
+        "react": [
+          "react/examples/capability-overview.tsx"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    },
+    {
+      "source_package": "login-ui",
+      "intake_outcome": "extend",
+      "governing_contract": "ecp:design.login-pattern@0.1.0",
+      "selected_functionality": [
+        "provider action composition",
+        "loading/error/retry",
+        "keyboard focus axe",
+        "React18/19 installed consumer"
+      ],
+      "implementation_paths": {
+        "react": [
+          "packages/ui-react-auth/src/index.tsx",
+          "react/examples/provider-login.tsx"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    },
+    {
+      "source_package": "sample-app",
+      "intake_outcome": "reference-scenarios",
+      "governing_contract": "composition only, no source runtime copied",
+      "selected_functionality": [
+        "login flow",
+        "approval/directory/authorization consumers",
+        "MFA/notifications journeys"
+      ],
+      "implementation_paths": {
+        "node": [
+          "node/examples"
+        ],
+        "dotnet": [
+          "dotnet/examples/srm-absorption-consumer"
+        ],
+        "react": [
+          "react/examples/provider-login.tsx",
+          "react/examples/capability-overview.tsx"
+        ]
+      },
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "remaining_acceptance": [],
+      "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
+    }
+  ],
+  "source_traceability": [
+    {
+      "source_path": "abac/src/condition.ts",
+      "sha256": "eb5fe2ec238911887fb572785886d1d79f093c6066a60b81fda2ac5ba5a6cf9b",
+      "delivery": "abac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "abac/src/index.ts",
+      "sha256": "9fbf21ee939c02fa457995e8683c56b24c9e7f63b4ed0eddefd64633c2ab751e",
+      "delivery": "abac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "abac/src/pdp.ts",
+      "sha256": "7f436fd28c503c2c1a1207297d7aa08190863332dcb3c80e4bbf2ec2f2dfc083",
+      "delivery": "abac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "abac/src/policy.ts",
+      "sha256": "d42ff5b7884791ff74dd108c7fee08741e2b6a93357355cceff98545a9b26c7b",
+      "delivery": "abac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "abac/src/types.ts",
+      "sha256": "fc125822d90c5bfde16373b2cd3939c9b3ac37324ffa7339ec5c9cbc46a96764",
+      "delivery": "abac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "abac/src/validation.ts",
+      "sha256": "d72cf025aa6be4ae9304c1e35900d44fcf034d23ab25b8c7860561b57150d0ef",
+      "delivery": "abac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "approvals/src/engine.ts",
+      "sha256": "4638ad9ac7feb09618c9eb7e3aa470dfa81c6ec110088f9641afe06a75c13426",
+      "delivery": "approvals",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "approvals/src/index.ts",
+      "sha256": "507087f5c60b1429becb31eb263f0c21c6cacc94bb559f7f7a67c9dba18eed9c",
+      "delivery": "approvals",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "approvals/src/model.ts",
+      "sha256": "6080a038fbc274830411dc3294054b3ce7e857810c50963cca6eda27bd3126be",
+      "delivery": "approvals",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "approvals/src/store.ts",
+      "sha256": "2f47945d7fbaed4b828968cd52356f56d041854607c4f8c71bcbd02defb3cd2d",
+      "delivery": "approvals",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "audit/src/builders.ts",
+      "sha256": "5b63dfb60b635f99d9dad73e5998cd46b93d0ed4112bd3d2766b76d0e341f968",
+      "delivery": "audit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "audit/src/index.ts",
+      "sha256": "1c714d50393bfa6f1a4f0f90784082d339fbe5311ceaa95fb4eb92cb0263baf3",
+      "delivery": "audit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "audit/src/recorder.ts",
+      "sha256": "c09e0ad4c97b88387e772b6758d9f5ce1f86d42f95c5626695bc6cfb44e2e1ad",
+      "delivery": "audit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "audit/src/redact.ts",
+      "sha256": "258fbcf77bbdc078c9489df85a6ad6d930fa49bfb509e5860cb3c1e527adfe00",
+      "delivery": "audit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "audit/src/types.ts",
+      "sha256": "038ea80f71822c9a8807349247c17b10dab3385c51b6acf97b35e043848704cc",
+      "delivery": "audit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "audit/src/sinks/in-memory.ts",
+      "sha256": "28963b9f5e7185b7873cb0d75c37bd731d8124ad2582d8950cc91c9e9bec4898",
+      "delivery": "audit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "audit/src/sinks/logger.ts",
+      "sha256": "0e98389099ffcd763e586926dd108bf54cb14323ece7e8d7d8913beadeed5e5e",
+      "delivery": "audit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "audit/src/sinks/multi.ts",
+      "sha256": "558d37f83d39cdeabc91b0c38eeae7c8fa74060ea0fcaa0d823408cc7f466ee2",
+      "delivery": "audit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "authz/src/index.ts",
+      "sha256": "958a718b1c8946e8e7b47e65c02811cee96e1b4d0bf418ae71da32f6eb1261b8",
+      "delivery": "authz",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "authz/src/domain/types.ts",
+      "sha256": "6c117452e8d8efdd151ec85cdae71d2e1ce7f9e05b2d171e9321263397767774",
+      "delivery": "authz",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "authz/src/pdp/audit.ts",
+      "sha256": "c6f11c72706318b1169ffbfa482e8f945f704e393569265569ec7f5b8e80c960",
+      "delivery": "authz",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "authz/src/pdp/authz-engine.ts",
+      "sha256": "6a1a221e52234dfe7b5684e7c857cec19f02f5819b66d7b64034978f479e06de",
+      "delivery": "authz",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "authz/src/pdp/permissions.ts",
+      "sha256": "6c7df05cb11eb0e98843a094d844ced8d5662324000707e02c9f9ccff1b473fd",
+      "delivery": "authz",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "authz/src/registry/authz-registry.ts",
+      "sha256": "cebb367834e1795e373ecd2739e0a22f889e354850f058ec7ded1af7de1b3c21",
+      "delivery": "authz",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "authz/src/seed/demo-store.ts",
+      "sha256": "0debcd80ab71b7ef89e15eaba0981b6c6195efc710640248693cf1b79c7711a1",
+      "delivery": "authz",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "authz/src/store/authz-store.ts",
+      "sha256": "33bc70b4dfa1c1a0c2091b02166896551fc4f9dc4da5e441d450520d98064664",
+      "delivery": "authz",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "config/src/env-schemas.ts",
+      "sha256": "f49bd59fa79df0c76f4f3bda6e233bf05c5de413964e20d6c54c2ecc4e3e3e47",
+      "delivery": "config",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "config/src/index.ts",
+      "sha256": "086f8463072a6181fe8ccdc964815efaf06380d9fc26cb67da3f2b5d499b1514",
+      "delivery": "config",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "config/src/load-config.ts",
+      "sha256": "3274fc5d29cc6237137e3011156f3e2da2b59ef9b546d3554577aff39021e2bb",
+      "delivery": "config",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-auth/src/saml/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "delivery": "entra-auth",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-auth/src/index.ts",
+      "sha256": "9fb6041351f96f3cbcad2d780debe56ff31cd7ee53954794013eefa6f4b4c79c",
+      "delivery": "entra-auth",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-auth/src/config/entraAuthConfig.ts",
+      "sha256": "67c3b7738918bfbc557a8e603bd17203966bbc14998cba91ca67a667f79383b6",
+      "delivery": "entra-auth",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-auth/src/roles/roleMapper.ts",
+      "sha256": "c5195e37360699f795b10a731510bfd8907812e53e317cd3d0f0f9d44f20b5af",
+      "delivery": "entra-auth",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-auth/src/saml/domain/types.ts",
+      "sha256": "5ec30d6b107aa22a44f817fa9c61470be79eaea81da0d61e173bba77131fc640",
+      "delivery": "entra-auth",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-auth/src/saml/infrastructure/InMemoryReplayCache.ts",
+      "sha256": "7063a1dcd5267e84d61f6c972dfa3202365ebb74ef6be6eb3043493757be8823",
+      "delivery": "entra-auth",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-auth/src/saml/infrastructure/pemCertificate.ts",
+      "sha256": "7cb8c56b4bbf63f56aeefc7dfe6dbd863a60e41571f2cf017280a0e758a225ba",
+      "delivery": "entra-auth",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-auth/src/saml/infrastructure/samlRequest.ts",
+      "sha256": "a4600cb36de06dba1c80d0c8e1a763841fd412f60cfab707bd7b4c8b8815d4cb",
+      "delivery": "entra-auth",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-auth/src/saml/infrastructure/XmlCryptoSamlValidator.ts",
+      "sha256": "570cc4988e7044334f4f2f10bcbf86d9328fd3bbb11fe076619db5258418a329",
+      "delivery": "entra-auth",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-auth/src/session/session.ts",
+      "sha256": "eaa51bf02cfbfbf5457076680dbee08df926b6e2b3705f7a8eb9e2ad8721681f",
+      "delivery": "entra-auth",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-graph/src/client.ts",
+      "sha256": "f263a2d4842b7cd052fc9dcdc79ebae788f3ae017f5ae3049bc505328282b8bd",
+      "delivery": "entra-graph",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-graph/src/delegated.ts",
+      "sha256": "56d213b7f493226c863bc43d908d6ecf04c87fc166704c12164d95b0b9736d88",
+      "delivery": "entra-graph",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-graph/src/errors.ts",
+      "sha256": "bd8cac966deebc65c0b4de21559bc7a411a4972179bb40159c573d0aede8ad8b",
+      "delivery": "entra-graph",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-graph/src/index.ts",
+      "sha256": "3a869f8b0bd0d071654f80dac2f2b563b1081e2c52f8bdbeb1efe19daf480d98",
+      "delivery": "entra-graph",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-graph/src/profile.ts",
+      "sha256": "29c2baf5f57627e8586b2c05cfff9a21a2a21ae941fa8b5a42c6a58998d6071c",
+      "delivery": "entra-graph",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-graph/src/reader.ts",
+      "sha256": "b7198a97d7286ab5bcddd08616a7cb370d599843c1690512fa3a395828b410f1",
+      "delivery": "entra-graph",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-graph/src/token.ts",
+      "sha256": "071d883b0753ef7b735c63346dfc3e59a81464aa80c4730479ff7c58ea53a8ac",
+      "delivery": "entra-graph",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-graph/src/types.ts",
+      "sha256": "119de938ecd6404e52d1352c58a2c3d348337949cf508e61dcd83c7a319fd2c5",
+      "delivery": "entra-graph",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "entra-graph/src/util.ts",
+      "sha256": "026cd60743791b1621a7a9c7e4f6ad74e9b41f0952d9711d52b0ef5fb31dd591",
+      "delivery": "entra-graph",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "jira/src/adf.ts",
+      "sha256": "77db45faeb8e503fbbdbeeed415b9715754702569fc6093e086935b9009e797e",
+      "delivery": "jira",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "jira/src/backlog.ts",
+      "sha256": "fe726af3dc8b9c4e584e36f6f7cce6539ee6ef42d5e92e68a9e8a3ecba198dcc",
+      "delivery": "jira",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "jira/src/client.ts",
+      "sha256": "d6ab708711af6b7499aebb8a4b5b3cbf80f5a077a94fc56b1b9abbc7a3029e5e",
+      "delivery": "jira",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "jira/src/errors.ts",
+      "sha256": "9d7c59056887108b3e7539094f5b8734b87ca10e3ce64f062495b168ee57a5ff",
+      "delivery": "jira",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "jira/src/index.ts",
+      "sha256": "9e28e249af444ea7c591b83f9772657cd3572270f471c49bb7d463b20fbc4d32",
+      "delivery": "jira",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "jira/src/issue-types.ts",
+      "sha256": "02f29343b9e4497cf5b014eedcb2bf9565817fab77c014fc4250627c326cd9e1",
+      "delivery": "jira",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "jira/src/types.ts",
+      "sha256": "701869d3c6e1193c5c6f0ae7c3544d0beca4cfb139242cb2e6584d695c0decec",
+      "delivery": "jira",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "jira/src/workflow.ts",
+      "sha256": "7c55447baa10c2f20c1f5c0b4b4d458841d501dfbf86ce3b5ba2b2015da3b227",
+      "delivery": "jira",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "logger/src/build-logger.ts",
+      "sha256": "1842379741ae83f680a5cdfffcf572559a9d9da52db211974b9448d078b42dc2",
+      "delivery": "logger",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "logger/src/env.ts",
+      "sha256": "d5250bc8e4be284463ef044aa50d10cb21f6726a0d81aede453f2db54dcbbe42",
+      "delivery": "logger",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "logger/src/index.ts",
+      "sha256": "5f7e20e745503673c28f251eaef116e159b98a6ffe891f7611334df7165436e8",
+      "delivery": "logger",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "logger/src/redact.ts",
+      "sha256": "5cfb07e311be6322e33ac487b670e0c117ebea65100fd70926c67f19a7f49388",
+      "delivery": "logger",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "login-ui/src/EntraLoginButton.tsx",
+      "sha256": "eea7dc84b11851c88a92882909757a1b8fb9dfd6ae561805de2e2812470ae12e",
+      "delivery": "login-ui",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "login-ui/src/index.ts",
+      "sha256": "2f3671741d77f3cbbca74f2349414bbcd763ba274c59be13b318810eb0f2bc35",
+      "delivery": "login-ui",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "login-ui/src/LoginLayout.tsx",
+      "sha256": "d04d5aceb1256a6e823dcdab3da62a51bfbaa626085880acd1b29a12307d340c",
+      "delivery": "login-ui",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "login-ui/src/LoginScreen.tsx",
+      "sha256": "b0c7229bd8b78727cdc76934564485e9eb385a920ffcd8ebe7bf21410100f3f0",
+      "delivery": "login-ui",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "login-ui/src/styles/login.css",
+      "sha256": "ed541e3b2ab017b48b6e01e281901f1ff80e159022ee1f5874081cfec101ae5f",
+      "delivery": "login-ui",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "mfa/src/base32.ts",
+      "sha256": "aa9a5530b466b6767945065f56595b07de5fa4b8535c66ad7064d259f04f978f",
+      "delivery": "mfa",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "mfa/src/email-otp.ts",
+      "sha256": "25971ae66a628b5e2bc86dfc09cd3680dabc6cf7da3d6d8b56d955cc717c35e5",
+      "delivery": "mfa",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "mfa/src/hotp.ts",
+      "sha256": "3388ef29c5a53e1348d018b86a4f4855f7d2538ebb50b1f7e03ffce5539aa347",
+      "delivery": "mfa",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "mfa/src/index.ts",
+      "sha256": "f3e1ca2bc8c88598c2d696c3bcb964d5690c572de8d7cf50a32e3834ca7c2510",
+      "delivery": "mfa",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "mfa/src/otpauth.ts",
+      "sha256": "5a97e45dfd3b184d3ae8383d17f4774a7f5403bc4298c5e7e954d8fc0acb5972",
+      "delivery": "mfa",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "mfa/src/qrcode.ts",
+      "sha256": "347333cef2af29d38c2ee7bc4e45ab6860416c5cb931ac7428804717f9782c55",
+      "delivery": "mfa",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "mfa/src/totp.ts",
+      "sha256": "a3e6f9267b8346d9f05ae0ed6415964da0ae5eb669c58a15974fd991f1011289",
+      "delivery": "mfa",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/channel.ts",
+      "sha256": "f0ad6ba5f309a4fa15ef7137748dfd847dccbf21b1b1a9873875640947f112f0",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/content-policy.ts",
+      "sha256": "4e16d0421b129f333285603597092045af8fe66f76e9e80759a61336f1fddd8e",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/index.ts",
+      "sha256": "c91bec6e1313cf67ffb6ce5202e6a175aa5700c894e7bedb0e936b539ab4188e",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/multichannel-emitter.ts",
+      "sha256": "3bae13be198b27a7997ff737dffe4f8e5eb60a7a9c0b4748d70ed19af31d92d8",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/adapters/nodemailer.ts",
+      "sha256": "dbb2025c7665aea9d14b89ab6846ed6d7f9cb658c6e20d94193e7c428dc310d2",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/adapters/sqs.ts",
+      "sha256": "fc8f64597947cf562a9d8d4ccf74190e6390fc2e7c3c2c5f82b161a23d125a26",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/channels/email-channel.ts",
+      "sha256": "beb6a477cd2479807cb0777638fd031d024bc1775060b6497075588c701d98b7",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/channels/sqs-channel.ts",
+      "sha256": "2853cbd43077fd9bb8bede866f1097faddf9967272994465033689b0abc60105",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/channels/teams-channel.ts",
+      "sha256": "4bc826c1ec7be108a01824d2de49210b6928984d10470cdb457dfaf8dac9bcce",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/queue/local-queue.ts",
+      "sha256": "71d05ba071b629996bafd3be7b6b0639530af1ae1b0d3edd7ca2b0fb8e2b6379",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/queue/queue.ts",
+      "sha256": "fb381f102cc14bc04d8c2d7c199ba8f165ccf21c63da996ddf081d89ca17a7db",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "notifications/src/queue/sqs-queue.ts",
+      "sha256": "5453680e1dab24d50a0c77ecd2e5ff45d6d29e0f9007668b3734e971867636ae",
+      "delivery": "notifications",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "observability/src/httpMetrics.ts",
+      "sha256": "9b51ea46a1ea637edf1ad006749e8740e2b84785f299e15777d469ef92726812",
+      "delivery": "observability",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "observability/src/index.ts",
+      "sha256": "7a8c9ca75d30b4bcd9f233d03b61ce01088ec362151a476d9ee80fb3bfc3f66d",
+      "delivery": "observability",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "observability/src/noop.ts",
+      "sha256": "405f8b9baaa528e04b88b9394bac0fec6946c2f17c2bb4b3a7cc0174f5b4595d",
+      "delivery": "observability",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "observability/src/prometheus.ts",
+      "sha256": "0c647d9ae76af2e3e1a9ead56d0312c2308a7bf8b0740d4b23403d35985a734f",
+      "delivery": "observability",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "observability/src/registry.ts",
+      "sha256": "be66b831e67b7cab62a64c65cb6a60c74e067067f16beda44dbaf6f08fe8742d",
+      "delivery": "observability",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "observability/src/tracing.ts",
+      "sha256": "ea2476eed2b4d1fc6b270fd30dca60fb7312c6f8600a6ece2aa193544e58addc",
+      "delivery": "observability",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "observability/src/types.ts",
+      "sha256": "c725549440e73ad5ad9a9a941827df631b80d9edb9054e8c9c96052519111a32",
+      "delivery": "observability",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "rbac/src/decide-access.ts",
+      "sha256": "77c256ec2dce6fd7b65c392e883112317bd7cd9eb419a37b0cbe09fc7e84b6ed",
+      "delivery": "rbac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "rbac/src/hierarchy.ts",
+      "sha256": "d6a07bc4ba5f86543c3e8a76e048fa1b7e9e31bcc300795634df05cb31d679e0",
+      "delivery": "rbac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "rbac/src/index.ts",
+      "sha256": "504a739d789d0ee28febb571d8f4b12b2bc32bdda90e8db94d26404faff9863f",
+      "delivery": "rbac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "rbac/src/role-mapping.ts",
+      "sha256": "a16cf3d9881d7abd97a625063a68fa994815bcf54018b45f41c99c24d4e34cd5",
+      "delivery": "rbac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "rbac/src/types.ts",
+      "sha256": "fe1ca4d7f6609fb63d9451da54fb453b22377c20f08748305a737a59f60c05e7",
+      "delivery": "rbac",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "shared-kernel/src/brand.ts",
+      "sha256": "268931b3aa32cce079bb9b95db25c0eef253d8ab420e45b7edd8404b71d97777",
+      "delivery": "shared-kernel",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "shared-kernel/src/clock.ts",
+      "sha256": "1b9ffd833d711bf787a3a55a105ff192755b491a9fab933215479ee0c1640797",
+      "delivery": "shared-kernel",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "shared-kernel/src/errors.ts",
+      "sha256": "29e9502984022260663d314e3fea7addadf3514431a2db72e825f86bae9e150e",
+      "delivery": "shared-kernel",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "shared-kernel/src/guards.ts",
+      "sha256": "682dad8dc1a81f1f24013d6be70a0d3e93bb2f4f9a3bb3cadc327915b3d3c017",
+      "delivery": "shared-kernel",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "shared-kernel/src/id.ts",
+      "sha256": "7f860725164d9f1d7ecd728918413ac7d495df05ad4319089ef5116a76a1e9ad",
+      "delivery": "shared-kernel",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "shared-kernel/src/index.ts",
+      "sha256": "8eff871e636931f1736087b544af3080373104fd98624bca3ac505b21a4e376f",
+      "delivery": "shared-kernel",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "shared-kernel/src/result.ts",
+      "sha256": "7ba6be96e5c3a1215912a31d89cba6ef9c824e27774d724836e1700237bde961",
+      "delivery": "shared-kernel",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/index.ts",
+      "sha256": "184db4fbf12d0007f42230773726fefabd576bb140e898485da29b93e93308f1",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/components/Badge.tsx",
+      "sha256": "af468a2d8324337d5e1e38dbc9910a781b98689f264fb79fdc9456d5cbb60e13",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/components/Button.tsx",
+      "sha256": "85042e8cd99eca2dbc4ceeb3768d5a64793aa991ab629ed8fe197ffc8ca049fe",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/components/Card.tsx",
+      "sha256": "2cc302bcf40db6b6836854d37acd7d8fbd8c6da8f29380af329806d0ba33ad59",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/components/Checkbox.tsx",
+      "sha256": "6d7dbf976950cd19697899a0ea7457b6c6fc691236097505f6fd32c086b59713",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/components/Input.tsx",
+      "sha256": "f45160c7915647b7e33e47fc19008e9e3beb96780958c5a34c531897eed8bc9c",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/components/Select.tsx",
+      "sha256": "4997874c8127385f3af48c978f368d88a7b5beb90a0688096581fcb0315ae729",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/components/StatCard.tsx",
+      "sha256": "4ccc0e918d752e14a82cad08f484db78e9cf35c2ea8cd18f6972a53b40dc4871",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/components/Table.tsx",
+      "sha256": "685e274f6b7b6807eef3de8a5a37c41a4faec7e4b5c3a8d2605ec792f626dccc",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/components/Textarea.tsx",
+      "sha256": "c0699fc93ab2b8934d2bb4a253f5aa4b3dc291b3b49b27ba62858aa17f8014d3",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/layout/AppShell.tsx",
+      "sha256": "82ec32e28c164dc56283803098cd68c311ffd1645176cda94214d539e8b9e5aa",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/layout/SideNav.tsx",
+      "sha256": "173ce61ecfeef5fa645159feb28b8b0b0055cd09ce40e6144836642fb375a0fa",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/layout/Topbar.tsx",
+      "sha256": "02ff79b2cbe442425e7708355ad5dd983d94a62368084d1f520a3dcafdc475f4",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/logo/DiamondLogo.tsx",
+      "sha256": "0331d3b33dd7a81dedd43cea19767706c85ab0bed092a52ba12af273e4a47184",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/styles/styles.css",
+      "sha256": "74c72932dc8125d7808c80dc5bb99c564ef365085c9e1a763b71c03c836bb1d8",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/styles/tokens.css",
+      "sha256": "f4f12c235473517caa4feec2bd7863889575b0b913abdcf35d5d9bfe0d02d191",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    },
+    {
+      "source_path": "ui-kit/src/utils/cx.ts",
+      "sha256": "1e3df3b405d47ce4092c4f4771fa33af9f9178d67695c16ecec589427585dba4",
+      "delivery": "ui-kit",
+      "disposition": "refactor-selected-generic-functionality"
+    }
+  ],
+  "global_open_gates": [
+    {
+      "id": "jira-write-smoke",
+      "status": "WAIVED",
+      "category": "implementation",
+      "decision_ref": "docs/srm-absorption/acceptance-decisions.json",
+      "reason": "Dispensado pelo aceite explícito do proprietário no plano revisado; não é teste aprovado."
+    },
+    {
+      "id": "graph-external-smoke",
+      "status": "WAIVED",
+      "category": "implementation",
+      "decision_ref": "docs/srm-absorption/acceptance-decisions.json",
+      "reason": "Dispensado pelo aceite explícito do proprietário no plano revisado; não é teste aprovado."
+    },
+    {
+      "id": "teams-external-smoke",
+      "status": "WAIVED",
+      "category": "implementation",
+      "decision_ref": "docs/srm-absorption/acceptance-decisions.json",
+      "reason": "Dispensado pelo aceite explícito do proprietário no plano revisado; não é teste aprovado."
+    },
+    {
+      "id": "sqs-emulator",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "SQS emulated integration passed both stacks against exact selected installed DLLs; not managed AWS.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-keycloak-sqs-final4.json",
+          "sha256": "da6ed8f3cf33fdc0cb8a2496f0417eee434514b750729aea7371d03e35ab4bed"
+        }
+      ]
+    },
+    {
+      "id": "identity-live",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "Real shared Keycloak PKCE, TOTP ACR1→2, signed SAML/correlation/replay/concurrent winner and IdP cleanup passed with React18/19 installed.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react19-integrated-final2.json",
+          "sha256": "708efd6e2635c21d04ea3f250faf50e5fd05594d7bd8bae706bc95d499e6bfcc"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react18-integrated-final4.json",
+          "sha256": "8273740a1046c1ea182c33c1a6f6e3646f08e0d6b2a9372d71ca0ec3fcbeb410"
+        }
+      ]
+    },
+    {
+      "id": "canonical-clients",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "Clientes instalados dual profile e HTTP/PG canônico aprovados; identidade sintética e recording Jira nesta composição.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-clients.json",
+          "sha256": "7ba085354c848adbac135be8e985c8342eb924aee2c9e799fa8a95aa29a69e0b"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-http-postgres.json",
+          "sha256": "fe5e592fdbe03c1eeb2e32c99a9018620c20b356a887541599092574f58439b8"
+        }
+      ]
+    },
+    {
+      "id": "integrated-reference",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "Same trusted IdP context/event across authz, SQS, PostgreSQL, Redis, Mailpit and identified Graph/Teams/Jira recording doubles; no external calls to these3providers.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react18-integrated-final4.json",
+          "sha256": "8273740a1046c1ea182c33c1a6f6e3646f08e0d6b2a9372d71ca0ec3fcbeb410"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-keycloak-sqs-final4.json",
+          "sha256": "da6ed8f3cf33fdc0cb8a2496f0417eee434514b750729aea7371d03e35ab4bed"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-doubles-final4.json",
+          "sha256": "a7ce00b29903737c5fefcc15d35ace32ed183e102437a3bf80e7d9d4f553b74c"
+        }
+      ]
+    },
+    {
+      "id": "shared-conformance",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "ECP admission825 tests (4 skipped) with registry25/bundle0.6, plus preserved installed .NET1310/Node101/React18+19 evidence. No prior live smoke replaced.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/ecp-canonical-gates-final.log",
+          "sha256": "128e65b51e14208f0c7a7a123bc89f283ffe1ce4b6048e3b80b930bc19eabf3b"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-final.json",
+          "sha256": "0138462478399c1a74c29b7b9281522e4ca163766e6f3122a83d762d839e55a6"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/acceptance-gate-regressions.log",
+          "sha256": "1121ea7f46212b81e4ae34c3024e9a6da62b8b9af1d40c84fbf35ee95e1beb90"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/ecp-admission-gates.log",
+          "sha256": "3ab037d2b45b8b3c99c9bc01bd88dc3438bf741e40698113cc8336b96e105d08"
+        }
+      ]
+    },
+    {
+      "id": "independent-review",
+      "status": "ACCEPTED_EXCEPTION",
+      "category": "implementation",
+      "reason": "Owner authorized exceptional closeout for this delivery after complete technical review. Historical breach is preserved; this is not a passed test or general waiver.",
+      "technical_review": "COMPLETE",
+      "technical_findings": "CLOSED",
+      "evidence": [
+        {
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-platform/docs/srm-absorption/continuation-review.json",
+          "sha256": "f313d9774deb739282c19ca2fcc9cc56cc23aee64d7eefab1bb57577c1b3ded0"
+        },
+        {
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/proposals/work-items/owner-acceptance.json",
+          "sha256": "e9bdf4ffd87cc37dbcfdcede04b52658a29e7c0bc1d1bb3d16a1e4482d84723d"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/work-items-admission-review.json",
+          "sha256": "2676856c886c223b9340372031fa04b0e26f4000e0199769a8465c1d6b59c3ab"
+        }
+      ],
+      "historical_process_status": "NONCONFORMANT"
+    },
+    {
+      "id": "cleanup",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "Owned realms/pass entries/schemas/queues/container/network/scratch/consumers/tools removed; no owned same-UID process references or volume events. INFRA-0052 shared Podman warning remains mitigated, no shared process killed.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/sqs-final4-process-volume-hygiene.json",
+          "sha256": "50b001637f0a839455f18af4235b01e0d377d3264f6db5bd4f067d66660633eb"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/sqs-final-owned-consumer-cleanup.json",
+          "sha256": "044068f1ee610a99ce9a0347a6cdc5878e8b26becb8c5580724eb766f79d7b1d"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/identity-development-scratch-cleanup.json",
+          "sha256": "afe46b12ad223b30bf1a2cceaf89cb47fe4e950bd27eb69107844e23b4768728"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react18-integrated-final4.json",
+          "sha256": "8273740a1046c1ea182c33c1a6f6e3646f08e0d6b2a9372d71ca0ec3fcbeb410"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-doubles-final4.json",
+          "sha256": "a7ce00b29903737c5fefcc15d35ace32ed183e102437a3bf80e7d9d4f553b74c"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/sqs-anonymous-volume-cleanup.json",
+          "sha256": "0c991c4fa800c546a1a8e70b8b27c8f2db70736a4dddf82729fe1b52547f5490"
+        }
+      ]
+    },
+    {
+      "id": "work-items-admission",
+      "status": "PASS",
+      "category": "admission",
+      "reason": "Explicit owner acceptance recorded; contracts0.6.0/registry25, schema, compatibility, coverage, implementation policy and independent confrontation passed; no publication or runtime exposure.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/work-items-admission.json",
+          "sha256": "16703c68169bb5370ca62f9aec12f8bad143093e1c7f51297ccf3b045b462b82"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/work-items-admission-review.json",
+          "sha256": "2676856c886c223b9340372031fa04b0e26f4000e0199769a8465c1d6b59c3ab"
+        },
+        {
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/proposals/work-items/admission.json",
+          "sha256": "b9672c9386a541dce9c80c53fa72f64d2959b8291e8acace2bc6d0a811f80aa4"
+        }
+      ]
+    }
+  ],
+  "process_nonconformance": {
+    "status": "NONCONFORMANT",
+    "criterion": "Owner revised plan section4 and global AGENTS.md section3h: maximum3 correction rounds",
+    "observed": "10 development attempts before recorded independent diagnosis",
+    "historical_status": "preserved; not retroactively conformant",
+    "owner_decision": "Exceptional closeout accepted explicitly by direct “Autorizado!” reply, for this delivery only.",
+    "owner_acceptance_ref": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/proposals/work-items/owner-acceptance.json"
+  }
+}
