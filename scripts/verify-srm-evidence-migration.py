@@ -6,6 +6,19 @@ from pathlib import Path
 import re
 
 
+# Computed from immutable Git blobs at 83d50b809e0a04889768fdad854ab6e93533bbcc.
+# Mutable archive manifests cannot redefine the historical source being preserved.
+ORIGINAL_SHA256 = {
+    "evidence-summary.json": "2087d89e8d8a7425c474cda06ab7a4850c49040f697282693e40c93ca51b0365",
+    "independent-review.md": "a368498fc49e28954c6cc26502fe2b9b5ffe448c03a569bc2785cd875c2acbbb",
+}
+
+
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+
 def restore(value):
     if isinstance(value, dict):
         if value.get("record_type") == "artifact-digests/v2":
@@ -36,24 +49,25 @@ def read_summary(path):
 def verify(root):
     directory = root / "docs/srm-absorption"
     manifest = json.loads((directory / "history/manifest.json").read_text())
+    require(set(manifest) == set(ORIGINAL_SHA256), "Unexpected historical archive set")
     originals = {}
     for name, record in manifest.items():
         archive = (directory / record["path"]).read_bytes()
         raw = gzip.decompress(archive)
-        assert hashlib.sha256(archive).hexdigest() == record["archive_sha256"]
-        assert hashlib.sha256(raw).hexdigest() == record["original_sha256"]
+        require(hashlib.sha256(archive).hexdigest() == record["archive_sha256"], "Archive checksum mismatch: " + name)
+        require(hashlib.sha256(raw).hexdigest() == ORIGINAL_SHA256[name], "Original archive differs from frozen source: " + name)
+        require(hashlib.sha256(raw).hexdigest() == record["original_sha256"], "Original checksum manifest mismatch: " + name)
         originals[name] = raw
-    assert manifest["evidence-summary.json"]["original_sha256"] == "2087d89e8d8a7425c474cda06ab7a4850c49040f697282693e40c93ca51b0365"
+
     summary = directory / "evidence-summary.json"
-    assert read_summary(summary) == json.loads(originals["evidence-summary.json"])
-    assert read_summary(directory / manifest["evidence-summary.json"]["path"]) == read_summary(summary)
-    assert json.loads(summary.read_text())["original"] == manifest["evidence-summary.json"]
+    require(read_summary(summary) == json.loads(originals["evidence-summary.json"]), "Evidence summary roundtrip mismatch")
+    require(read_summary(directory / manifest["evidence-summary.json"]["path"]) == read_summary(summary), "Archive reader roundtrip mismatch")
+    require(json.loads(summary.read_text())["original"] == manifest["evidence-summary.json"], "Summary archive binding mismatch")
     old = originals["independent-review.md"].decode()
     current = (directory / "independent-review.md").read_text()
     marker = "SHA256 final do tarball auth:"
     begin = old.index("`", old.index(marker)) + 1
-    end = old.index("`", begin)
-    assert current == old[:begin] + "sha256:" + old[begin:]
+    require(current == old[:begin] + "sha256:" + old[begin:], "Review migration mismatch")
     print(json.dumps({"status": "PASS", "archives_exact": 2, "v2_to_v1_semantic_roundtrip": True,
                       "review_change": "single typed sha256 URI", "historical_statuses_unchanged": True}))
 
