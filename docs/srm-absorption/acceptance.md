@@ -28,7 +28,7 @@ No ZIP `.env`, avatars, brand, demo policy or singleton runtime is delivered.
 5. Independent skeptical review: blind pass, claims/evidence confrontation, corrections
    owned by executor, at most three rounds before diagnostic/change of approach.
 6. Identified shared/test service smokes, preserving live evidence independently
-   from mocks and source tests. An unavailable live target is BLOCKED, not PASS.
+   from mocks and source tests. An unavailable required live target is BLOCKED, not PASS. The three owner-accepted dispensations below are distinct WAIVED decisions, never live PASS.
 
 ## Negative regression mapping
 
@@ -67,9 +67,20 @@ actual source/package state tested. Their path is not a publication claim.
   `*-attempt1.json`. Missing nested parent project was diagnosed independently and
   resolved through an authorized bounded metadata GET with exact identity/project checks.
   No command/write smoke is authorized or claimed.
-- Graph/Teams/SQS/IdP: credentials may exist in pass, but those test targets are
-  not yet identified for this execution. Do not infer permission for a customer
-  tenant, Jira project, external recipient or channel merely from a credential name.
+- Revised owner plan explicitly waives new Graph/Teams external smokes and Jira
+  writes, with productive origin of Graph/Teams **reported by the owner**. No new
+  production validation is claimed. Decisions are pinned in acceptance-decisions.json.
+- SQS must use an ephemeral digest-pinned LocalStack with installed .NET/Node
+  consumers and cleanup; this is emulator integration, not managed AWS.
+- Identity must use the shared Keycloak with an exclusive disposable realm and
+  real PKCE, TOTP step-up, signed SAML and replay/correlation checks. This is not waived.
+- The integrated reference journey must connect authenticated context/authorization,
+  SQS, durable PostgreSQL, Redis and Mailpit. Separate smokes alone cannot prove it.
+- Canonical work-item contracts are locally registered after explicit owner
+  acceptance of strategic ADR0016. Catalog implementation metadata stays planned
+  until publication/HTTPS CI evidence under Decision0013; local implementation
+  and installation remain recorded in supplemental evidence. Gateway/default
+  dispatch remain optional and work-item execution is not publicly exposed.
 
 The live PostgreSQL port-forward reset is tracked in INFRA-0034; the documented
 LAN NodePort is the successful mitigation. The frontend frozen-install issue is
@@ -86,5 +97,40 @@ reviewed action; libraries do not create shared database services at startup.
 
 A final delivery report must state implementation, publication, installation and
 adoption separately, list failed/blocked acceptance gates, and reference source
-revisions/package hashes. No overall completion claim until every matrix row and
-required live gate has passed.
+revisions/package hashes. No overall completion claim until every matrix row and required gate is resolved.
+Only the three explicit owner decisions can be WAIVED. Implementation, strategic
+admission, publication and adoption are reported separately.
+
+## Owner decisions and process conformance in this continuation
+
+The owner instructed keeping current HSEOS configuration without installation.
+ECP retains its existing adoption; no HSEOS install occurred in the cores. The
+owner also authorized inclusion of exact marciohideaki@gmail.com in ECP's existing
+allowed-author configuration in addition to @hideakisolutions.local (including admin).
+The original gate failure is retained; no author identity was impersonated.
+
+Identity harness development exceeded the three-round correction limit before an
+independent diagnosis was recorded. This is a **process nonconformance**, not a
+waived criterion or retroactive compliance. Ten attempts and their cleanup evidence
+are retained. Independent review diagnosed bundling, selectors/actionability,
+manual encoded TOTP seed and SAML role-list duplicate attributes; the adapter denied
+duplicate attributes correctly. The changed approach preserves IdP protocol/MFA,
+uses native submit/manual Base32 and an identity-only SAML client in the disposable
+realm. It does not prove default Keycloak role mapping. Final receipts and review
+must distinguish functional results from this process deviation.
+
+## Autorização explícita de admissão e fechamento excepcional
+
+O proprietário respondeu “Autorizado!” à pergunta que solicitou conjuntamente o
+aceite da ADR0016 e autorização de fechamento excepcional desta entrega com o
+desvio registrado. O registro ECP `proposals/work-items/owner-acceptance.json`
+preserva a instrução literal, escopo e digest da ADR revisada. O histórico continua
+NONCONFORMANT; o gate específico recebe ACCEPTED_EXCEPTION, exige aprovação
+vinculada por hash e não conta como teste aprovado ou dispensa de outro requisito.
+A exceção vale só para esta entrega, sem alterar a política geral.
+
+Admissão local: capabilities workitem.query/command0.1.0, contracts/VERSION0.6.0,
+registry25 e coverage regenerados; compatibilidade e policy de implementações
+verificadas. Implementações planned continuam separando prova de instalação local
+de publicação/CI HTTPS. Gateway/CLI/MCP não expõem execução desses contratos.
+Publicação, release, merge, deploy e adoção continuam separados e não executados.

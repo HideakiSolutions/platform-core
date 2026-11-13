@@ -281,9 +281,7 @@
       "implementation_state": "verified",
       "publication_state": "not-published",
       "adoption_state": "not-claimed",
-      "remaining_acceptance": [
-        "Identified live test IdP realm/tenant authentication and step-up smoke."
-      ],
+      "remaining_acceptance": [],
       "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
     },
     {
@@ -309,12 +307,13 @@
       "implementation_state": "verified",
       "publication_state": "not-published",
       "adoption_state": "not-claimed",
-      "remaining_acceptance": [
-        "Identified live Graph test tenant/profile/groups/manager chain."
-      ],
+      "remaining_acceptance": [],
       "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
       "limitations": [
         ".NET access token acquisition is an injected delegated/app-only port; no SDK-specific type leaks."
+      ],
+      "accepted_dispensations": [
+        "graph-external-smoke"
       ]
     },
     {
@@ -340,9 +339,7 @@
       "implementation_state": "verified",
       "publication_state": "not-published",
       "adoption_state": "not-claimed",
-      "remaining_acceptance": [
-        "Live test IdP step-up journey."
-      ],
+      "remaining_acceptance": [],
       "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
       "limitations": [
         "Enrollment and recovery remain IdP-owned by design."
@@ -379,12 +376,13 @@
       "implementation_state": "verified",
       "publication_state": "not-published",
       "adoption_state": "not-claimed",
-      "remaining_acceptance": [
-        "Identified live Teams channel and SQS test queue."
-      ],
+      "remaining_acceptance": [],
       "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
       "limitations": [
         "SMTP delivered to shared Mailpit only; SQS requires a caller-supplied durable inbox/lease composition."
+      ],
+      "accepted_dispensations": [
+        "teams-external-smoke"
       ]
     },
     {
@@ -414,16 +412,18 @@
       "implementation_state": "verified",
       "publication_state": "not-published",
       "adoption_state": "not-claimed",
-      "remaining_acceptance": [
-        "Owner admission and full canonical service metadata/promotion pending; default dispatch unchanged.",
-        "Jira command smokes require a designated writable test project and explicit write authorization; both sites already passed real read-only provider and neutral queries."
-      ],
+      "remaining_acceptance": [],
       "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately.",
       "limitations": [
         "Installed SDK interop uses real HTTP/shared PostgreSQL with a recording Jira double, not a live Jira provider.",
         "Explicit pure synchronous authorization/secret/transport composition callbacks must enforce their own bounded timeouts; runtime checks between calls.",
         "Missing nested parent project is resolved by an object-authorized bounded GET and exact identity/project checks; validated on two real Jira sites with zero mutations."
-      ]
+      ],
+      "admission_pending": [],
+      "accepted_dispensations": [
+        "jira-write-smoke"
+      ],
+      "admission_state": "owner accepted; registered local ECP work-item0.1.0 surface in bundle0.6.0"
     },
     {
       "source_package": "ui-kit",
@@ -465,9 +465,7 @@
       "implementation_state": "verified",
       "publication_state": "not-published",
       "adoption_state": "not-claimed",
-      "remaining_acceptance": [
-        "Live test IdP browser journey."
-      ],
+      "remaining_acceptance": [],
       "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
     },
     {
@@ -494,9 +492,7 @@
       "implementation_state": "verified",
       "publication_state": "not-published",
       "adoption_state": "not-claimed",
-      "remaining_acceptance": [
-        "Unified reference journey through the identified external services."
-      ],
+      "remaining_acceptance": [],
       "verification_scope": "Experimental package/isolated-consumer and focused/shared tests; live limits recorded separately."
     }
   ],
@@ -1224,14 +1220,196 @@
   ],
   "global_open_gates": [
     {
-      "id": "external-targets",
-      "status": "BLOCKED",
-      "reason": "Graph tenant/profile, Teams channel, SQS queue and IdP realm/step-up targets remain unidentified. Real Jira GET-only provider and neutral queries passed on both authorized sites; commands still need a designated writable test project and authorization."
+      "id": "jira-write-smoke",
+      "status": "WAIVED",
+      "category": "implementation",
+      "decision_ref": "docs/srm-absorption/acceptance-decisions.json",
+      "reason": "Dispensado pelo aceite explícito do proprietário no plano revisado; não é teste aprovado."
+    },
+    {
+      "id": "graph-external-smoke",
+      "status": "WAIVED",
+      "category": "implementation",
+      "decision_ref": "docs/srm-absorption/acceptance-decisions.json",
+      "reason": "Dispensado pelo aceite explícito do proprietário no plano revisado; não é teste aprovado."
+    },
+    {
+      "id": "teams-external-smoke",
+      "status": "WAIVED",
+      "category": "implementation",
+      "decision_ref": "docs/srm-absorption/acceptance-decisions.json",
+      "reason": "Dispensado pelo aceite explícito do proprietário no plano revisado; não é teste aprovado."
+    },
+    {
+      "id": "sqs-emulator",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "SQS emulated integration passed both stacks against exact selected installed DLLs; not managed AWS.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-keycloak-sqs-final4.json",
+          "sha256": "da6ed8f3cf33fdc0cb8a2496f0417eee434514b750729aea7371d03e35ab4bed"
+        }
+      ]
+    },
+    {
+      "id": "identity-live",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "Real shared Keycloak PKCE, TOTP ACR1→2, signed SAML/correlation/replay/concurrent winner and IdP cleanup passed with React18/19 installed.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react19-integrated-final2.json",
+          "sha256": "708efd6e2635c21d04ea3f250faf50e5fd05594d7bd8bae706bc95d499e6bfcc"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react18-integrated-final4.json",
+          "sha256": "8273740a1046c1ea182c33c1a6f6e3646f08e0d6b2a9372d71ca0ec3fcbeb410"
+        }
+      ]
+    },
+    {
+      "id": "canonical-clients",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "Clientes instalados dual profile e HTTP/PG canônico aprovados; identidade sintética e recording Jira nesta composição.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-clients.json",
+          "sha256": "7ba085354c848adbac135be8e985c8342eb924aee2c9e799fa8a95aa29a69e0b"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/work-items-canonical-http-postgres.json",
+          "sha256": "fe5e592fdbe03c1eeb2e32c99a9018620c20b356a887541599092574f58439b8"
+        }
+      ]
+    },
+    {
+      "id": "integrated-reference",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "Same trusted IdP context/event across authz, SQS, PostgreSQL, Redis, Mailpit and identified Graph/Teams/Jira recording doubles; no external calls to these3providers.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react18-integrated-final4.json",
+          "sha256": "8273740a1046c1ea182c33c1a6f6e3646f08e0d6b2a9372d71ca0ec3fcbeb410"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-keycloak-sqs-final4.json",
+          "sha256": "da6ed8f3cf33fdc0cb8a2496f0417eee434514b750729aea7371d03e35ab4bed"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-doubles-final4.json",
+          "sha256": "a7ce00b29903737c5fefcc15d35ace32ed183e102437a3bf80e7d9d4f553b74c"
+        }
+      ]
+    },
+    {
+      "id": "shared-conformance",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "ECP admission825 tests (4 skipped) with registry25/bundle0.6, plus preserved installed .NET1310/Node101/React18+19 evidence. No prior live smoke replaced.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/ecp-canonical-gates-final.log",
+          "sha256": "128e65b51e14208f0c7a7a123bc89f283ffe1ce4b6048e3b80b930bc19eabf3b"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/dotnet-canonical-installed-final.json",
+          "sha256": "0138462478399c1a74c29b7b9281522e4ca163766e6f3122a83d762d839e55a6"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/acceptance-gate-regressions.log",
+          "sha256": "1121ea7f46212b81e4ae34c3024e9a6da62b8b9af1d40c84fbf35ee95e1beb90"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/ecp-admission-gates.log",
+          "sha256": "3ab037d2b45b8b3c99c9bc01bd88dc3438bf741e40698113cc8336b96e105d08"
+        }
+      ]
+    },
+    {
+      "id": "independent-review",
+      "status": "ACCEPTED_EXCEPTION",
+      "category": "implementation",
+      "reason": "Owner authorized exceptional closeout for this delivery after complete technical review. Historical breach is preserved; this is not a passed test or general waiver.",
+      "technical_review": "COMPLETE",
+      "technical_findings": "CLOSED",
+      "evidence": [
+        {
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-platform/docs/srm-absorption/continuation-review.json",
+          "sha256": "f313d9774deb739282c19ca2fcc9cc56cc23aee64d7eefab1bb57577c1b3ded0"
+        },
+        {
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/proposals/work-items/owner-acceptance.json",
+          "sha256": "e9bdf4ffd87cc37dbcfdcede04b52658a29e7c0bc1d1bb3d16a1e4482d84723d"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/work-items-admission-review.json",
+          "sha256": "2676856c886c223b9340372031fa04b0e26f4000e0199769a8465c1d6b59c3ab"
+        }
+      ],
+      "historical_process_status": "NONCONFORMANT"
+    },
+    {
+      "id": "cleanup",
+      "status": "PASS",
+      "category": "implementation",
+      "reason": "Owned realms/pass entries/schemas/queues/container/network/scratch/consumers/tools removed; no owned same-UID process references or volume events. INFRA-0052 shared Podman warning remains mitigated, no shared process killed.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/sqs-final4-process-volume-hygiene.json",
+          "sha256": "50b001637f0a839455f18af4235b01e0d377d3264f6db5bd4f067d66660633eb"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/sqs-final-owned-consumer-cleanup.json",
+          "sha256": "044068f1ee610a99ce9a0347a6cdc5878e8b26becb8c5580724eb766f79d7b1d"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/identity-development-scratch-cleanup.json",
+          "sha256": "afe46b12ad223b30bf1a2cceaf89cb47fe4e950bd27eb69107844e23b4768728"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/keycloak-identity-react18-integrated-final4.json",
+          "sha256": "8273740a1046c1ea182c33c1a6f6e3646f08e0d6b2a9372d71ca0ec3fcbeb410"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/srm-integrated-doubles-final4.json",
+          "sha256": "a7ce00b29903737c5fefcc15d35ace32ed183e102437a3bf80e7d9d4f553b74c"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/sqs-anonymous-volume-cleanup.json",
+          "sha256": "0c991c4fa800c546a1a8e70b8b27c8f2db70736a4dddf82729fe1b52547f5490"
+        }
+      ]
     },
     {
       "id": "work-items-admission",
-      "status": "PENDING",
-      "reason": "Neutral CQRS draft and manually implemented clients remain experimental/unregistered; owner admission and canonical service metadata/promotion remain separate."
+      "status": "PASS",
+      "category": "admission",
+      "reason": "Explicit owner acceptance recorded; contracts0.6.0/registry25, schema, compatibility, coverage, implementation policy and independent confrontation passed; no publication or runtime exposure.",
+      "evidence": [
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/work-items-admission.json",
+          "sha256": "16703c68169bb5370ca62f9aec12f8bad143093e1c7f51297ccf3b045b462b82"
+        },
+        {
+          "path": "/build/artifacts/srm-absorption/evidence/work-items-admission-review.json",
+          "sha256": "2676856c886c223b9340372031fa04b0e26f4000e0199769a8465c1d6b59c3ab"
+        },
+        {
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/proposals/work-items/admission.json",
+          "sha256": "b9672c9386a541dce9c80c53fa72f64d2959b8291e8acace2bc6d0a811f80aa4"
+        }
+      ]
     }
-  ]
+  ],
+  "process_nonconformance": {
+    "status": "NONCONFORMANT",
+    "criterion": "Owner revised plan section4 and global AGENTS.md section3h: maximum3 correction rounds",
+    "observed": "10 development attempts before recorded independent diagnosis",
+    "historical_status": "preserved; not retroactively conformant",
+    "owner_decision": "Exceptional closeout accepted explicitly by direct “Autorizado!” reply, for this delivery only.",
+    "owner_acceptance_ref": "/workspace/github/hideaki-solutions-core/.wt/srm-ecp/proposals/work-items/owner-acceptance.json"
+  }
 }

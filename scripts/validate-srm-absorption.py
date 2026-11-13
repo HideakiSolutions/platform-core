@@ -10,6 +10,92 @@ import sys
 import zipfile
 
 
+DISPENSABLE_GATES = frozenset({"jira-write-smoke", "graph-external-smoke", "teams-external-smoke"})
+
+
+def verify_evidence(entries):
+    if not entries:
+        raise ValueError("passed gate requires hash-bound evidence")
+    for entry in entries:
+        path = Path(entry["path"])
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != entry["sha256"]:
+            raise ValueError("passed gate evidence missing or altered")
+
+
+def unresolved_gates(gates, decisions):
+    accepted = {entry["gate"]: entry for entry in decisions["decisions"]}
+    unresolved = []
+    waived = []
+    ids = [gate["id"] for gate in gates]
+    required = DISPENSABLE_GATES | {"sqs-emulator", "identity-live", "canonical-clients", "integrated-reference",
+                                    "shared-conformance", "independent-review", "cleanup", "work-items-admission"}
+    if len(ids) != len(set(ids)):
+        raise ValueError("duplicate acceptance gate")
+    if set(ids) != required:
+        raise ValueError("required acceptance gate missing or unknown gate added")
+    for gate in gates:
+        status = gate["status"]
+        if status == "WAIVED":
+            entry = accepted.get(gate["id"])
+            if (gate["id"] not in DISPENSABLE_GATES or not entry or entry.get("status") != "WAIVED"
+                or entry.get("test_executed") is not False or not entry.get("basis")
+                or gate.get("decision_ref") != "docs/srm-absorption/acceptance-decisions.json"):
+                raise ValueError("unauthorized dispensation")
+            waived.append(gate["id"])
+        elif status == "ACCEPTED_EXCEPTION":
+            approved = [entry for entry in decisions.get("closure_authorizations", [])
+                        if entry.get("gate") == gate["id"] and entry.get("status") == status]
+            if (gate["id"] != "independent-review" or len(approved) != 1
+                or gate.get("technical_review") != "COMPLETE" or gate.get("technical_findings") != "CLOSED"
+                or gate.get("historical_process_status") != "NONCONFORMANT"
+                or approved[0].get("historical_process_status") != "NONCONFORMANT"):
+                raise ValueError("accepted exception requires explicit owner approval and preserved history")
+            verify_evidence([approved[0]["approval_record"]])
+            approval = json.loads(Path(approved[0]["approval_record"]["path"]).read_text())
+            if (approval.get("exceptional_closeout_accepted") is not True or not approval.get("instruction")
+                or not approval.get("owner") or approval.get("historical_process_status") != "NONCONFORMANT"):
+                raise ValueError("accepted exception requires explicit owner approval and preserved history")
+            verify_evidence(gate.get("evidence", []))
+        elif status == "PASS":
+            verify_evidence(gate.get("evidence", []))
+        elif status in ("PENDING", "BLOCKED", "FAIL"):
+            unresolved.append(gate["id"])
+        else:
+            raise ValueError("invalid acceptance gate status")
+    return unresolved, waived
+
+
+def require_recorded_admission(record):
+    if (record.get("status") != "accepted" or not record.get("owner_acceptance")
+        or not record.get("human_instruction_reference") or record.get("activation") != "reviewed"):
+        raise ValueError("strategic admission requires recorded owner acceptance and reviewed activation")
+
+
+def verify_admitted_surface(ecp, admission):
+    require_recorded_admission(admission)
+    reference = Path(admission["human_instruction_reference"])
+    if reference.is_absolute() or ".." in reference.parts:
+        raise ValueError("invalid owner approval reference")
+    approval_path = ecp / reference
+    if hashlib.sha256(approval_path.read_bytes()).hexdigest() != admission["owner_acceptance_sha256"]:
+        raise ValueError("owner approval record changed")
+    approval = json.loads(approval_path.read_text())
+    if approval.get("adr_accepted") is not True or not approval.get("instruction"):
+        raise ValueError("strategic ADR owner approval missing")
+    if not (ecp / admission["adr"]).is_file():
+        raise ValueError("accepted strategic ADR missing")
+    version = (ecp / "contracts/VERSION").read_text().strip()
+    registry = json.loads((ecp / "catalog/capability-registry.json").read_text())
+    if version != admission["contracts_version"] or registry["generated_from"]["contracts_version"] != version:
+        raise ValueError("admitted contract registry version mismatch")
+    entries = {item["name"]: item for item in registry["capabilities"]}
+    for name in ("workitem.query", "workitem.command"):
+        entry = entries.get(name)
+        if not entry or entry["version"] != "0.1.0" or entry["kind"] != "service":
+            raise ValueError("admitted work-item contract missing")
+        verify_evidence([{"path": str(ecp / item["path"]), "sha256": item["sha256"]} for item in entry["files"]])
+
+
 def validate(args):
     root = Path(__file__).resolve().parents[1]
     matrix = json.loads((root / "docs/srm-absorption/traceability.json").read_text())
@@ -68,9 +154,18 @@ def validate(args):
     if fixture.read_bytes() != (args.backend / "node/test/fixtures/directory-manager-chain.json").read_bytes():
         raise ValueError("directory conformance fixture drift")
     incomplete = [row["source_package"] for row in records if row["remaining_acceptance"] or row["implementation_state"] != "verified"]
-    open_gates = [gate["id"] for gate in matrix["global_open_gates"] if gate["status"] != "PASS"]
+    decisions = json.loads((root / "docs/srm-absorption/acceptance-decisions.json").read_text())
+    open_gates, waived = unresolved_gates(matrix["global_open_gates"], decisions)
+    if any(gate["id"] == "work-items-admission" and gate["status"] == "PASS" for gate in matrix["global_open_gates"]):
+        admission = json.loads((args.ecp / "proposals/work-items/admission.json").read_text())
+        verify_admitted_surface(args.ecp, admission)
+    implementation_open = [gate["id"] for gate in matrix["global_open_gates"]
+                           if gate["id"] in open_gates and gate.get("category") != "admission"]
     result = {"traceability": "PASS", "packages": len(records), "source_modules": len(paths),
         "mapped_paths": checked, "authority_unknown_preserved": len(unknown),
+        "implementation": "INCOMPLETE" if incomplete or implementation_open else "COMPLETE",
+        "accepted_dispensations_not_test_passes": waived,
+        "accepted_process_exceptions_not_test_passes": [gate["id"] for gate in matrix["global_open_gates"] if gate["status"] == "ACCEPTED_EXCEPTION"],
         "whole_delivery": "INCOMPLETE" if incomplete or open_gates else "COMPLETE", "open_deliveries": incomplete, "open_global_gates": open_gates}
     print(json.dumps(result, indent=2))
     return 1 if args.require_complete and (incomplete or open_gates) else 0

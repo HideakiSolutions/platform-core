@@ -258,3 +258,60 @@ O resultado atual comprova reads nas amostras dos dois sites autorizados. Não
 comprova comandos, todas as combinações de hierarquia/paginação/ACL, exposição de
 serviço público, admissão do draft, publicação ou adoção. A revisão alterou somente
 este relatório; as correções de implementação ficaram com o executor.
+
+## Antes do aceite de 2026-11-13 — registro histórico dos critérios revisados
+
+**Revisão técnica COMPLETE; findings técnicos CLOSED; aprovação integral BLOCKED.**
+A passagem cega encontrou autorização ausente de objetos em buscas/filtros de pai,
+metadata Python experimental sem evidência de promoção, identidade incorreta do
+pacote Node e problemas de atomicidade/logout no harness. O confronto confirmou
+as correções: autorização por objeto em ambos profiles, metadata planned com
+evidência local suplementar e promotion policy aplicada, package identity correto,
+consume SAML atômico e logout verificado. Não houve redução de gates/adapters.
+
+A revisão também diagnosticou independentemente a divergência do cache NuGet e
+uma fixture Graph sem mail, corretamente classificada pelo adapter como partial.
+Restore isolado/source mapping/hashes e a correção da fixture resolveram as causas.
+O diagnóstico dos três doubles foi rotulado DIAGNOSTIC_PASS, nunca integração IdP.
+O final4 real posterior confirmou os três providers recording, cinco serviços,
+contexto/event_id único, digests encadeados, SAML assinado/replay/correlação e um
+vencedor entre quatro concorrentes. React19 está preservado no final2; React18 no
+final4. A fonte do helper estava congelada antes da execução por ordem causal
+bloqueante comprovada; não se afirma horário exato de spawn.
+
+Conferidos 30 hashes na rodada final e cinco DLLs NuGet; os 48 projetos instalados
+somam 1.310 resultados finais aprovados (45 iniciais + três revalidações), não uma
+única execução integral verde. Preparação arquivada por digest, consumidores/tools
+removidos, objetos Podman ausentes, nenhum processo próprio referenciado e zero
+volume criado na janela verificados. Issues INFRA-0051/0052 permanecem delimitadas.
+
+O desenvolvimento do harness excedeu três rodadas antes do diagnóstico independente.
+A revisão posterior e o êxito funcional **não apagam a não conformidade**. O gate
+independent-review fica BLOCKED até decisão do proprietário sobre esse desvio,
+sem dispensa inventada. A admissão estratégica fica PENDING até aceite da ADR0016.
+Publicação, merge, deploy e adoção não foram efetuados. `--require-complete` deve
+continuar reprovando. Evidências vinculadas em [continuation-review.json](continuation-review.json).
+
+## Aceite posterior do proprietário — admissão 0.6.0
+
+A resposta direta “Autorizado!” aceita a ADR0016 e o fechamento excepcional desta
+entrega. O registro anterior BLOCKED permanece preservado nas evidências; o desvio
+histórico continua NONCONFORMANT. A resolução passa a ACCEPTED_EXCEPTION, com
+escopo limitado e autorização vinculada por hash, sem fingir novo teste aprovado.
+
+A revisão cega da admissão confirmou 88 arquivos idênticos ao snapshot aprovado,
+catálogo com 25 capacidades, VERSION0.6.0 e respeito aos flags de exposição por gateway, CLI e
+geradores MCP/demo/SDK. A CLI show mantém introspecção local de metadados; nenhum
+novo invoker Jira ou rota pública é habilitado. Os testes foram atualizados para
+verificar admissão autorizada e negação de execução, preservando o profile draft.
+O gate ECP: 825 (quatro skips) e os gates de schema, registry, coverage, compatibilidade
+aditiva e policy de implementações passaram. O confronto final confirmou os recibos e encerrou work-items-admission. A matriz
+registra ACCEPTED_EXCEPTION para a revisão de processo, preservando o histórico,
+e o fechamento completo exige todos os hashes e o aceite da ADR.
+
+Confronto posterior concluído: 88 arquivos do snapshot, 12 hashes de admissão e
+três referências do binding íntegros. A revisão executou independentemente nove
+regressões de aceite e verificou verify_admitted_surface. O catálogo contém 25
+capacidades e 11 serviços, mantendo nove expostos por API/CLI/MCP. Não houve novo
+bloqueio técnico. Fechamento autorizado como ACCEPTED_EXCEPTION, com histórico
+NONCONFORMANT preservado e publicação/merge/deploy fora desta execução.

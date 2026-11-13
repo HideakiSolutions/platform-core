@@ -1,92 +1,141 @@
-# Absorção SRM — entrega experimental e gates pendentes
+# Absorção SRM — continuação da implementação e admissão separada
 
-Classificação: **componentes experimentais utilizáveis em consumidores isolados; objetivo
-integral ainda incompleto**. As capacidades selecionadas foram incorporadas aos contratos
-existentes, com adapters opcionais, pacotes locais e consumidores de referência. Os alvos
-externos restantes, as operações Jira de escrita e a admissão do novo contrato de work items continuam pendentes. Isso não é uma
-declaração de disponibilidade de produção, publicação ou adoção.
+Classificação: **implementação experimental utilizável em consumidores instalados;
+implementação e admissão local concluídas após aceite explícito do proprietário**. Publicação em registry,
+merge, deploy e adoção de produtos permanecem fora desta execução.
 
 ## Resultado utilizável
 
-- Backend Node: fundamentos determinísticos, configuração tipada, Pino/redaction,
-  instrumentação OTel, recorder/sinks de auditoria, autorização local opcional,
-  aprovação persistente com CAS/outbox, Graph, sessão/SAML, MFA/Redis, clientes ECP
-  e transporte SQS opcional.
-- Backend .NET: extensões nos pacotes existentes, adapters Graph/SAML/MFA/Redis/SQS,
-  persistência de aprovação PostgreSQL, notificações ECP, OTel e cliente experimental
-  de work items. Result e TimeProvider foram reutilizados.
-- Runtime ECP: providers SMTP/Teams opcionais; provider Jira e projeção CQRS
-  experimental com journal durável, auditoria transacional, dry-run e retomada.
-  Os novos contratos `workitem.query`/`workitem.command` não entram no catálogo ou
-  dispatcher padrão. Os clientes fixam o profile `workitems-cqrs/0.1.0-draft.1`.
-- React/Helix: composição opcional de ações de login, loading/erro/retry e cenários
-  reutilizáveis de navegação, tabela e indicadores. Keycloak e APIs anteriores
-  continuam disponíveis.
+O motor Jira existente serve os profiles `workitems-cqrs/0.1.0` e
+`workitems-cqrs/0.1.0-draft.1`. O primeiro usa schemas ECP canônicos versionados
+admitidos após o aceite; o segundo permanece explícito para compatibilidade.
+Fingerprints, cursores e journals incluem o profile: não há migração ou reinterpretação
+implícita de registros. Contexto autenticado vem do host; actor/tenant do corpo são
+somente declarações vinculadas a esse contexto. Ausência ou divergência é negada
+antes de provider/journal, inclusive em dry-run. Conexão, projeto, objeto retornado
+em busca e referências de pai exigem autorização.
 
-Os 17 pacotes de origem e 120 módulos `src/` têm rastreabilidade e hashes em
-[traceability.json](traceability.json). Nenhuma autoridade `unknown` foi promovida;
-o pin `contracts-v0.4.0` permanece inalterado. Marcas, avatares, `.env`, dados de
-demonstração e políticas de cliente foram excluídos.
+Em ECP, `capabilities/workitem.query` e `capabilities/workitem.command` contêm schemas, conformance, políticas,
+provider Jira, OpenAPI, AsyncAPI, MCP desabilitado e metadados das duas capacidades.
+`CanonicalWorkItems` é composição opcional e reutiliza o mesmo motor/provider.
+Nenhuma rota foi habilitada no gateway padrão. AsyncAPI declara explicitamente que
+transições locais de journal/auditoria não são publicação em broker. Não se afirma
+entrega de eventos externos, exposição pública ou disponibilidade de produção.
 
-## Verificação e artefatos
+A ADR estratégica **0016** foi aceita explicitamente pelo proprietário com “Autorizado!” em resposta à solicitação de aceite da ADR e fechamento excepcional. O preview aditivo
+`0.6.0` é gerado em cópia isolada pelo script `prepare_work_items_bundle.py`, com
+os validadores existentes de schema/governança, registry, coverage e policy de
+implementações novas. Após o aceite, os dois contratos 0.1.0 foram copiados para `capabilities/`, o
+bundle local avançou para `0.6.0` e o catálogo contém 25 capacidades. Gateway,
+CLI e geradores MCP/demo/SDK genérico respeitam os flags de exposição; os novos
+contratos continuam exigindo composição explícita autenticada. Platform-core
+preserva o pin `contracts-v0.4.0` e as seis autoridades `unknown`; o vínculo
+aditivo da nova superfície está em `docs/architecture/contract-authority/work-items-admission.json`. No catálogo local,
+implementações ficam `planned` até publicação e evidência HTTPS CI exigidas pela
+Decision0013; evidências suplementares registram implementação/instalação locais.
+Isso não é promoção disfarçada ou URL de CI inventada.
 
-A raiz dos artefatos locais é `/build/artifacts/srm-absorption/`. Os recibos originais
-contêm hashes e escopo; não foram substituídos por uma narrativa de sucesso. O
-[índice de evidências](evidence-summary.json) fixa checksums e revisões dos resultados.
+## Evidências desta continuação
 
-| Entrega | Evidência e limite |
+Raiz: `/build/artifacts/srm-absorption/`. O índice
+[evidence-summary.json](evidence-summary.json) fixa revisões, arquivos e hashes.
+Os recibos anteriores, inclusive tentativas reprovadas, permanecem preservados.
+
+| Critério | Resultado verificável e limite |
 | --- | --- |
-| .NET source | 48 projetos, 1.242 testes aprovados, zero falhas; `evidence/dotnet-work-items-solution.json`. |
-| .NET pacotes | 51 NuGets no feed local; 48 projetos e 1.242 testes novamente aprovados em consumidor isolado, zero skips. Integridade dos arquivos restaurados e source revision verificados. O teste não usa ProjectReference para produção. |
-| Node | Suíte completa de 717 testes antes da última correção de vínculo do journal; depois dela, 108 testes focados, typecheck, build e instalação/tamper do pacote aprovados. Recibos preservam essa sequência, sem somar contagens como uma nova suíte. |
-| React | Cinco tarballs instalados; React 18.3.1 e 19.2.6: 42 testes em cada, typecheck e bundle sem dependências backend; axe/teclado/foco/temas no escopo dos testes. Não é smoke de IdP ou revisão visual em produção. |
-| ECP | 816 testes executados, quatro ignorados, sem falhas; contratos, registry de 23 capacidades e coverage aprovados. |
-| Integração work items | Clientes .NET/Node instalados, HTTP real e PostgreSQL compartilhado com TLS verificado; **Jira simulado**. Criação única entre stacks, retomada parcial, estimativa distinta de trabalho realizado, dry-runs sem efeitos e rollback da auditoria. |
-| Jira real somente leitura | Duas credenciais/sites autorizados: autenticação, projetos/tipos, item/busca e transições; neutral get/search/transitions passaram, somente GET e zero mutações. A projeção de parent foi corrigida após diagnóstico independente. |
-| Infra compartilhada | Smokes reais de Redis (OTP/TOTP concorrentes), PostgreSQL (aprovações/journal) e SMTP no Mailpit. Os recibos detalham concorrência, recuperação e limpeza. |
-| Dependências e código | Auditorias dos novos adapters sem vulnerabilidades reportadas nos recibos; typecheck/compilação, gates dos repositórios e diff-check. Varredura limitada de padrões de segredos nos arquivos alterados passou; não equivale a um scanner exaustivo. |
-| Revisão independente | Duas passagens; achados corrigidos, três rodadas no runtime WorkItems; limites e evidências em [independent-review.md](independent-review.md). |
+| ECP | Na admissão autorizada: 825 testes, quatro skipped declarados, sem falhas; registry com 25 capacidades, coverage oito stacks, compatibilidade aditiva, policy de implementações e quality gates aprovados. O resultado anterior 823 permanece preservado. Sete regressões novas cobrem profiles, isolamento, contexto e autorização individual. |
+| Clientes Node | Pacote `@hideakisolutions/platform-node@0.3.0-experimental.1`; 101 testes, typecheck/build, instalação, validators dos dois profiles e tamper checks aprovados. |
+| Cliente .NET | `Hideakisolutions.Platform.WorkItems.Ecp@0.1.0-experimental.2`; 153 testes source e 153 via NuGet instalado aprovados, zero skips. Resultado final dos 48 projetos instalados: 1.310 testes aprovados, zero falhas/skips; 45 resultados iniciais e três revalidações após corrigir configuração do harness, sem alegar uma única execução integral verde. |
+| HTTP + PostgreSQL canônico | Oito cenários aprovados com clientes instalados: criação única entre stacks, retomada Node→.NET, consultas, estimativa distinta de trabalho real, dry-run sem efeitos, contexto obrigatório e rollback transacional de auditoria. TLS PG verificado. **Identidade sintética e Jira double**, explicitamente declarados. Schema/HTTP/scratch removidos. |
+| Segurança de dependências | Auditorias Node produção e .NET transitivas sem vulnerabilidades reportadas. AST/compilação/typecheck/diff-check e varreduras limitadas de padrões de segredos nos arquivos alterados; não equivalem a SAST exaustivo. |
+| SQS | Baseline em LocalStack por digest com publicação/consumo cruzados .NET/Node, duplicação, reentrega pré-ACK, retry limitado, quarentena e drain. Persistência PG na composição .NET e SQLite WAL/FULL no harness Node, explicitamente identificados. Integração com emulador, **não AWS gerenciada**. O final4 aprovou os cenários nas duas direções e conferiu cinco DLLs instaladas contra os NuGets selecionados. |
+| Identidade | Standalone real no Keycloak compartilhado: PKCE, sessão, enrollment TOTP/código errado, JWT assinado ACR1→2, assertions SAML assinadas aceitas em adapters Node/.NET instalados e replay/correlação negados. O final4 confirmou consumo atômico com um vencedor em quatro entregas simultâneas e logout HTTP 2xx verificado. Realm exclusivo temporário; não valida o mapeamento padrão de roles Keycloak. |
+| React/Helix | Pacotes instalados, jornada teclado/foco/loading/erro/retry; recibos anteriores preservam React18/19 e 42 testes em cada. Jornada de IdP desta continuação usa os tarballs existentes, sem reempacotar UI não alterada. |
+| Jornada integrada | O mesmo contexto real do Keycloak e event_id atravessaram autorização, SQS, PostgreSQL, replay Redis e Mailpit no final4, incluindo Graph/Teams/Jira como recording doubles identificados pelos adapters/providers existentes. Seus recibos estão encadeados por SHA-256. Não houve novas chamadas externas desses três providers. |
+| Revisão cética | Achados de autorização, metadata/policy do candidato e higiene/atomicidade do harness foram examinados e corrigidos. Confronto final confirmou correções, hashes e higiene. Findings técnicos CLOSED; fechamento excepcional autorizado pelo proprietário, preservando o desvio histórico. |
 
-A instalação local usa arquivos `.tgz`/`.nupkg` empacotados, sem dependências `file:`
-do ZIP. Esses artefatos não foram publicados em registry.
+As leituras Jira reais nos dois sites e os testes anteriores de comandos, retomada,
+persistência, Graph/Teams e infraestrutura compartilhada continuam referenciados;
+não foram substituídos por novas alegações. Os 17 pacotes e 120 módulos de origem
+mantêm hashes em [traceability.json](traceability.json). Marcas, avatares, `.env`,
+dados de demonstração e políticas de clientes não foram absorvidos.
 
-## Pendências que impedem encerrar o objetivo integral
+## Dispensado pelo aceite do proprietário
 
-1. Identificar os alvos restantes: Graph tenant/perfil, Teams canal, SQS fila e IdP
-   realm/tenant/jornada de step-up. Jira de escrita exige projeto de teste e autorização
-   explícita; as duas credenciais existentes já foram usadas com êxito somente para leitura. O usuário informou
-   que credenciais existem em `pass`; o bloqueio é a identificação dos ambientes
-   de teste, não uma alegação de falta de credenciais. Não foi usado um projeto
-   Jira de cliente por inferência.
-2. Executar os smokes externos e a jornada integrada nesses alvos. HTTP/PG com Jira
-   simulado não comprova Jira real, autenticação HTTP de produção ou concorrência
-   HTTP entre SDKs. Consultas reais de itens com parent passaram nos dois sites após enriquecimento autorizado
-   do projeto do pai; identidade ou projeto divergente continuam negados. Escritas reais
-   não foram tentadas nem ficam autorizadas por esse resultado de leitura.
-3. Aceite do proprietário para admissão dos novos contratos CQRS, promoção e
-   metadados canônicos de serviço. A implementação experimental concreta já está
-   disponível para revisão; o aceite não bloqueou seu desenvolvimento.
+Somente os seguintes gates são `WAIVED`, conforme o plano fornecido no pedido de
+implementação e [acceptance-decisions.json](acceptance-decisions.json):
 
-`validate-srm-absorption.py --require-complete` **rejeita corretamente esta entrega
-incompleta**. Os gates não foram reduzidos. Publicação, merge e deploy estão fora do
-escopo automático; sua ausência não foi disfarçada como adoção.
+- Novas escritas Jira: não executadas; evidências reais de leitura e testes de
+  comandos/retomada/persistência preservados.
+- Novos smokes externos Graph e Teams: origem produtiva informada pelo proprietário;
+  conformidade dos adapters mantida, **sem nova validação em produção**.
 
-## Uso e rollback
+O validator não permite dispensar identidade, SQS ou qualquer outro gate; tampouco
+permite apagar gates ou marcar PASS sem evidência vinculada por hash.
 
-Consulte os READMEs dos adapters e os consumidores em
-`node/examples/work-items-ecp-harness.mjs`, `dotnet/examples/srm-absorption-consumer`
-e `react/examples/`. Os smokes são opt-in, usam referências de pass e registram
-somente evidência sanitizada. Migrações são aplicadas pela aplicação consumidora;
-as bibliotecas não provisionam serviços compartilhados.
+## Processo e fechamento
 
-Para rollback, remova a composição e as referências experimentais e drene
-consumidores SQS. Preserve journal, outbox e registros de aprovação até reconciliar
-efeitos incertos; nunca apague um claim para fabricar uma nova tentativa. A adição
-Jira usa namespace de fingerprint/journal separado e não reinterpreta registros
-experimentais anteriores. Sessão da aplicação, validação de tokens e MFA opcional
-não substituem implicitamente enrollment/recuperação/autenticação padrão do IdP.
+O gate ECP inicial falhou pelo e-mail Git pessoal fora do padrão configurado. Após
+a autorização explícita do proprietário, a configuração aceitou exatamente
+`marciohideaki@gmail.com`, preservando os endereços `@hideakisolutions.local`,
+incluindo admin, e a regra contra atribuição de IA. A falha original foi mantida;
+nenhuma identidade foi impersonada. O proprietário também determinou manter a
+configuração atual de HSEOS, sem nova instalação.
 
-Os problemas observados em infraestrutura foram registrados: INFRA-0034 (reset de
-port-forward, mitigado pelo acesso LAN documentado) e INFRA-0044 (instalação frontend
-concluída com cache; autenticação remota do registry não comprovada causalmente).
-Ativação AEW e enforcement global dos consumidores permanecem **não verificados**.
+O desenvolvimento do harness de identidade ultrapassou três tentativas antes do
+diagnóstico independente exigido. Isso é **não conformidade de processo**, não
+conformidade retroativa. O revisor confirmou causas e mudança de abordagem; a
+composição passou a usar seed Base32 manual, submit nativo e cliente SAML dedicado
+à identidade, sem relaxar adapters. Os recibos de tentativas e o desvio foram
+preservados. Detalhes em `backend-core/node/docs/srm-identity-validation.md`.
+
+A verificação funcional está concluída: final2 preserva React19 e o final4 React18
+inclui os três doubles na mesma jornada. A revisão independente confirmou os
+recibos, hashes e a higiene; findings técnicos estão encerrados. O proprietário respondeu “Autorizado!” ao aceite da [ADR0016 no ECP](/workspace/github/hideaki-solutions-core/.wt/srm-ecp/documentation/decisions/0016-work-items-strategic-admission.md)
+e ao fechamento excepcional desta entrega. A revisão de processo recebe
+**ACCEPTED_EXCEPTION**, nunca um PASS de teste: o histórico continua NONCONFORMANT.
+A admissão local dos contratos foi aplicada após o aceite e passou os gates
+correspondentes. O registro literal, digest do documento revisado e escopo estão
+em `ECP/proposals/work-items/owner-acceptance.json`.
+
+O validator final confirma 17 pacotes, 120 módulos e seis autoridades preservadas,
+com zero entregas funcionais abertas. A matriz distingue as três dispensas de
+smoke da exceção de processo autorizada e da admissão efetivamente verificada.
+`--require-complete` só passa após validar a autorização por hash, preservar o
+histórico do desvio, comprovar o catálogo/bundle 0.6.0 e encerrar o confronto final.
+O aceite vale somente para esta entrega e não altera a política geral de correções.
+
+A divergência de bytes no cache NuGet global foi mitigada com restore isolado,
+source mapping exclusivo e hashes contra os pacotes selecionados (INFRA-0051).
+O Podman retornou 125 durante remoção da rede rootless; objetos próprios ausentes,
+nenhuma referência de processo própria, helpers anteriores ao teste e zero eventos
+de volume foram verificados sem matar processos compartilhados (INFRA-0052).
+As duas issues permanecem com limites e mitigação, sem remediação global inferida.
+
+Os consumidores preparados e o venv de validação foram removidos após revisão,
+com recibo de preparação arquivado por digest. Filas, containers, redes, schemas,
+chaves Redis, realms, entradas temporárias de pass e scratch próprios têm comprovação
+de limpeza nos recibos. Pacotes e evidências sanitizadas foram preservados.
+
+## Uso, rollback e higiene
+
+Use somente composição host opcional e pacotes locais instalados; examples/scenarios
+são consumidores de teste identificados. Remova referências experimentais para
+rollback e drene SQS antes de desmontar. Preserve journal/audit/outbox até reconciliar
+efeitos incertos; não apague claims para fabricar retry. Bibliotecas não criam
+serviços compartilhados nem realms. Recursos exclusivos desta execução têm cleanup
+em finally/trap e evidências sanitizadas; segredos temporários são revogados/removidos
+do pass. A configuração compartilhada existente permanece sob sua autoridade.
+
+Ativação AEW e enforcement global nos consumidores permanecem **não verificados**;
+ferramentas globais disponíveis não comprovam adoção ou proteção automática.
+
+## Fechamento após autorização
+
+A revisão independente da admissão foi concluída em duas passagens e confirmou os
+arquivos aprovados, os hashes do bundle e do vínculo aditivo, os 825 testes ECP e
+as nove regressões do aceite. Nenhum achado técnico bloqueante permaneceu. A matriz
+fecha a admissão com PASS e a revisão com ACCEPTED_EXCEPTION, vinculada à decisão
+explícita do proprietário. O histórico do desvio permanece NONCONFORMANT.
+Implementação e admissão local ficam concluídas conforme o aceite revisado;
+publicação, release, merge, deploy e adoção não foram realizados.
