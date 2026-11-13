@@ -10,6 +10,8 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { isStubCandidate, supersededCapability } from "./lib/contract-stub.mjs";
 
+import { loadProviderAccessSnapshot } from "./lib/provider-access-snapshot.mjs";
+
 export const CSV_PATH = "docs/architecture/contract-authority/capability-authority.csv";
 export const PIN_PATH = "docs/architecture/contract-authority/ecp-pin.json";
 // Closed allowlist of resolution policies (ADR-CEP-001 decision 3). Anything else is rejected.
@@ -217,7 +219,10 @@ export function loadRepository(root) {
   );
   const pinFile = path.join(root, PIN_PATH);
   const pin = existsSync(pinFile) ? JSON.parse(readFileSync(pinFile, "utf8")) : undefined;
-  return { header, rows, schemas, moduleDirs, pin };
+  // Only these four fully verified source-only candidates live outside the
+  // admitted CSV/global pin. Every other schema still needs its canonical row.
+  const providerCandidate = loadProviderAccessSnapshot(root, schemas);
+  return { header, rows, schemas: schemas.filter(({ schema }) => !providerCandidate.aliasIds.has(schema.$id)), moduleDirs, pin };
 }
 
 /** Offline-capable authenticity check of the committed projection against a locally obtained ECP registry file. */

@@ -26,6 +26,11 @@ remain intact. Dispensed external smoke tests remain dispensations, not passes.
   hash-verified candidate snapshot. Existing stub validation, the full validation
   pipeline, YAML dependency, AEW ownership and intake extension requirements are
   preserved. The isolated alias fixture includes the validator's stub support.
+  The existing snapshot lock also binds exactly four candidate aliases through a
+  shared contract/authority validator helper; the admitted CSV/global pin remain
+  byte-identical. See [ADR-CEP-003 (Proposed)](../adr/ADR-CEP-003-provider-access-candidate-aliases.md).
+  The provider proposal is [ADR-PA-001](../adr/ADR-PA-001-ai-provider-access.md),
+  renamed from its colliding candidate identifier without changing its status.
 - Jira traceability: `governing_contract` now names admitted local
   `workitem.query@0.1.0` and `workitem.command@0.1.0` in bundle `0.6.0`.
   A regression gate rejects the obsolete proposed/not-admitted description when
@@ -45,11 +50,17 @@ not broaden that global pin or resolve an unknown authority.
 Current execution receipts live under
 `/build/artifacts/srm-consolidation-20261113/`: `frontend-merge.json`,
 `frontend-gates-direct.log`, `platform-merge.json`,
-`platform-merge-gates-local.log`, and `platform-snapshot-proof.json`.
+`platform-consolidated-full-final.log`, `platform-scoped-authority-unit-final.log`,
+and `platform-snapshot-proof.json`. Earlier failed runs and their independent
+fixture diagnosis remain alongside these final receipts.
 Platform acceptance regression tests cover ten cases, including contradictory
 Jira admission state. The platform merge gate runs contracts, existing stubs,
 capability graph, provider alias negative tests and the complete validation chain.
-The receipt records the actual outcome; this document does not replace it.
+The complete local validation chain passed, as did ten acceptance regressions
+and the eighteen focused candidate-authority tests. Six existing secret-scanner
+cases report NOT_VERIFIED locally because GITLEAKS_BIN was not set; they are not
+counted as passed. The receipts record actual outcomes and this document does
+not replace them.
 
 The consolidated ECP/backend revisions, new package hashes and independent review
 results must be bound in a separate current-state receipt after their own gates
