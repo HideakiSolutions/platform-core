@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform-core/ai/inference-request",
+  "title": "AI inference-request compatibility alias",
+  "description": "Deprecated compatibility alias. Canonical authority is ECP ai.provider-access; validation uses the hash-verified vendored candidate snapshot.",
+  "$ref": "https://contracts.hideakisolutions.local/capabilities/ai.provider-access/inference-request.schema.json",
+  "deprecated": true,
+  "x-superseded-by": "ai.provider-access@0.1.0"
+}

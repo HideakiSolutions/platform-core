@@ -1,0 +1,90 @@
+{
+  "$schema": "platform-core/governance/capability-intake/v2",
+  "schema_version": 2,
+  "request_id": "b129dc76-e9b5-47ff-9a17-e52046a4e2e9",
+  "submitted_at": "2026-11-13T05:19:36.001673+00:00",
+  "source": {
+    "repository": "backend-core",
+    "path": "node/src/ai-providers",
+    "need": "Explicit native subscription, API and local inference by vendor without implicit paid fallback"
+  },
+  "classification": "platform",
+  "decision": "promote",
+  "target": {
+    "capability_id": "ai.provider-access",
+    "owner": "enterprise-capability-platform",
+    "contract_id": "https://contracts.hideakisolutions.local/capabilities/ai.provider-access/provider-connection.schema.json",
+    "package": "@hideakisolutions/platform-node/ai-providers"
+  },
+  "evidence": {
+    "graph_query": {
+      "graph_id": "hideaki.enterprise-capabilities",
+      "schema_version": "1.0.0",
+      "queried_at": "2026-11-13T05:19:36.001694+00:00",
+      "terms": [
+        "ai.provider-access",
+        "subscription",
+        "inference",
+        "token-usage",
+        "guardrail",
+        "@hseos/runtime-providers"
+      ],
+      "result": "existing",
+      "matched_node_ids": [
+        "capability.ai.provider-access"
+      ]
+    },
+    "semantic_discovery": {
+      "status": "completed",
+      "query": "AI token metering guardrails capability graph provider contracts",
+      "provenance": "Axon get_context_capsule, 2026-11-13; stale workspace index, advisory only; direct inspection of platform-core/ai and backend-core/node/src metadata",
+      "candidates": [
+        "ai.token-metering",
+        "ai.guardrails",
+        "ai.mcp-gateway"
+      ]
+    },
+    "existing_implementations": [
+      "HSEOS packages/runtime-providers/claude-cli-driver.js at 25e673ff9c7e9dee99ef88a554cc9144d99c5b40",
+      "HSEOS packages/runtime-providers/codex-app-server-driver.js at 25e673ff9c7e9dee99ef88a554cc9144d99c5b40",
+      "HSEOS packages/model-providers/openai-compatible-provider.js at 25e673ff9c7e9dee99ef88a554cc9144d99c5b40"
+    ],
+    "candidate_consumers": [
+      "reference-banking-web (planned real consumer; installation/adoption not yet verified)"
+    ],
+    "strategic_adr": "ECP documentation/decisions/0010-ai-provider-access.md (PROPOSED; owner approval pending)",
+    "compatibility_assessment": "Additive neutral contracts and Node subpath; existing AI contracts preserved. Remote federation pinned revisions not composed locally; no full-federation absence claim."
+  },
+  "graph_update": {
+    "owning_fragment": "ECP .platform/capability-graph.fragment.json",
+    "proposed_node_ids": [
+      "capability.ai.provider-access",
+      "contract.ai.provider-connection.v1",
+      "contract.ai.inference-request.v1"
+    ],
+    "conformance_evidence": [
+      "backend-core/node/test/ai-providers.test.ts",
+      "scripts/validate-contracts.mjs"
+    ]
+  },
+  "hardening": {
+    "risk_domains": [
+      "public-contract",
+      "money",
+      "secrets",
+      "provider",
+      "runtime",
+      "tenancy"
+    ],
+    "failure_mode": "fail-closed",
+    "verification": [
+      "Strict canonical schemas",
+      "Node typecheck/build",
+      "Mock HTTP protocol, auth, quota and cancellation tests",
+      "Gemini executable fixture and scratch cleanup",
+      "Independent skeptical review"
+    ],
+    "rollback": "Remove application registration of named connections; no existing consumer migration."
+  },
+  "rationale": "Requested strategic promotion draft registered under canonical ECP authority. One planned product consumer; stack projections and test projects are not real consumers. Promotion approval is pending."
+}

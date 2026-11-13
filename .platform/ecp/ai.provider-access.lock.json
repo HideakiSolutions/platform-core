@@ -1,0 +1,25 @@
+{
+  "capability": "ai.provider-access",
+  "version": "0.1.0",
+  "source": "HideakiSolutions/enterprise-capability-platform",
+  "state": "candidate-unpublished",
+  "files": [
+    {
+      "path": ".platform/ecp/ai.provider-access/schema.inference-request.json",
+      "sha256": "d4ac3fcbaf0d269a65f1df204cd7d5444149619acb0aa9ce8f51611674821db5"
+    },
+    {
+      "path": ".platform/ecp/ai.provider-access/schema.inference-response.json",
+      "sha256": "374f093bca8ade6f9736a009e8f7eb2ba9e437f11f335418852b90175b287515"
+    },
+    {
+      "path": ".platform/ecp/ai.provider-access/schema.provider-connection.json",
+      "sha256": "4a939833091c7eb64841966be0807224566343c74a4fb5a2f5f56410b8e3bf75"
+    },
+    {
+      "path": ".platform/ecp/ai.provider-access/schema.provider-error.json",
+      "sha256": "dd2c1731ef6e3945a27f38ac2baaace71820b1abce89610d63c7e3780c0a1fb4"
+    }
+  ],
+  "ref": "06b08266cf60b656bdd745ef107ade2efdb5a5cc"
+}
