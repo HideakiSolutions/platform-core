@@ -36,3 +36,12 @@ is not proof of project adoption. No HSEOS installation was performed.
 Owner-authorized closeout: ADR0016 accepted; two0.1.0 work-item contracts
 registered in local ECP bundle0.6.0, registry25; --require-complete approved.
 The delivery-specific process exception is accepted, preserving NONCONFORMANT history. Existing HSEOS setup retained by owner instruction; no installation.
+
+## Consolidação posterior das fontes
+
+Os quatro PRs de fonte foram integrados. O bundle ECP consolidado `0.6.0` registra 26 capacidades; a contagem 25 acima pertence ao aceite original. Esta atualização conserva esse histórico e os limites de publicação, exposição e adoção.
+
+- [Estado integrado e limites de validação](consolidation.md)
+- [Snapshot datado de revisões, merges e CI](consolidation-current.json)
+- [Matriz das 17 origens e superfícies adicionais](component-matrix.md)
+- [Dados da matriz](component-matrix.json)

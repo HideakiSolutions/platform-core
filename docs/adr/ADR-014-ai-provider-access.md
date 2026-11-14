@@ -69,6 +69,9 @@ Hexagonal & Clean Architecture Standard; SOLID Principles & Software Craftsmansh
 producer distribution `25e673ff9c7e9dee99ef88a554cc9144d99c5b40`.
 
 Canonical strategic approval is tracked in ECP
-`documentation/decisions/0016-ai-provider-access.md` (approved by the owner). This local draft
-does not approve that decision. The two stack adapters and their tests are not
+[Decision 0017](https://github.com/HideakiSolutions/enterprise-capability-platform/blob/1dbbbd1964138b7fb41cb14a0f99f8792600fca1/documentation/decisions/0017-ai-provider-access.md) (approved by the owner). This local draft
+does not approve that decision. The former AI identifier
+[Decision 0016 at ECP `23a4ffb`](https://github.com/HideakiSolutions/enterprise-capability-platform/blob/23a4ffb1f4b7708ef03b38f6c2e91e3fd5fecbfd/documentation/decisions/0016-ai-provider-access.md)
+is retained as historical provenance; the original decision body and owner
+approval are preserved by the ECP rename, not replaced by this local proposal. The two stack adapters and their tests are not
 two consumers. The reference banking Copilot is one planned real consumer.

@@ -112,7 +112,11 @@ response and safe error shapes. The `platform-core/ai/*` identifiers remain
 compatibility stubs. `.platform/ecp/ai.provider-access.lock.json` pins the vendored
 candidate schemas; `scripts/validate-contracts.mjs` rejects missing/changed bytes.
 The real intake is `governance/intakes/ai.provider-access.json`; the strategic
-promotion decision is ECP `documentation/decisions/0016-ai-provider-access.md`.
+promotion decision is [ECP Decision 0017](https://github.com/HideakiSolutions/enterprise-capability-platform/blob/1dbbbd1964138b7fb41cb14a0f99f8792600fca1/documentation/decisions/0017-ai-provider-access.md).
+The earlier Decision 0016 identifier remains historical provenance at
+[ECP `23a4ffb`](https://github.com/HideakiSolutions/enterprise-capability-platform/blob/23a4ffb1f4b7708ef03b38f6c2e91e3fd5fecbfd/documentation/decisions/0016-ai-provider-access.md); the schema snapshot lock
+continues to bind that immutable revision. In the consolidated ECP source,
+Decision 0016 belongs to work-items and the AI decision is 0017.
 The intake v2 owner enum now explicitly admits `enterprise-capability-platform`;
 the actual record identifies ECP as canonical owner and backend-core as projection source.
 

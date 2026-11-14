@@ -1,0 +1,662 @@
+{
+  "recorded_at": "2026-11-14T01:52:03.755479+00:00",
+  "scope": "SRM source consolidation; no publication/deployment/adoption claim",
+  "repositories": {
+    "backend": {
+      "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend",
+      "local_head": "5e08875f6d376518edbf39cbf0ae1f39ee256be6",
+      "working_tree_clean": true,
+      "protected_develop": true,
+      "pr": {
+        "baseRefOid": "654fee21dac4bcc2eef1b1d87d558d10ca5ee9dd",
+        "headRefOid": "5e08875f6d376518edbf39cbf0ae1f39ee256be6",
+        "mergeCommit": {
+          "oid": "0201a02db088015009137c3c9e0b7185a62c7fb3"
+        },
+        "mergedAt": "2026-11-14T01:48:14Z",
+        "state": "MERGED",
+        "statusCheckRollup": [
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842809/job/132283952341",
+            "name": "build-test",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "dotnet-packages"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842665/job/132283952377",
+            "name": "quickstart-snippets",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "dotnet-quickstart-snippets"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842647/job/132283952820",
+            "name": "wp05-proof",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "dotnet-wp05-proof"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541843079/job/132283953594",
+            "name": "private-installed-postgresql-outbox (go1.25.14-linux-amd64)",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "go-postgresql-outbox"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842953/job/132283952696",
+            "name": "test",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "node-packages"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842649/job/132283952269",
+            "name": "installed-cell",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "node-postgresql-kafka-cell"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842730/job/132283952832",
+            "name": "installed-cell",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "node-postgresql-rabbitmq-cell"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842648/job/132283952585",
+            "name": "installed-postgresql-outbox",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "postgresql-outbox"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842921/job/132283953423",
+            "name": "private-installed-postgresql-outbox (3.10)",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "python-postgresql-outbox"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842645/job/132283952203",
+            "name": "native-installed-audit",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "rust-audit-conformance"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842902/job/132283952744",
+            "name": "installed-storage",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "rust-postgresql-outbox"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842833/job/132283952475",
+            "name": "test",
+            "startedAt": "2026-11-14T01:39:16Z",
+            "status": "IN_PROGRESS",
+            "workflowName": "go-packages"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842918/job/132283953406",
+            "name": "installed-cell",
+            "startedAt": "2026-11-14T01:41:13Z",
+            "status": "IN_PROGRESS",
+            "workflowName": "postgresql-kafka-cell"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842881/job/132283952841",
+            "name": "installed-cell",
+            "startedAt": "2026-11-14T01:41:43Z",
+            "status": "IN_PROGRESS",
+            "workflowName": "postgresql-rabbitmq-cell"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-14T01:40:03Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842713/job/132283952440",
+            "name": "validate",
+            "startedAt": "2026-11-14T01:39:15Z",
+            "status": "COMPLETED",
+            "workflowName": "Validate Contracts"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-14T01:40:40Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842662/job/132283952404",
+            "name": "private-installed-postgresql-outbox (outbox, 19)",
+            "startedAt": "2026-11-14T01:39:15Z",
+            "status": "COMPLETED",
+            "workflowName": "node-postgresql-outbox"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-14T01:42:45Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842750/job/132283952409",
+            "name": "installed-postgresql-inbox",
+            "startedAt": "2026-11-14T01:41:05Z",
+            "status": "COMPLETED",
+            "workflowName": "postgresql-inbox"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-14T01:39:57Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842704/job/132283952179",
+            "name": "test (3.10)",
+            "startedAt": "2026-11-14T01:39:14Z",
+            "status": "COMPLETED",
+            "workflowName": "python-packages"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842704/job/132283952479",
+            "name": "test (3.12)",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "python-packages"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842921/job/132283952972",
+            "name": "private-installed-postgresql-outbox (3.12)",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "python-postgresql-outbox"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-14T01:46:40Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842662/job/132283952165",
+            "name": "private-installed-postgresql-outbox (inbox, 16)",
+            "startedAt": "2026-11-14T01:45:01Z",
+            "status": "COMPLETED",
+            "workflowName": "node-postgresql-outbox"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "detailsUrl": "https://github.com/HideakiSolutions/backend-core/actions/runs/43541842713/job/132283952724",
+            "name": "Audit validator dependencies (advisory)",
+            "startedAt": "2026-11-14T01:39:03Z",
+            "status": "QUEUED",
+            "workflowName": "Validate Contracts"
+          }
+        ],
+        "url": "https://github.com/HideakiSolutions/backend-core/pull/97"
+      },
+      "local_head_matches_pr": true
+    },
+    "frontend": {
+      "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-frontend",
+      "local_head": "f69c91d6303c8e607e487c5337b95e61f55b96b0",
+      "working_tree_clean": true,
+      "protected_develop": true,
+      "pr": {
+        "baseRefOid": "d64fd9b498eb57dd42efd89e58bccbff46beece3",
+        "headRefOid": "f69c91d6303c8e607e487c5337b95e61f55b96b0",
+        "mergeCommit": {
+          "oid": "133dff69375d44271c26178ac31beded4a9a06f7"
+        },
+        "mergedAt": "2026-11-13T22:52:16Z",
+        "state": "MERGED",
+        "statusCheckRollup": [
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T22:46:37Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/frontend-core/actions/runs/43520066998/job/132211802359",
+            "name": "adoption",
+            "startedAt": "2026-11-13T22:46:08Z",
+            "status": "COMPLETED",
+            "workflowName": "Validate Contracts"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T22:38:30Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/frontend-core/actions/runs/43520066998/job/132211801871",
+            "name": "package-tests",
+            "startedAt": "2026-11-13T22:35:53Z",
+            "status": "COMPLETED",
+            "workflowName": "Validate Contracts"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T22:46:03Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/frontend-core/actions/runs/43520066998/job/132211802417",
+            "name": "storybook-build",
+            "startedAt": "2026-11-13T22:44:34Z",
+            "status": "COMPLETED",
+            "workflowName": "Validate Contracts"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T22:40:54Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/frontend-core/actions/runs/43520066998/job/132211802364",
+            "name": "react18-compat",
+            "startedAt": "2026-11-13T22:38:19Z",
+            "status": "COMPLETED",
+            "workflowName": "Validate Contracts"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T22:48:44Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/frontend-core/actions/runs/43520066998/job/132218354468",
+            "name": "validate",
+            "startedAt": "2026-11-13T22:48:36Z",
+            "status": "COMPLETED",
+            "workflowName": "Validate Contracts"
+          }
+        ],
+        "url": "https://github.com/HideakiSolutions/frontend-core/pull/112"
+      },
+      "local_head_matches_pr": true
+    },
+    "platform": {
+      "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-platform-clean",
+      "local_head": "bcc5cbee4ab1b032cc7907eed1caf943ec732e93",
+      "working_tree_clean": true,
+      "protected_develop": true,
+      "pr": {
+        "baseRefOid": "f5b12be455ef88fa086bb64c701fbf9e77744a5a",
+        "headRefOid": "bcc5cbee4ab1b032cc7907eed1caf943ec732e93",
+        "mergeCommit": {
+          "oid": "fda19d733ee2fef90d9ff3e22f3e528a9bcb4e74"
+        },
+        "mergedAt": "2026-11-13T23:21:32Z",
+        "state": "MERGED",
+        "statusCheckRollup": [
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T23:17:23Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/platform-core/actions/runs/43525966113/job/132231672319",
+            "name": "baseline / secret-detection",
+            "startedAt": "2026-11-13T23:17:16Z",
+            "status": "COMPLETED",
+            "workflowName": "Supply Chain"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T23:17:31Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/platform-core/actions/runs/43525966064/job/132231671545",
+            "name": "validate",
+            "startedAt": "2026-11-13T23:17:16Z",
+            "status": "COMPLETED",
+            "workflowName": "Validate Contracts"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T23:17:26Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/platform-core/actions/runs/43525966113/job/132231672185",
+            "name": "baseline / dependency-audit",
+            "startedAt": "2026-11-13T23:17:17Z",
+            "status": "COMPLETED",
+            "workflowName": "Supply Chain"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T23:17:25Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/platform-core/actions/runs/43525966113/job/132231672385",
+            "name": "baseline / sbom",
+            "startedAt": "2026-11-13T23:17:16Z",
+            "status": "COMPLETED",
+            "workflowName": "Supply Chain"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T23:17:26Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/platform-core/actions/runs/43525966113/job/132231672307",
+            "name": "baseline / workflow-policy",
+            "startedAt": "2026-11-13T23:17:17Z",
+            "status": "COMPLETED",
+            "workflowName": "Supply Chain"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T23:17:27Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/platform-core/actions/runs/43525966113/job/132231671900",
+            "name": "ratchet",
+            "startedAt": "2026-11-13T23:17:17Z",
+            "status": "COMPLETED",
+            "workflowName": "Supply Chain"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-13T23:17:30Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/platform-core/actions/runs/43525966113/job/132231672264",
+            "name": "gate-selftest",
+            "startedAt": "2026-11-13T23:17:17Z",
+            "status": "COMPLETED",
+            "workflowName": "Supply Chain"
+          }
+        ],
+        "url": "https://github.com/HideakiSolutions/platform-core/pull/41"
+      },
+      "local_head_matches_pr": true
+    },
+    "ecp": {
+      "checkout": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-ecp",
+      "local_head": "1dbbbd1964138b7fb41cb14a0f99f8792600fca1",
+      "working_tree_clean": true,
+      "protected_develop": false,
+      "pr": {
+        "baseRefOid": "23a4ffb1f4b7708ef03b38f6c2e91e3fd5fecbfd",
+        "headRefOid": "1dbbbd1964138b7fb41cb14a0f99f8792600fca1",
+        "mergeCommit": {
+          "oid": "0f5c187e7e35a12aae591af6f5cc9dfe9a72d2c1"
+        },
+        "mergedAt": "2026-11-14T00:45:33Z",
+        "state": "MERGED",
+        "statusCheckRollup": [
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-14T00:39:44Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/enterprise-capability-platform/actions/runs/43530029549/job/132245138688",
+            "name": "Validate Contracts",
+            "startedAt": "2026-11-14T00:38:44Z",
+            "status": "COMPLETED",
+            "workflowName": "CI"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-14T00:28:59Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/enterprise-capability-platform/actions/runs/43530023098/job/132245117064",
+            "name": "Validate Contracts",
+            "startedAt": "2026-11-14T00:28:01Z",
+            "status": "COMPLETED",
+            "workflowName": "CI"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-14T00:43:43Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/enterprise-capability-platform/actions/runs/43530029549/job/132263975908",
+            "name": "Gateway Image",
+            "startedAt": "2026-11-14T00:43:18Z",
+            "status": "COMPLETED",
+            "workflowName": "CI"
+          },
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-11-14T00:34:10Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/HideakiSolutions/enterprise-capability-platform/actions/runs/43530023098/job/132260003584",
+            "name": "Gateway Image",
+            "startedAt": "2026-11-14T00:33:43Z",
+            "status": "COMPLETED",
+            "workflowName": "CI"
+          }
+        ],
+        "url": "https://github.com/HideakiSolutions/enterprise-capability-platform/pull/59"
+      },
+      "local_head_matches_pr": true
+    }
+  },
+  "historical_acceptance": "docs/srm-absorption/delivery.md (original frozen source state)",
+  "waived_not_tested": [
+    "new Jira writes",
+    "new external Graph smoke",
+    "new external Teams smoke"
+  ],
+  "global_pin": "contracts-v0.4.0",
+  "unknown_authorities_preserved": 6,
+  "excluded": [
+    "registry publication",
+    "product deployment",
+    "new HSEOS installation",
+    "production adoption"
+  ],
+  "evidence_files": {
+    "backend-validation.json": {
+      "sha256": "17c3f18ca5fb142ab8bd68b96823d4509a3b4a955b937f536baaa95dc8436329",
+      "bytes": 15340
+    },
+    "backend-completion.json": {
+      "sha256": "426b0ee3f5072cef7b1bdd2de59bcf356f43bab78f00b052a640206ddea51f0c",
+      "bytes": 9233
+    },
+    "ecp-consolidated-receipt.json": {
+      "sha256": "f61b32b03a66116bbb8e6112a18119a1905fae6e73b196064e818132591023a8",
+      "bytes": 3008
+    },
+    "ecp-ci-final-receipt.json": {
+      "sha256": "b75e4613f63f583187deed1cb2aaa73246037862ed2d01297575dd398e0fc00b",
+      "bytes": 4552
+    },
+    "frontend-independent-review.md": {
+      "sha256": "500d5ed9db7fc95add55f94cfe2744caa586106d92d4c640aa27d02a8eae20ea",
+      "bytes": 6132
+    },
+    "platform-clean-independent-review.md": {
+      "sha256": "06e5a9341a548ec93d9d4aaa0c586307e6f6cbdeb201eaba935ae75483ec1e78",
+      "bytes": 6403
+    },
+    "platform-clean-completion.json": {
+      "sha256": "bd97955d09de65f154a07b52265a3d2d75c99aa442ec5904635c9e7dad43a0de",
+      "bytes": 4959
+    },
+    "hygiene-receipt.json": {
+      "sha256": "37fce6dfa2d775e0bdc4c0c5570547358244120fff4afcc2b281fbb77ca3ddd3",
+      "bytes": 19609
+    },
+    "hygiene-final-topology.json": {
+      "sha256": "9901c736420d06c5747a94ecff44357c2b9d49eded8729f9a97f384fb1495f32",
+      "bytes": 342654
+    },
+    "platform-pr-supersession.json": {
+      "sha256": "beebea5706deb116ae9f15fe09af29bdfd81d8da0083b7681806c8cf26264f9d",
+      "bytes": 3838
+    },
+    "ecp-ci-final-independent-confrontation.json": {
+      "sha256": "0f8e30e92de288559e60639f9a2c221d2fe30daee811a574442b987e97e55e17",
+      "bytes": 2014
+    },
+    "ecp-ci-union-independent-review.json": {
+      "sha256": "de38fd6b91cf2f927ac76337bbcc4407e09a0af634eaef564627832e2d8996d8",
+      "bytes": 8433
+    },
+    "backend-pr97-final-independent-confrontation.json": {
+      "sha256": "a453723eeee410df65bcc2f4a244bafb167dd87168c7dd7ab1ef100501de3da7",
+      "bytes": 1934
+    },
+    "backend-pr97-final-package-projection-proof.json": {
+      "sha256": "5fd7971b498086b5e85ce56aa9e0012488079666f3717ece7709e8356dc8c9eb",
+      "bytes": 3786
+    },
+    "backend-pr96-focused-guard-final.json": {
+      "sha256": "1555e6ae66de712f5b1f91961ec4e7b32bbe5e38c2f5cd2b8093c8bb73d26825",
+      "bytes": 855
+    },
+    "backend-pr97-sln-parser-proof.json": {
+      "sha256": "db16fb9c8c9fb063f6858d34647e7763e516c0d87a1bf26eb92b997867c855c6",
+      "bytes": 760
+    },
+    "backend-pr97-final-graph-receipt.json": {
+      "sha256": "ebb72279b9d51f242c0bb8a2d90d5c6615760cc42c3059acccb380d374048003",
+      "bytes": 754
+    },
+    "publication-workflow-inspection.json": {
+      "sha256": "5e413d942b1eb50e6b56c7125f3f8b47220556fa51d18e676ddc44e27a22f946",
+      "bytes": 1569
+    },
+    "COMPONENT-MATRIX.json": {
+      "sha256": "509264b399ee14076846bc7d09cc606259e0787590f20035cd31ff10f696829c",
+      "bytes": 25275
+    },
+    "backend-pr97-final-source-push.json": {
+      "sha256": "6ca61e089ac8ee951d36e1bcbd133ab66592d3b33f6ccea068ccfd8718640d50",
+      "bytes": 9750
+    },
+    "backend-sqs-headers-executor-receipt.json": {
+      "sha256": "609feb411a74f8915a32841e8502a8309ae908b067880f767b71db8b33711df8",
+      "bytes": 490
+    },
+    "backend-sqs-headers-independent-confrontation.json": {
+      "sha256": "32d150ec29f06e0c5a66d0b2d1c896056c58c9320b2da97bfa7aaf2fcb38c252",
+      "bytes": 1362
+    },
+    "component-matrix-independent-review.json": {
+      "sha256": "f356a3c7752b8aa628f7114b612e8c0b99b908c1018220f0872d82d6479cbec3",
+      "bytes": 1047
+    },
+    "backend-dotnet-installed-final-independent-confrontation.json": {
+      "sha256": "15f7a6c07dcacd943aa67090c7e88b75e84ac689c8a2748bc69b274a490a7856",
+      "bytes": 14249
+    },
+    "backend-pr97-installed-full-final/receipt.json": {
+      "sha256": "7d25c6d9356f0d0efe8eef9ce28be29781c3ec4d3499ee67a8bd18ad72e9d585",
+      "bytes": 1222250
+    },
+    "backend-pr97-installed-full-final-executor.json": {
+      "sha256": "356f6ac18086d29c7e88b18eedf878d88a49bf1f67cdf57b8b41261d9eb869ed",
+      "bytes": 7447
+    },
+    "ecp-pr59-merged.json": {
+      "sha256": "82564dc01a03236b1a60e594f31141591ebb55d0119b77c03df6683b75a93d1f",
+      "bytes": 287
+    },
+    "ecp-merged-closeout-confrontation.json": {
+      "sha256": "722100de81011aacb0ff0f63ae3bd824b4e0e1a669949d99a45521ff000d6f04",
+      "bytes": 2652
+    },
+    "platform-closeout-draft-pr.json": {
+      "sha256": "d3b014df9549a72b997503971803104d84bf954348c918b87f5156cfcf055cd5",
+      "bytes": 289
+    },
+    "backend-pr97-jvm-independent-review.json": {
+      "sha256": "1e6d140f76052a4fd858c723d0bfaf6750850a0dfc539d062328947a32edc7d9",
+      "bytes": 4987
+    },
+    "backend-jvm-union-proportionate-ci-review.json": {
+      "sha256": "ed71f2381f9ffbda24cdad5a6a97c29bd23f723fd6e6de14d6894598cd1b3814",
+      "bytes": 5885
+    },
+    "backend-pr97-5e08875-required-validation-receipt.json": {
+      "sha256": "988cc8f02b66c9ac6a88604c08c4d5dc85c3da9a0aa21695c8426ecaef0d53f4",
+      "bytes": 2052
+    },
+    "backend-pr97-premerge.json": {
+      "sha256": "946c8e49688691b47a702f8f3818df10e271c6aa6d48c5745c08f65d1e3b6350",
+      "bytes": 10232
+    },
+    "backend-pr97-merged.json": {
+      "sha256": "a4589fa1c50d5d5c7d56350ff84db5ed12ab4f5684fdfc40c94e270098cd6750",
+      "bytes": 269
+    },
+    "backend-pr97-node-ci-vs-delivery-tar-proof.json": {
+      "sha256": "e8f618ce7dc56ceb28ef86ceea5a00ca3a3383e719ca16075041cf65818c7d21",
+      "bytes": 108270
+    },
+    "backend-pr97-c942-node-ci-download.json": {
+      "sha256": "ff78c60e0afd982dcb62ab6e1e5ee5730c510a7d3fc2c4864540d1ef039be90e",
+      "bytes": 1022
+    }
+  },
+  "contract_pin": {
+    "tag": "contracts-v0.4.0",
+    "commit": "ab1fcc92797224c428ec6362e02ee1eaf2de8abb",
+    "unchanged": true
+  },
+  "source_packages": 17,
+  "source_modules": 120,
+  "backend_node_version": "0.3.0-experimental.2",
+  "ecp_contracts_version": "0.6.0",
+  "backend_full_installed": {
+    "status": "PASS",
+    "test_source_revision": "91c722e47b1a31ea043fdd54829d9a750d46ea92",
+    "test_projects_expected": 49,
+    "test_projects_executed": 49,
+    "cases_executed": 1393,
+    "cases_expected": 1393,
+    "skips": 0,
+    "limits": [
+      "Registry installation not claimed",
+      "Broker/database integration profiles are not selected by the default suite",
+      "No deployment or publication"
+    ],
+    "receipt": "backend-pr97-installed-full-final/receipt.json"
+  },
+  "backend_runtime_ci_reuse": {
+    "tested_head": "c94235444de898ad609e35871a08b6e29b7bd5ae",
+    "final_head": "5e08875f6d376518edbf39cbf0ae1f39ee256be6",
+    "protected_inputs_equal": 1075,
+    "prior_ci": "22 SUCCESS; publication SKIPPED",
+    "current_required_validate": "SUCCESS",
+    "affected_graph_jvm_guards": "PASS; local graph20/36 and JVM CI/focused tests",
+    "basis": "Six metadata/governance-only deltas; runtime, tests, assets, contracts, dependency locks and runtime workflows unchanged; independent reviews confirm input equality.",
+    "optional_reruns": "Observed statuses retained in pr.statusCheckRollup; pending is not PASS or waiver.",
+    "proofs": [
+      "backend-pr97-jvm-independent-review.json",
+      "backend-jvm-union-proportionate-ci-review.json",
+      "backend-pr97-5e08875-required-validation-receipt.json"
+    ]
+  },
+  "all_four_merged": true
+}

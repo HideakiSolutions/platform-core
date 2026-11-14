@@ -52,7 +52,7 @@
     "candidate_consumers": [
       "reference-banking-web (planned real consumer; installation/adoption not yet verified)"
     ],
-    "strategic_adr": "ECP documentation/decisions/0016-ai-provider-access.md (Accepted by the owner; original approval retained in the canonical decision)",
+    "strategic_adr": "ECP Decision 0017 at https://github.com/HideakiSolutions/enterprise-capability-platform/blob/1dbbbd1964138b7fb41cb14a0f99f8792600fca1/documentation/decisions/0017-ai-provider-access.md (Accepted by the owner; original approval retained in the canonical decision). Historical AI identifier: Decision 0016 at https://github.com/HideakiSolutions/enterprise-capability-platform/blob/23a4ffb1f4b7708ef03b38f6c2e91e3fd5fecbfd/documentation/decisions/0016-ai-provider-access.md; the schema snapshot remains pinned to that historical revision. Current Decision 0016 is work-items; this qualifier does not amend the original intake source, approval or schema authority.",
     "compatibility_assessment": "Additive neutral contracts and Node subpath; existing AI contracts preserved. Remote federation pinned revisions not composed locally; no full-federation absence claim."
   },
   "graph_update": {
