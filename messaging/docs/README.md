@@ -52,3 +52,12 @@ only after the compatibility window defined by the ECP deprecation block, follow
 [Delivery leases v1](delivery-v1.md) is an accepted (ADR-012, 2026-10-23), not admitted,
 neutral behavioral contract with an executable corpus. Durable adapters are BLOCKED.
 It does not replace the ECP envelope or claim durable transport support.
+
+## Federated graph compatibility
+
+The historical graph identities `capability.messaging.event-envelope` and
+`contract.messaging.event-envelope.v1` remain registered as **deprecated** so
+existing federated references stay resolvable. They describe this repository's
+legacy compatibility stub, not canonical contract ownership. ECP
+`messaging.event-envelope@0.1.0` remains the authority; the historical graph
+version `1` does not introduce another ECP schema version.

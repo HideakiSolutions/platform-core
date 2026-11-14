@@ -57,6 +57,29 @@
       "name": "Platform Capability Architecture Directive",
       "lifecycle": "available",
       "path": "ARCHITECTURE.md"
+    },
+    {
+      "id": "capability.messaging.event-envelope",
+      "type": "Capability",
+      "name": "Event Envelope Legacy Compatibility",
+      "lifecycle": "deprecated",
+      "rationale": "Historical graph identity retained for existing consumers; ECP messaging.event-envelope@0.1.0 owns the canonical contract, while platform-core owns only its deprecated compatibility stub."
+    },
+    {
+      "id": "contract.messaging.event-envelope.v1",
+      "type": "Contract",
+      "name": "Event Envelope Legacy ID Compatibility Stub",
+      "lifecycle": "deprecated",
+      "version": "1",
+      "path": "messaging/contracts/event-envelope.schema.json",
+      "rationale": "The existing platform-core/messaging/event-envelope stub delegates to the ECP canonical schema; version 1 is the retained historical graph identity, not a new canonical contract version."
+    },
+    {
+      "id": "evidence.messaging.event-envelope-contract",
+      "type": "Evidence",
+      "name": "Event Envelope Compatibility and ECP Authority Documentation",
+      "lifecycle": "available",
+      "path": "messaging/docs/README.md"
     }
   ],
   "edges": [
@@ -108,7 +131,9 @@
       "from": "capability.governance.capability-intake",
       "to": "contract.capability-intake.v2",
       "repository": "repo.platform-core",
-      "evidence": ["evidence.platform-capability-architecture"]
+      "evidence": [
+        "evidence.platform-capability-architecture"
+      ]
     },
     {
       "id": "edge.capability.intake.implemented-by.validator",
@@ -116,7 +141,9 @@
       "from": "capability.governance.capability-intake",
       "to": "module.platform-capability-validation",
       "repository": "repo.platform-core",
-      "evidence": ["evidence.platform-capability-architecture"]
+      "evidence": [
+        "evidence.platform-capability-architecture"
+      ]
     },
     {
       "id": "edge.capability.intake.validated-by.governance-tests",
@@ -124,7 +151,9 @@
       "from": "capability.governance.capability-intake",
       "to": "testsuite.platform-capability-governance",
       "repository": "repo.platform-core",
-      "evidence": ["evidence.platform-capability-architecture"]
+      "evidence": [
+        "evidence.platform-capability-architecture"
+      ]
     },
     {
       "id": "edge.contract.intake-v2.supersedes.v1",
@@ -132,7 +161,33 @@
       "from": "contract.capability-intake.v2",
       "to": "contract.capability-intake.v1",
       "repository": "repo.platform-core",
-      "evidence": ["evidence.platform-capability-architecture"]
+      "evidence": [
+        "evidence.platform-capability-architecture"
+      ]
+    },
+    {
+      "id": "edge.capability.event-envelope.owned-by.platform-core-maintainers",
+      "type": "OWNED_BY",
+      "from": "capability.messaging.event-envelope",
+      "to": "owner.platform-core-maintainers",
+      "repository": "repo.platform-core"
+    },
+    {
+      "id": "edge.contract.event-envelope-v1.owned-by.platform-core-maintainers",
+      "type": "OWNED_BY",
+      "from": "contract.messaging.event-envelope.v1",
+      "to": "owner.platform-core-maintainers",
+      "repository": "repo.platform-core"
+    },
+    {
+      "id": "edge.capability.event-envelope.defined-by.v1",
+      "type": "DEFINED_BY",
+      "from": "capability.messaging.event-envelope",
+      "to": "contract.messaging.event-envelope.v1",
+      "repository": "repo.platform-core",
+      "evidence": [
+        "evidence.messaging.event-envelope-contract"
+      ]
     }
   ],
   "findings": []
