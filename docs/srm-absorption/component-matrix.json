@@ -1,0 +1,655 @@
+{
+  "recorded_at": "2026-11-14T01:50:33.239210+00:00",
+  "source_traceability": {
+    "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-platform-clean/docs/srm-absorption/traceability.json",
+    "digest": {
+      "algorithm": "sha256",
+      "value": "5ce0702669939e39be48a7de24a9ffffa200f0795df8e7a99fc73b2e3daa0c03"
+    }
+  },
+  "source_packages": 17,
+  "source_modules": 120,
+  "unknown_authorities": [
+    "audit/audit-chain-jcs/v1",
+    "audit/audit-event",
+    "logging/log-entry",
+    "messaging/delivery-lease/v1",
+    "observability/health-check",
+    "utils"
+  ],
+  "deliveries": [
+    {
+      "source_package": "shared-kernel",
+      "intake_outcome": "extend",
+      "governing_contract": "utils + existing Result/TimeProvider",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "types",
+        "errors",
+        "clock",
+        "id generation"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/foundation/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Application.Abstractions/Result.cs",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_package": "config",
+      "intake_outcome": "extend",
+      "governing_contract": "configuration/config-provider",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "typed coercion",
+        "aggregate validation",
+        "startup validation"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/configuration/load.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Configuration",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_package": "logger",
+      "intake_outcome": "extend",
+      "governing_contract": "logging/log-entry (authority unknown)",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "canonical fields",
+        "nested redaction",
+        "minimum protections",
+        "Pino adapter"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/logging/redaction.ts",
+          "exists": true
+        },
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/logging-pino/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Logging",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_package": "observability",
+      "intake_outcome": "extend",
+      "governing_contract": "observability/health-check (authority unknown); OTel extension",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "HTTP instrumentation",
+        "metrics",
+        "W3C propagation",
+        "ports separate from exporters"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/observability/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/observability-otel/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Observability/PlatformObservabilityExtensions.cs",
+          "exists": true
+        }
+      ],
+      "limitations": [
+        ".NET live HTTP evidence covers client spans and traceparent; exporter/collector and server integration are application-owned."
+      ]
+    },
+    {
+      "source_package": "audit",
+      "intake_outcome": "extend",
+      "governing_contract": "audit/audit-event; JCS authority unknown",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "recorder deterministic IDs/time",
+        "recursive redaction",
+        "sink composition",
+        "retain integrity/retention profiles"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/audit/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Auditing",
+          "exists": true
+        }
+      ],
+      "limitations": [
+        "Sink composition reports partial failure; independent sinks are not an implicit distributed transaction."
+      ]
+    },
+    {
+      "source_package": "approvals",
+      "intake_outcome": "extend",
+      "governing_contract": "approval/approval-request",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "policy validation",
+        "maker-checker distinct approvers",
+        "delegation",
+        "expiry",
+        "version CAS",
+        "transactional audit and execution outbox"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/approval/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/approval/persistence.ts",
+          "exists": true
+        },
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/approval-postgres/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Approval",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Approval.Postgres",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_package": "rbac",
+      "intake_outcome": "extend",
+      "governing_contract": "authorization/decision",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "unknown action denied",
+        "explicit deny precedence",
+        "tenant isolation"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/authorization/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Security.Authz",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_package": "abac",
+      "intake_outcome": "extend",
+      "governing_contract": "authorization/decision",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "repeatable predicates",
+        "reserved attribute protection",
+        "policy validation"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/authorization/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Security.Authz",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_package": "authz",
+      "intake_outcome": "extend",
+      "governing_contract": "authorization/decision",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "async decisions",
+        "obligations required",
+        "collection/object distinction",
+        "effect-free simulator"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/authorization/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Security.Authz",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_package": "entra-auth",
+      "intake_outcome": "extend",
+      "governing_contract": "ecp:security.authn@0.1.0",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "optional signed SAML adapter",
+        "issuer audience expiry",
+        "atomic correlation/replay",
+        "stable identity mapping",
+        "session separate from access tokens"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/identity-saml/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/auth-session/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Security.Authn.Saml",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_package": "entra-graph",
+      "intake_outcome": "extend",
+      "governing_contract": "directory/org-node + directory/membership",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "async port",
+        "delegated/app-only tokens",
+        "stable identity",
+        "provenance and completeness",
+        "safe origin/pagination/cycles",
+        "timeout/cancel/429"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/directory-graph/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Directory.EntraGraph",
+          "exists": true
+        }
+      ],
+      "accepted_dispensations": [
+        "graph-external-smoke"
+      ],
+      "limitations": [
+        ".NET access token acquisition is an injected delegated/app-only port; no SDK-specific type leaks."
+      ]
+    },
+    {
+      "source_package": "mfa",
+      "intake_outcome": "extend",
+      "governing_contract": "ecp:security.authn + authorization step_up_auth",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "HOTP TOTP RFC vectors",
+        "atomic OTP attempts/consume",
+        "operation context binding",
+        "shared Redis",
+        "credential-counter replay"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/mfa/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Security.Mfa",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Security.Mfa.Redis",
+          "exists": true
+        }
+      ],
+      "limitations": [
+        "Enrollment and recovery remain IdP-owned by design."
+      ]
+    },
+    {
+      "source_package": "notifications",
+      "intake_outcome": "extend",
+      "governing_contract": "notifications intent/result distinct from ecp:notification.send",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "Teams adaptive cards",
+        "SMTP STARTTLS",
+        "per recipient/channel outcomes",
+        "explicit skipped/failed/throttled",
+        "safe application links",
+        "SQS to messaging"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/notifications/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/notifications-ecp/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/messaging-sqs/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/messaging-sqs-aws/index.ts",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Notifications",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Notifications.Ecp",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.Messaging.Sqs",
+          "exists": true
+        },
+        {
+          "stack": "ecp",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-ecp/runtimes/python/ecp_runtime/srm_notifications.py",
+          "exists": true
+        }
+      ],
+      "accepted_dispensations": [
+        "teams-external-smoke"
+      ],
+      "limitations": [
+        "SMTP delivered to shared Mailpit only; SQS requires a caller-supplied durable inbox/lease composition."
+      ]
+    },
+    {
+      "source_package": "jira",
+      "intake_outcome": "promotion-proposal",
+      "governing_contract": "ECP workitem.query@0.1.0 and workitem.command@0.1.0; admitted local surface in contracts bundle 0.6.0; unpublished",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "query create edit transition",
+        "backlog dry-run",
+        "durable journal partial-failure recovery",
+        "estimate distinct from worklog"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "ecp",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-ecp/runtimes/python/ecp_runtime/jira.py",
+          "exists": true
+        },
+        {
+          "stack": "ecp",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-ecp/runtimes/python/ecp_runtime/jira_journal.py",
+          "exists": true
+        },
+        {
+          "stack": "ecp",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-ecp/runtimes/python/ecp_runtime/experimental_work_items.py",
+          "exists": true
+        },
+        {
+          "stack": "ecp",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-ecp/docs/experimental/work-items",
+          "exists": true
+        },
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/src/work-items-ecp",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/src/Hideakisolutions.Platform.WorkItems.Ecp",
+          "exists": true
+        }
+      ],
+      "accepted_dispensations": [
+        "jira-write-smoke"
+      ],
+      "admission_state": "owner accepted; registered local ECP work-item0.1.0 surface in bundle0.6.0",
+      "limitations": [
+        "Installed SDK interop uses real HTTP/shared PostgreSQL with a recording Jira double, not a live Jira provider.",
+        "Explicit pure synchronous authorization/secret/transport composition callbacks must enforce their own bounded timeouts; runtime checks between calls.",
+        "Missing nested parent project is resolved by an object-authorized bounded GET and exact identity/project checks; validated on two real Jira sites with zero mutations."
+      ]
+    },
+    {
+      "source_package": "ui-kit",
+      "intake_outcome": "extend",
+      "governing_contract": "Helix existing primitives/forms/layout/feedback",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "table navigation indicator composition",
+        "themes",
+        "keyboard focus axe",
+        "no customer brand"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "react",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-frontend/react/examples/capability-overview.tsx",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_package": "login-ui",
+      "intake_outcome": "extend",
+      "governing_contract": "ecp:design.login-pattern@0.1.0",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "provider action composition",
+        "loading/error/retry",
+        "keyboard focus axe",
+        "React18/19 installed consumer"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "react",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-frontend/packages/ui-react-auth/src/index.tsx",
+          "exists": true
+        },
+        {
+          "stack": "react",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-frontend/react/examples/provider-login.tsx",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "source_package": "sample-app",
+      "intake_outcome": "reference-scenarios",
+      "governing_contract": "composition only, no source runtime copied",
+      "implementation_state": "verified",
+      "publication_state": "not-published",
+      "adoption_state": "not-claimed",
+      "selected_functionality": [
+        "login flow",
+        "approval/directory/authorization consumers",
+        "MFA/notifications journeys"
+      ],
+      "acceptance_classification": "historical accepted source state; not a fresh live smoke",
+      "paths": [
+        {
+          "stack": "node",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/node/examples",
+          "exists": true
+        },
+        {
+          "stack": "dotnet",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-backend/dotnet/examples/srm-absorption-consumer",
+          "exists": true
+        },
+        {
+          "stack": "react",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-frontend/react/examples/provider-login.tsx",
+          "exists": true
+        },
+        {
+          "stack": "react",
+          "path": "/workspace/github/hideaki-solutions-core/.wt/srm-consolidated-frontend/react/examples/capability-overview.tsx",
+          "exists": true
+        }
+      ]
+    }
+  ],
+  "additional_surfaces_not_extra_source_packages": [
+    {
+      "surface": "ai.provider-access@0.1.0",
+      "owner": "ECP",
+      "scope": "Union with upstream PR58/backend PR96; same schemas and native provider runtime reused. ADR AI0017 renumbered with approved body preserved; source-only bindings do not publish packages."
+    },
+    {
+      "surface": "workitem.query / workitem.command@0.1.0",
+      "owner": "ECP",
+      "scope": "Owner-accepted local admission0.6; one Jira engine/provider; canonical and explicit draft profiles retain separate journal/fingerprint namespaces."
+    },
+    {
+      "surface": "SQS adapters and inbox acquisition",
+      "owner": "backend-core",
+      "scope": "Header propagation and typed terminal mismatch handling fixed; local source/installed regressions PASS. Focused real SDK emulator test passed in both directions with four headers and independently confirmed cleanup; inbox in memory. Historical durable scenarios are not inferred as rerun."
+    },
+    {
+      "surface": "Identity SAML / PKCE / TOTP",
+      "owner": "backend/frontend",
+      "scope": "Original real shared-Keycloak proofs remain bound to historical packages; no new IdP production test claimed by consolidation."
+    },
+    {
+      "surface": "Checkbox / LoginProviderActions",
+      "owner": "frontend-core",
+      "scope": "Existing Checkbox integrated by ancestry, no repeated changeset; Storybook aliases and governed presentation-helper coverage exception passed PR112 CI."
+    },
+    {
+      "surface": "JVM historical package provenance",
+      "owner": "backend-core",
+      "scope": "Retired historical source identity, not a current SDK. Strict existing helper validates exact package, immutable source hashes and absence of current paths/publication/adoption. Final union changes only governance/metadata inputs."
+    },
+    {
+      "surface": "Deprecated event-envelope graph identities",
+      "owner": "platform-core",
+      "scope": "Upstream PR43 retains historical graph identities for compatibility, without changing active runtimes, global contract pin or six unknown authorities."
+    }
+  ],
+  "current_gate_receipts": [
+    "backend-validation.json",
+    "backend-completion.json",
+    "ecp-ci-final-receipt.json",
+    "frontend-independent-review.md",
+    "platform-clean-completion.json",
+    "CURRENT-VIEW.json"
+  ],
+  "limits": [
+    "Historical acceptance does not become a new production integration test",
+    "Current PR/merge/CI states are in CURRENT-VIEW.json",
+    "Publication and product adoption excluded"
+  ]
+}
